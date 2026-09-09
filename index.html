@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Jonjoe1001 - Game &amp; Systems Developer</title>
+  <meta name="description" content="I build games, simulations and tools. Timeless on Steam, evolving neural creatures, a 3D puzzle game you play by typing equations.">
+
+  <!-- Social preview (what shows when the link is pasted in Discord/Twitter) -->
+  <meta property="og:title" content="Jonjoe1001 - Game &amp; Systems Developer">
+  <meta property="og:description" content="I build games, simulations and tools. Timeless on Steam, evolving neural creatures, a 3D puzzle game you play by typing equations.">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+  <!-- Fonts. The preconnects make them load noticeably faster. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+
+<body>
+  <!-- The grid, glows and scanlines. Purely decorative. -->
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true"></span>
+        Jonjoe1001
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+
+      <nav class="nav-links">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="blog.html">Dev Log</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+      <div class="wrap">
+        <p class="status">
+          <span class="dot" aria-hidden="true"></span>
+          Currently shipping Timeless
+        </p>
+
+        <h1>I build <span class="glow">games</span> and the systems underneath them.</h1>
+
+        <p class="hero-lead">
+          Roguelikes, physics simulations, neural networks that teach creatures to
+          walk, and whatever else I get curious about at 2am. Some of it ships to
+          Steam. All of it gets written about here.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="projects.html">See the work</a>
+          <a class="btn btn-ghost" href="blog.html">Read the dev log</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FEATURED ===================== -->
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Featured</p>
+          <h2>On Steam now</h2>
+        </div>
+
+        <article class="featured">
+          <div class="featured-body">
+            <div class="tags">
+              <span class="tag is-live">Released</span>
+              <span class="tag is-game">Roguelike</span>
+              <span class="tag">Python / Pygame</span>
+            </div>
+
+            <h3>Timeless</h3>
+            <p>
+              A twin-stick roguelike across three floors of hand-built rooms, with
+              elite enemies, mimics, a constellation-based meta-progression system,
+              and three bosses that each fight on their own terms. Built from
+              scratch in Python with full Steam integration - achievements,
+              leaderboards, cloud saves.
+            </p>
+
+            <div class="stat-row">
+              <div>
+                <span class="stat-label">Bosses</span>
+                <span class="stat-value">3</span>
+              </div>
+              <div>
+                <span class="stat-label">Enemy types</span>
+                <span class="stat-value">8+</span>
+              </div>
+              <div>
+                <span class="stat-label">Engine</span>
+                <span class="stat-value">Custom</span>
+              </div>
+              <div>
+                <span class="stat-label">Platform</span>
+                <span class="stat-value">Steam</span>
+              </div>
+            </div>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="https://store.steampowered.com/app/4437190/" target="_blank" rel="noopener">
+                View on Steam
+              </a>
+              <a class="btn btn-ghost" href="projects.html#timeless">Details</a>
+            </div>
+          </div>
+
+          <div class="featured-art">
+            <img src="assets/img/timeless-title.png" alt="The Timeless logo in pink and cyan pixel lettering" width="1000" height="720">
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== SELECTED WORK ===================== -->
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Selected work</p>
+          <h2>Things I have made</h2>
+          <p>A few highlights. The full list lives on the projects page.</p>
+        </div>
+
+        <div class="grid">
+
+          <!-- Creature Evolver -->
+          <article class="card">
+            <div class="card-art">
+              <img src="assets/img/creature-race.png" alt="Two evolved creatures racing, with their neural network graphs beside them" loading="lazy" width="1400" height="900">
+            </div>
+            <div class="card-body">
+              <div class="tags">
+                <span class="tag is-game">Simulation</span>
+                <span class="tag">JavaScript</span>
+              </div>
+              <h3><a href="projects.html#creature-evolver">Creature Evolver</a></h3>
+              <p>
+                Build a creature from joints, bones and muscles, then watch a neural
+                network grow its own structure until the thing learns to run, jump
+                or swim. Race two trained creatures over 10km.
+              </p>
+              <div class="card-links">
+                <a href="projects.html#creature-evolver">Details &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- MathVoid -->
+          <article class="card">
+            <div class="card-art is-blank" style="--blank-glow: rgba(53,214,245,.24)">
+              <span class="initials" aria-hidden="true">f(x)</span>
+            </div>
+            <div class="card-body">
+              <div class="tags">
+                <span class="tag is-game">3D Puzzle</span>
+                <span class="tag">Godot 4</span>
+              </div>
+              <h3><a href="projects.html#mathvoid">MathVoid</a></h3>
+              <p>
+                A first-person puzzle game in an infinite black void. You progress by
+                typing mathematical functions that materialise as solid, walkable
+                geometry. Bridge a gap with a line. Climb a sine wave.
+              </p>
+              <div class="card-links">
+                <a href="projects.html#mathvoid">Details &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- DIANA -->
+          <article class="card">
+            <div class="card-art is-blank" style="--blank-glow: rgba(255,201,60,.20)">
+              <span class="initials" aria-hidden="true">DI</span>
+            </div>
+            <div class="card-body">
+              <div class="tags">
+                <span class="tag">Local AI</span>
+                <span class="tag">Python</span>
+              </div>
+              <h3><a href="projects.html#diana">DIANA</a></h3>
+              <p>
+                A voice assistant that runs entirely on my own machine. Whisper on
+                the GPU for ears, Ollama for the brain, Kokoro for the voice. Nothing
+                leaves the house.
+              </p>
+              <div class="card-links">
+                <a href="projects.html#diana">Details &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <p style="margin-top: 2rem">
+          <a class="btn btn-ghost" href="projects.html">All projects &rarr;</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== LATEST POSTS ===================== -->
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Dev log</p>
+          <h2>Latest posts</h2>
+        </div>
+
+        <div class="posts">
+          <article class="post-row">
+            <span class="post-date">2026-09-09</span>
+            <div>
+              <h3><a href="posts/2026-09-09-hello-world.html">Building this site from scratch</a></h3>
+              <p>Why I hand-wrote a portfolio instead of using a template, and what the plan is for hosting it at home.</p>
+            </div>
+            <span class="post-arrow" aria-hidden="true">&rarr;</span>
+          </article>
+        </div>
+
+        <p style="margin-top: 2rem">
+          <a class="btn btn-ghost" href="blog.html">All posts &rarr;</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== CALLOUT ===================== -->
+    <section>
+      <div class="wrap">
+        <div class="callout">
+          <h2>Want to talk shop?</h2>
+          <p>
+            Always happy to hear from people building games, or anyone who wants to
+            argue about physics engines.
+          </p>
+          <a class="btn btn-primary" href="mailto:jonathancomer20@gmail.com">Get in touch</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - built by hand</span>
+      <nav class="footer-links">
+        <a href="projects.html">Projects</a>
+        <a href="blog.html">Dev Log</a>
+        <a href="about.html">About</a>
+        <a href="https://store.steampowered.com/app/4437190/" target="_blank" rel="noopener">Steam</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js"></script>
+</body>
+</html>

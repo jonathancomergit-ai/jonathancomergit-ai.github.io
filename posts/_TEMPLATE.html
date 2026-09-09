@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!-- =================================================================
+     POST TEMPLATE - copy me, do not edit me.
+
+     TO WRITE A NEW POST:
+       1. Copy this file to  posts/YYYY-MM-DD-some-slug.html
+       2. Search this file for the word CHANGE and fix each one.
+       3. Write the post inside the <article> below.
+       4. Add a row to blog.html (and index.html if you want it featured).
+
+     Note the "../" in every path below - this file lives inside
+     posts/, so links have to climb one folder up to find the CSS,
+     the images, and the other pages.
+     ================================================================= -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- CHANGE: the title, shown on the browser tab and in search results -->
+  <title>Post title here - Jonjoe1001</title>
+
+  <!-- CHANGE: one sentence. This is the grey text under the link on Google. -->
+  <meta name="description" content="A one-sentence summary of this post.">
+
+  <!-- CHANGE: same two things again, for Discord / Twitter link previews -->
+  <meta property="og:title" content="Post title here">
+  <meta property="og:description" content="A one-sentence summary of this post.">
+  <meta property="og:type" content="article">
+
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+
+<body>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark" aria-hidden="true"></span>
+        Jonjoe1001
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html" aria-current="page">Dev Log</a>
+        <a href="../about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap article">
+      <a class="back-link" href="../blog.html">&larr; All posts</a>
+
+      <!-- CHANGE: the headline -->
+      <h1>Post title here</h1>
+
+      <!-- CHANGE: the date and the tag line -->
+      <p class="article-meta">2026-01-01 &nbsp;&middot;&nbsp; TAG &nbsp;&middot;&nbsp; 4 min read</p>
+
+      <!-- =========================================================
+           THE POST STARTS HERE.
+           Every one of these is optional - delete what you do not need.
+           ========================================================= -->
+
+      <p>
+        Open with the thing that makes someone want to keep reading. A problem,
+        a surprise, a number. Not "in this post I will".
+      </p>
+
+      <h2>A section heading</h2>
+
+      <p>
+        Regular paragraph. You can make a word <strong>important</strong> or add
+        <em>emphasis</em>, and link to <a href="../projects.html">another page</a>
+        or <a href="https://example.com" target="_blank" rel="noopener">somewhere
+        off-site</a>.
+      </p>
+
+      <p>
+        Inline code looks like <code>stepSim()</code> when you wrap it in code tags.
+      </p>
+
+      <!-- A bulleted list -->
+      <ul>
+        <li>First point</li>
+        <li>Second point</li>
+        <li>Third point</li>
+      </ul>
+
+      <!-- A code block. Whatever you type inside stays exactly as typed. -->
+      <pre><code>def update(self, dt):
+    self.vel.y += GRAVITY * dt
+    self.pos  += self.vel * dt</code></pre>
+
+      <!-- A pull quote -->
+      <blockquote>
+        A line worth setting apart from the rest.
+      </blockquote>
+
+      <!-- An image with a caption. Put the file in assets/img/ first. -->
+      <figure>
+        <img src="../assets/img/CHANGE-ME.png" alt="CHANGE: describe what is in the image for anyone who cannot see it">
+        <figcaption>A caption explaining what you are looking at.</figcaption>
+      </figure>
+
+      <h2>Another section</h2>
+
+      <p>
+        Close it out. What did you learn, what is next.
+      </p>
+
+      <!-- ========================= END ========================= -->
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - built by hand</span>
+      <nav class="footer-links">
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="https://store.steampowered.com/app/4437190/" target="_blank" rel="noopener">Steam</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

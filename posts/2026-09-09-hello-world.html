@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Building this site from scratch - Jonjoe1001</title>
+  <meta name="description" content="Why I hand-wrote a portfolio instead of using a template, and the plan for eventually hosting it on the NAS in my closet.">
+
+  <meta property="og:title" content="Building this site from scratch">
+  <meta property="og:description" content="Why I hand-wrote a portfolio instead of using a template, and the plan for eventually hosting it on the NAS in my closet.">
+  <meta property="og:type" content="article">
+
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+
+<body>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark" aria-hidden="true"></span>
+        Jonjoe1001
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html" aria-current="page">Dev Log</a>
+        <a href="../about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap article">
+      <a class="back-link" href="../blog.html">&larr; All posts</a>
+
+      <h1>Building this site from scratch</h1>
+
+      <p class="article-meta">2026-09-09 &nbsp;&middot;&nbsp; META &nbsp;&middot;&nbsp; 3 min read</p>
+
+      <p>
+        I have shipped a game to Steam, trained neural networks to teach creatures
+        to walk, and built a voice assistant that runs entirely offline in my house.
+        Until today, none of that lived anywhere a person could actually look at it.
+      </p>
+
+      <p>
+        So: this. A place to put the work, and a place to write about it while it is
+        still in progress rather than only once it is done.
+      </p>
+
+      <h2>Why hand-written HTML</h2>
+
+      <p>
+        The obvious move is a template &mdash; a themed static site generator, or one
+        of the drag-and-drop portfolio builders. I went the other way, and the reason
+        is boring but real: <strong>I want to be able to fix it in two years.</strong>
+      </p>
+
+      <p>
+        Every framework I could have picked has a version number attached to a clock.
+        Plain HTML and CSS do not. There is no build step here, no
+        <code>node_modules</code>, no dependency that goes stale while I am busy
+        doing something else. Adding a post means copying a file and filling it in.
+        That is the whole workflow, and it will still work when I have forgotten
+        every detail of how the site is put together.
+      </p>
+
+      <blockquote>
+        The best tool for a personal site is the one that still runs after you
+        ignore it for a year.
+      </blockquote>
+
+      <p>
+        The other reason is that I am learning this properly. I have been working
+        through HTML structure from the bottom &mdash; what actually nests inside
+        what, why <code>&lt;article&gt;</code> and <code>&lt;section&gt;</code> are
+        different things &mdash; and there is no faster way to internalise that than
+        having a real site whose layout breaks when you get it wrong.
+      </p>
+
+      <h2>The look</h2>
+
+      <p>
+        The palette is not invented. It is pulled straight off the
+        <a href="https://store.steampowered.com/app/4437190/" target="_blank" rel="noopener">Timeless</a>
+        title art &mdash; hot pink, electric cyan, amber &mdash; on near-black, with
+        a faint drafting grid and CRT scanlines behind everything at an opacity you
+        only notice if you go looking. It should feel like a game menu without
+        actually pretending to be one.
+      </p>
+
+      <p>
+        Everything is driven by CSS custom properties in one block at the top of the
+        stylesheet. Change one hex value there and the entire site changes colour.
+        That was deliberate: I know I will want to repaint this once it has been
+        live long enough to annoy me.
+      </p>
+
+      <h2>Where it lives, and where it is going</h2>
+
+      <p>
+        For now this is served by GitHub Pages, which is free, always up, and
+        requires nothing of me beyond pushing a commit. That was the right first
+        step &mdash; get it live, get a URL, stop it from existing only on my desktop.
+      </p>
+
+      <p>
+        The longer-term plan is more interesting. There is a TrueNAS box in my house
+        that is already on twenty-four hours a day, and it can serve this site
+        perfectly well. The catch is that self-hosting from a residential connection
+        usually means port-forwarding to your home IP, which is a security problem
+        and a dynamic-DNS problem at the same time.
+      </p>
+
+      <p>
+        The way around it is a Cloudflare Tunnel: the NAS opens an outbound
+        connection to Cloudflare, visitors hit Cloudflare, and traffic comes back
+        down that tunnel. No open ports, no exposed home IP, free TLS. The only
+        thing I give up is uptime &mdash; the site becomes exactly as reliable as my
+        power and my internet.
+      </p>
+
+      <p>
+        Which is fine, because the copy on GitHub is not going anywhere. Same files,
+        two hosts, and I get to learn the self-hosting side on something where
+        nothing breaks if I get it wrong.
+      </p>
+
+      <h2>Next</h2>
+
+      <p>
+        A proper write-up of how the neuroevolution in Creature Evolver actually
+        works &mdash; specifically the part where the network is allowed to add its
+        own neurons, which is the bit that surprised me most when it started
+        working.
+      </p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - built by hand</span>
+      <nav class="footer-links">
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="https://store.steampowered.com/app/4437190/" target="_blank" rel="noopener">Steam</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

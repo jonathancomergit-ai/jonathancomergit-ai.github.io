@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Projects - Jonjoe1001</title>
+  <meta name="description" content="Games, simulations and tools built by Jonjoe1001 - Timeless, Creature Evolver, MathVoid, DIANA and more.">
+
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+
+<body>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true"></span>
+        Jonjoe1001
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="projects.html" aria-current="page">Projects</a>
+        <a href="blog.html">Dev Log</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Everything</p>
+          <h2>Projects</h2>
+          <p>
+            Shipped games, half-finished experiments, and tools I built because the
+            existing ones annoyed me. Filter by what you care about.
+          </p>
+        </div>
+
+        <!-- Filter chips. The words in data-filter must match the words
+             in each card's data-tags attribute. -->
+        <div class="filters" role="group" aria-label="Filter projects">
+          <button class="chip" data-filter="all"  aria-pressed="true">All</button>
+          <button class="chip" data-filter="game" aria-pressed="false">Games</button>
+          <button class="chip" data-filter="sim"  aria-pressed="false">Simulations</button>
+          <button class="chip" data-filter="tool" aria-pressed="false">Tools</button>
+        </div>
+
+        <p class="post-date" style="margin: -1rem 0 1.5rem" data-result-count></p>
+
+        <div class="grid">
+
+          <!-- ============ TIMELESS ============ -->
+          <article class="card" id="timeless" data-tags="game">
+            <div class="card-art is-blank" style="--blank-glow: rgba(255,45,120,.28)">
+              <img src="assets/img/timeless-title.png"
+                   alt="The Timeless logo in pink and cyan pixel lettering"
+                   style="object-fit: contain; padding: 1.4rem; image-rendering: pixelated"
+                   loading="lazy" width="1000" height="720">
+            </div>
+            <div class="card-body">
+              <div class="tags">
+                <span class="tag is-live">Released</span>
+                <span class="tag is-game">Roguelike</span>
+                <span class="tag">Python</span>
+              </div>
+              <h3><a href="https://store.steampowered.com/app/4437190/" target="_blank" rel="noopener">Timeless</a></h3>
+              <p>
+                A twin-stick roguelike across three floors of hand-built rooms.
+                Elite enemies, mimics disguised as scenery, a constellation
+                meta-progression system, and three bosses with distinct fight
+                logic. Custom engine on Pygame, full Steam integration -
+                achievements, leaderboards, cloud saves - plus controller support
+                and a built-in room editor I used to author every room.
+              </p>
+              <div class="card-links">
+                <a href="https://store.steampowered.com/app/4437190/" target="_blank" rel="noopener">Steam page &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ============ CREATURE EVOLVER ============ -->
+          <article class="card" id="creature-evolver" data-tags="sim game">
+            <div class="card-art">
+              <img src="assets/img/creature-race.png"
+                   alt="Two evolved creatures racing, each with its neural network graph"
+                   loading="lazy" width="1400" height="900">
+            </div>
+            <div class="card-body">
+              <div class="tags">
+                <span class="tag is-game">Simulation</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Neuroevolution</span>
+              </div>
+              <h3>Creature Evolver</h3>
+              <p>
+                Build a creature out of joints, bones and muscles, then let a neural
+                network grow its own structure until it learns to run, jump, climb
+                or swim. A body editor, a lab where evolution runs live with the
+                brain graph drawn beside the creature, and a race mode that puts two
+                trained genomes head to head over 10 kilometres. Pure JavaScript, no
+                dependencies.
+              </p>
+              <div class="card-links">
+                <a href="#creature-evolver">Screenshots below &darr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ============ MATHVOID ============ -->
+          <article class="card" id="mathvoid" data-tags="game">
+            <div class="card-art is-blank" style="--blank-glow: rgba(53,214,245,.24)">
+              <span class="initials" aria-hidden="true">f(x)</span>
+            </div>
+            <div class="card-body">
+              <div class="tags">
+                <span class="tag is-game">3D Puzzle</span>
+                <span class="tag">Godot 4</span>
+                <span class="tag">In progress</span>
+              </div>
+              <h3>MathVoid</h3>
+              <p>
+                A first-person puzzle game in an infinite black void where the only
+                tool you have is mathematics. Open the console, type a function, and
+                it materialises as solid walkable geometry. A sloped line becomes a
+                ramp. A parabola becomes a valley bridge. A sine wave becomes stairs
+                you can climb. Levels build themselves in code - no node wiring.
+              </p>
+            </div>
+          </article>
+
+          <!-- ============ DIANA ============ -->
+          <article class="card" id="diana" data-tags="tool">
+            <div class="card-art is-blank" style="--blank-glow: rgba(255,201,60,.20)">
+              <span class="initials" aria-hidden="true">DI</span>
+            </div>
+            <div class="card-body">
+              <div class="tags">
+                <span class="tag">Local AI</span>
+                <span class="tag">Python</span>
+              </div>
+              <h3>DIANA</h3>
+              <p>
+                A voice assistant that runs 100% offline on my own hardware.
+                Push-to-talk into Whisper on the GPU, through a custom Ollama model,
+                out through a Kokoro voice on the CPU. She starts speaking before
+                she has finished thinking, remembers the conversation, and nothing
+                ever leaves the machine.
+              </p>
+            </div>
+          </article>
+
+          <!-- ============ STEAM WHEEL ============ -->
+          <article class="card" id="steam-wheel" data-tags="tool">
+            <div class="card-art is-blank" style="--blank-glow: rgba(53,214,245,.18)">
+              <span class="initials" aria-hidden="true">SW</span>
+            </div>
+            <div class="card-body">
+              <div class="tags">
+                <span class="tag">Tool</span>
+                <span class="tag">Python</span>
+                <span class="tag">Web</span>
+              </div>
+              <h3>Steam Wheel</h3>
+              <p>
+                Game night, solved. Spin a wheel built from your real Steam library -
+                but the good part is that it reads your Steam Family ownership, so
+                the wheel only offers games everybody in the room can actually
+                launch. Local web app, double-click to run.
+              </p>
+            </div>
+          </article>
+
+          <!-- ============ GPU PRIMES ============ -->
+          <article class="card" id="gpu-primes" data-tags="tool">
+            <div class="card-art is-blank" style="--blank-glow: rgba(61,245,160,.16)">
+              <span class="initials" aria-hidden="true">CU</span>
+            </div>
+            <div class="card-body">
+              <div class="tags">
+                <span class="tag">CUDA</span>
+                <span class="tag">C</span>
+              </div>
+              <h3>GPU Primes</h3>
+              <p>
+                A prime sieve written in CUDA to find out how much faster the GPU
+                really is than the CPU at brute-force number crunching. Mostly an
+                excuse to learn how to write a kernel and think about memory
+                coalescing.
+              </p>
+            </div>
+          </article>
+
+          <!-- ============ NETWORK VIZ ============ -->
+          <article class="card" id="network-viz" data-tags="tool">
+            <div class="card-art is-blank" style="--blank-glow: rgba(167,139,250,.18)">
+              <span class="initials" aria-hidden="true">NV</span>
+            </div>
+            <div class="card-body">
+              <div class="tags">
+                <span class="tag">Data Viz</span>
+                <span class="tag">Python</span>
+              </div>
+              <h3>Network Visualiser</h3>
+              <p>
+                A force-directed graph renderer for poking at network structure -
+                built to see relationships in data that a table refuses to show you.
+              </p>
+            </div>
+          </article>
+
+          <!-- ============ HEXCAM ============ -->
+          <article class="card" id="hexcam" data-tags="tool">
+            <div class="card-art is-blank" style="--blank-glow: rgba(255,201,60,.16)">
+              <span class="initials" aria-hidden="true">HX</span>
+            </div>
+            <div class="card-body">
+              <div class="tags">
+                <span class="tag">Experiment</span>
+                <span class="tag">Python</span>
+              </div>
+              <h3>HexCam</h3>
+              <p>
+                Live webcam feed re-rendered as a hexagonal grid. A small experiment
+                in image sampling and tiling that turned out to look far better than
+                it had any right to.
+              </p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== GALLERY ===================== -->
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Creature Evolver</p>
+          <h2>A closer look</h2>
+          <p>
+            The interface is a cyanotype blueprint - the creature is drawn as a
+            technical diagram, so the whole UI is drafting paper.
+          </p>
+        </div>
+
+        <div class="grid">
+          <figure style="margin:0">
+            <img src="assets/img/creature-lab.png" alt="The evolution lab, with the live world view and brain graph" loading="lazy" style="border-radius: 14px; border: 1px solid var(--line)" width="1400" height="900">
+          </figure>
+          <figure style="margin:0">
+            <img src="assets/img/creature-species.png" alt="The species screen showing saved creatures" loading="lazy" style="border-radius: 14px; border: 1px solid var(--line)" width="1400" height="900">
+          </figure>
+          <figure style="margin:0">
+            <img src="assets/img/creature-menu.png" alt="The main menu with saved creature thumbnails and records" loading="lazy" style="border-radius: 14px; border: 1px solid var(--line)" width="1400" height="900">
+          </figure>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - built by hand</span>
+      <nav class="footer-links">
+        <a href="projects.html">Projects</a>
+        <a href="blog.html">Dev Log</a>
+        <a href="about.html">About</a>
+        <a href="https://store.steampowered.com/app/4437190/" target="_blank" rel="noopener">Steam</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js"></script>
+</body>
+</html>
