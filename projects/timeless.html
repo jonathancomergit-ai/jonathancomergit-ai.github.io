@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Timeless - Jonjoe1001</title>
+  <meta name="description" content="A twin-stick roguelike where the clock is your health bar. Custom Python engine, a constellation meta-progression tree, 94 upgrades, three bosses. In development.">
+
+  <meta property="og:title" content="Timeless - a roguelike where time is your health">
+  <meta property="og:description" content="A twin-stick roguelike where the clock is your health bar. Custom Python engine, a constellation meta-progression tree, 94 upgrades, three bosses.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jonathancomergit-ai.github.io/projects/timeless.html">
+  <meta property="og:site_name" content="Jonjoe1001">
+  <meta property="og:image" content="https://jonathancomergit-ai.github.io/assets/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jonathancomergit-ai.github.io/assets/img/og.jpg">
+
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+
+<body>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="avatar" src="../assets/img/pfp.png" alt="" width="34" height="34">
+        Jonjoe1001
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html" aria-current="page">Projects</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap project-hero">
+      <a class="back-link" href="../projects.html">&larr; All projects</a>
+
+      <div class="tags">
+        <span class="tag is-dev">In development</span>
+        <span class="tag is-game">Roguelike</span>
+        <span class="tag">Python / Pygame</span>
+      </div>
+
+      <h1>Timeless</h1>
+
+      <p class="project-lead">
+        A twin-stick roguelike where the clock <em>is</em> the health bar. You do
+        not lose hit points &mdash; you lose seconds, and when they run out, so do
+        you. Built from nothing in Python: my own engine, my own room editor, and a
+        meta-progression system shaped like the night sky.
+      </p>
+    </div>
+
+    <div class="wrap">
+      <div class="project-cover">
+        <img src="../assets/img/projects/timeless/menu.webp"
+             alt="The Timeless main menu - options drawn as stars in a nebula"
+             width="1600" height="893">
+      </div>
+
+      <dl class="facts">
+        <div><dt>Status</dt><dd>In development</dd></div>
+        <div><dt>Engine</dt><dd>Custom, on Pygame</dd></div>
+        <div><dt>Codebase</dt><dd>~43,000 lines</dd></div>
+        <div><dt>Upgrades</dt><dd>94</dd></div>
+        <div><dt>Enemies</dt><dd>8 + 7 mini-bosses</dd></div>
+        <div><dt>Bosses</dt><dd>3</dd></div>
+        <div><dt>Modes</dt><dd>Normal, Endless, Tutorial</dd></div>
+        <div><dt>Input</dt><dd>KB/M + controller</dd></div>
+      </dl>
+
+      <div class="project-body">
+        <h2>Time is the health bar</h2>
+
+        <p>
+          Most roguelikes give you a health bar and a timer, and the two have
+          nothing to do with each other. Timeless collapses them into one. That bar
+          across the bottom of the screen is not a countdown to a game over &mdash;
+          it is your life. Taking a hit costs seconds. Killing things buys them back.
+        </p>
+
+        <p>
+          One decision changes how every room reads. A room you could clear slowly
+          and carefully in another game is a room you cannot afford here. Playing it
+          safe <em>is</em> a way to die. It makes the player aggressive without me
+          ever having to tell them to be.
+        </p>
+      </div>
+
+      <div class="shots">
+        <figure class="shot shot-wide">
+          <img src="../assets/img/projects/timeless/floor1.webp" alt="Floor 1, a Time Rift room - the player fighting among black holes with the timer bar at the bottom" loading="lazy">
+          <figcaption><b>Floor 1 &mdash; a Time Rift room.</b> Score with a live multiplier top-left, the time bar across the bottom, and three abilities bound to space, Q and R.</figcaption>
+        </figure>
+        <figure class="shot shot-wide">
+          <img src="../assets/img/projects/timeless/floor2.webp" alt="Floor 2, a red crystal room with elite enemies" loading="lazy">
+          <figcaption><b>Floor 2.</b> New palette, new enemies &mdash; the crowned one is an elite variant with more health and a nastier pattern.</figcaption>
+        </figure>
+      </div>
+
+      <div class="project-body">
+        <h2>The run map is a constellation</h2>
+
+        <p>
+          Between rooms you pick your path across a star chart. Crossed swords are
+          fights, books are lore, the coin pouch is a shop &mdash; and at the top of
+          the map, drawn in silhouette long before you reach her, is the boss.
+        </p>
+
+        <p>
+          Showing the boss on the map from the first room was a small change with a
+          disproportionate effect. You spend the whole floor watching her get closer.
+        </p>
+      </div>
+
+      <div class="shots">
+        <figure class="shot">
+          <img src="../assets/img/projects/timeless/map.webp" alt="The floor map drawn as a constellation of linked nodes" loading="lazy">
+          <figcaption><b>The floor map</b> &mdash; nodes linked like stars, with Via Lactea waiting at the top.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/img/projects/timeless/modes.webp" alt="Mode select - Normal, Endless and Tutorial orbiting a black hole" loading="lazy">
+          <figcaption><b>Mode select</b> &mdash; Normal, Endless and Tutorial, orbiting a black hole.</figcaption>
+        </figure>
+      </div>
+
+      <div class="project-body">
+        <h2>The Time Tree</h2>
+
+        <p>
+          The meta-progression is not a list of perks. It is a zodiac.
+        </p>
+
+        <p>
+          Each run you earn Astral Relics &mdash; Magnetism, Oracle, Parasite,
+          Gambler, Cascade, Reaper, Void, Mirror &mdash; each carrying an elemental
+          affinity: Earth, Air, Fire, Water, Chaos or Void. You drag them into the
+          slots of the constellation currently in the sky. Fill every slot and the
+          constellation activates its own bonus on top of the relics themselves.
+        </p>
+
+        <p>
+          The part I like: <strong>the constellation rotates every few runs.</strong>
+          Taurus is up for two more runs, then something else takes its place, with
+          different slots and a different set bonus. So the optimal build is not a
+          thing you solve once and repeat &mdash; it moves, and you plan around what
+          is in the sky right now.
+        </p>
+
+        <h3>The Codex</h3>
+
+        <p>
+          Ninety-four upgrades, eight enemies, seven mini-bosses and three bosses,
+          every one with a locked lore entry that reads <em>&ldquo;Discover this
+          entry to reveal its lore&rdquo;</em> until you meet it. The Remnant,
+          Kometes, Epoch, Quasar, Insidator, Unbound, The Ward, the Maw &mdash; and
+          mini-bosses called Undying, Tempest, The Monolith, Zerohour, Dusk, Rift
+          King and Fortress.
+        </p>
+
+        <p>
+          It turns an enemy you have never seen into a blank you want to fill.
+        </p>
+      </div>
+
+      <div class="shots">
+        <figure class="shot shot-wide">
+          <img src="../assets/img/projects/timeless/timetree.webp" alt="The Time Tree - the Taurus constellation with orb slots and a list of Astral Relics" loading="lazy">
+          <figcaption><b>The Time Tree.</b> Taurus is in the sky and rotates in two runs. Drag relics into its slots; fill them all and the set bonus fires &mdash; here, once per room your HP cannot drop below 1.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/img/projects/timeless/codex-enemies.webp" alt="The Codex enemies page showing every enemy and mini-boss" loading="lazy">
+          <figcaption><b>Codex &mdash; enemies.</b> Eight enemies and seven mini-bosses, each with lore you unlock by meeting them.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/img/projects/timeless/codex-upgrades.webp" alt="The Codex upgrades page, mostly still locked" loading="lazy">
+          <figcaption><b>Codex &mdash; upgrades.</b> 94 of them. This save has found seven.</figcaption>
+        </figure>
+      </div>
+
+      <div class="project-body">
+        <h2>Building the engine</h2>
+
+        <p>
+          There is no Unity or Godot underneath this. Pygame gives you a window, a
+          surface and an event loop; everything above that &mdash; camera, room
+          streaming, collision, particles, the UI layer, saves, controller remapping
+          &mdash; I had to write.
+        </p>
+
+        <p>
+          That was the point. I wanted to know how the parts I had always taken for
+          granted actually work. It also means the whole thing bends to me: the world
+          runs at a fixed scale where <code>20 pixels = 1 metre</code>, rooms come in
+          five sizes from <code>compact</code> to <code>tall</code>, and boss arenas
+          are simply double-size rooms.
+        </p>
+
+        <h3>The room editor</h3>
+
+        <p>
+          The single best decision in the project. Early on I was authoring rooms by
+          typing coordinates into Python lists, which was miserable and produced bad
+          rooms. So I stopped making the game and spent a week building an in-engine
+          editor instead.
+        </p>
+
+        <p>
+          Every room in Timeless was built in that editor. Tooling first, content
+          second &mdash; I would make that trade again on anything this size.
+        </p>
+
+        <h2>The bosses</h2>
+
+        <p>
+          Three, and each exists to break a rule the rest of the game has taught you.
+        </p>
+
+        <ul>
+          <li>
+            <strong>Via Lactea, Goddess of the Galaxy.</strong> She opens by making a
+            deal: <em>&ldquo;Hush, little spark. I make a deal &mdash; your time
+            slows. Your end is mine.&rdquo;</em> Your clock then drains at an eighth
+            of the normal rate for the whole fight. It is a mechanical change dressed
+            as a story beat &mdash; the reason time behaves differently is that a god
+            is holding it. The fight walks through eight planet phases, Mercury to
+            Neptune, each with its own hazard, and ends in a black hole.
+          </li>
+          <li><strong>TimeReaper.</strong> Floor two's answer to a player who has gotten comfortable.</li>
+          <li><strong>Chronarch.</strong> The last one.</li>
+        </ul>
+
+        <p>
+          Via Lactea started much simpler and got rebuilt entirely. The design note I
+          wrote for that overhaul has one line in bold at the top &mdash;
+          <em>&ldquo;make it hurt bad, we can adjust later&rdquo;</em> &mdash; and
+          every ambiguous difficulty call landed on the harsher option. The fight is
+          better for it.
+        </p>
+
+        <h2>Where it is now</h2>
+
+        <p>
+          Timeless is <strong>in development</strong>. It builds, it runs, it has a
+          Steam depot with achievements, leaderboards and cloud saves wired up, and
+          it has been through a playtest. It is not out yet, and I would rather it
+          land finished than land soon.
+        </p>
+
+        <p>
+          Progress goes in the <a href="../blog.html">dev log</a> as it happens.
+        </p>
+      </div>
+
+      <p style="margin-top: 2.4rem">
+        <a class="btn btn-ghost" href="../projects.html">&larr; All projects</a>
+        <a class="btn btn-primary" href="../blog.html">Follow the dev log</a>
+      </p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - built by hand</span>
+      <nav class="footer-links">
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+        <a href="https://jonjoe1001.itch.io/emergent-evolver" target="_blank" rel="noopener">itch.io</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

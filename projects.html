@@ -5,7 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Projects - Jonjoe1001</title>
-  <meta name="description" content="Games, simulations and tools built by Jonjoe1001 - Timeless, Creature Evolver, MathVoid, DIANA and more.">
+  <meta name="description" content="Games, simulations and tools built by Jonjoe1001 - Timeless, Emergent Evolver, Wheelhouse, MathVoid, DIANA and more.">
+  <meta property="og:title" content="Projects - Jonjoe1001">
+  <meta property="og:description" content="Games, simulations and tools built by Jonjoe1001 - Timeless, Emergent Evolver, Wheelhouse, MathVoid, DIANA and more.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jonathancomergit-ai.github.io/projects.html">
+  <meta property="og:site_name" content="Jonjoe1001">
+  <meta property="og:image" content="https://jonathancomergit-ai.github.io/assets/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jonathancomergit-ai.github.io/assets/img/og.jpg">
+
 
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 
@@ -22,7 +33,7 @@
   <header class="site-header">
     <div class="wrap nav">
       <a class="brand" href="index.html">
-        <span class="brand-mark" aria-hidden="true"></span>
+        <img class="avatar" src="assets/img/pfp.png" alt="" width="34" height="34">
         Jonjoe1001
       </a>
 
@@ -33,19 +44,135 @@
         <a href="projects.html" aria-current="page">Projects</a>
         <a href="blog.html">Dev Log</a>
         <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
       </nav>
     </div>
   </header>
 
   <main>
+    <!-- ===================== THE BIG THREE ===================== -->
     <section>
       <div class="wrap">
         <div class="section-head">
-          <p class="kicker">Everything</p>
-          <h2>Projects</h2>
+          <p class="kicker">The best of it</p>
+          <h1>Projects</h1>
           <p>
-            Shipped games, half-finished experiments, and tools I built because the
-            existing ones annoyed me. Filter by what you care about.
+            Three of these I would put in front of anyone. The rest are further
+            down &mdash; experiments, tools, and things other devs/math nerds might find intresting.
+          </p>
+        </div>
+
+        <!-- Each of these links through to its own page.
+             .feature:nth-child(even) flips the art to the other side. -->
+        <div class="feature-list">
+
+          <!-- ============ TIMELESS ============ -->
+          <article class="feature art-narrow">
+            <div class="feature-body">
+              <div class="tags">
+                <span class="tag is-dev">In development</span>
+                <span class="tag is-game">Roguelike</span>
+                <span class="tag">Python</span>
+              </div>
+              <h3><a href="projects/timeless.html">Timeless</a></h3>
+              <p>
+                A twin-stick roguelike where the clock <em>is</em> the health bar.
+                You do not lose hit points &mdash; you lose time. Custom engine,
+                custom room editor, 43,000 lines, and three bosses who each break a
+                rule the game spent an hour teaching you. Ill be honest I should have
+                made this game in a known engine(unity, godot, etc), but it was far to late and i've learned more
+                then I could ever dream. This game is still under work by me and my talented amazing girlfriend. 
+                She hand drew all of the art in the game. Yes thats why it looks so good.
+              </p>
+              <div class="stat-row">
+                <div><span class="stat-label">Codebase</span><span class="stat-value">43k lines</span></div>
+                <div><span class="stat-label">Bosses</span><span class="stat-value">3</span></div>
+                <div><span class="stat-label">Engine</span><span class="stat-value">Custom (help)</span></div>
+              </div>
+              <a class="btn btn-primary" href="projects/timeless.html">Explore Timeless</a>
+            </div>
+            <div class="feature-art is-pixel" style="--art-bg: #231F35">
+              <img src="assets/img/covers/timeless.webp" alt="Timeless key art - a star-lit figure holding a black hole in one hand and a galaxy in the other, above the Timeless logo" loading="lazy" width="600" height="900">
+            </div>
+          </article>
+
+          <!-- ============ EMERGENT EVOLVER ============ -->
+          <article class="feature art-narrow">
+            <div class="feature-body">
+              <div class="tags">
+                <span class="tag is-play">Playable now</span>
+                <span class="tag is-game">Simulation</span>
+                <span class="tag">JavaScript</span>
+              </div>
+              <h3><a href="projects/emergent-evolver.html">Emergent Evolver</a></h3>
+              <p>
+                Have you ever been intreset in machine learning, anatomy, or evolution? 
+                Well Emergent Evolver explores emergant complexity with machine learning.
+                You draw a creatures body. You do not tell it how to move. A neural network
+                starts from noise, grows its own neurons as it learns, and after a
+                few hundred generations something runs &mdash; and you can watch the
+                brain wire itself while it happens. Play with the physics, evolution, and body
+                  settings to see what you can dream up and create!
+              </p>
+              <div class="stat-row">
+                <div><span class="stat-label">Courses</span><span class="stat-value">6</span></div>
+                <div><span class="stat-label">Dependencies</span><span class="stat-value">Zero</span></div>
+                <div><span class="stat-label">Whole game</span><span class="stat-value">1 file</span></div>
+              </div>
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="https://jonjoe1001.itch.io/emergent-evolver" target="_blank" rel="noopener">Play it now &rarr;</a>
+                <a class="btn btn-ghost" href="projects/emergent-evolver.html">Read about it</a>
+              </div>
+            </div>
+            <div class="feature-art" style="--art-bg: #111E2C">
+              <img src="assets/img/covers/emergent-evolver.webp" alt="Emergent Evolver key art - a jointed creature below the title, over a tangle of plotted neural-network curves" loading="lazy" width="630" height="500">
+            </div>
+          </article>
+
+          <!-- ============ WHEELHOUSE ============ -->
+          <article class="feature">
+            <div class="feature-body">
+              <div class="tags">
+                <span class="tag is-out">Out now</span>
+                <span class="tag">Tool</span>
+                <span class="tag">Python + Web</span>
+              </div>
+              <h3><a href="projects/wheelhouse.html">Wheelhouse</a></h3>
+              <p>
+                Ok guys we all have games but no games am I right? well....
+                Game night, solved! Wheel house reads your real Steam Family ownership and
+                only puts games on the wheel that your whole party can actually
+                launch &mdash; so a spin never lands on something one person owns.
+                Have a party of 5? Set the wheel to five players and the program will sift through
+                all the games you and your steam faimly cant play together!
+              </p>
+              <div class="stat-row">
+                <div><span class="stat-label">Runs</span><span class="stat-value">Locally</span></div>
+                <div><span class="stat-label">Install</span><span class="stat-value">One click</span></div>
+                <div><span class="stat-label">Accounts</span><span class="stat-value">None</span></div>
+              </div>
+              <a class="btn btn-primary" href="projects/wheelhouse.html">Explore Wheelhouse</a>
+            </div>
+            <div class="feature-art">
+              <img src="assets/img/projects/wheelhouse/categories.webp" alt="The Wheelhouse category picker, five categories selected out of twenty-one" loading="lazy" width="1600" height="770">
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== EVERYTHING ELSE ===================== -->
+    <section style="padding-top: 0">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Everything else</p>
+          <h2>The rest of the shelf</h2>
+          <p>
+            Experiments, coursework that got out of hand, and tools built to
+            scratch one specific itch. Some of these may be practice or a tool for
+            development, or to solve math problems who KNOWS! If you see something your
+            intreset 
           </p>
         </div>
 
@@ -62,63 +189,6 @@
 
         <div class="grid">
 
-          <!-- ============ TIMELESS ============ -->
-          <article class="card" id="timeless" data-tags="game">
-            <div class="card-art is-blank" style="--blank-glow: rgba(255,45,120,.28)">
-              <img src="assets/img/timeless-title.png"
-                   alt="The Timeless logo in pink and cyan pixel lettering"
-                   style="object-fit: contain; padding: 1.4rem; image-rendering: pixelated"
-                   loading="lazy" width="1000" height="720">
-            </div>
-            <div class="card-body">
-              <div class="tags">
-                <span class="tag is-live">Released</span>
-                <span class="tag is-game">Roguelike</span>
-                <span class="tag">Python</span>
-              </div>
-              <h3><a href="https://store.steampowered.com/app/4437190/" target="_blank" rel="noopener">Timeless</a></h3>
-              <p>
-                A twin-stick roguelike across three floors of hand-built rooms.
-                Elite enemies, mimics disguised as scenery, a constellation
-                meta-progression system, and three bosses with distinct fight
-                logic. Custom engine on Pygame, full Steam integration -
-                achievements, leaderboards, cloud saves - plus controller support
-                and a built-in room editor I used to author every room.
-              </p>
-              <div class="card-links">
-                <a href="https://store.steampowered.com/app/4437190/" target="_blank" rel="noopener">Steam page &rarr;</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- ============ CREATURE EVOLVER ============ -->
-          <article class="card" id="creature-evolver" data-tags="sim game">
-            <div class="card-art">
-              <img src="assets/img/creature-race.png"
-                   alt="Two evolved creatures racing, each with its neural network graph"
-                   loading="lazy" width="1400" height="900">
-            </div>
-            <div class="card-body">
-              <div class="tags">
-                <span class="tag is-game">Simulation</span>
-                <span class="tag">JavaScript</span>
-                <span class="tag">Neuroevolution</span>
-              </div>
-              <h3>Creature Evolver</h3>
-              <p>
-                Build a creature out of joints, bones and muscles, then let a neural
-                network grow its own structure until it learns to run, jump, climb
-                or swim. A body editor, a lab where evolution runs live with the
-                brain graph drawn beside the creature, and a race mode that puts two
-                trained genomes head to head over 10 kilometres. Pure JavaScript, no
-                dependencies.
-              </p>
-              <div class="card-links">
-                <a href="#creature-evolver">Screenshots below &darr;</a>
-              </div>
-            </div>
-          </article>
-
           <!-- ============ MATHVOID ============ -->
           <article class="card" id="mathvoid" data-tags="game">
             <div class="card-art is-blank" style="--blank-glow: rgba(53,214,245,.24)">
@@ -126,17 +196,16 @@
             </div>
             <div class="card-body">
               <div class="tags">
+                <span class="tag is-dev">In development</span>
                 <span class="tag is-game">3D Puzzle</span>
                 <span class="tag">Godot 4</span>
-                <span class="tag">In progress</span>
               </div>
               <h3>MathVoid</h3>
               <p>
                 A first-person puzzle game in an infinite black void where the only
                 tool you have is mathematics. Open the console, type a function, and
                 it materialises as solid walkable geometry. A sloped line becomes a
-                ramp. A parabola becomes a valley bridge. A sine wave becomes stairs
-                you can climb. Levels build themselves in code - no node wiring.
+                ramp. A sine wave becomes stairs you can climb. The only limit is you!
               </p>
             </div>
           </article>
@@ -155,30 +224,9 @@
               <p>
                 A voice assistant that runs 100% offline on my own hardware.
                 Push-to-talk into Whisper on the GPU, through a custom Ollama model,
-                out through a Kokoro voice on the CPU. She starts speaking before
-                she has finished thinking, remembers the conversation, and nothing
-                ever leaves the machine.
-              </p>
-            </div>
-          </article>
-
-          <!-- ============ STEAM WHEEL ============ -->
-          <article class="card" id="steam-wheel" data-tags="tool">
-            <div class="card-art is-blank" style="--blank-glow: rgba(53,214,245,.18)">
-              <span class="initials" aria-hidden="true">SW</span>
-            </div>
-            <div class="card-body">
-              <div class="tags">
-                <span class="tag">Tool</span>
-                <span class="tag">Python</span>
-                <span class="tag">Web</span>
-              </div>
-              <h3>Steam Wheel</h3>
-              <p>
-                Game night, solved. Spin a wheel built from your real Steam library -
-                but the good part is that it reads your Steam Family ownership, so
-                the wheel only offers games everybody in the room can actually
-                launch. Local web app, double-click to run.
+                out through a voice, and nothing ever leaves the machine. This is still under
+                work my end goal is to connect this model to my smart home to help automate my home
+                to save money and learn!
               </p>
             </div>
           </article>
@@ -195,10 +243,10 @@
               </div>
               <h3>GPU Primes</h3>
               <p>
-                A prime sieve written in CUDA to find out how much faster the GPU
-                really is than the CPU at brute-force number crunching. Mostly an
-                excuse to learn how to write a kernel and think about memory
-                coalescing.
+                One of my CS teacher gave us a challenge to build a program to see who could find 
+                the largest prime number by the end of the weekend(with proof). Well well well little did my 
+                classmates know we are rocking a 5090 at home. So TRDL I won the challenge and now have 61 gigs of
+                prime numbers on my pc now.
               </p>
             </div>
           </article>
@@ -215,7 +263,7 @@
               </div>
               <h3>Network Visualiser</h3>
               <p>
-                A force-directed graph renderer for poking at network structure -
+                A force-directed graph renderer for poking at network structure &mdash;
                 built to see relationships in data that a table refuses to show you.
               </p>
             </div>
@@ -240,32 +288,25 @@
             </div>
           </article>
 
-        </div>
-      </div>
-    </section>
+          <!-- ============ IMAGE RESIZER ============ -->
+          <article class="card" id="image-resizer" data-tags="tool">
+            <div class="card-art is-blank" style="--blank-glow: rgba(53,214,245,.14)">
+              <span class="initials" aria-hidden="true">IR</span>
+            </div>
+            <div class="card-body">
+              <div class="tags">
+                <span class="tag">Utility</span>
+                <span class="tag">Python</span>
+              </div>
+              <h3>Image Resizer</h3>
+              <p>
+                A little Tkinter GUI for batch-resizing images without opening a
+                photo editor. Built because I kept needing it, which is the only
+                good reason to build a tool.
+              </p>
+            </div>
+          </article>
 
-    <!-- ===================== GALLERY ===================== -->
-    <section>
-      <div class="wrap">
-        <div class="section-head">
-          <p class="kicker">Creature Evolver</p>
-          <h2>A closer look</h2>
-          <p>
-            The interface is a cyanotype blueprint - the creature is drawn as a
-            technical diagram, so the whole UI is drafting paper.
-          </p>
-        </div>
-
-        <div class="grid">
-          <figure style="margin:0">
-            <img src="assets/img/creature-lab.png" alt="The evolution lab, with the live world view and brain graph" loading="lazy" style="border-radius: 14px; border: 1px solid var(--line)" width="1400" height="900">
-          </figure>
-          <figure style="margin:0">
-            <img src="assets/img/creature-species.png" alt="The species screen showing saved creatures" loading="lazy" style="border-radius: 14px; border: 1px solid var(--line)" width="1400" height="900">
-          </figure>
-          <figure style="margin:0">
-            <img src="assets/img/creature-menu.png" alt="The main menu with saved creature thumbnails and records" loading="lazy" style="border-radius: 14px; border: 1px solid var(--line)" width="1400" height="900">
-          </figure>
         </div>
       </div>
     </section>
@@ -278,7 +319,8 @@
         <a href="projects.html">Projects</a>
         <a href="blog.html">Dev Log</a>
         <a href="about.html">About</a>
-        <a href="https://store.steampowered.com/app/4437190/" target="_blank" rel="noopener">Steam</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://jonjoe1001.itch.io/emergent-evolver" target="_blank" rel="noopener">itch.io</a>
       </nav>
     </div>
   </footer>

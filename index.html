@@ -5,12 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Jonjoe1001 - Game &amp; Systems Developer</title>
-  <meta name="description" content="I build games, simulations and tools. Timeless on Steam, evolving neural creatures, a 3D puzzle game you play by typing equations.">
+  <meta name="description" content="I build games, simulations and tools. Timeless in development, creatures that teach themselves to walk, and a wheel that ends the game-night argument.">
 
   <!-- Social preview (what shows when the link is pasted in Discord/Twitter) -->
   <meta property="og:title" content="Jonjoe1001 - Game &amp; Systems Developer">
-  <meta property="og:description" content="I build games, simulations and tools. Timeless on Steam, evolving neural creatures, a 3D puzzle game you play by typing equations.">
+  <meta property="og:description" content="I build games, simulations and tools. Timeless in development, creatures that teach themselves to walk, and a wheel that ends the game-night argument.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jonathancomergit-ai.github.io/">
+  <meta property="og:site_name" content="Jonjoe1001">
+  <meta property="og:image" content="https://jonathancomergit-ai.github.io/assets/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jonathancomergit-ai.github.io/assets/img/og.jpg">
 
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 
@@ -30,7 +37,7 @@
   <header class="site-header">
     <div class="wrap nav">
       <a class="brand" href="index.html">
-        <span class="brand-mark" aria-hidden="true"></span>
+        <img class="avatar" src="assets/img/pfp.png" alt="" width="40" height="40">
         Jonjoe1001
       </a>
 
@@ -41,6 +48,7 @@
         <a href="projects.html">Projects</a>
         <a href="blog.html">Dev Log</a>
         <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
       </nav>
     </div>
   </header>
@@ -49,17 +57,26 @@
     <!-- ===================== HERO ===================== -->
     <section class="hero">
       <div class="wrap">
+        <!-- Profile photo beside the name. Swap assets/img/pfp.png to change it
+             here AND in the nav on every page - they use the same file. -->
+        <div class="hero-id">
+          <img class="avatar-lg" src="assets/img/pfp.png" alt="Jonjoe1001" width="78" height="78">
+          <span class="who">
+            <strong>Jonjoe1001</strong>
+            <span>Game &amp; systems developer</span>
+          </span>
+        </div>
+
         <p class="status">
           <span class="dot" aria-hidden="true"></span>
-          Currently shipping Timeless
+          Currently building Timeless
         </p>
 
-        <h1>I build <span class="glow">games</span> and the systems underneath them.</h1>
+        <h1>I build <span class="glow">games</span>, tools and simulators!</h1>
 
         <p class="hero-lead">
-          Roguelikes, physics simulations, neural networks that teach creatures to
-          walk, and whatever else I get curious about at 2am. Some of it ships to
-          Steam. All of it gets written about here.
+          Roguelikes, physics simulations, neural evolution, and whatever else I get curious about at 2am. Self-taught since
+          2023. All of it gets written about here. WELCOME FRIENDS LETS GET CURIOUS!
         </p>
 
         <div class="hero-actions">
@@ -69,139 +86,92 @@
       </div>
     </section>
 
-    <!-- ===================== FEATURED ===================== -->
+    <!-- ===================== THE BIG THREE ===================== -->
     <section>
       <div class="wrap">
         <div class="section-head">
           <p class="kicker">Featured</p>
-          <h2>On Steam now</h2>
+          <h2>The work I&rsquo;d show first</h2>
+          <p>My big three.</p>
         </div>
 
-        <article class="featured">
-          <div class="featured-body">
-            <div class="tags">
-              <span class="tag is-live">Released</span>
-              <span class="tag is-game">Roguelike</span>
-              <span class="tag">Python / Pygame</span>
-            </div>
+        <div class="feature-list">
 
-            <h3>Timeless</h3>
-            <p>
-              A twin-stick roguelike across three floors of hand-built rooms, with
-              elite enemies, mimics, a constellation-based meta-progression system,
-              and three bosses that each fight on their own terms. Built from
-              scratch in Python with full Steam integration - achievements,
-              leaderboards, cloud saves.
-            </p>
-
-            <div class="stat-row">
-              <div>
-                <span class="stat-label">Bosses</span>
-                <span class="stat-value">3</span>
-              </div>
-              <div>
-                <span class="stat-label">Enemy types</span>
-                <span class="stat-value">8+</span>
-              </div>
-              <div>
-                <span class="stat-label">Engine</span>
-                <span class="stat-value">Custom</span>
-              </div>
-              <div>
-                <span class="stat-label">Platform</span>
-                <span class="stat-value">Steam</span>
-              </div>
-            </div>
-
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="https://store.steampowered.com/app/4437190/" target="_blank" rel="noopener">
-                View on Steam
-              </a>
-              <a class="btn btn-ghost" href="projects.html#timeless">Details</a>
-            </div>
-          </div>
-
-          <div class="featured-art">
-            <img src="assets/img/timeless-title.png" alt="The Timeless logo in pink and cyan pixel lettering" width="1000" height="720">
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- ===================== SELECTED WORK ===================== -->
-    <section>
-      <div class="wrap">
-        <div class="section-head">
-          <p class="kicker">Selected work</p>
-          <h2>Things I have made</h2>
-          <p>A few highlights. The full list lives on the projects page.</p>
-        </div>
-
-        <div class="grid">
-
-          <!-- Creature Evolver -->
-          <article class="card">
-            <div class="card-art">
-              <img src="assets/img/creature-race.png" alt="Two evolved creatures racing, with their neural network graphs beside them" loading="lazy" width="1400" height="900">
-            </div>
-            <div class="card-body">
+          <!-- ============ TIMELESS ============ -->
+          <article class="feature art-narrow">
+            <div class="feature-body">
               <div class="tags">
+                <span class="tag is-dev">In development</span>
+                <span class="tag is-game">Roguelike</span>
+                <span class="tag">Python</span>
+              </div>
+              <h3><a href="projects/timeless.html">Timeless</a></h3>
+              <p>
+                A twin-stick roguelike where the clock <em>is</em> the health bar.
+                You do not lose hit points &mdash; you lose time. Custom engine,
+                custom room editor, 43,000 lines, and three bosses who each break a
+                rule the game spent an hour teaching you. Ill be honest I should have
+                made this game in a known engine(unity, godot, etc), but it was far to late and i've learned more
+                then I could ever dream. This game is still under work by me and my talented amazing girlfriend. 
+                She hand drew all of the art in the game. Yes thats why it looks so good. 
+              </p>
+              <a class="btn btn-primary" href="projects/timeless.html">Explore Timeless</a>
+            </div>
+            <div class="feature-art is-pixel" style="--art-bg: #231F35">
+              <img src="assets/img/covers/timeless.webp" alt="Timeless key art - a star-lit figure holding a black hole in one hand and a galaxy in the other, above the Timeless logo" loading="lazy" width="600" height="900">
+            </div>
+          </article>
+
+          <!-- ============ EMERGENT EVOLVER ============ -->
+          <article class="feature art-narrow">
+            <div class="feature-body">
+              <div class="tags">
+                <span class="tag is-play">Playable now</span>
                 <span class="tag is-game">Simulation</span>
                 <span class="tag">JavaScript</span>
               </div>
-              <h3><a href="projects.html#creature-evolver">Creature Evolver</a></h3>
+              <h3><a href="projects/emergent-evolver.html">Emergent Evolver</a></h3>
               <p>
-                Build a creature from joints, bones and muscles, then watch a neural
-                network grow its own structure until the thing learns to run, jump
-                or swim. Race two trained creatures over 10km.
+                Have you ever been intreset in machine learning, anatomy, or evolution? 
+                Well Emergent Evolver explores emergant complexity with machine learning.
+                You draw a creatures body. You do not tell it how to move. A neural network
+                starts from noise, grows its own neurons as it learns, and after a
+                few hundred generations something runs &mdash; and you can watch the
+                brain wire itself while it happens. Play with the physics, evolution, and body
+                  settings to see what you can dream up and create!
+                </body>
               </p>
-              <div class="card-links">
-                <a href="projects.html#creature-evolver">Details &rarr;</a>
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="https://jonjoe1001.itch.io/emergent-evolver" target="_blank" rel="noopener">Play it now &rarr;</a>
+                <a class="btn btn-ghost" href="projects/emergent-evolver.html">Read about it</a>
               </div>
+            </div>
+            <div class="feature-art" style="--art-bg: #111E2C">
+              <img src="assets/img/covers/emergent-evolver.webp" alt="Emergent Evolver key art - a jointed creature below the title, over a tangle of plotted neural-network curves" loading="lazy" width="630" height="500">
             </div>
           </article>
 
-          <!-- MathVoid -->
-          <article class="card">
-            <div class="card-art is-blank" style="--blank-glow: rgba(53,214,245,.24)">
-              <span class="initials" aria-hidden="true">f(x)</span>
-            </div>
-            <div class="card-body">
+          <!-- ============ WHEELHOUSE ============ -->
+          <article class="feature">
+            <div class="feature-body">
               <div class="tags">
-                <span class="tag is-game">3D Puzzle</span>
-                <span class="tag">Godot 4</span>
+                <span class="tag is-out">Out now</span>
+                <span class="tag">Tool</span>
+                <span class="tag">Python + Web</span>
               </div>
-              <h3><a href="projects.html#mathvoid">MathVoid</a></h3>
+              <h3><a href="projects/wheelhouse.html">Wheelhouse</a></h3>
               <p>
-                A first-person puzzle game in an infinite black void. You progress by
-                typing mathematical functions that materialise as solid, walkable
-                geometry. Bridge a gap with a line. Climb a sine wave.
+                Ok guys we all have games but no games am I right? well....
+                Game night, solved! Wheel house reads your real Steam Family ownership and
+                only puts games on the wheel that your whole party can actually
+                launch &mdash; so a spin never lands on something one person owns.
+                Have a party of 5? Set the wheel to five players and the program will sift through
+                all the games you and your steam faimly cant play together!
               </p>
-              <div class="card-links">
-                <a href="projects.html#mathvoid">Details &rarr;</a>
-              </div>
+              <a class="btn btn-primary" href="projects/wheelhouse.html">Explore Wheelhouse</a>
             </div>
-          </article>
-
-          <!-- DIANA -->
-          <article class="card">
-            <div class="card-art is-blank" style="--blank-glow: rgba(255,201,60,.20)">
-              <span class="initials" aria-hidden="true">DI</span>
-            </div>
-            <div class="card-body">
-              <div class="tags">
-                <span class="tag">Local AI</span>
-                <span class="tag">Python</span>
-              </div>
-              <h3><a href="projects.html#diana">DIANA</a></h3>
-              <p>
-                A voice assistant that runs entirely on my own machine. Whisper on
-                the GPU for ears, Ollama for the brain, Kokoro for the voice. Nothing
-                leaves the house.
-              </p>
-              <div class="card-links">
-                <a href="projects.html#diana">Details &rarr;</a>
-              </div>
+            <div class="feature-art">
+              <img src="assets/img/projects/wheelhouse/categories.webp" alt="The Wheelhouse category picker, five categories selected out of twenty-one" loading="lazy" width="1600" height="770">
             </div>
           </article>
 
@@ -245,9 +215,9 @@
           <h2>Want to talk shop?</h2>
           <p>
             Always happy to hear from people building games, or anyone who wants to
-            argue about physics engines.
+            argue about physics engines, machine learning theory or honestly anything!
           </p>
-          <a class="btn btn-primary" href="mailto:jonathancomer20@gmail.com">Get in touch</a>
+          <a class="btn btn-primary" href="contact.html">Get in touch</a>
         </div>
       </div>
     </section>
@@ -261,7 +231,8 @@
         <a href="projects.html">Projects</a>
         <a href="blog.html">Dev Log</a>
         <a href="about.html">About</a>
-        <a href="https://store.steampowered.com/app/4437190/" target="_blank" rel="noopener">Steam</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://jonjoe1001.itch.io/emergent-evolver" target="_blank" rel="noopener">itch.io</a>
       </nav>
     </div>
   </footer>

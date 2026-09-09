@@ -75,4 +75,60 @@
     // Set the initial count on load.
     applyFilter("all");
   }
+
+  /* ----------------------------------------------------------
+     3. CONTACT FORM
+     Submits in the background so the visitor stays on the page
+     instead of being bounced to Formspree's own thank-you screen.
+
+     If JavaScript is off, none of this runs and the form falls
+     back to a normal POST, which still works fine.
+     ---------------------------------------------------------- */
+  var form = document.querySelector(".form[action]");
+  var status = document.getElementById("form-status");
+
+  function say(message, ok) {
+    if (!status) { return; }
+    status.textContent = message;
+    status.className = "form-status " + (ok ? "is-ok" : "is-bad");
+    status.hidden = false;
+  }
+
+  if (form && status) {
+    form.addEventListener("submit", function (e) {
+      // Not wired up to a Formspree id yet - say so instead of
+      // silently failing, and let the visitor know it is not them.
+      if (form.action.indexOf("YOUR_FORM_ID") !== -1) {
+        e.preventDefault();
+        say("This form is not connected yet. Try again in a day or two.", false);
+        return;
+      }
+
+      e.preventDefault();
+
+      var button = form.querySelector("button[type=submit]");
+      if (button) { button.disabled = true; }
+      say("Sending…", true);
+
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" }
+      })
+        .then(function (res) {
+          if (res.ok) {
+            form.reset();
+            say("Thanks — that reached me. I will get back to you.", true);
+          } else {
+            say("Something went wrong sending that. Please try again.", false);
+          }
+        })
+        .catch(function () {
+          say("Could not reach the server. Check your connection and retry.", false);
+        })
+        .then(function () {
+          if (button) { button.disabled = false; }
+        });
+    });
+  }
 })();

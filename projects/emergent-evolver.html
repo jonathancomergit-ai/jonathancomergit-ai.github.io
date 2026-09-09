@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Emergent Evolver - Jonjoe1001</title>
+  <meta name="description" content="Draw a creature out of joints, bones and muscles. A neural network grows its own structure until it works out how to move it. Runs in your browser.">
+
+  <meta property="og:title" content="Emergent Evolver - creatures that teach themselves to walk">
+  <meta property="og:description" content="Draw a creature out of joints, bones and muscles. A neural network grows its own structure until it works out how to move it.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jonathancomergit-ai.github.io/projects/emergent-evolver.html">
+  <meta property="og:site_name" content="Jonjoe1001">
+  <meta property="og:image" content="https://jonathancomergit-ai.github.io/assets/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jonathancomergit-ai.github.io/assets/img/og.jpg">
+
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+
+<body>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="avatar" src="../assets/img/pfp.png" alt="" width="34" height="34">
+        Jonjoe1001
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html" aria-current="page">Projects</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap project-hero">
+      <a class="back-link" href="../projects.html">&larr; All projects</a>
+
+      <div class="tags">
+        <span class="tag is-play">Playable now</span>
+        <span class="tag is-game">Simulation</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Neuroevolution</span>
+      </div>
+
+      <h1>Emergent Evolver</h1>
+
+      <p class="project-lead">
+        You draw an animal. You do not tell it how to walk. A neural network starts
+        from nothing, grows its own neurons and connections, and after a few hundred
+        generations something runs.
+      </p>
+
+      <div class="hero-actions" style="margin-bottom: 2.4rem">
+        <a class="btn btn-primary" href="https://jonjoe1001.itch.io/emergent-evolver" target="_blank" rel="noopener">
+          Play free in your browser &rarr;
+        </a>
+        <a class="btn btn-ghost" href="#screens">See it first</a>
+      </div>
+
+      <p class="post-date" style="margin: -1.6rem 0 2.4rem">
+        No download, no account &mdash; it runs in the page.
+      </p>
+    </div>
+
+    <div class="wrap">
+      <div class="project-cover">
+        <img src="../assets/img/projects/emergent-evolver/trailer.webp"
+             alt="Animated clip of evolved creatures learning to run"
+             width="960" height="506">
+      </div>
+
+      <dl class="facts">
+        <div><dt>Status</dt><dd>Released</dd></div>
+        <div><dt>Built with</dt><dd>Vanilla JS</dd></div>
+        <div><dt>Dependencies</dt><dd>None</dd></div>
+        <div><dt>Whole game</dt><dd>One HTML file</dd></div>
+        <div><dt>Courses</dt><dd>6</dd></div>
+        <div><dt>Install</dt><dd>Not required</dd></div>
+      </dl>
+
+      <div class="project-body">
+        <h2>What it is</h2>
+
+        <p>
+          Emergent Evolver gives you a body editor &mdash; joints, bones, muscles,
+          feet, a head &mdash; and then hands your creature to a neural network that
+          starts from noise. There is no animation and no scripted gait. Twenty-odd
+          creatures attempt the course, the best few breed, and the network
+          <em>grows</em> new neurons and new connections as it goes.
+        </p>
+
+        <p>
+          After a few dozen generations something drags itself forward. After a few
+          hundred, something runs.
+        </p>
+
+        <h2>The parts I am proud of</h2>
+
+        <h3>You can watch it think</h3>
+
+        <p>
+          The brain panel draws the network live: senses down the left, muscles down
+          the right, grown neurons in between, every wire lighting as it fires. The
+          gait panel shows which muscle pulls when, so you can literally watch a walk
+          turn into a run. Most neuroevolution demos show you the result; this one
+          shows you the machinery.
+        </p>
+
+        <h3>A map of every way of moving</h3>
+
+        <p>
+          Evolution keeps one answer and throws the rest away &mdash; including the
+          creature that hopped instead of walking and finished two metres behind.
+          That always felt like a loss, so the gait archive keeps them all: a grid
+          organised by <em>how</em> a creature moves rather than how far, holding the
+          best hopper, the best crawler and the best sprinter side by side. Click any
+          square to watch it. Breed from it if you like it better than the winner.
+        </p>
+
+        <h3>Editing the body without wiping the brain</h3>
+
+        <p>
+          Add a tail to a creature you have trained for a thousand generations and it
+          carries what it knows across, rewiring around the new limb instead of
+          starting from noise. This was the hardest part to get right and the one
+          that makes the toy actually playable.
+        </p>
+
+        <h3>Physics that makes cheating not work</h3>
+
+        <p>
+          A foot grips the ground and absorbs a landing; a bare joint scuffs and loses
+          speed, so a creature that walks on its shins pays for it. Muscles tire when
+          held. A head that touches the ground ends the run.
+        </p>
+
+        <p>
+          None of that is a scoring penalty. It is all in the world &mdash; so the
+          exploits simply stop working, rather than being punished after the fact.
+          That distinction matters: penalise a behaviour and evolution finds a way to
+          do it just under the threshold. Make it physically unprofitable and
+          evolution stops trying.
+        </p>
+
+        <h2>Six courses, six brains</h2>
+
+        <p>
+          Running, jumping, obstacles, climbing, gaps, swimming. Every creature can
+          attempt all of them and keeps a <em>separate</em> brain for each &mdash; so
+          training it to swim costs it nothing on land.
+        </p>
+
+        <h2>No install, no account, no engine</h2>
+
+        <p>
+          The entire thing is one HTML file, about 400KB, with zero dependencies.
+          Everything saves in your browser, and any creature exports as a single line
+          of text you can paste back in anywhere.
+        </p>
+      </div>
+
+      <h2 id="screens" style="margin: 3rem 0 1.4rem">Screens</h2>
+
+      <div class="shots">
+        <figure class="shot shot-wide">
+          <img src="../assets/img/projects/emergent-evolver/race.webp" alt="Two creatures racing, each with its neural network drawn beside it" loading="lazy">
+          <figcaption><b>Race mode</b> &mdash; two saved creatures, the same course, ten kilometres, both brains on screen.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/img/projects/emergent-evolver/editor.webp" alt="The body editor with joints and bones" loading="lazy">
+          <figcaption><b>Body editor</b> &mdash; place joints, connect bones, attach muscles, mark the head and feet.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/img/projects/emergent-evolver/lab.webp" alt="The evolution lab running live" loading="lazy">
+          <figcaption><b>The lab</b> &mdash; evolution running live, with every parameter on a slider.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/img/projects/emergent-evolver/brain.webp" alt="The neural network graph" loading="lazy">
+          <figcaption><b>The brain</b> &mdash; senses left, muscles right, grown neurons in between.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/img/projects/emergent-evolver/gait.webp" alt="The gait panel showing muscle timing" loading="lazy">
+          <figcaption><b>Gait</b> &mdash; which muscle pulls when. A walk becoming a run.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/img/projects/emergent-evolver/archive.webp" alt="The gait archive grid" loading="lazy">
+          <figcaption><b>Gait archive</b> &mdash; every way of moving evolution found, not just the winner.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/img/projects/emergent-evolver/swim.webp" alt="A creature swimming" loading="lazy">
+          <figcaption><b>Swimming</b> &mdash; a separate brain, trained on its own course.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/img/projects/emergent-evolver/climb.webp" alt="A creature climbing" loading="lazy">
+          <figcaption><b>Climbing</b> &mdash; one of the six challenges.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/img/projects/emergent-evolver/menu.webp" alt="The species menu with saved creatures" loading="lazy">
+          <figcaption><b>Your species</b> &mdash; saved creatures with thumbnails and records.</figcaption>
+        </figure>
+      </div>
+
+      <div class="callout" style="margin-top: 3rem">
+        <h2>Go make something walk</h2>
+        <p>
+          It runs in the browser, it saves in the browser, and it takes about a
+          minute before the first creature drags itself forward.
+        </p>
+        <a class="btn btn-primary" href="https://jonjoe1001.itch.io/emergent-evolver" target="_blank" rel="noopener">
+          Play free on itch.io &rarr;
+        </a>
+      </div>
+
+      <p style="margin-top: 2.4rem">
+        <a class="btn btn-ghost" href="../projects.html">&larr; All projects</a>
+      </p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - built by hand</span>
+      <nav class="footer-links">
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+        <a href="https://jonjoe1001.itch.io/emergent-evolver" target="_blank" rel="noopener">itch.io</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

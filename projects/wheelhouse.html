@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Wheelhouse - Jonjoe1001</title>
+  <meta name="description" content="Game night, solved. Spin a wheel built from your real Steam library that only offers games your whole party can actually launch.">
+
+  <meta property="og:title" content="Wheelhouse - stop arguing about what to play">
+  <meta property="og:description" content="Spin a wheel built from your real Steam library that only offers games your whole party can actually launch.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jonathancomergit-ai.github.io/projects/wheelhouse.html">
+  <meta property="og:site_name" content="Jonjoe1001">
+  <meta property="og:image" content="https://jonathancomergit-ai.github.io/assets/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jonathancomergit-ai.github.io/assets/img/og.jpg">
+
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+
+<body>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="avatar" src="../assets/img/pfp.png" alt="" width="34" height="34">
+        Jonjoe1001
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html" aria-current="page">Projects</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap project-hero">
+      <a class="back-link" href="../projects.html">&larr; All projects</a>
+
+      <div class="tags">
+        <span class="tag is-out">Out now</span>
+        <span class="tag">Tool</span>
+        <span class="tag">Python + Web</span>
+      </div>
+
+      <h1>Wheelhouse</h1>
+
+      <p class="project-lead">
+        Six people in a Discord call, forty minutes of &ldquo;I don&rsquo;t know,
+        what do <em>you</em> want to play?&rdquo; Wheelhouse reads your actual Steam
+        library, works out which games your whole party can genuinely launch, and
+        spins for you.
+      </p>
+
+      <!-- The download. The zip lives in /downloads/ in this same repo, so GitHub
+           Pages serves it as a plain static file - no release page, no CDN.
+           "download" on the <a> tells the browser to save the file rather than
+           try to display it. The version is in the filename on purpose: when you
+           ship 1.1, add the new file and change these two lines, and anyone
+           holding the old link still gets exactly the build they downloaded. -->
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="../downloads/wheelhouse-1.0.zip" download>
+          Download for Windows &darr;
+        </a>
+        <a class="btn btn-ghost" href="#screens">See it first</a>
+      </div>
+
+      <p class="post-date" style="margin: 1.2rem 0 2.4rem">
+        v1.0 &middot; 67&#8239;KB zip &middot; needs
+        <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">Python&nbsp;3</a>
+        (tick &ldquo;Add python.exe to PATH&rdquo; when installing). Unzip, double-click
+        <code>START.bat</code>. No installer, no account, nothing phones home except Steam.
+      </p>
+    </div>
+
+    <div class="wrap">
+      <div class="project-cover">
+        <img src="../assets/img/projects/wheelhouse/categories.webp"
+             alt="The Wheelhouse category picker, five categories selected out of twenty-one"
+             width="1600" height="770">
+      </div>
+
+      <dl class="facts">
+        <div><dt>Status</dt><dd>Out now</dd></div>
+        <div><dt>Backend</dt><dd>Python</dd></div>
+        <div><dt>Frontend</dt><dd>Vanilla JS</dd></div>
+        <div><dt>Runs</dt><dd>Locally, in browser</dd></div>
+        <div><dt>Install</dt><dd>Double-click START.bat</dd></div>
+      </dl>
+
+      <div class="project-body">
+        <h2>The actual problem</h2>
+
+        <p>
+          Every random-game picker has the same flaw: it will happily land on a game
+          only one person owns. Then you spin again. Then again. The randomiser
+          becomes another thing to argue about.
+        </p>
+
+        <p>
+          The fix is knowing who owns what. Wheelhouse reads your
+          <strong>Steam Family</strong> ownership, so it knows there are three copies
+          of one game and one copy of another, and only puts things on the wheel that
+          your whole party can actually launch. Every tile also tells you how many
+          copies exist and how many hours the family has already put in.
+        </p>
+
+        <h2>How a night runs</h2>
+
+        <p>
+          <strong>Pick your categories.</strong> Co-op, strategy, RPG, horror,
+          whatever the mood is. Each category shows how many games it holds and,
+          more usefully, how many of those <em>fit a party of this size</em>.
+        </p>
+
+        <p>
+          <strong>Spin.</strong> The wheel is built from exactly the games that
+          survived those filters. Picked games get pulled off so a re-spin never
+          repeats, and there is a running history down the side.
+        </p>
+
+        <p>
+          <strong>Or run a bracket.</strong> If one game is not enough, it will build
+          a full tournament &mdash; seeded, with byes, all the way to a final. That
+          started as a joke and became the feature people actually use.
+        </p>
+
+        <h2>Things I learned building it</h2>
+
+        <h3>Auth you cannot control is a UX problem, not a bug</h3>
+
+        <p>
+          The Steam Family data needs a web token that <strong>expires roughly every
+          24 hours</strong>. There is no refresh flow and nothing I can do about that
+          from outside Steam.
+        </p>
+
+        <p>
+          So instead of pretending, the app is honest about it: a status bar across
+          the top says how long the token has left and states plainly when it has
+          died. Re-pasting takes ten seconds and your wheel setup is untouched. A
+          limitation you explain clearly stops being a bug and becomes a step.
+        </p>
+
+        <h3>Degrade, do not block</h3>
+
+        <p>
+          Every layer works without the one above it. No token at all? It reads the
+          games installed on this PC and you can spin immediately. Token but no Web
+          API key? Family members show as SteamID numbers instead of names.
+          Nothing ever refuses to start because one optional thing is missing.
+        </p>
+
+        <h3>Local means local</h3>
+
+        <p>
+          It runs a small Python server on your own machine and opens in your browser.
+          Your credentials sit in a <code>config.json</code> next to the app and are
+          only ever sent to Steam. No account on my end, because I do not want to be
+          responsible for anybody's Steam token.
+        </p>
+
+        <p class="post-date" style="margin-top: 2.4rem">
+          Wheelhouse is an unofficial hobby project. It is not made by, endorsed
+          by or affiliated with Valve &mdash; Steam is their trademark, and this
+          just reads the library you already own.
+        </p>
+      </div>
+
+      <h2 id="screens" style="margin: 3rem 0 1.4rem">Screens</h2>
+
+      <div class="shots">
+        <figure class="shot shot-wide">
+          <img src="../assets/img/projects/wheelhouse/wheel.webp" alt="The wheel loaded with twelve games, party size set to three, spin history down the right" loading="lazy" width="1600" height="771">
+          <figcaption><b>The wheel</b> &mdash; built from only the games the whole party can launch, with every spin logged down the side.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/img/projects/wheelhouse/wheel-close.webp" alt="Close view of the wheel, each slice a game with its cover art" loading="lazy" width="900" height="960">
+          <figcaption><b>Twelve on the wheel</b> &mdash; one slice per game. A pick is taken off, so a re-spin never lands on it twice.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/img/projects/wheelhouse/result.webp" alt="The result panel announcing Stick Fight: The Game, with copies owned and hours played by each family member" loading="lazy" width="900" height="959">
+          <figcaption><b>The wheel has spoken</b> &mdash; five copies, hours per person, and the one member who keeps playtime private shown as <em>hidden</em> rather than breaking the panel.</figcaption>
+        </figure>
+        <figure class="shot shot-wide">
+          <img src="../assets/img/projects/wheelhouse/bracket.webp" alt="A full tournament bracket of games" loading="lazy" width="1600" height="701">
+          <figcaption><b>The bracket</b> &mdash; twelve players, seeded, byes and all, down to a final.</figcaption>
+        </figure>
+      </div>
+
+      <p style="margin-top: 2.4rem">
+        <a class="btn btn-ghost" href="../projects.html">&larr; All projects</a>
+      </p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - built by hand</span>
+      <nav class="footer-links">
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+        <a href="https://jonjoe1001.itch.io/emergent-evolver" target="_blank" rel="noopener">itch.io</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>
