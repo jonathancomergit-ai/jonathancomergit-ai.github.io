@@ -167,6 +167,7 @@ section { padding-block: var(--gap-xl); }
   background: linear-gradient(90deg, var(--line-bright), transparent);
 }
 
+.section-head h1,
 .section-head h2 { font-size: clamp(1.7rem, 4vw, 2.5rem); margin: 0; }
 .section-head p  { color: var(--text-dim); max-width: 60ch; margin: .6rem 0 0; }
 
@@ -643,6 +644,360 @@ section { padding-block: var(--gap-xl); }
 }
 .callout h2 { font-size: clamp(1.5rem, 3.6vw, 2.1rem); margin-bottom: .6rem; }
 .callout p  { color: var(--text-dim); max-width: 50ch; margin: 0 auto 1.6rem; }
+
+/* ============================================================
+   TODO MARKER
+   Wrap anything you still need to write in <span class="todo">.
+   It shows up in amber with a dashed box so you cannot miss it.
+   Delete the span (keep the text) when you have filled it in -
+   and search the project for "todo" before you publish.
+   ============================================================ */
+.todo {
+  color: var(--amber);
+  border: 1px dashed rgba(255, 201, 60, .5);
+  background: rgba(255, 201, 60, .08);
+  border-radius: 4px;
+  padding: .05em .4em;
+  font-style: normal;
+}
+.todo::before {
+  content: "✎ ";
+  opacity: .7;
+}
+
+/* ============================================================
+   CONTACT FORM
+   ============================================================ */
+.form { max-width: 34rem; }
+
+.field { margin-bottom: 1.1rem; }
+
+.field label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: .45rem;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: .75rem .9rem;
+  transition: border-color .16s, background .16s;
+}
+.field textarea { min-height: 9rem; resize: vertical; }
+
+.field input:hover,
+.field textarea:hover { border-color: var(--line-bright); }
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--hot);
+  background: var(--surface-2);
+}
+
+.field input::placeholder,
+.field textarea::placeholder { color: var(--text-faint); }
+
+/* The honeypot: a real field, hidden from people, irresistible to bots.
+   Anything that fills it in gets its submission dropped. */
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Status line under the form, shown by the script after a submit. */
+.form-status {
+  margin-top: 1rem;
+  font-size: .92rem;
+  padding: .8rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.form-status.is-ok   { color: var(--green); border-color: rgba( 61, 245, 160, .35); }
+.form-status.is-bad  { color: var(--hot);   border-color: rgba(255,  45, 120, .35); }
+
+/* ============================================================
+   AVATAR
+   The small round photo in the nav, and the big one on the
+   home page. Both point at assets/img/pfp.png.
+   ============================================================ */
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--line-bright);
+  background: var(--surface-2);
+  flex-shrink: 0;
+}
+
+/* Home page: photo beside the headline. */
+.hero-id {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  margin-bottom: 1.6rem;
+}
+.hero-id .avatar-lg {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--line-bright);
+  background: var(--surface-2);
+  box-shadow: 0 0 0 5px rgba(255, 45, 120, .10);
+}
+.hero-id .who strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--text);
+  line-height: 1.3;
+}
+.hero-id .who span {
+  font-family: var(--font-mono);
+  font-size: .76rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+@media (max-width: 560px) {
+  .hero-id .avatar-lg { width: 60px; height: 60px; }
+}
+
+/* ============================================================
+   STATUS BADGES
+   One class per real state, so a project never lies about
+   whether you can play it.
+   ============================================================ */
+.tag.is-dev     { color: var(--cyan);  border-color: rgba( 53, 214, 245, .35); background: rgba( 53, 214, 245, .10); }
+.tag.is-out     { color: var(--green); border-color: rgba( 61, 245, 160, .35); background: rgba( 61, 245, 160, .10); }
+.tag.is-play    { color: var(--amber); border-color: rgba(255, 201,  60, .35); background: rgba(255, 201,  60, .10); }
+
+/* ============================================================
+   FEATURED WORK (projects page, top three)
+   Bigger cards than the standard grid, with the art doing more.
+   ============================================================ */
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  margin-bottom: var(--gap-xl);
+}
+
+.feature {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  transition: border-color .2s, box-shadow .2s, transform .2s;
+}
+.feature:hover {
+  border-color: var(--line-bright);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, .5);
+  transform: translateY(-3px);
+}
+.feature::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--hot), var(--amber), var(--cyan));
+}
+
+/* Every other one flips, so the page does not read as a list. `order` moves the
+   art visually but NOT which track is wider, so the columns must be reversed too
+   or the flipped cards hand the wide track to the picture. */
+.feature:nth-child(even) { grid-template-columns: 1fr 1.15fr; }
+.feature:nth-child(even) .feature-art { order: -1; border-left: 0; border-right: 1px solid var(--line); }
+
+.feature-body { padding: clamp(1.5rem, 3.2vw, 2.4rem); }
+.feature-body h3 { font-size: clamp(1.4rem, 3vw, 1.9rem); margin-bottom: .6rem; }
+.feature-body h3 a { color: var(--text); }
+.feature-body h3 a:hover { color: var(--hot); text-decoration: none; }
+.feature-body > p { color: var(--text-dim); margin: 0 0 1.3rem; }
+
+.feature-art {
+  border-left: 1px solid var(--line);
+  /* Key art that cannot be cropped will letterbox. Painting the panel in the
+     artwork's own background colour makes that letterboxing invisible, instead
+     of framing the picture in black. Set --art-bg on the element. */
+  background: var(--art-bg, var(--bg-2));
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  min-height: 240px;
+}
+.feature-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform .5s ease;
+}
+.feature:hover .feature-art img { transform: scale(1.04); }
+
+/* Art that should sit inside the panel rather than fill it (logos). */
+.feature-art.is-logo {
+  padding: clamp(1.4rem, 3vw, 2.6rem);
+  background:
+    radial-gradient(26rem 18rem at 50% 50%, rgba(255, 45, 120, .20), transparent 70%),
+    var(--bg-2);
+}
+.feature-art.is-logo img {
+  height: auto;
+  object-fit: contain;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 0 28px rgba(255, 45, 120, .40));
+}
+
+/* Art that is narrower than its panel. Cropping a narrow picture to fill a wide
+   slot is exactly what makes a cover look bad, so contain it, centre it, and give
+   the width it does not need back to the text column. */
+.feature.art-narrow { grid-template-columns: 1.75fr 1fr; }
+.feature.art-narrow:nth-child(even) { grid-template-columns: 1fr 1.75fr; }
+.feature.art-narrow .feature-art { padding: 0; }
+.feature.art-narrow .feature-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Pixel art must not be smoothed when it is scaled. */
+.feature-art.is-pixel img { image-rendering: pixelated; }
+.feature.art-narrow:hover .feature-art img { transform: scale(1.03); }
+
+@media (max-width: 820px) {
+  /* .feature.art-narrow outranks a bare .feature, so it must be named here too
+     or the two-column layout survives on phones. */
+  .feature,
+  .feature.art-narrow,
+  .feature:nth-child(even),
+  .feature.art-narrow:nth-child(even) { grid-template-columns: 1fr; }
+  .feature-art,
+  .feature:nth-child(even) .feature-art {
+    order: -1;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    min-height: 190px;
+  }
+}
+
+/* ============================================================
+   PROJECT PAGE
+   The detail page for one project.
+   ============================================================ */
+.project-hero { padding-block: 2.6rem 1rem; }
+
+.project-hero h1 { font-size: clamp(2.1rem, 6vw, 3.4rem); margin-bottom: .7rem; }
+.project-lead {
+  font-size: clamp(1.02rem, 2vw, 1.18rem);
+  color: var(--text-dim);
+  max-width: 62ch;
+  margin: 0 0 1.6rem;
+}
+
+/* The big image at the top of a project page. */
+.project-cover {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-2);
+  margin-bottom: 2.4rem;
+}
+.project-cover img { width: 100%; }
+
+/* Key facts strip. */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.4rem;
+  padding: 1.4rem 0;
+  border-block: 1px solid var(--line);
+  margin-bottom: 2.4rem;
+}
+.facts dt {
+  font-family: var(--font-mono);
+  font-size: .68rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: .3rem;
+}
+.facts dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+/* Screenshot gallery. */
+.shots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 1.4rem;
+  margin: 2rem 0;
+}
+.shot {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+}
+.shot img { width: 100%; display: block; }
+.shot figcaption {
+  padding: .85rem 1.1rem;
+  font-size: .89rem;
+  color: var(--text-dim);
+  border-top: 1px solid var(--line);
+}
+.shot figcaption b {
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+/* One image on its own, full width of the reading column. */
+.shot-wide { grid-column: 1 / -1; }
+
+/* Prose inside a project page reads like an article. */
+.project-body { max-width: 68ch; }
+.project-body h2 { font-size: 1.55rem; margin: 2.8rem 0 .8rem; }
+.project-body h3 { font-size: 1.18rem; margin: 2rem 0 .5rem; }
+.project-body p  { color: #C9CEE2; margin: 0 0 1.2rem; }
+.project-body ul { color: #C9CEE2; padding-left: 1.3rem; margin: 0 0 1.3rem; }
+.project-body li { margin-bottom: .5rem; }
+.project-body code {
+  font-family: var(--font-mono);
+  font-size: .87em;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: .12em .4em;
+  color: var(--cyan);
+}
 
 /* ============================================================
    FOOTER

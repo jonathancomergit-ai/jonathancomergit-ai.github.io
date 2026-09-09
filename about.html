@@ -5,7 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>About - Jonjoe1001</title>
-  <meta name="description" content="About Jonjoe1001 - game developer, systems tinkerer, and the person behind Timeless.">
+  <meta name="description" content="Self-taught since 2023, shipping games since Timeless. I build games, simulations and the systems underneath them.">
+  <meta property="og:title" content="About - Jonjoe1001">
+  <meta property="og:description" content="Self-taught since 2023, shipping games since Timeless. I build games, simulations and the systems underneath them.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jonathancomergit-ai.github.io/about.html">
+  <meta property="og:site_name" content="Jonjoe1001">
+  <meta property="og:image" content="https://jonathancomergit-ai.github.io/assets/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jonathancomergit-ai.github.io/assets/img/og.jpg">
+
 
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 
@@ -22,7 +33,7 @@
   <header class="site-header">
     <div class="wrap nav">
       <a class="brand" href="index.html">
-        <span class="brand-mark" aria-hidden="true"></span>
+        <img class="avatar" src="assets/img/pfp.png" alt="" width="34" height="34">
         Jonjoe1001
       </a>
 
@@ -33,6 +44,7 @@
         <a href="projects.html">Projects</a>
         <a href="blog.html">Dev Log</a>
         <a href="about.html" aria-current="page">About</a>
+        <a href="contact.html">Contact</a>
       </nav>
     </div>
   </header>
@@ -42,51 +54,115 @@
       <div class="wrap">
         <div class="section-head">
           <p class="kicker">About</p>
-          <h2>Hey, I&rsquo;m Jonjoe1001.</h2>
+          <h1>Hey, I&rsquo;m Jonjoe1001.</h1>
         </div>
 
         <!-- ==========================================================
-             REWRITE THIS. I have written a first draft from your
-             projects, but this page should sound like you, not me.
+             Anything wrapped in <span class="todo"> is a placeholder
+             for you to replace. It shows up amber with a dashed box
+             so you can spot them instantly on the page.
+
+             To fill one in: delete the <span class="todo"> and its
+             closing </span>, and keep your own text in between.
+
+             Search the whole project for  todo  before publishing.
              ========================================================== -->
         <div class="prose">
           <p>
             I make games and the systems that hold them up. Most of what I build
-            starts as a question I could not stop thinking about &mdash; <em>can a
-            neural network figure out how to walk if I never tell it what walking
+            starts as a question I could not let go of &mdash; <em>can a neural
+            network work out how to walk if nobody ever tells it what walking
             is?</em> &mdash; and turns into a project somewhere between a weekend
             and a year later.
           </p>
 
           <p>
-            My first shipped game, <a href="https://store.steampowered.com/app/4437190/" target="_blank" rel="noopener">Timeless</a>,
-            is a twin-stick roguelike I built from scratch in Python: custom engine,
-            custom room editor, three bosses, and a full Steam integration with
-            achievements and leaderboards. Everything in it, I had to figure out
-            first.
+            I care about the part underneath. Not just whether the game runs, but
+            whether the thing driving it is any good: a physics step that stays
+            stable, a room editor solid enough that building levels stops being a
+            chore, a brain graph you can actually read while it is learning. That
+            is the work I am proud of, and it is most of what I write about in the
+            <a href="blog.html">dev log</a>.
           </p>
 
-          <h2>What I work with</h2>
+          <h2>How I got here</h2>
+
+          <p>
+            I started teaching myself to program in <strong>2023</strong>. No
+            course, no plan &mdash; just a pile of things I wanted to exist and no
+            idea how to build them. So I built them badly, and then I built them
+            again.
+          </p>
+
+          <p>
+            Eventually that turned into
+            <a href="projects/timeless.html">Timeless</a>,
+            a twin-stick roguelike with a Steam build waiting on a release date.
+            Custom engine on Pygame, my
+            own room editor, three bosses, full Steam integration with achievements
+            and leaderboards. Every piece of that was something I had to work out
+            first, and building it taught me more than any tutorial ever did.
+          </p>
+
+          <p>
+            I started school in <strong>2025</strong>, so now I get to learn this
+            properly <em>and</em> keep doing it my own stubborn way.
+            <!-- TO WRITE: what you're studying and where, e.g. "I'm studying
+                 Computer Science at [university]." Add it to the end of the
+                 sentence above. Hidden until then so the live page reads clean. -->
+          </p>
+
+          <h2>What I build with</h2>
+
           <ul>
             <li><strong>Python</strong> &mdash; game engines, tooling, automation, local AI pipelines</li>
-            <li><strong>JavaScript</strong> &mdash; simulations that run in the browser with zero dependencies</li>
+            <li><strong>JavaScript</strong> &mdash; simulations that run in a browser with zero dependencies</li>
             <li><strong>Godot 4</strong> &mdash; 3D, procedural geometry, GDScript</li>
-            <li><strong>Java &amp; C</strong> &mdash; coursework, CUDA experiments, and things that need to be fast</li>
-            <li><strong>Self-hosting</strong> &mdash; TrueNAS, local services, keeping my own data</li>
+            <li><strong>C &amp; CUDA</strong> &mdash; for when something needs to be genuinely fast</li>
+            <li><strong>Self-hosting</strong> &mdash; TrueNAS, and a house full of services I&rsquo;d rather own than rent</li>
           </ul>
 
-          <h2>Where I am headed</h2>
           <p>
-            More games, shipped more often. Better at 3D. And a growing pile of
-            simulations that exist mostly to satisfy my own curiosity about how
-            things move.
+            The through-line is that I like owning the whole stack. Timeless runs on
+            an engine I wrote. <a href="projects.html#diana">DIANA</a> is a voice
+            assistant that never sends a word to anybody else&rsquo;s server. Even
+            this site is hand-written HTML with no framework, because I want to
+            still be able to fix it in two years.
           </p>
 
-          <h2>Get in touch</h2>
+          <!-- TO WRITE: "Outside the editor" - two or three sentences about you
+               that aren't code: what you play, what you listen to. Be specific;
+               "I like roguelikes" says nothing, "400 hours in Hades and I still
+               cannot clear it without Athena's Dash" says everything. Uncomment
+               the block below and fill it in.
+
+          <h2>Outside the editor</h2>
+          <p>...</p>
+          -->
+
+          <h2>Come build things with me</h2>
+
           <p>
-            The fastest way to reach me is
-            <a href="mailto:jonathancomer20@gmail.com">email</a>. I am always up for
-            talking about game architecture, physics, or why your engine is slow.
+            I&rsquo;d rather this site be the start of something than a museum. If
+            you make games, break games, or just want to argue about whether fixed
+            timesteps are worth the trouble &mdash; I want to hear from you.
+          </p>
+
+          <p>
+            Tell me what you&rsquo;re working on. Tell me what I got wrong. If you
+            played Timeless and something felt off, that is honestly one of my
+            favourite things to receive.
+          </p>
+
+          <!-- TO WRITE: where people can find you - a Discord handle, Bluesky,
+               YouTube. Pick one or two you will genuinely check. Uncomment:
+
+          <p>Find me on ...</p>
+          -->
+
+          <p style="margin-top: 2.4rem">
+            <a class="btn btn-primary" href="projects.html">See what I&rsquo;ve built</a>
+            <a class="btn btn-ghost" href="blog.html">Read the dev log</a>
           </p>
         </div>
       </div>
@@ -100,7 +176,8 @@
         <a href="projects.html">Projects</a>
         <a href="blog.html">Dev Log</a>
         <a href="about.html">About</a>
-        <a href="https://store.steampowered.com/app/4437190/" target="_blank" rel="noopener">Steam</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://jonjoe1001.itch.io/emergent-evolver" target="_blank" rel="noopener">itch.io</a>
       </nav>
     </div>
   </footer>

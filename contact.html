@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Contact - Jonjoe1001</title>
+  <meta name="description" content="Get in touch with Jonjoe1001 about games, simulations, or collaboration.">
+  <meta property="og:title" content="Contact - Jonjoe1001">
+  <meta property="og:description" content="Get in touch with Jonjoe1001 about games, simulations, or collaboration.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jonathancomergit-ai.github.io/contact.html">
+  <meta property="og:site_name" content="Jonjoe1001">
+  <meta property="og:image" content="https://jonathancomergit-ai.github.io/assets/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jonathancomergit-ai.github.io/assets/img/og.jpg">
+
+
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+
+<body>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="index.html">
+        <img class="avatar" src="assets/img/pfp.png" alt="" width="34" height="34">
+        Jonjoe1001
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="blog.html">Dev Log</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Contact</p>
+          <h1>Say hello</h1>
+          <p>
+            Questions about the games, a bug in something I made, or you just want
+            to argue about physics engines &mdash; all welcome.
+          </p>
+        </div>
+
+        <!-- =========================================================
+             The Formspree form is written and ready, but it needs a form id
+             from formspree.io before it can send anything - without one it
+             fails silently, which is worse than no form at all. So it is
+             commented out at the bottom of this file and a direct email link
+             stands in its place.
+
+             TO SWITCH BACK ON: sign up at formspree.io, copy your form id
+             (the xdkogqpz part of https://formspree.io/f/xdkogqpz), paste it
+             over YOUR_FORM_ID in the commented block below, then delete this
+             panel and uncomment the form.
+             ========================================================= -->
+        <div class="form">
+          <p style="margin-top: 0">
+            The contact form is not wired up yet, so the fastest way to reach me
+            is email. I read everything, and I answer most of it.
+          </p>
+
+          <!-- The address is assembled in JavaScript rather than written into
+               the page, so address-harvesting bots scraping the HTML find
+               nothing to take. People with JS on see a normal link; everyone
+               else gets the readable fallback in the <noscript> below. -->
+          <p id="mail-slot" style="margin-bottom: 0">
+            <noscript>
+              Email me at <strong>jonathancomergit [at] gmail [dot] com</strong>
+            </noscript>
+          </p>
+        </div>
+
+        <script>
+          /* Rebuild the address from parts at runtime. */
+          (function () {
+            var user = 'jonathancomergit', host = 'gmail' + '.' + 'com';
+            var a = document.createElement('a');
+            a.className = 'btn btn-primary';
+            a.href = 'mailto:' + user + '@' + host;
+            a.textContent = 'Email me';
+            var slot = document.getElementById('mail-slot');
+            if (slot) { slot.textContent = ''; slot.appendChild(a); }
+          })();
+        </script>
+      </div>
+    </section>
+
+
+    <!-- ============ PARKED: the real form, needs a Formspree id ============
+        <!- - =========================================================
+             THE FORM
+
+             The action URL below is where the form sends its data.
+             Formspree receives it and emails it to you - your address
+             never appears in this page, so scrapers cannot find it.
+
+             REPLACE  YOUR_FORM_ID  with the id from your Formspree
+             dashboard. It looks like  https://formspree.io/f/xdkogqpz
+             - you want just the  xdkogqpz  part.
+             ========================================================= - ->
+        <form class="form"
+              action="https://formspree.io/f/YOUR_FORM_ID"
+              method="POST">
+
+          <div class="field">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" required
+                   autocomplete="name" placeholder="Who are you?">
+          </div>
+
+          <div class="field">
+            <label for="email">Your email</label>
+            <input type="email" id="email" name="email" required
+                   autocomplete="email" placeholder="So I can write back">
+          </div>
+
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required
+                      placeholder="What is on your mind?"></textarea>
+          </div>
+
+          <!- - Honeypot. Hidden from people by CSS, but bots fill in every
+               field they find - and the script drops anything that touches
+               this one. tabindex -1 and aria-hidden keep it away from
+               keyboard and screen reader users. - ->
+          <div class="hp" aria-hidden="true">
+            <label for="company">Do not fill this in</label>
+            <input type="text" id="company" name="_gotcha" tabindex="-1" autocomplete="off">
+          </div>
+
+          <button class="btn btn-primary" type="submit">Send message</button>
+
+          <!- - The script writes the result in here. - ->
+          <p class="form-status" id="form-status" hidden></p>
+        </form>
+    ============================================================== -->
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - built by hand</span>
+      <nav class="footer-links">
+        <a href="projects.html">Projects</a>
+        <a href="blog.html">Dev Log</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://jonjoe1001.itch.io/emergent-evolver" target="_blank" rel="noopener">itch.io</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js"></script>
+</body>
+</html>
