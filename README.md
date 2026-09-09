@@ -1,0 +1,180 @@
+# Jonjoe1001 — personal site
+
+Hand-written HTML and CSS. No build step, no dependencies, no framework.
+Double-click `index.html` to see it. That is also exactly what the server does.
+
+---
+
+## The files
+
+```
+site/
+├── index.html            Home — hero, featured game, selected work, latest posts
+├── projects.html         Every project, with working filter chips
+├── blog.html             The list of dev posts
+├── about.html            About me  ← rewrite this in your own voice
+├── posts/
+│   ├── _TEMPLATE.html    Copy this to write a new post. Never edit it directly.
+│   └── 2026-09-09-hello-world.html
+├── assets/
+│   ├── css/site.css      The entire design system. One file.
+│   ├── js/site.js        Mobile menu + project filter. ~80 lines.
+│   └── img/              Screenshots, the Timeless logo, the favicon
+├── .nojekyll             Tells GitHub Pages to serve the files as-is
+└── README.md             This file
+```
+
+---
+
+## Writing a new dev post
+
+Four steps, about two minutes of overhead:
+
+1. **Copy the template.**
+   `posts/_TEMPLATE.html` → `posts/2026-10-04-boss-rework.html`
+   Name it `YYYY-MM-DD-short-slug.html` so the folder sorts itself by date.
+
+2. **Search the new file for the word `CHANGE`.** There are five of them —
+   the tab title, the description (twice), the headline, and the date line.
+   Fix each one.
+
+3. **Write the post** between the `THE POST STARTS HERE` comment and the
+   `END` comment. The template has a working example of every piece you get:
+   headings, lists, code blocks, pull quotes, images with captions, links.
+   Delete whatever you do not use.
+
+4. **Add it to the list.** Open `blog.html`, copy one `<article class="post-row">`
+   block, paste it at the **top** of the `.posts` list, and update the date,
+   title, link and one-line blurb. If you want it on the home page too, do the
+   same in the `Latest posts` section of `index.html`.
+
+### Adding an image to a post
+
+Drop the file in `assets/img/`, then reference it with `../` in front, because
+posts live one folder down:
+
+```html
+<figure>
+  <img src="../assets/img/my-screenshot.png" alt="Describe what is in it">
+  <figcaption>A caption.</figcaption>
+</figure>
+```
+
+The `alt` text is not optional filler — it is what screen readers announce and
+what shows if the image fails to load. One short sentence.
+
+---
+
+## Adding a project
+
+Open `projects.html` and copy any `<article class="card">` block.
+
+The two attributes that matter:
+
+- `id="my-project"` — lets you link straight to it: `projects.html#my-project`
+- `data-tags="game sim"` — which filter chips will show it
+
+The filter chips at the top of the page have `data-filter="game"` and so on.
+A card appears under a chip if that chip's word is in the card's `data-tags`.
+To add a whole new filter, add a chip button and put the matching word on the
+cards. **No JavaScript changes needed.**
+
+### Cards without a screenshot
+
+Use the placeholder art instead of leaving a hole:
+
+```html
+<div class="card-art is-blank" style="--blank-glow: rgba(53,214,245,.24)">
+  <span class="initials" aria-hidden="true">AB</span>
+</div>
+```
+
+Change the rgba colour to re-tint the glow, and the letters to whatever fits.
+
+---
+
+## Changing the look
+
+Everything lives in the `:root` block at the top of `assets/css/site.css`.
+Change a value there and it updates on every page at once.
+
+| Variable   | What it controls                          | Now       |
+|------------|-------------------------------------------|-----------|
+| `--bg`     | Page background                           | `#07070C` |
+| `--surface`| Cards and panels                          | `#11121C` |
+| `--hot`    | Primary accent — buttons, active nav      | `#FF2D78` |
+| `--cyan`   | Links, secondary accent                   | `#35D6F5` |
+| `--amber`  | "Released" tags, highlights               | `#FFC93C` |
+| `--text`   | Body text                                 | `#ECEEF6` |
+
+The pink, cyan and amber are sampled from the Timeless title art, which is why
+the site and the game look related.
+
+**The background effects** — grid, colour blooms, scanlines — are the `.backdrop`
+rules further down. The scanlines are at `.017` alpha, which is nearly invisible
+on purpose. Turn it up if you want more CRT.
+
+---
+
+## Publishing to GitHub Pages
+
+One-time setup:
+
+1. Create a new repo on GitHub named `jonathancomergit-ai.github.io`
+2. From inside this `site/` folder:
+
+```bash
+git init
+git add .
+git commit -m "First version of the site"
+git branch -M main
+git remote add origin https://github.com/jonathancomergit-ai/jonathancomergit-ai.github.io.git
+git push -u origin main
+```
+
+3. On GitHub: **Settings → Pages → Source: Deploy from a branch → main → / (root)**
+
+Live at `https://jonathancomergit-ai.github.io` in about a minute.
+
+After that, publishing an update is three commands:
+
+```bash
+git add .
+git commit -m "New post about the boss rework"
+git push
+```
+
+The live site updates roughly 30 seconds later.
+
+### Adding a custom domain later
+
+1. Buy the domain (Cloudflare Registrar sells at cost — no markup)
+2. Create a file in this folder called `CNAME` containing only your domain,
+   e.g. `jonjoe1001.dev`
+3. At your registrar, add these DNS records:
+
+   ```
+   A     @    185.199.108.153
+   A     @    185.199.109.153
+   A     @    185.199.110.153
+   A     @    185.199.111.153
+   CNAME www  jonathancomergit-ai.github.io
+   ```
+
+4. GitHub → Settings → Pages → Custom domain → enter it → tick **Enforce HTTPS**
+
+Nothing in the site needs to change — every link here is relative, so the whole
+thing moves domains without a single edit.
+
+---
+
+## Serving it from the NAS (later)
+
+The plan, for when you want it:
+
+1. On TrueNAS, run an nginx container with this folder mounted as its web root
+2. Install `cloudflared` and create a tunnel pointing at that container
+3. Route your domain through the tunnel in the Cloudflare dashboard
+
+No port forwarding, no exposed home IP, free TLS. The GitHub copy stays as the
+backup and the always-up mirror.

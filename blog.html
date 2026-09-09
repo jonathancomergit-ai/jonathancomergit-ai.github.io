@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Dev Log - Jonjoe1001</title>
+  <meta name="description" content="Development posts, updates and write-ups from Jonjoe1001.">
+
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+
+<body>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true"></span>
+        Jonjoe1001
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="blog.html" aria-current="page">Dev Log</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Dev log</p>
+          <h2>Posts &amp; updates</h2>
+          <p>
+            Progress reports, problems I got stuck on, and the occasional thing I
+            figured out that seemed worth writing down.
+          </p>
+        </div>
+
+        <!-- ==========================================================
+             ADDING A POST
+             1. Copy posts/_TEMPLATE.html to posts/YYYY-MM-DD-slug.html
+             2. Write it.
+             3. Copy one .post-row block below, paste it at the TOP of
+                this list, and update the date, title, link and blurb.
+             Newest post goes first.
+             ========================================================== -->
+        <div class="posts">
+
+          <article class="post-row">
+            <span class="post-date">2026-09-09</span>
+            <div>
+              <h3><a href="posts/2026-09-09-hello-world.html">Building this site from scratch</a></h3>
+              <p>Why I hand-wrote a portfolio instead of using a template, and what the plan is for hosting it at home.</p>
+            </div>
+            <span class="post-arrow" aria-hidden="true">&rarr;</span>
+          </article>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - built by hand</span>
+      <nav class="footer-links">
+        <a href="projects.html">Projects</a>
+        <a href="blog.html">Dev Log</a>
+        <a href="about.html">About</a>
+        <a href="https://store.steampowered.com/app/4437190/" target="_blank" rel="noopener">Steam</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js"></script>
+</body>
+</html>
