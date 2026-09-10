@@ -1,0 +1,10 @@
+# Everything here is meant to be found.
+User-agent: *
+Allow: /
+
+# Not pages. The post template is a copy-me skeleton with a deliberately
+# broken image, and /tools/ holds the source for the social preview card.
+Disallow: /posts/_TEMPLATE.html
+Disallow: /tools/
+
+Sitemap: https://jonjoe1001.dev/sitemap.xml

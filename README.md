@@ -121,7 +121,7 @@ on purpose. Turn it up if you want more CRT.
 One-time setup:
 
 1. Create a new repo on GitHub named `jonathancomergit-ai.github.io`
-2. From inside this `site/` folder:
+2. From inside this `Website/` folder:
 
 ```bash
 git init
@@ -146,6 +146,21 @@ git push
 ```
 
 The live site updates roughly 30 seconds later.
+
+### After adding a post
+
+Run `python tools/build_sitemap.py` and commit the regenerated `sitemap.xml`.
+It walks the folder rather than reading a hand-typed list, so it cannot drift
+out of date — but it only runs when you run it. Google reads that file to find
+new pages, and `robots.txt` points at it.
+
+Two house rules worth keeping:
+
+- **Screenshot captions are a short title only** (`<b>The floor map</b>`), never
+  a sentence. The explanation belongs in the image's `alt` text, which is what
+  screen readers announce and what shows if the picture fails to load.
+- **Images need `width` and `height` attributes.** Without them the page reflows
+  as each picture loads and the text jumps under the reader's cursor.
 
 ### The custom domain
 
