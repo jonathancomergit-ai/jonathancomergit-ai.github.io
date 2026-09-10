@@ -62,27 +62,91 @@
         </div>
 
         <!-- =========================================================
-             The Formspree form is written and ready, but it needs a form id
-             from formspree.io before it can send anything - without one it
-             fails silently, which is worse than no form at all. So it is
-             commented out at the bottom of this file and a direct email link
-             stands in its place.
+             THE FORM
 
-             TO SWITCH BACK ON: sign up at formspree.io, copy your form id
-             (the xdkogqpz part of https://formspree.io/f/xdkogqpz), paste it
-             over YOUR_FORM_ID in the commented block below, then delete this
-             panel and uncomment the form.
+             Note the "hidden" attribute. The form starts HIDDEN, and the
+             script at the bottom of this page only reveals it once it has
+             checked that (a) a real Formspree id is configured and (b) this
+             browser can actually send it. If either is untrue the form stays
+             hidden and the email panel below is what visitors see.
+
+             That ordering is deliberate. This page used to ship a form
+             pointing at a placeholder id, which meant it happily accepted
+             messages and threw them away - the worst possible outcome,
+             because nobody finds out. Starting hidden makes the broken state
+             impossible to reach by accident: a form you can see is a form
+             that can send.
+
+             Where the data goes: Formspree receives the POST and emails it on
+             to me. My address is stored on their side, so it never appears in
+             this page for scrapers to harvest. The form id below is NOT a
+             secret - it is meant to be public, and the only thing anyone can
+             do with it is submit this same form.
              ========================================================= -->
-        <div class="form">
+        <form class="form" id="contact-form" hidden>
+
+          <!-- Formspree uses _subject as the subject line of the email it
+               sends me, so messages arrive labelled instead of anonymous.
+               It reads the "email" field below to set the reply-to, which is
+               why hitting reply in my inbox writes back to the sender. -->
+          <input type="hidden" name="_subject" value="jonjoe1001 site - new message">
+
+          <div class="field">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" required
+                   maxlength="80" autocomplete="name" placeholder="Who are you?">
+          </div>
+
+          <div class="field">
+            <label for="email">Your email</label>
+            <input type="email" id="email" name="email" required
+                   maxlength="120" autocomplete="email" placeholder="So I can write back">
+          </div>
+
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required
+                      maxlength="4000" placeholder="What is on your mind?"></textarea>
+          </div>
+
+          <!-- Honeypot. Hidden from people by the .hp rule in the CSS, which
+               parks it off-screen rather than using display:none, because
+               some bots skip anything set to display:none. Bots fill in every
+               field they find; the script silently drops any submission that
+               touches this one. tabindex="-1" and aria-hidden keep it out of
+               the way of keyboard and screen-reader users, who would
+               otherwise land on a field with no sensible answer. -->
+          <div class="hp" aria-hidden="true">
+            <label for="company">Do not fill this in</label>
+            <input type="text" id="company" name="_gotcha" tabindex="-1" autocomplete="off">
+          </div>
+
+          <button class="btn btn-primary" type="submit" id="form-submit">Send message</button>
+
+          <!-- The script writes the result in here. aria-live="polite" makes a
+               screen reader announce it when it changes, so the outcome is not
+               something only sighted visitors get told about. -->
+          <p class="form-status" id="form-status" role="status" aria-live="polite" hidden></p>
+        </form>
+
+        <!-- =========================================================
+             THE FALLBACK
+
+             Visible by default; the script hides it when it turns the form on.
+             So this is what you get with JavaScript switched off, or if the
+             form id above ever goes missing. Either way the page always
+             offers a route that works.
+             ========================================================= -->
+        <div class="form" id="contact-fallback">
           <p style="margin-top: 0">
-            The contact form is not wired up yet, so the fastest way to reach me
-            is email. I read everything, and I answer most of it.
+            The form on this page needs JavaScript to send, so email is the
+            way in from here. I read everything, and I answer most of it.
           </p>
 
           <!-- The address is assembled in JavaScript rather than written into
                the page, so address-harvesting bots scraping the HTML find
-               nothing to take. People with JS on see a normal link; everyone
-               else gets the readable fallback in the <noscript> below. -->
+               nothing to take. People with JS on see a normal button;
+               everyone else gets the readable fallback in the <noscript>. -->
           <p id="mail-slot" style="margin-bottom: 0">
             <noscript>
               Email me at <strong>jonathancomergit [at] gmail [dot] com</strong>
@@ -91,70 +155,210 @@
         </div>
 
         <script>
-          /* Rebuild the address from parts at runtime. */
+          /* ==========================================================
+             CONTACT FORM
+
+             Sends the form with fetch() instead of letting the browser
+             navigate away. Same data either way, but the visitor stays on
+             this page and gets told what happened, rather than being dumped
+             on a thank-you screen belonging to somebody else.
+             ========================================================== */
           (function () {
-            var user = 'jonathancomergit', host = 'gmail' + '.' + 'com';
-            var a = document.createElement('a');
-            a.className = 'btn btn-primary';
-            a.href = 'mailto:' + user + '@' + host;
-            a.textContent = 'Email me';
-            var slot = document.getElementById('mail-slot');
-            if (slot) { slot.textContent = ''; slot.appendChild(a); }
+            "use strict";
+
+            /* ---- settings ------------------------------------------ */
+
+            /* This form's endpoint. To point it somewhere else later, this is
+               the only line that needs to change. */
+            var ENDPOINT = "https://formspree.io/f/mbgjqper";
+
+            /* Give up after this long. Without a timeout a stalled request
+               spins forever and the visitor never learns anything. */
+            var TIMEOUT_MS = 15000;
+
+            /* Split so the finished address is never a single string sitting
+               in the source. Same reasoning as the mail-slot above. */
+            var EMAIL = ["jonathancomergit", "gmail" + "." + "com"].join("@");
+
+            /* ---- the email button (always built) ------------------- */
+
+            var slot = document.getElementById("mail-slot");
+            if (slot) {
+              var mail = document.createElement("a");
+              mail.className = "btn btn-primary";
+              mail.href = "mailto:" + EMAIL;
+              mail.textContent = "Email me";
+              slot.textContent = "";
+              slot.appendChild(mail);
+            }
+
+            /* ---- can we actually use the form? -------------------- */
+
+            var form = document.getElementById("contact-form");
+            var fallback = document.getElementById("contact-fallback");
+            var statusEl = document.getElementById("form-status");
+            var button = document.getElementById("form-submit");
+
+            /* An unconfigured endpoint still contains the placeholder text.
+               window.fetch and window.AbortController rule out browsers too
+               old to send this the way the code below expects. If any check
+               fails we return early, leaving the form hidden and the email
+               panel showing. */
+            var ready = form && statusEl && button &&
+                        ENDPOINT.indexOf("YOUR_FORM_ID") === -1 &&
+                        window.fetch && window.AbortController;
+
+            if (!ready) { return; }
+
+            form.hidden = false;
+            if (fallback) { fallback.hidden = true; }
+
+            /* Remember the button's real label so it can be put back after
+               "Sending..." - rather than hardcoding the text twice, which
+               would quietly go stale the day you reword the button. */
+            var LABEL = button.textContent;
+
+            function setBusy(busy) {
+              button.disabled = busy;
+              button.textContent = busy ? "Sending…" : LABEL;
+            }
+
+            function saySent() {
+              statusEl.hidden = false;
+              statusEl.className = "form-status is-ok";
+              statusEl.textContent =
+                "Thanks — that reached me. I answer most things within a day or two.";
+            }
+
+            /* On failure, say what went wrong AND hand back a mailto link
+               with the message already in it, so nobody has to retype what
+               they just wrote.
+
+               Built with createElement and textContent rather than innerHTML
+               on purpose: "text" here is whatever the visitor typed, and
+               dropping untrusted text into innerHTML is how you end up
+               running someone else's markup on your own page. */
+            function sayFailed(reason, text) {
+              statusEl.hidden = false;
+              statusEl.className = "form-status is-bad";
+              statusEl.textContent = reason + " ";
+
+              var link = document.createElement("a");
+              link.href = "mailto:" + EMAIL +
+                          "?subject=" + encodeURIComponent("Message from your site") +
+                          "&body=" + encodeURIComponent(text || "");
+              link.textContent = "Send it as an email instead";
+              statusEl.appendChild(link);
+            }
+
+            /* Formspree reports problems as {"errors":[{"message":"..."}]}.
+               Pull out the first one if it is there; otherwise the caller
+               falls back to its own wording. */
+            function firstError(body) {
+              if (body && body.errors && body.errors.length && body.errors[0].message) {
+                return body.errors[0].message;
+              }
+              if (body && typeof body.error === "string") { return body.error; }
+              return "";
+            }
+
+            /* ---- submit ------------------------------------------- */
+
+            form.addEventListener("submit", function (event) {
+              /* Stop the browser doing its own navigating submit. Everything
+                 from here on is ours. */
+              event.preventDefault();
+
+              /* Let the browser run the required / type="email" / maxlength
+                 rules from the markup and show its own messages. No point
+                 writing a validator that already exists. */
+              if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+              }
+
+              /* FormData reads the fields straight off the form, so adding a
+                 field to the markup above is all it takes to send it too. */
+              var data = {};
+              new FormData(form).forEach(function (value, key) {
+                data[key] = value;
+              });
+
+              /* Honeypot tripped: this was almost certainly a bot. Show the
+                 success message and send nothing - a bot that gets a clear
+                 rejection learns to come back and try a different way. */
+              if (data._gotcha) {
+                form.reset();
+                saySent();
+                return;
+              }
+              delete data._gotcha;
+
+              /* Clear any previous result before starting a new attempt. */
+              statusEl.hidden = true;
+              setBusy(true);
+
+              /* AbortController is the handle that lets the timeout below
+                 actually cancel a request that is still in flight. */
+              var controller = new AbortController();
+              var timer = setTimeout(function () { controller.abort(); }, TIMEOUT_MS);
+
+              fetch(ENDPOINT, {
+                method: "POST",
+                /* Accept: application/json is what makes Formspree answer
+                   with JSON instead of redirecting to its own web page. */
+                headers: {
+                  "Content-Type": "application/json",
+                  "Accept": "application/json"
+                },
+                body: JSON.stringify(data),
+                signal: controller.signal
+              })
+                .then(function (response) {
+                  /* Read the body even on an error status, because that is
+                     where the reason lives. An unreadable body is not fatal,
+                     hence the catch handing back an empty object. */
+                  return response.json()
+                    .catch(function () { return {}; })
+                    .then(function (body) {
+                      return { ok: response.ok, body: body };
+                    });
+                })
+                .then(function (result) {
+                  if (result.ok) {
+                    /* Only clear the fields once it has definitely sent. */
+                    form.reset();
+                    saySent();
+                  } else {
+                    sayFailed(
+                      firstError(result.body) ||
+                        "That did not go through at the other end.",
+                      data.message
+                    );
+                  }
+                })
+                .catch(function (error) {
+                  /* Two different failures worth telling apart: we gave up
+                     waiting, versus the request never landed at all. */
+                  sayFailed(
+                    error && error.name === "AbortError"
+                      ? "That took too long and timed out."
+                      : "Could not reach the server — check your connection?",
+                    data.message
+                  );
+                })
+                .then(function () {
+                  /* Runs after success and failure alike: drop the timer so
+                     it cannot abort a request that already finished, and give
+                     the button back. */
+                  clearTimeout(timer);
+                  setBusy(false);
+                });
+            });
           })();
         </script>
       </div>
     </section>
-
-
-    <!-- ============ PARKED: the real form, needs a Formspree id ============
-        <!- - =========================================================
-             THE FORM
-
-             The action URL below is where the form sends its data.
-             Formspree receives it and emails it to you - your address
-             never appears in this page, so scrapers cannot find it.
-
-             REPLACE  YOUR_FORM_ID  with the id from your Formspree
-             dashboard. It looks like  https://formspree.io/f/xdkogqpz
-             - you want just the  xdkogqpz  part.
-             ========================================================= - ->
-        <form class="form"
-              action="https://formspree.io/f/YOUR_FORM_ID"
-              method="POST">
-
-          <div class="field">
-            <label for="name">Your name</label>
-            <input type="text" id="name" name="name" required
-                   autocomplete="name" placeholder="Who are you?">
-          </div>
-
-          <div class="field">
-            <label for="email">Your email</label>
-            <input type="email" id="email" name="email" required
-                   autocomplete="email" placeholder="So I can write back">
-          </div>
-
-          <div class="field">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" required
-                      placeholder="What is on your mind?"></textarea>
-          </div>
-
-          <!- - Honeypot. Hidden from people by CSS, but bots fill in every
-               field they find - and the script drops anything that touches
-               this one. tabindex -1 and aria-hidden keep it away from
-               keyboard and screen reader users. - ->
-          <div class="hp" aria-hidden="true">
-            <label for="company">Do not fill this in</label>
-            <input type="text" id="company" name="_gotcha" tabindex="-1" autocomplete="off">
-          </div>
-
-          <button class="btn btn-primary" type="submit">Send message</button>
-
-          <!- - The script writes the result in here. - ->
-          <p class="form-status" id="form-status" hidden></p>
-        </form>
-    ============================================================== -->
   </main>
 
   <footer class="site-footer">
