@@ -134,7 +134,8 @@ git push -u origin main
 
 3. On GitHub: **Settings → Pages → Source: Deploy from a branch → main → / (root)**
 
-Live at `https://jonathancomergit-ai.github.io` in about a minute.
+Live at `https://jonjoe1001.dev` in about a minute. The old
+`jonathancomergit-ai.github.io` address still works and redirects here.
 
 After that, publishing an update is three commands:
 
@@ -146,25 +147,36 @@ git push
 
 The live site updates roughly 30 seconds later.
 
-### Adding a custom domain later
+### The custom domain
 
-1. Buy the domain (Cloudflare Registrar sells at cost — no markup)
-2. Create a file in this folder called `CNAME` containing only your domain,
-   e.g. `jonjoe1001.dev`
-3. At your registrar, add these DNS records:
+`jonjoe1001.dev`, registered at Cloudflare, wired up 2026-09-09. The `CNAME`
+file in this folder is what tells Pages the domain is ours — deleting it drops
+the site back to the github.io address.
 
-   ```
-   A     @    185.199.108.153
-   A     @    185.199.109.153
-   A     @    185.199.110.153
-   A     @    185.199.111.153
-   CNAME www  jonathancomergit-ai.github.io
-   ```
+DNS at Cloudflare, all records set to **DNS only** (grey cloud):
 
-4. GitHub → Settings → Pages → Custom domain → enter it → tick **Enforce HTTPS**
+```
+A     @    185.199.108.153      AAAA  @  2606:50c0:8000::153
+A     @    185.199.109.153      AAAA  @  2606:50c0:8001::153
+A     @    185.199.110.153      AAAA  @  2606:50c0:8002::153
+A     @    185.199.111.153      AAAA  @  2606:50c0:8003::153
+CNAME www  jonathancomergit-ai.github.io
+```
 
-Nothing in the site needs to change — every link here is relative, so the whole
-thing moves domains without a single edit.
+Two things that will bite whoever changes this:
+
+- **Leave the cloud grey.** If Cloudflare's proxy is switched on, GitHub can no
+  longer validate the domain and the TLS certificate eventually lapses. If it
+  is ever turned on deliberately, set SSL/TLS to **Full (strict)** first or the
+  site redirect-loops.
+- **`.dev` is HSTS-preloaded**, so browsers refuse plain HTTP outright. There is
+  no "proceed anyway" screen. While a certificate is being issued the site looks
+  hard-down rather than insecure; that is normal and clears itself.
+
+Most links on the site are relative and moved for free, but the social meta tags
+(`og:url`, `og:image`, `twitter:image`) are absolute by necessity — scrapers
+require it. That is 3 per page. Change the domain again and they all need
+rewriting, or link previews keep pulling from the old address.
 
 ---
 
