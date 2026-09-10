@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Timeless - Jonjoe1001</title>
-  <meta name="description" content="A twin-stick roguelike where the clock is your health bar. Custom Python engine, a constellation meta-progression tree, 94 upgrades, three bosses. In development.">
+  <meta name="description" content="A twin-stick roguelike where the clock IS your health bar - you don&#39;t lose hit points, you lose time. Custom Python engine, a zodiac upgrade tree, 94 upgrades, three bosses. In development.">
 
   <meta property="og:title" content="Timeless - a roguelike where time is your health">
-  <meta property="og:description" content="A twin-stick roguelike where the clock is your health bar. Custom Python engine, a constellation meta-progression tree, 94 upgrades, three bosses.">
+  <meta property="og:description" content="A twin-stick roguelike where the clock IS your health bar - you don&#39;t lose hit points, you lose time. Custom Python engine, a zodiac upgrade tree, 94 upgrades, three bosses.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jonjoe1001.dev/projects/timeless.html">
   <meta property="og:site_name" content="Jonjoe1001">
@@ -62,9 +62,9 @@
       <h1>Timeless</h1>
 
       <p class="project-lead">
-        A twin-stick roguelike where the clock <em>is</em> the health bar. You do
-        not lose hit points &mdash; you lose seconds, and when they run out, so do
-        you. Built from nothing in Python: my own engine, my own room editor, and a
+        A twin-stick roguelike where the clock <em>is</em> the health bar. You don&rsquo;t
+        lose hit points, you lose seconds &mdash; and when they run out, so do you.
+        Built from nothing in Python: my own engine, my own room editor, and a
         meta-progression system shaped like the night sky.
       </p>
     </div>
@@ -91,17 +91,18 @@
         <h2>Time is the health bar</h2>
 
         <p>
-          Most roguelikes give you a health bar and a timer, and the two have
-          nothing to do with each other. Timeless collapses them into one. That bar
-          across the bottom of the screen is not a countdown to a game over &mdash;
-          it is your life. Taking a hit costs seconds. Killing things buys them back.
+          Most roguelikes hand you a health bar and a timer and the two have nothing
+          to do with each other. So why not just smash them together? That bar across
+          the bottom isn&rsquo;t counting down to a game over, it IS your life. Take a
+          hit, lose seconds. Kill something, buy them back.
         </p>
 
         <p>
-          One decision changes how every room reads. A room you could clear slowly
-          and carefully in another game is a room you cannot afford here. Playing it
-          safe <em>is</em> a way to die. It makes the player aggressive without me
-          ever having to tell them to be.
+          That one decision changed how every single room in the game reads. A room
+          you&rsquo;d clear slowly and carefully in any other roguelike is a room you
+          straight up cannot afford here. Playing it safe <em>is</em> a way to die!
+          The best part is I never have to tell anyone to play aggressive &mdash; the
+          clock does it for me.
         </p>
       </div>
 
@@ -121,13 +122,14 @@
 
         <p>
           Between rooms you pick your path across a star chart. Crossed swords are
-          fights, books are lore, the coin pouch is a shop &mdash; and at the top of
-          the map, drawn in silhouette long before you reach her, is the boss.
+          fights, books are lore, the coin pouch is a shop &mdash; and way up at the
+          top of the map, drawn in silhouette long before you get anywhere near her,
+          is the boss.
         </p>
 
         <p>
-          Showing the boss on the map from the first room was a small change with a
-          disproportionate effect. You spend the whole floor watching her get closer.
+          Putting the boss on the map from room one was such a small change and it
+          did SO much. You spend the entire floor watching her get closer.
         </p>
       </div>
 
@@ -146,23 +148,23 @@
         <h2>The Time Tree</h2>
 
         <p>
-          The meta-progression is not a list of perks. It is a zodiac.
+          The meta-progression isn&rsquo;t a list of perks. It&rsquo;s a zodiac!
         </p>
 
         <p>
-          Each run you earn Astral Relics &mdash; Magnetism, Oracle, Parasite,
-          Gambler, Cascade, Reaper, Void, Mirror &mdash; each carrying an elemental
-          affinity: Earth, Air, Fire, Water, Chaos or Void. You drag them into the
-          slots of the constellation currently in the sky. Fill every slot and the
-          constellation activates its own bonus on top of the relics themselves.
+          Every run you earn Astral Relics &mdash; Magnetism, Oracle, Parasite,
+          Gambler, Cascade, Reaper, Void, Mirror &mdash; and each one carries an
+          elemental affinity: Earth, Air, Fire, Water, Chaos or Void. You drag them
+          into the slots of whatever constellation is currently in the sky. Fill
+          every slot and the constellation fires its own bonus on top of the relics.
         </p>
 
         <p>
-          The part I like: <strong>the constellation rotates every few runs.</strong>
-          Taurus is up for two more runs, then something else takes its place, with
-          different slots and a different set bonus. So the optimal build is not a
-          thing you solve once and repeat &mdash; it moves, and you plan around what
-          is in the sky right now.
+          Here&rsquo;s my favourite part though: <strong>the constellation rotates every
+          few runs.</strong> Taurus is up for two more runs, then something else takes
+          over with different slots and a different set bonus. So there&rsquo;s no
+          optimal build you solve once and spam forever &mdash; it MOVES, and you have
+          to plan around whatever is in the sky right now.
         </p>
 
         <h3>The Codex</h3>
@@ -177,7 +179,7 @@
         </p>
 
         <p>
-          It turns an enemy you have never seen into a blank you want to fill.
+          It turns an enemy you&rsquo;ve never seen into a blank you actually want to fill in.
         </p>
       </div>
 
@@ -200,73 +202,77 @@
         <h2>Building the engine</h2>
 
         <p>
-          There is no Unity or Godot underneath this. Pygame gives you a window, a
-          surface and an event loop; everything above that &mdash; camera, room
-          streaming, collision, particles, the UI layer, saves, controller remapping
-          &mdash; I had to write.
+          There is no Unity or Godot under this thing. Pygame gives you a window, a
+          surface and an event loop, and that&rsquo;s about it. Everything above that
+          &mdash; camera, room streaming, collision, particles, the UI layer, saves,
+          controller remapping &mdash; I had to write myself.
         </p>
 
         <p>
-          That was the point. I wanted to know how the parts I had always taken for
-          granted actually work. It also means the whole thing bends to me: the world
-          runs at a fixed scale where <code>20 pixels = 1 metre</code>, rooms come in
-          five sizes from <code>compact</code> to <code>tall</code>, and boss arenas
-          are simply double-size rooms.
+          Which was the whole point! I wanted to know how all the parts I&rsquo;d always
+          taken for granted actually work. It also means the whole thing bends to
+          whatever I want: the world runs at a fixed scale of
+          <code>20 pixels = 1 metre</code>, rooms come in five sizes from
+          <code>compact</code> to <code>tall</code>, and boss arenas are just
+          double-size rooms.
         </p>
 
         <h3>The room editor</h3>
 
         <p>
-          The single best decision in the project. Early on I was authoring rooms by
-          typing coordinates into Python lists, which was miserable and produced bad
-          rooms. So I stopped making the game and spent a week building an in-engine
-          editor instead.
+          Best decision I made on this entire project. Early on I was building rooms
+          by typing coordinates into Python lists, which was miserable AND produced
+          bad rooms. So I stopped making the game entirely and spent a week building
+          an editor inside the engine instead.
         </p>
 
         <p>
-          Every room in Timeless was built in that editor. Tooling first, content
-          second &mdash; I would make that trade again on anything this size.
+          Every single room in Timeless was built in that editor. Tooling first,
+          content second &mdash; I&rsquo;d make that trade again on anything this size,
+          no question.
         </p>
 
         <h2>The bosses</h2>
 
         <p>
-          Three, and each exists to break a rule the rest of the game has taught you.
+          Three of them, and every one exists to break a rule the rest of the game
+          just spent an hour teaching you.
         </p>
 
         <ul>
           <li>
             <strong>Via Lactea, Goddess of the Galaxy.</strong> She opens by making a
             deal: <em>&ldquo;Hush, little spark. I make a deal &mdash; your time
-            slows. Your end is mine.&rdquo;</em> Your clock then drains at an eighth
-            of the normal rate for the whole fight. It is a mechanical change dressed
-            as a story beat &mdash; the reason time behaves differently is that a god
-            is holding it. The fight walks through eight planet phases, Mercury to
-            Neptune, each with its own hazard, and ends in a black hole.
+            slows. Your end is mine.&rdquo;</em> Your clock then drains at an eighth of
+            the normal rate for the whole fight. It&rsquo;s a mechanical change wearing a
+            story as a costume &mdash; time behaves differently because a god is
+            literally holding it. The fight walks through eight planet phases, Mercury
+            to Neptune, each with its own hazard, and finishes inside a black hole.
           </li>
-          <li><strong>TimeReaper.</strong> Floor two's answer to a player who has gotten comfortable.</li>
-          <li><strong>Chronarch.</strong> The last one.</li>
+          <li><strong>TimeReaper.</strong> Floor two&rsquo;s answer to a player who has gotten a little too comfortable.</li>
+          <li><strong>Chronarch.</strong> The last one. Good luck!</li>
         </ul>
 
         <p>
-          Via Lactea started much simpler and got rebuilt entirely. The design note I
-          wrote for that overhaul has one line in bold at the top &mdash;
-          <em>&ldquo;make it hurt bad, we can adjust later&rdquo;</em> &mdash; and
-          every ambiguous difficulty call landed on the harsher option. The fight is
-          better for it.
+          Via Lactea started way simpler and got torn down and rebuilt completely.
+          The design note I wrote for that overhaul has one line in bold at the top
+          &mdash; <em>&ldquo;make it hurt bad, we can adjust later&rdquo;</em> &mdash;
+          so every time I couldn&rsquo;t decide how hard something should be, I picked
+          the meaner option. The fight is so much better for it.
         </p>
 
         <h2>Where it is now</h2>
 
         <p>
-          Timeless is <strong>in development</strong>. It builds, it runs, it has a
-          Steam depot with achievements, leaderboards and cloud saves wired up, and
-          it has been through a playtest. It is not out yet, and I would rather it
-          land finished than land soon.
+          Timeless is <strong>in development</strong>. It builds, it runs, it&rsquo;s got
+          a Steam depot with achievements, leaderboards and cloud saves all wired up,
+          and it&rsquo;s been through a playtest. It is NOT out yet, and honestly
+          I&rsquo;d much rather it land finished than land soon.
         </p>
 
         <p>
-          Progress goes in the <a href="../blog.html">dev log</a> as it happens.
+          I put progress in the <a href="../blog.html">dev log</a> as it happens, so
+          follow along there if you want to watch it come together!
         </p>
       </div>
 
