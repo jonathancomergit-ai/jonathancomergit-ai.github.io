@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Building this site from scratch - Jonjoe1001</title>
-  <meta name="description" content="Why I hand-wrote a portfolio instead of using a template, and the plan for eventually hosting it on the NAS in my closet.">
+  <meta name="description" content="Why I hand-wrote this whole site instead of grabbing a template, and the plan for eventually hosting it on the NAS in my closet.">
 
   <meta property="og:title" content="Building this site from scratch">
-  <meta property="og:description" content="Why I hand-wrote a portfolio instead of using a template, and the plan for eventually hosting it on the NAS in my closet.">
+  <meta property="og:description" content="Why I hand-wrote this whole site instead of grabbing a template, and the plan for eventually hosting it on the NAS in my closet.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://jonjoe1001.dev/posts/2026-09-09-hello-world.html">
   <meta property="og:site_name" content="Jonjoe1001">
@@ -59,102 +59,107 @@
       <p class="article-meta">2026-09-09 &nbsp;&middot;&nbsp; META &nbsp;&middot;&nbsp; 3 min read</p>
 
       <p>
-        I have built a roguelike on an engine I wrote myself, trained neural
-        networks to teach creatures
-        to walk, and built a voice assistant that runs entirely offline in my house.
-        Until today, none of that lived anywhere a person could actually look at it.
+        I&rsquo;ve built a roguelike on an engine I wrote myself, trained neural
+        networks to teach creatures to walk, and built a voice assistant that runs
+        entirely offline in my house. And until today? None of that lived anywhere a
+        single person could actually go and look at it.
       </p>
 
       <p>
-        So: this. A place to put the work, and a place to write about it while it is
-        still in progress rather than only once it is done.
+        So, this! A place to put the work, and a place to write about it while
+        it&rsquo;s still in progress instead of only once it&rsquo;s finished.
       </p>
 
       <h2>Why hand-written HTML</h2>
 
       <p>
-        The obvious move is a template &mdash; a themed static site generator, or one
-        of the drag-and-drop portfolio builders. I went the other way, and the reason
-        is boring but real: <strong>I want to be able to fix it in two years.</strong>
+        The obvious move here is a template &mdash; a themed static site generator, or
+        one of those drag-and-drop portfolio builders. I went the other way, and the
+        reason is boring but real: <strong>I want to be able to fix it in two
+        years.</strong>
       </p>
 
       <p>
         Every framework I could have picked has a version number attached to a clock.
-        Plain HTML and CSS do not. There is no build step here, no
-        <code>node_modules</code>, no dependency that goes stale while I am busy
-        doing something else. Adding a post means copying a file and filling it in.
-        That is the whole workflow, and it will still work when I have forgotten
-        every detail of how the site is put together.
+        Plain HTML and CSS don&rsquo;t! There&rsquo;s no build step here, no
+        <code>node_modules</code>, nothing that goes stale while I&rsquo;m off being
+        busy with something else. Adding a post means copying a file and filling it
+        in. That&rsquo;s the entire workflow, and it&rsquo;ll still work when I have
+        completely forgotten how any of this is put together.
       </p>
 
       <blockquote>
         The best tool for a personal site is the one that still runs after you
-        ignore it for a year.
+        completely ignore it for a year.
       </blockquote>
 
       <p>
-        The other reason is that I am learning this properly. I have been working
-        through HTML structure from the bottom &mdash; what actually nests inside
-        what, why <code>&lt;article&gt;</code> and <code>&lt;section&gt;</code> are
-        different things &mdash; and there is no faster way to internalise that than
-        having a real site whose layout breaks when you get it wrong.
+        The other reason is that I&rsquo;m actually learning this properly. I&rsquo;ve
+        been working through HTML structure from the ground up &mdash; what nests
+        inside what, why <code>&lt;article&gt;</code> and <code>&lt;section&gt;</code>
+        are different things &mdash; and there is no faster way to learn that than
+        having a real site that visibly breaks when you get it wrong. Diving off the
+        deep end is my specialty.
       </p>
 
       <h2>The look</h2>
 
       <p>
-        The palette is not invented. It is pulled straight off the
-        <a href="../projects/timeless.html">Timeless</a>
-        title art &mdash; hot pink, electric cyan, amber &mdash; on near-black, with
-        a faint drafting grid and CRT scanlines behind everything at an opacity you
-        only notice if you go looking. It should feel like a game menu without
-        actually pretending to be one.
+        The palette isn&rsquo;t invented, it&rsquo;s pulled straight off the
+        <a href="../projects/timeless.html">Timeless</a> title art &mdash; hot pink,
+        electric cyan, amber &mdash; sitting on near-black, with a faint drafting grid
+        and CRT scanlines behind everything at an opacity you only really notice if
+        you go looking for it. I wanted it to feel like a game menu without actually
+        pretending to be one.
       </p>
 
       <p>
-        Everything is driven by CSS custom properties in one block at the top of the
-        stylesheet. Change one hex value there and the entire site changes colour.
-        That was deliberate: I know I will want to repaint this once it has been
-        live long enough to annoy me.
+        Everything runs off CSS custom properties in one block at the top of the
+        stylesheet. Change one hex value up there and the whole site changes colour.
+        That was on purpose, because I know myself &mdash; I&rsquo;m going to want to
+        repaint this the second it&rsquo;s been live long enough to annoy me.
       </p>
 
       <h2>Where it lives, and where it is going</h2>
 
       <p>
-        For now this is served by GitHub Pages, which is free, always up, and
-        requires nothing of me beyond pushing a commit. That was the right first
-        step &mdash; get it live, get a URL, stop it from existing only on my desktop.
+        Right now this is served by GitHub Pages, which is free, always up, and asks
+        nothing of me beyond pushing a commit. That was the right first step &mdash;
+        get it live, get a URL, stop the whole thing from existing only on my desktop.
+        It lives at <strong>jonjoe1001.dev</strong> now, which cost me twelve dollars
+        and felt WAY better than it should have.
       </p>
 
       <p>
-        The longer-term plan is more interesting. There is a TrueNAS box in my house
-        that is already on twenty-four hours a day, and it can serve this site
-        perfectly well. The catch is that self-hosting from a residential connection
-        usually means port-forwarding to your home IP, which is a security problem
-        and a dynamic-DNS problem at the same time.
+        The longer-term plan is the more interesting bit though. There&rsquo;s a
+        TrueNAS box sitting in my house that&rsquo;s already on twenty-four hours a
+        day, and it can serve this site perfectly well. The catch is that self-hosting
+        off a home connection usually means port-forwarding to your own IP, which is a
+        security problem and a dynamic-DNS problem at the exact same time.
       </p>
 
       <p>
-        The way around it is a Cloudflare Tunnel: the NAS opens an outbound
-        connection to Cloudflare, visitors hit Cloudflare, and traffic comes back
-        down that tunnel. No open ports, no exposed home IP, free TLS. The only
-        thing I give up is uptime &mdash; the site becomes exactly as reliable as my
-        power and my internet.
+        The way around it is a Cloudflare Tunnel: the NAS opens an outbound connection
+        to Cloudflare, visitors hit Cloudflare, and the traffic comes back down that
+        tunnel. No open ports, no exposed home IP, free TLS. The only thing I give up
+        is uptime &mdash; the site becomes exactly as reliable as my power and my
+        internet, which is a genuinely funny thing to sign up for.
       </p>
 
       <p>
-        Which is fine, because the copy on GitHub is not going anywhere. Same files,
-        two hosts, and I get to learn the self-hosting side on something where
-        nothing breaks if I get it wrong.
+        Which is fine! The copy on GitHub isn&rsquo;t going anywhere. Same files, two
+        hosts, and I get to learn the self-hosting side on something where nothing
+        actually breaks if I get it wrong.
       </p>
 
       <h2>Next</h2>
 
       <p>
-        A proper write-up of how the neuroevolution in Emergent Evolver actually
-        works &mdash; specifically the part where the network is allowed to add its
-        own neurons, which is the bit that surprised me most when it started
-        working.
+        A proper write-up of how the neuroevolution in
+        <a href="../projects/emergent-evolver.html">Emergent Evolver</a> actually
+        works &mdash; specifically the part where the network gets to add its own
+        neurons, which is hands down the bit that surprised me most when it started
+        working. WELCOME FRIENDS, LET&rsquo;S GET CURIOUS!
       </p>
     </article>
   </main>

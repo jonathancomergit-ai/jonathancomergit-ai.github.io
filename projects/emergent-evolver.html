@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Emergent Evolver - Jonjoe1001</title>
-  <meta name="description" content="Draw a creature out of joints, bones and muscles. A neural network grows its own structure until it works out how to move it. Runs in your browser.">
+  <meta name="description" content="Draw a creature out of joints, bones and muscles, then watch a neural network grow its own brain until it figures out how to move. Free, in your browser, no download. Runs in your browser.">
 
   <meta property="og:title" content="Emergent Evolver - creatures that teach themselves to walk">
-  <meta property="og:description" content="Draw a creature out of joints, bones and muscles. A neural network grows its own structure until it works out how to move it.">
+  <meta property="og:description" content="Draw a creature out of joints, bones and muscles, then watch a neural network grow its own brain until it figures out how to move. Free, in your browser, no download.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jonjoe1001.dev/projects/emergent-evolver.html">
   <meta property="og:site_name" content="Jonjoe1001">
@@ -63,9 +63,9 @@
       <h1>Emergent Evolver</h1>
 
       <p class="project-lead">
-        You draw an animal. You do not tell it how to walk. A neural network starts
-        from nothing, grows its own neurons and connections, and after a few hundred
-        generations something runs.
+        You draw an animal. You never tell it how to walk. A neural network starts
+        from absolutely nothing, grows its own neurons and connections, and after a
+        few hundred generations something RUNS.
       </p>
 
       <div class="hero-actions" style="margin-bottom: 2.4rem">
@@ -76,7 +76,7 @@
       </div>
 
       <p class="post-date" style="margin: -1.6rem 0 2.4rem">
-        No download, no account &mdash; it runs in the page.
+        No download, no account, nothing to install &mdash; it just runs in the page.
       </p>
     </div>
 
@@ -100,16 +100,18 @@
         <h2>What it is</h2>
 
         <p>
-          Emergent Evolver gives you a body editor &mdash; joints, bones, muscles,
-          feet, a head &mdash; and then hands your creature to a neural network that
-          starts from noise. There is no animation and no scripted gait. Twenty-odd
-          creatures attempt the course, the best few breed, and the network
-          <em>grows</em> new neurons and new connections as it goes.
+          Emergent Evolver hands you a body editor &mdash; joints, bones, muscles,
+          feet, a head &mdash; and then gives your creature to a neural network that
+          starts from pure noise. There&rsquo;s no animation in here anywhere, and no
+          scripted walk cycle. Twenty-odd creatures have a go at the course, the best
+          few breed, and the network <em>grows</em> brand new neurons and connections
+          as it goes.
         </p>
 
         <p>
           After a few dozen generations something drags itself forward. After a few
-          hundred, something runs.
+          hundred, something runs. Watching that happen the first time is genuinely
+          one of my favourite things I&rsquo;ve ever built.
         </p>
 
         <h2>The parts I am proud of</h2>
@@ -117,63 +119,66 @@
         <h3>You can watch it think</h3>
 
         <p>
-          The brain panel draws the network live: senses down the left, muscles down
-          the right, grown neurons in between, every wire lighting as it fires. The
-          gait panel shows which muscle pulls when, so you can literally watch a walk
-          turn into a run. Most neuroevolution demos show you the result; this one
-          shows you the machinery.
+          The brain panel draws the whole network live: senses down the left, muscles
+          down the right, the grown neurons in between, and every wire lights up as it
+          fires. The gait panel shows you which muscle pulls when, so you can
+          literally watch a walk turn into a run. Most neuroevolution demos just show
+          you the result &mdash; I wanted you to see the machinery!
         </p>
 
         <h3>A map of every way of moving</h3>
 
         <p>
-          Evolution keeps one answer and throws the rest away &mdash; including the
-          creature that hopped instead of walking and finished two metres behind.
-          That always felt like a loss, so the gait archive keeps them all: a grid
-          organised by <em>how</em> a creature moves rather than how far, holding the
-          best hopper, the best crawler and the best sprinter side by side. Click any
-          square to watch it. Breed from it if you like it better than the winner.
+          Evolution keeps one answer and throws everything else in the bin &mdash;
+          including the creature that hopped instead of walking and finished two
+          metres behind. That always bugged me, it felt like a loss. So the gait
+          archive keeps them ALL: a grid sorted by <em>how</em> a creature moves
+          instead of how far it got, holding the best hopper, the best crawler and
+          the best sprinter right next to each other. Click any square to watch it.
+          Breed from it if you like it better than the winner!
         </p>
 
         <h3>Editing the body without wiping the brain</h3>
 
         <p>
-          Add a tail to a creature you have trained for a thousand generations and it
-          carries what it knows across, rewiring around the new limb instead of
-          starting from noise. This was the hardest part to get right and the one
-          that makes the toy actually playable.
+          Add a tail to a creature you&rsquo;ve trained for a thousand generations and
+          it carries everything it knows across, rewiring itself around the new limb
+          instead of starting over from noise. This was by far the hardest part to
+          get right, and it&rsquo;s the thing that makes the whole toy actually fun to
+          play with instead of frustrating.
         </p>
 
         <h3>Physics that makes cheating not work</h3>
 
         <p>
-          A foot grips the ground and absorbs a landing; a bare joint scuffs and loses
-          speed, so a creature that walks on its shins pays for it. Muscles tire when
-          held. A head that touches the ground ends the run.
+          A foot grips the ground and absorbs a landing. A bare joint scuffs and loses
+          speed, so a creature that tries to walk on its shins pays for it. Muscles
+          get tired when you hold them. And if the head touches the ground, the run
+          is over.
         </p>
 
         <p>
-          None of that is a scoring penalty. It is all in the world &mdash; so the
-          exploits simply stop working, rather than being punished after the fact.
-          That distinction matters: penalise a behaviour and evolution finds a way to
-          do it just under the threshold. Make it physically unprofitable and
-          evolution stops trying.
+          None of that is a scoring penalty though! It&rsquo;s all just built into the
+          world, so the exploits stop working instead of getting punished after the
+          fact. That difference matters way more than I expected: penalise a
+          behaviour and evolution will find a way to do it just under the limit. Make
+          it physically not worth doing and evolution stops trying altogether.
         </p>
 
         <h2>Six courses, six brains</h2>
 
         <p>
           Running, jumping, obstacles, climbing, gaps, swimming. Every creature can
-          attempt all of them and keeps a <em>separate</em> brain for each &mdash; so
-          training it to swim costs it nothing on land.
+          have a go at all of them and keeps a <em>separate</em> brain for each one
+          &mdash; so teaching it to swim costs it nothing back on land.
         </p>
 
         <h2>No install, no account, no engine</h2>
 
         <p>
-          The entire thing is one HTML file, about 400KB, with zero dependencies.
-          Everything saves in your browser, and any creature exports as a single line
-          of text you can paste back in anywhere.
+          The entire thing is ONE HTML file, about 400KB, with zero dependencies.
+          Everything saves right in your browser, and any creature exports as a single
+          line of text you can paste back in anywhere. Send your best one to a friend!
         </p>
       </div>
 

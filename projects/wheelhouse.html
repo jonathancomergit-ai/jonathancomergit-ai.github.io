@@ -62,10 +62,10 @@
       <h1>Wheelhouse</h1>
 
       <p class="project-lead">
-        Six people in a Discord call, forty minutes of &ldquo;I don&rsquo;t know,
-        what do <em>you</em> want to play?&rdquo; Wheelhouse reads your actual Steam
-        library, works out which games your whole party can genuinely launch, and
-        spins for you.
+        Six people in a Discord call and forty minutes of &ldquo;I don&rsquo;t know,
+        what do <em>you</em> want to play?&rdquo; We&rsquo;ve all been there, right?
+        Wheelhouse reads your actual Steam library, works out which games your whole
+        party can genuinely launch, and just spins for you.
       </p>
 
       <!-- The download. The zip lives in /downloads/ in this same repo, so GitHub
@@ -108,72 +108,76 @@
         <h2>The actual problem</h2>
 
         <p>
-          Every random-game picker has the same flaw: it will happily land on a game
-          only one person owns. Then you spin again. Then again. The randomiser
-          becomes another thing to argue about.
+          Every random game picker out there has the same problem: it&rsquo;ll happily
+          land on a game only one person owns. So you spin again. Then again. Now the
+          randomiser is just one more thing to argue about!
         </p>
 
         <p>
-          The fix is knowing who owns what. Wheelhouse reads your
+          The fix is actually knowing who owns what. Wheelhouse reads your
           <strong>Steam Family</strong> ownership, so it knows there are three copies
-          of one game and one copy of another, and only puts things on the wheel that
-          your whole party can actually launch. Every tile also tells you how many
-          copies exist and how many hours the family has already put in.
+          of this game and only one of that one, and it only puts things on the wheel
+          that your whole party can genuinely launch. Every tile also tells you how
+          many copies exist and how many hours the family has already sunk into it.
         </p>
 
         <h2>How a night runs</h2>
 
         <p>
           <strong>Pick your categories.</strong> Co-op, strategy, RPG, horror,
-          whatever the mood is. Each category shows how many games it holds and,
-          more usefully, how many of those <em>fit a party of this size</em>.
+          whatever the mood is. Each category shows you how many games it holds and,
+          way more usefully, how many of those <em>fit a party of this size</em>.
         </p>
 
         <p>
-          <strong>Spin.</strong> The wheel is built from exactly the games that
-          survived those filters. Picked games get pulled off so a re-spin never
-          repeats, and there is a running history down the side.
+          <strong>Spin!</strong> The wheel gets built from exactly the games that
+          survived your filters. Anything that gets picked comes off the wheel so a
+          re-spin never repeats itself, and there&rsquo;s a running history down the side.
         </p>
 
         <p>
-          <strong>Or run a bracket.</strong> If one game is not enough, it will build
-          a full tournament &mdash; seeded, with byes, all the way to a final. That
-          started as a joke and became the feature people actually use.
+          <strong>Or run a bracket.</strong> If one game isn&rsquo;t enough, it&rsquo;ll
+          build you a full tournament &mdash; seeded, byes and all, right down to a
+          final. This one started as a total joke and somehow became the feature
+          everybody actually uses.
         </p>
 
         <h2>Things I learned building it</h2>
 
-        <h3>Auth you cannot control is a UX problem, not a bug</h3>
+        <h3>If you can&rsquo;t fix it, at least be honest about it</h3>
 
         <p>
-          The Steam Family data needs a web token that <strong>expires roughly every
-          24 hours</strong>. There is no refresh flow and nothing I can do about that
-          from outside Steam.
+          The Steam Family data needs a web token that <strong>expires about every 24
+          hours</strong>. There&rsquo;s no refresh flow and there is genuinely nothing I
+          can do about that from outside Steam. Believe me, I tried.
         </p>
 
         <p>
-          So instead of pretending, the app is honest about it: a status bar across
-          the top says how long the token has left and states plainly when it has
-          died. Re-pasting takes ten seconds and your wheel setup is untouched. A
-          limitation you explain clearly stops being a bug and becomes a step.
+          So rather than pretend it isn&rsquo;t happening, the app just tells you: a
+          status bar across the top shows how long the token has left and says
+          plainly when it&rsquo;s dead. Re-pasting takes about ten seconds and your
+          wheel setup doesn&rsquo;t get touched. Turns out a limitation you explain
+          properly stops feeling like a bug and starts feeling like a step.
         </p>
 
         <h3>Degrade, do not block</h3>
 
         <p>
           Every layer works without the one above it. No token at all? It reads the
-          games installed on this PC and you can spin immediately. Token but no Web
-          API key? Family members show as SteamID numbers instead of names.
-          Nothing ever refuses to start because one optional thing is missing.
+          games installed on your PC and you can spin right away. Got a token but no
+          Web API key? Family members just show up as SteamID numbers instead of
+          names. Nothing in here ever refuses to start because one optional thing is
+          missing &mdash; that drives me crazy in other people&rsquo;s software.
         </p>
 
         <h3>Local means local</h3>
 
         <p>
-          It runs a small Python server on your own machine and opens in your browser.
-          Your credentials sit in a <code>config.json</code> next to the app and are
-          only ever sent to Steam. No account on my end, because I do not want to be
-          responsible for anybody's Steam token.
+          It runs a tiny Python server on your own machine and opens in your browser.
+          Your credentials sit in a <code>config.json</code> right next to the app and
+          only ever get sent to Steam. There&rsquo;s no account on my end at all,
+          because I really don&rsquo;t want to be responsible for anybody&rsquo;s Steam
+          token. AND NO PAYWALL.
         </p>
 
         <p class="post-date" style="margin-top: 2.4rem">
