@@ -122,6 +122,25 @@ h1, h2, h3, h4 {
           mask-image: linear-gradient(180deg, #000 0%, transparent 78%);
 }
 
+/* The sprite canvas, injected into .backdrop by site.js.
+
+   It sits between the graph-paper grid (::before) and the scanlines
+   (::after), because pseudo-elements paint around an element's real
+   children in tree order - so the sprites land on top of the grid
+   and under the scanlines, which is exactly where they belong.
+
+   image-rendering keeps the pixel art sharp instead of letting the
+   browser smear it with bilinear filtering when it scales up. */
+.sprite-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
 /* CRT scanlines. Very subtle - raise the alpha if you want more. */
 .backdrop::after {
   content: "";
@@ -469,6 +488,19 @@ section { padding-block: var(--gap-xl); }
 .card-body h3 a:hover { color: var(--cyan); text-decoration: none; }
 .card-body p { color: var(--text-dim); font-size: .93rem; margin: 0 0 1.1rem; flex: 1; }
 
+/* Inline code inside a card blurb. Same treatment as .article code, which
+   only applies inside blog posts - without this, a <code> in a card falls
+   back to the browser default and looks like a mistake. */
+.card-body code {
+  font-family: var(--font-mono);
+  font-size: .87em;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: .1em .35em;
+  color: var(--cyan);
+}
+
 .card-links { display: flex; flex-wrap: wrap; gap: .5rem .9rem; }
 .card-links a { font-family: var(--font-mono); font-size: .8rem; }
 
@@ -730,6 +762,24 @@ section { padding-block: var(--gap-xl); }
 }
 .form-status.is-ok   { color: var(--green); border-color: rgba( 61, 245, 160, .35); }
 .form-status.is-bad  { color: var(--hot);   border-color: rgba(255,  45, 120, .35); }
+
+/* The "email it instead" link the script drops into a failed status. Inherits
+   the status colour so it does not fight the red. */
+.form-status a { color: inherit; text-decoration: underline; }
+
+/* Mid-send the submit button is disabled, so it needs to LOOK unavailable -
+   otherwise it reads as an ordinary button that has stopped responding.
+   The :hover override matters because .btn:hover lifts by 2px, and a button
+   that still springs up under the cursor does not look disabled at all. */
+.btn[disabled] {
+  opacity: .55;
+  cursor: not-allowed;
+}
+.btn[disabled]:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--line-bright);
+}
 
 /* ============================================================
    AVATAR
@@ -1019,6 +1069,28 @@ section { padding-block: var(--gap-xl); }
 .footer-links { display: flex; gap: 1.3rem; flex-wrap: wrap; }
 .footer-links a { color: var(--text-dim); }
 .site-footer .mono { font-family: var(--font-mono); font-size: .78rem; }
+
+/* Switch for the background sprites, added by site.js. Kept
+   deliberately quiet - it should be findable by anyone the motion
+   bothers, without becoming a third thing competing in the footer.
+   Set SHOW_TOGGLE = false in site.js to remove it entirely. */
+.sprite-toggle {
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  letter-spacing: .08em;
+  color: var(--text-faint);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: .3rem .6rem;
+  cursor: pointer;
+  transition: color .16s, border-color .16s;
+}
+.sprite-toggle:hover {
+  color: var(--text-dim);
+  border-color: var(--line);
+}
+.sprite-toggle[aria-pressed="false"] { opacity: .6; }
 
 /* ============================================================
    RESPONSIVE
