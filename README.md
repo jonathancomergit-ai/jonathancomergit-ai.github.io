@@ -114,6 +114,27 @@ the site and the game look related.
 rules further down. The scanlines are at `.017` alpha, which is nearly invisible
 on purpose. Turn it up if you want more CRT.
 
+### Motion and effects
+
+All the animation is in `assets/js/site.js` (numbered sections, each with
+its settings at the top) plus a matching block in `site.css`:
+
+| Effect | Where | Tweak |
+|---|---|---|
+| Headlines decode from ASCII | js section 4 | `DECODE_SPREAD` = how long it takes |
+| Things fade up as you scroll | js section 5, css SCROLL REVEAL | the `REVEAL` list says what fades |
+| Reading bar on posts | js section 6, css READING PROGRESS | colours are the gradient in the css |
+| Cards tilt toward the mouse | js section 7, css TILTING CARDS | `TILT_MAX` degrees |
+| Pictures glitch on hover | js section 8, css GLITCH ON HOVER | the `@keyframes glitch` timing |
+| Living ASCII portrait (About) | js section 9 | `PORTRAIT` block: lens size, zoom, sweep |
+| Brain wiring from the photo into the headline, plus the nerve down to the big three (Home) | js section 10, css BRAIN WIRING | `BRAIN` block: neurons, letters, signal speed, `downChance` |
+| Page crossfades | css PAGE TRANSITIONS | `animation-duration` |
+
+Anyone whose device is set to **reduce motion** gets none of it except the
+reading bar. The page transitions and the portrait only work on the live site
+(or a local server), not when a file is double-clicked open - browsers lock
+those features down for pages opened straight from disk.
+
 ---
 
 ## Publishing to GitHub Pages

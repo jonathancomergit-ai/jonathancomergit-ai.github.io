@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>How my creatures teach themselves to walk - Jonjoe1001</title>
+  <meta name="description" content="The theory behind Emergent Evolver: brains that grow their own neurons, why evolution cheats every chance it gets, and the fixes that finally got my creatures walking.">
+
+  <meta property="og:title" content="How do you teach something to walk without telling it how?">
+  <meta property="og:description" content="The theory behind Emergent Evolver: brains that grow their own neurons, why evolution cheats every chance it gets, and the fixes that finally got my creatures walking.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://jonjoe1001.dev/posts/2026-09-10-how-emergent-evolver-learns.html">
+  <meta property="og:site_name" content="Jonjoe1001">
+  <meta property="og:image" content="https://jonjoe1001.dev/assets/img/og-emergent-evolver.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jonjoe1001.dev/assets/img/og-emergent-evolver.jpg">
+
+  <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/img/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="../assets/img/favicon-96.png" type="image/png" sizes="96x96">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#07070C">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+
+<body>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="avatar" src="../assets/img/pfp.png" alt="" width="34" height="34">
+        Jonjoe1001
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html" aria-current="page">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap article">
+      <a class="back-link" href="../blog.html">&larr; All posts</a>
+
+      <h1>How do you teach something to walk without telling it how?</h1>
+
+      <p class="article-meta">2026-09-10 &nbsp;&middot;&nbsp; EMERGENT EVOLVER &nbsp;&middot;&nbsp; 14 min read</p>
+
+      <p>
+        OK guys, this question has been living in my head ever since I played Evolution by @keiwando in middle school.
+        How do you teach a creature to walk if you&rsquo;re not allowed to tell it what
+        walking is? There are no animations, no walk cycle, and nobody telling it
+        to move the left leg and then the right one. Nothing!
+      </p>
+
+      <p>
+        That&rsquo;s the whole idea behind
+        <a href="../projects/emergent-evolver.html">Emergent Evolver</a>, which just
+        dropped on <a href="https://jonjoe1001.itch.io/emergent-evolver" target="_blank" rel="noopener">itch.io</a>
+        (go play it, it&rsquo;s free!). You draw a body out of joints, bones and muscles,
+        then you hand it to a brain that starts out knowing absolutely NOTHING. A
+        few hundred generations later, the thing runs.
+      </p>
+
+      <p>
+        In my <a href="2026-09-09-hello-world.html">last post</a> I promised a
+        write-up of how it actually works, especially the part where the brain grows
+        its own neurons. So here it is, plus my favourite part: all the ways it went wrong. Because it
+        went wrong a LOT.
+      </p>
+
+      <h2>How does anything learn without a teacher?</h2>
+
+      <p>
+        Most of the machine learning you&rsquo;ve heard of learns from examples. You show
+        it a million cat pictures and correct it every time it guesses wrong. But I
+        don&rsquo;t have a million examples of the weird six-legged thing you just drew
+        walking correctly. Nobody does! There&rsquo;s no right answer to copy.
+      </p>
+
+      <p>
+        So instead it uses evolution, the same basic trick nature used. Every
+        generation, twenty-odd creatures with slightly different brains all attempt
+        the course, and they get scored on one thing: how far they got. The best few
+        get to breed, their kids get a few random mutations, and everyone else gets
+        deleted. Then you do it again. And again. And again.
+      </p>
+
+      <p>
+        Early on every brain is basically random noise, so the creatures just twitch
+        and flop around. But one of them flops half a metre further than the others,
+        completely by accident, and that accident gets passed down. Stack enough lucky
+        accidents on top of each other and you get something that looks like it knows
+        exactly what it&rsquo;s doing. It doesn&rsquo;t! It&rsquo;s just the descendant of a very long
+        line of slightly less bad floppers. (Kinda like us, if you think about it.)
+      </p>
+
+      <h2>What the brain actually is</h2>
+
+      <p>
+        The brain is a small neural network. On one side are its senses: for every
+        joint, is it touching the ground, and how high up is it? There&rsquo;s also a
+        ticking clock, which I&rsquo;ll come back to, because it turned out to be a whole
+        thing. On the other side are the muscles, one output each, saying how hard
+        to pull right now. In between are wires with weights on them that decide how
+        much each sense pushes on each muscle.
+      </p>
+
+      <p>
+        That&rsquo;s it! It has no idea what a leg is, no idea which way is forward, and no
+        idea what balance means. It gets numbers in and pushes numbers out.
+      </p>
+
+      <figure>
+        <img src="../assets/img/projects/emergent-evolver/editor.webp" alt="The body editor, with a creature drawn out of joints, bones and muscles" loading="lazy" width="1280" height="800">
+        <figcaption><b>Body editor</b></figcaption>
+      </figure>
+
+      <h2>The brain grows its own neurons</h2>
+
+      <p>
+        This is the part I was most excited about. Most neural networks have a fixed
+        shape that you pick before training starts. Emergent Evolver uses an
+        algorithm called NEAT (NeuroEvolution of Augmenting Topologies, which is a
+        mouthful, so NEAT). The brain starts with nothing in the middle at all, just
+        senses wired to muscles at random, and mutations can change its actual
+        STRUCTURE. A mutation can:
+      </p>
+
+      <ul>
+        <li>nudge how strong a wire is</li>
+        <li>add a brand new wire between two neurons that weren&rsquo;t connected</li>
+        <li>cut an existing wire in half and put a brand NEW neuron in the gap</li>
+        <li>speed up or slow down the creature&rsquo;s internal clock</li>
+      </ul>
+
+      <p>
+        That third one is why you can literally watch the brain grow on screen.
+        Senses sit down the left, muscles down the right, and every new neuron
+        shows up in between as evolution invents it.
+      </p>
+
+      <figure>
+        <img src="../assets/img/projects/emergent-evolver/brain.webp" alt="The live brain panel: senses down the left, muscles down the right, grown neurons in between, with wires lit by how much signal they carry" loading="lazy" width="1440" height="900">
+        <figcaption><b>The brain</b></figcaption>
+      </figure>
+
+      <h3>New ideas need protecting</h3>
+
+      <p>
+        Here&rsquo;s the catch though. A brand new neuron is useless at first. It&rsquo;s sitting
+        in the middle of a wire doing roughly what the wire already did, and it needs
+        a few more lucky mutations before it&rsquo;s worth anything. Meanwhile it&rsquo;s up
+        against creatures that have been fine tuning a simple brain for fifty
+        generations. The new idea gets crushed before it ever gets a chance!
+      </p>
+
+      <p>
+        NEAT&rsquo;s fix is really clever. Creatures get grouped into species by how
+        similar their brains are, and each species mostly competes with itself. A
+        creature with a weird new neuron is only up against other weirdos, so it gets
+        time to figure out what to do with it. The game holds about five species at
+        a time, and in a typical sixty generation run you&rsquo;ll see around sixteen
+        lineages come and go just to keep those five alive. There&rsquo;s a chart in the
+        game that shows it, and honestly it&rsquo;s kind of beautiful watching species
+        split off and go extinct.
+      </p>
+
+      <p>
+        I also added a stagnation kick. If nothing beats the champion for twelve
+        generations, the back half of the population gets violently re-mutated.
+        Before that existed, two test runs on the exact same settings finished at
+        5.4 m and 16.6 m, just depending on whether one of them got stuck.
+      </p>
+
+
+      <h2>The clock wasn&rsquo;t the heartbeat</h2>
+
+      <p>
+        Remember that ticking clock? I was SURE it was the most important thing in
+        the brain. Walking is rhythmic, right? Left, right, left, right. So the brain
+        would obviously need something rhythmic to drive it.
+      </p>
+
+      <p>
+        So I tested it. I took eight champions from eight different runs and switched
+        their clocks off, and four of them didn&rsquo;t lose a single metre! Then I switched
+        off their sense of touching the ground instead, and seven of the eight
+        collapsed from around 30 m to basically nothing.
+      </p>
+
+      <p>
+        So where&rsquo;s the rhythm coming from? The body! A foot hits the ground, that
+        tells the brain to pull a muscle, the muscle swings the leg, the foot comes
+        up, the brain reacts to THAT, and around it goes. The rhythm isn&rsquo;t inside the
+        brain at all. It&rsquo;s a loop that runs through the brain, the body and the floor
+        together, and that honestly blew my mind a little.
+      </p>
+
+      <p>
+        I built a tool into the game to check this on any creature, called
+        <em>What is this brain using?</em> It takes each sense and each neuron out one
+        at a time, reruns the creature, and tells you how many metres that part was
+        worth. On a typical champion, one joint&rsquo;s ground sense was worth the ENTIRE
+        run, the clock was worth about a third of a metre, and 14 of its 21 parts were
+        worth exactly nothing. These things run on two or three senses and a dozen
+        wires!
+      </p>
+
+      <p>
+        It also explained two ideas of mine that sounded like upgrades and made
+        things worse. Giving creatures extra senses, like how tilted they are and how
+        fast they&rsquo;re going, dropped them from 22.9 m to 17.0 m, because it handed
+        evolution a cheap shortcut (lunge whenever you tip over!) that works early and
+        then goes nowhere. And wiring the clock into every muscle cost about six
+        metres, because it locked every muscle onto the same beat, and walking needs
+        your legs doing DIFFERENT things at the same time.
+      </p>
+
+      <h2>Evolution is a cheater</h2>
+
+      <p>
+        OK, this is the big one. If there&rsquo;s one thing I learned making this game, it&rsquo;s
+        that evolution will cheat every single time you give it the chance. It doesn&rsquo;t
+        care what you meant, it only cares about the score, and it&rsquo;ll find the
+        loopholes in your rules way faster than you ever could. Here are my favourites.
+      </p>
+
+      <h3>The buzzers</h3>
+
+      <p>
+        The first creatures were fast and horrible to watch. They BUZZED. The brain
+        was making a new decision 60 times a second, and at that speed it found a
+        tiny vibration that exploited the physics and scooted the creature along.
+        Real nervous systems are way slower than the bodies they drive, so now the
+        brain only thinks 20 times a second and holds its command in between, and the
+        twitching calmed right down. 
+      </p>
+
+      <p> 
+        (Full honesty: my test sweep actually liked 30
+        best. 20 won in playtesting because the creatures just looked better, so
+        that&rsquo;s what shipped. There are settings for almost everything I talk about. Things that are toggled on
+        make it easiest for players who just wanna make cool stuff. If you wanna dive in, all the controls
+        are in your hands!)
+      </p>
+
+      <h3>The head skimmers</h3>
+
+      <p>
+        Two-legged creatures LOVE to fall over and drag themselves, because dragging
+        still counts as distance. Without any rules my biped test creatures were
+        upright only a quarter of the time. So I added a head, a part that isn&rsquo;t
+        allowed to touch the ground. My first instinct was to be nice about it and
+        give a short grace period, a few frames of head contact for free.
+      </p>
+
+      <p>
+        They learned to skim their heads along the floor, each touch just shorter
+        than the grace window! 41% of the run with their face on the ground. Every
+        softer version of the rule got exploited. The strictest one, where any head
+        contact ends the run instantly, got creatures upright 99% of the time AND the
+        best honest distances.
+      </p>
+
+      <p>
+        One detail mattered a lot: the run ends, but you keep the distance you already
+        earned. My first try zeroed the score instead, which sounds tougher but
+        worked worse, because tripping at 15 m then scored the same as face-planting on
+        the start line. Evolution couldn&rsquo;t tell &ldquo;nearly had it&rdquo; from
+        &ldquo;hopeless&rdquo;.
+      </p>
+
+      <blockquote>
+        It doesn&rsquo;t care what you meant, it only cares about the score!
+      </blockquote>
+
+      <h3>The ice skaters</h3>
+
+      <p>
+         Feet are the parts meant to grip the ground, so I
+        gave every other part zero grip, because in my tests zero scored the
+        furthest. Distance went up! Great, right?
+      </p>
+
+      <p>
+        Nope. Zero friction doesn&rsquo;t mean &ldquo;doesn&rsquo;t touch the floor,&rdquo; it
+        means a perfect ice skate. The creatures learned to plant one foot, shove, and
+        glide along on their bellies, and five out of twelve runs spent most of the
+        time belly-down. The number went UP because they&rsquo;d found an exploit, and I
+        read it as an improvement.
+      </p>
+
+      <p>
+        The fix was giving everything that isn&rsquo;t a foot some real drag, enough that
+        sliding costs you. Belly sliders went to zero, the creatures stood 59% taller,
+        and distance went up too. Letting non-feet keep a little
+        friction was the original plan. I talked myself out of it by chasing one
+        number.
+      </p>
+
+      <h3>The knee walkers</h3>
+
+      <p>
+        Even after that, creatures kept walking around on their knees. In the physics
+        a knee and a foot were basically the same thing with different grip, so
+        evolution had no reason to prefer the foot. But grip isn&rsquo;t really what a foot
+        is for. A real foot is squishy, it soaks up the landing, and bare bone doesn&rsquo;t.
+        So now any joint that isn&rsquo;t a foot loses speed when it lands, and the harder it
+        comes down the more it loses. It didn&rsquo;t make anything faster, but creatures
+        stand on the feet you gave them instead of their shins, which is what I
+        actually wanted.
+      </p>
+
+      <h3>So why not just take points off?</h3>
+
+      <p>
+        Notice none of these fixes are score penalties? I never subtract points for
+        sliding or kneeling. I did try a penalty for sliding, and it scored worse on
+        everything else. The problem is that evolution treats a penalty like a price,
+        and it&rsquo;ll happily find a way to do the thing just under the limit. If the
+        world itself makes a cheat not worth doing, evolution just stops trying. So
+        every fix in the game lives in the world: drag, the landing scuff, the head
+        rule, the slower nerves.
+      </p>
+
+      <h2>Physics that bit me</h2>
+
+      <h3>The eel that couldn&rsquo;t swim</h3>
+
+      <p>
+        Swimming is hard in this game, and for the longest time it was WAY harder
+        than it should have been. The obvious swimmer is a long eel, a straight row of
+        segments with muscles between them. It scored 0.1 m no matter what. I even
+        drove one by hand with a perfect wave and it still went nowhere.
+      </p>
+
+      <p>
+        The problem was geometry. Muscles attach at the middle of each bone, and on a
+        perfectly straight body all of those middles sit on one straight line. So
+        every muscle pulls straight along the spine with zero leverage to bend it. The
+        body was completely rigid! It didn&rsquo;t bend at all, no matter what the brain
+        did.
+      </p>
+
+      <p>
+        The fix? A tiny zigzag. Offsetting every other joint by 3 units, which you can
+        barely even see, took the same body from not bending at all to bending plenty.
+        That&rsquo;s why the game ships with a starter swimmer now, muscled the way a real
+        fish is.
+      </p>
+
+      <figure>
+        <img src="../assets/img/projects/emergent-evolver/swim.webp" alt="A segmented creature swimming through open water" loading="lazy" width="1440" height="900">
+        <figcaption><b>Swimming</b></figcaption>
+      </figure>
+
+      <h3>Jumping that ended after one jump</h3>
+
+      <p>
+        Jumping used to be scored on the single highest point you reached, and every
+        run scored about the same, which is a flatline, not a challenge. When I looked
+        closer, the creatures were dying at step 64 of a 600 step trial. Jump once,
+        land, head hits the ground, run over. The whole thing was decided in the first
+        second! Now jumping adds up every hop, and the head rule is off for it, since
+        landing a hop naturally puts your head down. Suddenly different runs found
+        totally different solutions, and landing well is worth exactly as much as
+        jumping high, because you can&rsquo;t take the next hop without it.
+      </p>
+
+      <h2>One run means nothing</h2>
+
+      <p>
+        This was a big lesson for me, and not just for games. Evolution is random, so
+        two runs on the exact same settings can end up wildly different. Early on I&rsquo;d
+        change something, run it once, see a better number and get excited. That&rsquo;s
+        worthless! Every real measurement in this project needed six to twelve runs
+        before it meant anything.
+      </p>
+
+      <p>
+        My favourite example: I let evolution reshape the body, and over ten test runs
+        it won eight. Convincing, right? Then I ran eight more and it won four. A coin
+        flip! Together that&rsquo;s twelve out of eighteen, which is a small effect at best.
+        If I&rsquo;d stopped after the first batch, I&rsquo;d be telling you something that isn&rsquo;t
+        true.
+      </p>
+
+      <p>
+        (Body reshaping had its own cheat too, by the way. Left alone, evolution just
+        made creatures BIGGER, because a bigger body covers more ground per step. So
+        the total bone length is locked to what you drew, and a longer thigh has to be
+        paid for with a shorter shin. Where it really shines is swimming: 5.4 m up to
+        9.6 m.)
+      </p>
+
+      <p>
+        So every run in the game uses a seed, the same seed replays a run exactly, and
+        there&rsquo;s a <em>Benchmark 8 runs</em> button that does the boring part for you.
+        Use it before you believe anything!
+      </p>
+
+      <h2>Keeping the losers</h2>
+
+      <p>
+        Here&rsquo;s something that always bugged me. Every generation, evolution keeps the
+        best creature and throws the rest away. That includes the one that hopped
+        instead of walking and finished two metres behind, which is exactly the
+        creature I&rsquo;d want to see! I kept noticing my creatures all looked kind of the
+        same, so I measured it, and the population wasn&rsquo;t converging at all. The
+        variety was there the whole time, it just never made it onto the screen.
+      </p>
+
+      <p>
+        So I built the gait archive. It sorts creatures by HOW they move instead of how
+        far: how much of the run they spend in the air, and how high they carry their
+        body. Crawling, shuffling, walking and hopping all land in different squares of
+        a grid, and each square keeps the best creature that ever moved that way. A
+        slow hopper never has to compete with a fast crawler.
+      </p>
+
+      <p>
+        Twenty-five generations on the starter body fills half of the 64 squares. In
+        one run the champion was airborne 68% of the time, and the archive was also
+        holding a crawler that barely left the ground and an even bouncier thing at
+        73%. Neither of those would have survived a single generation normally. Click
+        any square to watch it, and breed from it if you like it better than the
+        winner!
+      </p>
+
+      <figure>
+        <img src="../assets/img/projects/emergent-evolver/archive.webp" alt="The gait archive: a grid of creatures sorted by airtime and posture, each square holding the best of that style" loading="lazy" width="1280" height="800">
+        <figcaption><b>Gait archive</b></figcaption>
+      </figure>
+
+      <h2>Editing without losing the brain</h2>
+
+      <p>
+        Last one, and it was by far the hardest to get right. Adding a single joint to a
+        creature used to wipe its brain. The brain is wired to slots, so add or remove a
+        part and every slot after it shifts over, and suddenly the wires that learned
+        about the back leg are pointing at the tail. A thousand generations gone, just
+        because you gave it a tail!
+      </p>
+
+      <p>
+        The fix was giving every part a permanent name that never changes. When you
+        edit the body, the game matches old parts to new parts by name and carries
+        across every wire that still makes sense. After 80 generations of training,
+        adding a tail and keeping the brain beat starting fresh six times out of six,
+        18.5 m against 7.7 m.
+      </p>
+
+      <p>
+        It&rsquo;s not magic though. Giving one creature an extra muscle made it way more
+        capable, and the carried-over brain was too stuck in its old gait to find the
+        new moves. So half the population always starts fresh as a backup, and there&rsquo;s
+        a <em>Restart from noise</em> button for when you want a clean slate.
+      </p>
+
+      <h2>What&rsquo;s next</h2>
+
+      <p>
+        Right now the archive just watches and remembers. The real version of this idea
+        (it&rsquo;s called MAP-Elites) actually breeds FROM the archive, picking random squares
+        as parents, and it tends to find stranger things than chasing one score ever
+        does. That&rsquo;s next on my list, along with touch controls so it works on a tablet.
+      </p>
+
+      <p>
+        If you want to see all this in action,
+        <a href="https://jonjoe1001.itch.io/emergent-evolver" target="_blank" rel="noopener">go play Emergent Evolver</a>.
+        It&rsquo;s free and it runs right in your browser. Draw something weird and see what
+        evolution does with it! And if you find a cheat I haven&rsquo;t closed yet, PLEASE
+        <a href="../contact.html">tell me</a>. Honestly that&rsquo;s my favourite kind of
+        message to get.
+      </p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - built by hand</span>
+      <nav class="footer-links">
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+        <a href="https://jonjoe1001.itch.io/emergent-evolver" target="_blank" rel="noopener">itch.io</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>
