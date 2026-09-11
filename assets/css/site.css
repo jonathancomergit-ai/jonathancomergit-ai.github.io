@@ -663,6 +663,79 @@ section { padding-block: var(--gap-xl); }
 .prose li { margin-bottom: .45rem; }
 
 /* ============================================================
+   ABOUT PAGE LAYOUT
+   Text on the left, portrait on the right. The portrait is
+   position: sticky, so it pins just under the header while the
+   text scrolls past it.
+   ============================================================ */
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 62ch) minmax(220px, 340px);
+  justify-content: space-between;   /* text hugs the left, photo the right edge */
+  gap: 3rem;
+  /* Load-bearing. The default (stretch) makes the photo column as tall as
+     the whole text, which leaves sticky no room to move, so it never pins. */
+  align-items: start;
+}
+
+.about-photo {
+  position: sticky;
+  top: calc(64px + 2rem);   /* 64px = the .nav height, so it clears the sticky header */
+  margin: 0;
+}
+
+/* The frame. The live ASCII canvas (site.js section 9) is laid exactly
+   over the <img> inside it, so the frame carries the border and glow
+   and both the picture and the canvas get clipped to its corners. */
+.about-photo .portrait {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--line-bright);
+  background: #14151B;
+  box-shadow: 0 0 0 6px rgba(255, 45, 120, .10), 0 24px 60px rgba(0, 0, 0, .45);
+}
+
+.about-photo img {
+  display: block;
+  width: 100%;
+  /* On a short window the photo would be taller than the space under the
+     header and its bottom would never be seen. Cap it, and crop from the
+     bottom rather than the face. site.js reads the same crop - if
+     object-position changes here, change the 0.2 in measure() too. */
+  max-height: calc(100vh - 64px - 8rem);   /* 8rem = top gap + room for the caption */
+  object-fit: cover;
+  object-position: 50% 20%;
+}
+
+.portrait-live {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  touch-action: pan-y;   /* a finger dragging sideways moves the lens; up and down still scrolls */
+}
+
+.about-photo figure { margin: 0; }
+
+.about-photo figcaption {
+  margin-top: .8rem;
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  line-height: 1.5;
+  color: var(--text-faint);
+  text-align: center;
+}
+
+/* Below this there is no room for two columns. The photo moves to the top
+   of the page, smaller, and stops pinning. */
+@media (max-width: 860px) {
+  .about-layout { grid-template-columns: minmax(0, 1fr); gap: 1.4rem; }
+  .about-photo  { position: static; order: -1; width: min(100%, 240px); }
+}
+
+/* ============================================================
    CALLOUT STRIP
    ============================================================ */
 .callout {
@@ -1093,6 +1166,196 @@ section { padding-block: var(--gap-xl); }
 .sprite-toggle[aria-pressed="false"] { opacity: .6; }
 
 /* ============================================================
+   PAGE TRANSITIONS
+   Moving between pages crossfades instead of cutting to black.
+   No JavaScript: the browser does it by itself, and browsers that
+   do not support it just change pages the normal way. It only works
+   on the live site - not when a page is opened straight from disk.
+   ============================================================ */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+}
+::view-transition-old(root),
+::view-transition-new(root) { animation-duration: .28s; }
+
+/* Named, so the header holds still while the page under it fades. */
+.site-header { view-transition-name: site-header; }
+
+/* ============================================================
+   SCROLL REVEAL
+   site.js section 5 adds .reveal to things below the fold, then
+   .is-in as each scrolls into view. Both are removed once it has
+   landed. Uses `translate` rather than `transform`, so it cannot
+   fight the hover lift or the card tilt, which both use transform.
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  translate: 0 22px;
+  transition: opacity .7s ease, translate .7s cubic-bezier(.2, .7, .2, 1);
+}
+.reveal.is-in {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* ============================================================
+   READING PROGRESS
+   The bar under the header on posts. site.js section 6 builds it
+   and uncovers it with clip-path as you read. The glow sits on the
+   parent as a filter, because clip-path would cut a box-shadow off.
+   ============================================================ */
+.read-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;   /* sits on the header's bottom border */
+  height: 2px;
+  pointer-events: none;
+  filter: drop-shadow(0 0 5px rgba(255, 45, 120, .6));
+}
+.read-progress span {
+  display: block;
+  height: 100%;
+  clip-path: inset(0 100% 0 0);   /* empty until site.js measures */
+  background: linear-gradient(90deg, var(--hot), var(--amber), var(--cyan));
+}
+
+/* ============================================================
+   TILTING CARDS
+   site.js section 7 puts the cursor position into --rx/--ry (the
+   angle) and --mx/--my (where the glint sits), and adds
+   .is-tilting while the mouse is over the card. This block has to
+   stay BELOW .card:hover and .feature:hover: same specificity, so
+   whichever comes later in the file wins.
+   ============================================================ */
+.card { position: relative; }   /* so the glint below can cover it */
+
+.card.is-tilting,
+.feature.is-tilting {
+  transform: perspective(850px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-4px);
+}
+
+.card::after,
+.feature::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, .09), transparent 45%);
+  opacity: 0;
+  transition: opacity .3s;
+}
+.card.is-tilting::after,
+.feature.is-tilting::after { opacity: 1; }
+
+/* ============================================================
+   GLITCH ON HOVER
+   A short burst of pink/cyan colour split when you point at a
+   project picture. The filters (#glitch-a/b/c) are SVG, added to
+   the page by site.js section 8, which also adds .fx-glitch to
+   <html> - so none of this can run before the filters exist.
+   steps(1, end) makes each frame snap instead of blend, which is
+   what makes it read as a glitch rather than a wobble.
+   ============================================================ */
+@keyframes glitch {
+  0%   { filter: url(#glitch-a); translate: -3px 0; }
+  18%  { filter: url(#glitch-b); translate: 3px 0; }
+  36%  { filter: url(#glitch-a); translate: -1px 1px; }
+  54%  { filter: url(#glitch-c); translate: 2px 0; }
+  72%  { filter: url(#glitch-b); translate: 0 0; }
+  100% { filter: none; translate: 0 0; }
+}
+.fx-glitch .card:hover .card-art img,
+.fx-glitch .feature:hover .feature-art img,
+.fx-glitch .shot:hover img {
+  animation: glitch .42s steps(1, end) 1;
+}
+
+/* ============================================================
+   BRAIN WIRING (home page hero)
+   site.js section 10 draws nerves from the profile photo into the
+   headline on this canvas. It sits BEHIND the hero's text, and
+   pointer-events:none means it never eats a click.
+   ============================================================ */
+.hero { position: relative; }
+.hero > .wrap { position: relative; z-index: 1; }
+.hero-net {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* The photo's ring flashes pink each time a thought leaves it. */
+.hero-id .avatar-lg { transition: box-shadow .5s ease, border-color .5s ease; }
+.hero-id .avatar-lg.is-firing {
+  border-color: rgba(255, 45, 120, .75);
+  box-shadow: 0 0 0 5px rgba(255, 45, 120, .22), 0 0 26px rgba(255, 45, 120, .45);
+  transition-duration: .06s;
+}
+
+/* A letter a signal lands in: bright cyan, fading back to white in
+   three steps. The script moves each letter down the steps. */
+::highlight(net-3) { color: #8DEBFF; text-shadow: 0 0 18px rgba(53, 214, 245, .9); }
+::highlight(net-2) { color: #B9F3FF; text-shadow: 0 0 10px rgba(53, 214, 245, .5); }
+::highlight(net-1) { color: #DDF7FC; }
+
+/* The nerve that runs from the photo down to the big three
+   (site.js section 10). An SVG laid over <main>; everything in the
+   page that is positioned (the cards, the hero text) paints over it,
+   so it only shows in the margin and never covers a word. */
+.nerve-host { position: relative; }
+.nerves {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+.nerve-tip { animation: pulse 1.6s ease-in-out infinite; }
+.nerve-tips { transition: opacity .8s ease; }
+
+/* Neurons along the nerve swell in as it reaches them, instead of
+   popping into existence. The script adds .is-on. */
+.nerve-node {
+  opacity: 0;
+  transform: scale(.2);
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: opacity .6s ease, transform .7s cubic-bezier(.2, .8, .3, 1.3);
+}
+.nerve-node.is-on { opacity: 1; transform: none; }
+
+/* A card a signal lands in flashes cyan, then eases back to normal.
+   Only the start is given, so it fades to whatever the card was
+   already doing (hovered or not). */
+@keyframes zap {
+  0% {
+    border-color: rgba(53, 214, 245, .85);
+    box-shadow: 0 0 0 1px rgba(53, 214, 245, .45), 0 0 44px rgba(53, 214, 245, .3);
+  }
+}
+.feature.is-zapped,
+.callout.is-zapped { animation: zap 1.1s ease-out; }
+.callout.is-zapped .btn-primary { animation: zap-btn 1.1s ease-out; }
+@keyframes zap-btn {
+  0% { box-shadow: 0 0 0 4px rgba(255, 45, 120, .3), 0 0 34px rgba(255, 45, 120, .6); }
+}
+.post-row.is-zapped { animation: zap-row 1.1s ease-out; }
+@keyframes zap-row {
+  0% { background: rgba(53, 214, 245, .07); border-bottom-color: rgba(53, 214, 245, .6); }
+}
+
+/* A neuron along the nerve, flashing as a thought passes through. */
+.nerve-node.is-lit { animation: node-lit .6s ease-out; }
+@keyframes node-lit {
+  0% { fill: #35D6F5; stroke: #FFFFFF; }
+}
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 860px) {
@@ -1141,7 +1404,7 @@ section { padding-block: var(--gap-xl); }
    PRINT
    ============================================================ */
 @media print {
-  .backdrop, .site-header, .site-footer, .filters { display: none; }
+  .backdrop, .site-header, .site-footer, .filters, .hero-net, .nerves { display: none; }
   body { background: #fff; color: #000; }
   .article p, .article li { color: #000; }
 }
