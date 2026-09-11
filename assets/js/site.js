@@ -452,9 +452,13 @@
 
      Only text nodes are touched, so markup inside the heading (the
      gradient <span class="glow"> on the home page) survives.
-     Capitals scramble through capitals and lowercase through
-     lowercase: random glyphs of wildly different widths make the
-     lines re-wrap mid-effect and the heading visibly jumps.
+
+     The lines are LOCKED while it runs. Random glyphs are wider or
+     narrower than the real letters, so left to wrap freely the lines
+     re-flow mid-effect: words hop between lines, the heading grows a
+     line, and everything under it jumps. So the script finds where
+     the real words break (on an invisible copy that keeps the real
+     text) and holds exactly those breaks until the effect is over.
      ---------------------------------------------------------- */
   var DECODE_SPREAD = 1300;  // ms between the first letter landing and the last
   var DECODE_JITTER = 380;   // random extra wait per letter, so they do not land in a neat wave
@@ -471,16 +475,19 @@
 
   function decode(el) {
     var jobs = [];
+    var flat = [];          // every character in reading order, across all the text nodes
     var total = 0;
     var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
 
     while (walker.nextNode()) {
       var node = walker.currentNode;
       var orig = node.nodeValue;
-      var job = { node: node, orig: orig, shown: orig.split(""), land: [] };
+      var job = { node: node, orig: orig, shown: orig.split(""), land: [], n: jobs.length };
       for (var i = 0; i < orig.length; i++) {
         /* Whitespace never scrambles, so words keep their breaks. */
-        job.land.push(/\s/.test(orig.charAt(i)) ? -1 : total++);
+        var ws = /\s/.test(orig.charAt(i));
+        job.land.push(ws ? -1 : total++);
+        flat.push({ jb: job, c: i, ws: ws });
       }
       jobs.push(job);
     }
@@ -491,17 +498,67 @@
       landAt.push(60 + (k / total) * DECODE_SPREAD + Math.random() * DECODE_JITTER);
     }
 
+    /* Each run of whitespace between words: the character before it
+       and the one after (-1 at the very start or end). */
+    var gaps = [];
+    for (var f = 0; f < flat.length; f++) {
+      if (!flat[f].ws) { continue; }
+      var gap = { prev: f - 1, run: [] };
+      while (f < flat.length && flat[f].ws) { gap.run.push(flat[f]); f++; }
+      gap.next = f < flat.length ? f : -1;
+      gaps.push(gap);
+    }
+
+    /* Lock the lines (see above). Each gap becomes a plain space, or a
+       newline where the real text wraps, under white-space: pre - so
+       the scramble can never move a word to another line. Measured on
+       an invisible copy, which still has the real words in it. Run
+       again if the fonts arrive or the window resizes mid-effect. */
+    var copy = null;
+    function lock() {
+      if (finished || !gaps.length || el.querySelector("br")) { return; }
+      if (!copy) {
+        copy = el.cloneNode(true);
+        copy.removeAttribute("id");
+        copy.setAttribute("aria-hidden", "true");
+        copy.style.cssText = "position:absolute;visibility:hidden;pointer-events:none;left:0;top:0;margin:0";
+        el.parentNode.insertBefore(copy, el.nextSibling);
+      }
+      copy.style.width = el.getBoundingClientRect().width + "px";
+      var nodes = [];
+      var cw = document.createTreeWalker(copy, NodeFilter.SHOW_TEXT, null, false);
+      while (cw.nextNode()) { nodes.push(cw.currentNode); }
+      var top = function (k) {
+        var r = document.createRange();
+        r.setStart(nodes[flat[k].jb.n], flat[k].c);
+        r.setEnd(nodes[flat[k].jb.n], flat[k].c + 1);
+        var box = r.getClientRects()[0];
+        return box ? box.top : 0;
+      };
+      gaps.forEach(function (g) {
+        var edge = g.prev < 0 || g.next < 0;      // before the first word or after the last: nothing
+        var wrap = !edge && top(g.next) > top(g.prev) + 2;
+        g.run.forEach(function (ch, n) { ch.jb.shown[ch.c] = n || edge ? "" : wrap ? "\n" : " "; });
+      });
+      el.style.whiteSpace = "pre";
+      jobs.forEach(function (jb) { jb.node.nodeValue = jb.shown.join(""); });
+    }
+
     /* A screen reader landing here mid-effect would read gibberish,
-       so it gets the real words up front. The height is pinned so a
-       line that briefly re-wraps cannot shove the page around. */
+       so it gets the real words up front. */
     el.setAttribute("aria-label", el.textContent.replace(/\s+/g, " ").trim());
     el.setAttribute("data-decoding", "");
-    el.style.minHeight = el.offsetHeight + "px";
 
     var clock = window.performance || Date;
     var start = clock.now();
     var lastSwap = 0;
     var finished = false;
+
+    lock();
+    if (document.fonts && document.fonts.status === "loading" && document.fonts.ready) {
+      document.fonts.ready.then(lock);
+    }
+    window.addEventListener("resize", lock);
 
     function finish() {
       if (finished) { return; }
@@ -509,7 +566,9 @@
       jobs.forEach(function (jb) { jb.node.nodeValue = jb.orig; });
       el.removeAttribute("aria-label");
       el.removeAttribute("data-decoding");
-      el.style.minHeight = "";
+      el.style.whiteSpace = "";
+      window.removeEventListener("resize", lock);
+      if (copy) { copy.parentNode.removeChild(copy); copy = null; }
       /* Tell anything waiting on the real letters (the brain wiring). */
       if (typeof window.CustomEvent === "function") { el.dispatchEvent(new window.CustomEvent("decoded")); }
     }
