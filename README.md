@@ -183,6 +183,35 @@ Two house rules worth keeping:
 - **Images need `width` and `height` attributes.** Without them the page reflows
   as each picture loads and the text jumps under the reader's cursor.
 
+### Visitor stats
+
+Counted by [GoatCounter](https://www.goatcounter.com). The dashboard is at
+`https://jonjoe1001.goatcounter.com`. Everything lives in `assets/js/stats.js`,
+and every page loads it on the line after `site.js`. **A new page needs that
+line too.** Copy it from `posts/_TEMPLATE.html`.
+
+What shows up on the dashboard:
+
+| Name | What it means |
+|---|---|
+| `/about.html` etc. | A page view |
+| `download-wheelhouse-1.0.zip` | Someone clicked a download (any `.zip`, `.exe`, `.pdf`... or a link with `download`) |
+| `outbound-jonjoe1001.itch.io/emergent-evolver` | Someone clicked a link that leaves the site |
+| `email-click` | The "Email me" button |
+| `contact-sent` | A contact-form message actually arrived at Formspree |
+| `read-end-/posts/...` | Someone scrolled 90% of the way through a dev post |
+| `404-/some/path` | Someone hit a page that doesn't exist. The title shows which page linked there |
+
+Each event's title says which page it happened on.
+
+- **Skip your own visits:** open `https://jonjoe1001.dev/#toggle-goatcounter` once in
+  every browser you use. Nothing is counted on localhost or a double-clicked file.
+- **Every number is a minimum.** Ad blockers stop the counter, so some real
+  visitors never show up.
+- No cookies and no IP addresses are stored, so the site needs no cookie banner.
+- itch.io keeps its own view, download and follower counts for Emergent Evolver on
+  the itch dashboard. The site only knows about the clicks that got people there.
+
 ### The custom domain
 
 `jonjoe1001.dev`, registered at Cloudflare, wired up 2026-09-09. The `CNAME`
