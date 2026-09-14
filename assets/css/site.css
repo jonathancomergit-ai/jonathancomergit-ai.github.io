@@ -1356,6 +1356,120 @@ section { padding-block: var(--gap-xl); }
 }
 
 /* ============================================================
+   LINKS PAGE  (links.html - the link-in-bio page)
+   One narrow column, built for a thumb on a phone first. Every
+   button is the same shape so the list reads as one set; the
+   Steam button gets .is-featured so the wishlist stands out.
+   ============================================================ */
+.lh {
+  width: 100%;
+  max-width: 34rem;
+  margin: 0 auto;
+  padding-inline: 1.1rem;
+  padding-block: clamp(2.2rem, 7vw, 4rem) 3rem;
+}
+
+.lh-head { text-align: center; margin-bottom: 1.8rem; }
+
+.lh-avatar {
+  display: block;             /* the reset makes images blocks, so centre with margins */
+  margin: 0 auto;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 12%;   /* the face, not the middle of a tall portrait */
+  border: 2px solid var(--line-bright);
+  box-shadow: 0 0 0 5px rgba(255, 45, 120, .12), 0 12px 40px rgba(0, 0, 0, .5);
+}
+
+.lh-name {
+  font-size: clamp(1.8rem, 6vw, 2.3rem);
+  margin: .9rem 0 .35rem;
+}
+
+.lh-bio {
+  color: var(--text-dim);
+  max-width: 34ch;
+  margin: 0 auto;
+  text-wrap: balance;
+}
+
+.lh-list { display: grid; gap: .7rem; }
+
+.lh-link {
+  display: grid;
+  grid-template-columns: 2.6rem 1fr auto;
+  align-items: center;
+  gap: .9rem;
+  padding: .85rem 1rem;
+  min-height: 4.2rem;             /* comfortably thumb-sized */
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--text);
+  transition: transform .18s, border-color .18s, background .18s, box-shadow .18s;
+}
+.lh-link:hover {
+  text-decoration: none;
+  transform: translateY(-2px);
+  border-color: var(--line-bright);
+  background: var(--surface-2);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, .45);
+}
+.lh-link:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+/* site.css has no global [hidden] rule, and display:grid above would
+   otherwise beat the browser's own one - so the hidden Discord and
+   Steam buttons would show up anyway. */
+.lh-link[hidden] { display: none; }
+
+.lh-icon {
+  width: 2.6rem;
+  height: 2.6rem;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  color: var(--cyan);
+}
+.lh-icon svg {
+  width: 1.35rem;
+  height: 1.35rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.lh-text { display: grid; gap: .1rem; min-width: 0; }
+.lh-title { font-family: var(--font-display); font-weight: 600; font-size: 1.02rem; }
+.lh-sub   { color: var(--text-dim); font-size: .86rem; line-height: 1.4; }
+
+.lh-arrow {
+  font-family: var(--font-mono);
+  color: var(--text-faint);
+  transition: transform .18s, color .18s;
+}
+.lh-link:hover .lh-arrow { transform: translateX(3px); color: var(--hot); }
+
+/* The Steam wishlist button, once it's switched on. */
+.lh-link.is-featured {
+  background: linear-gradient(135deg, rgba(255, 45, 120, .16), rgba(255, 201, 60, .08));
+  border-color: rgba(255, 45, 120, .45);
+}
+.lh-link.is-featured .lh-icon { color: var(--amber); border-color: rgba(255, 201, 60, .35); }
+.lh-link.is-featured:hover { box-shadow: 0 12px 34px rgba(255, 45, 120, .3); }
+
+.lh-foot {
+  text-align: center;
+  margin: 2rem 0 0;
+  font-family: var(--font-mono);
+  font-size: .82rem;
+}
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 860px) {

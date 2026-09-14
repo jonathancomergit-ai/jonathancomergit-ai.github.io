@@ -13,6 +13,8 @@ site/
 ├── projects.html         Every project, with working filter chips
 ├── blog.html             The list of dev posts
 ├── about.html            About me  ← rewrite this in your own voice
+├── links.html            Link-in-bio page (jonjoe1001.dev/links). Discord + Steam
+│                         buttons are built but `hidden` — see the comment at the top
 ├── posts/
 │   ├── _TEMPLATE.html    Copy this to write a new post. Never edit it directly.
 │   └── 2026-09-09-hello-world.html
