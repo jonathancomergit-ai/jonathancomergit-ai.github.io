@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>The Starlight Update is HERE! - Jonjoe1001</title>
+  <meta name="description" content="Every screen in Timeless got rebuilt from the ground up (yes, EVERY one) plus new sounds, button glyphs, a real tutorial and a pile of fixes. Come see what we've been cooking!">
+
+  <meta property="og:title" content="The Starlight Update is HERE!">
+  <meta property="og:description" content="A brand new look, a full sound overhaul, and real controller support!">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://jonjoe1001.dev/posts/2026-09-15-the-starlight-update.html">
+  <meta property="og:site_name" content="Jonjoe1001">
+  <meta property="og:image" content="https://jonjoe1001.dev/assets/img/og-timeless-starlight.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jonjoe1001.dev/assets/img/og-timeless-starlight.jpg">
+
+  <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/img/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="../assets/img/favicon-96.png" type="image/png" sizes="96x96">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#07070C">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+
+<body>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="avatar" src="../assets/img/pfp.png" alt="" width="34" height="34">
+        Jonjoe1001
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html" aria-current="page">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap article">
+      <a class="back-link" href="../blog.html">&larr; All posts</a>
+
+      <h1>The Starlight Update is HERE!</h1>
+
+      <p class="article-meta">2026-09-15 &nbsp;&middot;&nbsp; TIMELESS &nbsp;&middot;&nbsp; 4 min read</p>
+
+      <!-- Jonathan's own words: the Starlight Update event post that went out on Steam
+           (Desktop\Timeless Update Kit\01_Steam_Event_Post.txt), converted from BBCode.
+           Only the markup changed; the one addition is the link to the Timeless page. -->
+
+      <p>
+        Hey everyone! Have you ever looked at your own game and thought &ldquo;wow, the
+        menus look like a spreadsheet&rdquo;? Yeah. Me too. So we fixed that!
+      </p>
+
+      <p>
+        This is the biggest update <a href="../projects/timeless.html">Timeless</a> has
+        gotten so far. Almost everything you look at, click on or hear got touched, and
+        I&rsquo;m SO excited to finally show it off.
+      </p>
+
+      <h2>A whole new look: Starlight</h2>
+
+      <p>
+        The title screen always looked amazing, but once you started a run it felt like a
+        different game. Not anymore! Every screen now shares the same starry, glassy look
+        as the title.
+      </p>
+
+      <figure>
+        <img src="../assets/img/projects/timeless/starlight-hud.webp" alt="A Timeless run with the new HUD: score and fragments top left, the room track of little stars top right, ability icons bottom left, and the time bar along the bottom" loading="lazy" width="1600" height="900">
+        <figcaption><b>The new HUD</b></figcaption>
+      </figure>
+
+      <ul>
+        <li><strong>A brand new HUD.</strong> Your time bar lives at the bottom, your abilities have their own hand-made icons, and the room track at the top shows where you are on the floor (little stars, the boss is the diamond at the end).</li>
+        <li><strong>New pause menu with a run summary</strong> so you can see your time, score, fragments, kills and orbs without leaving the pause screen.</li>
+        <li><strong>New end screens.</strong> TIME&rsquo;S UP and GAME COMPLETE freeze your run behind them and show exactly where the clock stopped.</li>
+        <li><strong>The Time Shop is an orb ring now</strong> with a detail card for whatever you&rsquo;re looking at.</li>
+        <li><strong>The Tab menu kept its black hole of orbs</strong> (we love that thing) and got cleaned up around it.</li>
+        <li><strong>Codex, Records, Settings, Controls, the Time Tree, events and the Sacrifice room</strong> all got the Starlight treatment too!</li>
+      </ul>
+
+      <figure>
+        <img src="../assets/img/projects/timeless/starlight-pause.webp" alt="The pause menu over a dimmed run, with Resume, Settings and Quit to Menu above a run summary showing time left, score, fragments, kills and the orbs collected" loading="lazy" width="1600" height="900">
+        <figcaption><b>Pause and run summary</b></figcaption>
+      </figure>
+
+      <figure>
+        <img src="../assets/img/projects/timeless/starlight-tab.webp" alt="The Tab menu: run stats on the left, the zodiac constellation in the middle, and the orbs circling a black hole on the right" loading="lazy" width="1600" height="900">
+        <figcaption><b>Tab menu</b></figcaption>
+      </figure>
+
+      <h2>Controller support, for real this time</h2>
+
+      <p>
+        Want to play from the couch? You can now! Every prompt in the game shows the right
+        button for what you&rsquo;re holding (Xbox, PlayStation or Switch style) and the menus
+        work on a gamepad now. Heat stars, the run map, the Time Tree, the Codex, the
+        Sacrifice room, you name it. (If you find a spot where the pad gets stuck, tell me!)
+      </p>
+
+      <figure>
+        <img src="../assets/img/projects/timeless/starlight-sacrifice.webp" alt="Sacrifice to the Void: orbs orbit a black hole, one is selected with its detail card open, and the controller button prompts sit along the bottom" loading="lazy" width="1600" height="900">
+        <figcaption><b>Sacrifice to the Void</b></figcaption>
+      </figure>
+
+      <h2>A huge sound overhaul</h2>
+
+      <p>
+        Timeless was way too quiet in a lot of places. Now almost every action has a sound!
+        Enemies, mini-bosses, bosses, orbs, the shop, the Time Tree, menu clicks, all of it.
+        The music moved to OGG too, so the game is a lot smaller on your drive.
+      </p>
+
+      <h2>A real tutorial</h2>
+
+      <p>
+        New players now get a short 8-room tutorial the first time they play. It teaches
+        moving, shooting, dashing, orbs and abilities one room at a time (and if you&rsquo;ve
+        played before, you can skip it).
+      </p>
+
+      <h2>The Codex and the Credits</h2>
+
+      <figure>
+        <img src="../assets/img/projects/timeless/starlight-codex.webp" alt="The Codex on the Enemies tab: found enemies drawn in full, undiscovered ones as dark silhouettes, and a detail pane for the selected enemy" loading="lazy" width="1600" height="900">
+        <figcaption><b>Codex</b></figcaption>
+      </figure>
+
+      <p>
+        The Codex has a big detail pane now, and the enemies you haven&rsquo;t found yet show up
+        as faint silhouettes, so you know what&rsquo;s still out there waiting for you.
+      </p>
+
+      <p>
+        The Credits are a constellation of the people who made Timeless. My amazing
+        girlfriend KTB hand drew all of the art (yes, that&rsquo;s why it looks so good) and she
+        gets her own star, of course! And our dog made it in there too. Try pressing A on him!
+      </p>
+
+      <figure>
+        <img src="../assets/img/projects/timeless/starlight-credits.webp" alt="The Credits screen: a constellation of stars for developer, art, SFX, music and playtesters, with the dog drawn in starlight at the bottom" loading="lazy" width="1600" height="900">
+        <figcaption><b>Credits</b></figcaption>
+      </figure>
+
+      <h2>Fixes</h2>
+
+      <ul>
+        <li>Saves are crash-safe now. A crash can&rsquo;t wipe your save or your Codex anymore.</li>
+        <li>If the game ever does crash, it writes a crash report next to your save. Please send it to me!</li>
+        <li>Fixed a crash when scrolling the mouse wheel in a menu before your first run.</li>
+        <li>Fixed walls, pillars and podiums showing up as plain grey boxes in the Steam version.</li>
+        <li>Undiscovered Codex entries show as proper silhouettes now (not blue squares).</li>
+        <li>The heat stars can actually start a run on a controller now.</li>
+        <li>The star constellations before the first boss can be lit with a controller or keyboard.</li>
+        <li>Lots of story and Codex typo fixes, and every boss has its proper name.</li>
+        <li>The Bomber enemy has been removed.</li>
+      </ul>
+
+      <h2>What&rsquo;s next?</h2>
+
+      <p>
+        We&rsquo;re playtesting this build right now, so if you find anything weird, PLEASE
+        tell me! Bugs, sounds that are too loud, a menu that doesn&rsquo;t make sense, anything.
+        Every report helps.
+      </p>
+
+      <p>
+        Thank you so much for following Timeless. Seriously, it means the world to us!
+      </p>
+
+      <p>- Jonathan (Jonjoe1001)</p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - built by hand</span>
+      <nav class="footer-links">
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+        <a href="https://www.youtube.com/@Jonjoe1001_dev" target="_blank" rel="noopener me">YouTube</a>
+        <a href="https://www.tiktok.com/@jonjoe1001" target="_blank" rel="noopener me">TikTok</a>
+        <a href="https://discord.gg/C4aWSWJsxP" target="_blank" rel="noopener me">Discord</a>
+        <a href="https://jonjoe1001.itch.io" target="_blank" rel="noopener me">itch.io</a>
+        <a href="https://github.com/jonathancomergit-ai" target="_blank" rel="noopener me">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+  <script src="../assets/js/stats.js"></script>
+</body>
+</html>
