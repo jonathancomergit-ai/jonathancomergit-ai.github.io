@@ -9,7 +9,10 @@ mtime, which changes every time the repo is cloned.
 """
 import pathlib, subprocess, datetime
 
-ROOT = pathlib.Path(r"C:\Users\Jonat\Desktop\Website")
+# The site root is this script's parent folder's parent (tools\ lives inside it), worked
+# out at run time rather than typed in. The hardcoded path broke when the site folder
+# moved into Desktop\Projects on 2026-09-17; derived like this, a move can't break it.
+ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "https://jonjoe1001.dev"
 SKIP = {"404.html", "posts/_TEMPLATE.html"}
 
@@ -47,7 +50,9 @@ for loc, date, pri in pages:
               f"    <priority>{pri}</priority>", "  </url>"]
 lines.append("</urlset>")
 
-(ROOT / "sitemap.xml").write_text("\n".join(lines) + "\n", encoding="utf-8")
+# newline="\n" keeps LF endings. Without it Windows turns every \n into \r\n, and the
+# whole file then shows as changed in git even when not one URL actually moved.
+(ROOT / "sitemap.xml").write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
 for loc, date, pri in pages:
     print(f"  {pri}  {date}  {loc}")
 print(f"\n{len(pages)} pages in sitemap.xml")
