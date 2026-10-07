@@ -27,6 +27,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
+  <link rel="canonical" href="https://jonjoe1001.dev/links.html">
+  <link rel="alternate" type="application/rss+xml" title="Jonjoe1001 - Dev Log" href="https://jonjoe1001.dev/feed.xml">
   <link rel="stylesheet" href="assets/css/site.css">
 </head>
 
@@ -49,13 +51,12 @@
      rel="me" on the social links tells search engines (and Mastodon /
      Bluesky, if you ever join) "this profile is also me".
 
-     ----- TURNING ON THE DISCORD AND STEAM BUTTONS -----
-     Both are already built but carry the `hidden` attribute, which the
-     browser treats like display:none. When the link exists:
-       1. replace the href="..." with the real link
-       2. delete the word  hidden
-     That's it. Steam is at the very top on purpose: wishlists are the
-     number Steam uses to decide how much to show a game at launch.
+     ----- HIDING OR SHOWING A BUTTON -----
+     Add the word  hidden  to an <a class="lh-link"> to take it off the
+     page without deleting it (the browser treats it like display:none);
+     delete the word to bring it back. The Steam button is live and sits
+     at the very top on purpose: wishlists are the number Steam uses to
+     decide how much to show a game at launch.
      ============================================================= -->
 <body class="page-links">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -73,9 +74,8 @@
 
     <nav class="lh-list" aria-label="My links">
 
-      <!-- STEAM - hidden until the store page is live.
-           Swap in the real store link, then delete `hidden`. -->
-      <a class="lh-link is-featured" href="https://store.steampowered.com/app/4437190/" target="_blank" rel="noopener" hidden>
+      <!-- STEAM - live. The store page is app 4437000. -->
+      <a class="lh-link is-featured" href="https://store.steampowered.com/app/4437000/Timeless/" target="_blank" rel="noopener">
         <span class="lh-icon" aria-hidden="true">
           <!-- hourglass, for TIMEless -->
           <svg viewBox="0 0 24 24"><path d="M6 3h12M6 21h12M7 3c0 5 10 5 10 9s-10 4-10 9M17 3c0 5-10 5-10 9s10 4 10 9"/></svg>
