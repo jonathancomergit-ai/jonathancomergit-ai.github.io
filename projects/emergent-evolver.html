@@ -32,6 +32,7 @@
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="backdrop" aria-hidden="true"></div>
 
   <header class="site-header">
@@ -53,7 +54,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <div class="wrap project-hero">
       <a class="back-link" href="../projects.html">&larr; All projects</a>
 
@@ -79,14 +80,17 @@
         <a class="btn btn-ghost" href="#screens">See it first</a>
       </div>
 
-      <p class="post-date" style="margin: -1.6rem 0 2.4rem">
+      <p class="note" style="margin: -1.6rem 0 2.4rem">
         No download, no account, nothing to install &mdash; it just runs in the page.
       </p>
     </div>
 
     <div class="wrap">
+      <!-- data-still: site.js adds a pause button that swaps to this frame,
+           and starts paused for anyone whose OS asks for reduced motion. -->
       <div class="project-cover">
         <img src="../assets/img/projects/emergent-evolver/trailer.webp"
+             data-still="../assets/img/projects/emergent-evolver/trailer-still.webp"
              alt="Animated clip of evolved creatures learning to run"
              width="960" height="506">
       </div>
@@ -257,6 +261,7 @@
         <a href="../blog.html">Dev Log</a>
         <a href="../about.html">About</a>
         <a href="../contact.html">Contact</a>
+        <a href="../privacy.html">Privacy</a>
         <a href="https://www.youtube.com/@Jonjoe1001_dev" target="_blank" rel="noopener me">YouTube</a>
         <a href="https://www.tiktok.com/@jonjoe1001" target="_blank" rel="noopener me">TikTok</a>
         <a href="https://discord.gg/C4aWSWJsxP" target="_blank" rel="noopener me">Discord</a>

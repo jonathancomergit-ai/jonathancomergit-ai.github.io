@@ -32,6 +32,7 @@
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="backdrop" aria-hidden="true"></div>
 
   <header class="site-header">
@@ -53,7 +54,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <div class="wrap project-hero">
       <a class="back-link" href="../projects.html">&larr; All projects</a>
 
@@ -76,20 +77,25 @@
            Pages serves it as a plain static file - no release page, no CDN.
            "download" on the <a> tells the browser to save the file rather than
            try to display it. The version is in the filename on purpose: when you
-           ship 1.1, add the new file and change these two lines, and anyone
-           holding the old link still gets exactly the build they downloaded. -->
+           ship the next version, add the new file and change these two lines, and anyone
+           holding the old link still gets exactly the build they downloaded.
+           Exception: if an old build has a security hole, delete it instead
+           (1.0 was removed on 2026-10-07 for the Steam-name XSS fixed in 1.1). -->
       <div class="hero-actions">
-        <a class="btn btn-primary" href="../downloads/wheelhouse-1.0.zip" download>
+        <a class="btn btn-primary" href="../downloads/wheelhouse-1.1.zip" download>
           Download for Windows &darr;
         </a>
         <a class="btn btn-ghost" href="#screens">See it first</a>
       </div>
 
-      <p class="post-date" style="margin: 1.2rem 0 2.4rem">
-        v1.0 &middot; 67&#8239;KB zip &middot; needs
+      <p class="note" style="margin: 1.2rem 0 2.4rem">
+        v1.1 &middot; 70&#8239;KB zip &middot; needs
         <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">Python&nbsp;3</a>
         (tick &ldquo;Add python.exe to PATH&rdquo; when installing). Unzip, double-click
-        <code>START.bat</code>. No installer, no account, nothing phones home except Steam.
+        <code>START.bat</code>. No installer, no account. Your keys only ever go to Steam;
+        genre tags come from SteamSpy, which only sees game IDs.
+        <br>MIT licensed &middot; SHA-256
+        <code style="word-break: break-all">527643ce38f8ca389041c25271c6413f600b5f6af1c7268a66908321ab50aef7</code>
       </p>
     </div>
 
@@ -184,10 +190,18 @@
           token. AND NO PAYWALL.
         </p>
 
-        <p class="post-date" style="margin-top: 2.4rem">
+        <p>
+          <strong>Treat that token like a password.</strong> While it lasts it can act as
+          your Steam account, so only ever paste it into Wheelhouse running on your own
+          PC &mdash; never into a website, a Discord DM, or a message to anyone,
+          including me. If anything else asks you for it, it&rsquo;s a scam.
+        </p>
+
+        <p class="note" style="margin-top: 2.4rem">
           Wheelhouse is an unofficial hobby project. It is not made by, endorsed
           by or affiliated with Valve &mdash; Steam is their trademark, and this
-          just reads the library you already own.
+          just reads the library you already own. Game artwork in the screenshots
+          below belongs to its respective publishers.
         </p>
       </div>
 
@@ -226,6 +240,7 @@
         <a href="../blog.html">Dev Log</a>
         <a href="../about.html">About</a>
         <a href="../contact.html">Contact</a>
+        <a href="../privacy.html">Privacy</a>
         <a href="https://www.youtube.com/@Jonjoe1001_dev" target="_blank" rel="noopener me">YouTube</a>
         <a href="https://www.tiktok.com/@jonjoe1001" target="_blank" rel="noopener me">TikTok</a>
         <a href="https://discord.gg/C4aWSWJsxP" target="_blank" rel="noopener me">Discord</a>

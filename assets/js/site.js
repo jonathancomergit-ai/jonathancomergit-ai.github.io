@@ -26,6 +26,15 @@
   var links = document.querySelector(".nav-links");
 
   if (toggle && links) {
+    // Tell screen readers which element the button opens.
+    if (!links.id) { links.id = "site-nav"; }
+    toggle.setAttribute("aria-controls", links.id);
+
+    var closeMenu = function () {
+      links.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+    };
+
     toggle.addEventListener("click", function () {
       var open = links.classList.toggle("is-open");
       // Tell screen readers whether the menu is open.
@@ -34,12 +43,64 @@
 
     // Tapping any link closes the menu again.
     links.addEventListener("click", function (e) {
-      if (e.target.tagName === "A") {
-        links.classList.remove("is-open");
-        toggle.setAttribute("aria-expanded", "false");
+      if (e.target.tagName === "A") { closeMenu(); }
+    });
+
+    // So do Escape (focus goes back to the button) and a tap anywhere else.
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && links.classList.contains("is-open")) {
+        closeMenu();
+        toggle.focus();
+      }
+    });
+    document.addEventListener("click", function (e) {
+      if (links.classList.contains("is-open") &&
+          !links.contains(e.target) && !toggle.contains(e.target)) {
+        closeMenu();
+      }
+    });
+
+    // Widening past the phone layout hides the button, so reset its state.
+    window.addEventListener("resize", function () {
+      if (links.classList.contains("is-open") && toggle.offsetParent === null) {
+        closeMenu();
       }
     });
   }
+
+  /* ----------------------------------------------------------
+     1b. PAUSABLE ANIMATIONS
+     An animated image with data-still="frame.webp" gets a
+     pause / play button. It starts paused for anyone whose OS
+     asks for reduced motion. Swapping src is the only way to
+     stop an animated webp; there is no API for it.
+     ---------------------------------------------------------- */
+  var stillMotion = window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  Array.prototype.forEach.call(document.querySelectorAll("img[data-still]"), function (img) {
+    var moving = img.getAttribute("src");
+    var still = img.getAttribute("data-still");
+    var box = img.parentNode;
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "anim-toggle";
+    btn.setAttribute("aria-label", "Pause animation");
+
+    function set(playing) {
+      img.src = playing ? moving : still;
+      btn.setAttribute("aria-pressed", playing ? "false" : "true");
+      btn.textContent = playing ? "\u275A\u275A pause" : "\u25B6 play";
+    }
+
+    btn.addEventListener("click", function () {
+      set(btn.getAttribute("aria-pressed") === "true");
+    });
+
+    box.classList.add("has-anim-toggle");
+    box.appendChild(btn);
+    set(!stillMotion);
+  });
 
   /* ----------------------------------------------------------
      2. PROJECT FILTER
@@ -396,15 +457,23 @@
     /* ---- the footer toggle --------------------------------- */
 
     if (SHOW_TOGGLE && !(reduceMotion && reduceMotion.matches)) {
-      var footer = document.querySelector(".footer-inner");
+      /* links.html has no site footer, so it gets the toggle at the
+         bottom of its main column instead. */
+      var footer = document.querySelector(".footer-inner") ||
+                   document.querySelector(".lh-foot");
       if (footer) {
         var button = document.createElement("button");
         button.type = "button";
         button.className = "sprite-toggle";
+        /* A fixed name, so screen readers say "Background motion,
+           toggle button, pressed" instead of reading the state twice.
+           It also pauses the home page's brain (startBrain), which
+           checks the same stored setting. */
+        button.setAttribute("aria-label", "Background motion");
 
         var label = function () {
           var on = wanted();
-          button.textContent = on ? "sprites: on" : "sprites: off";
+          button.textContent = on ? "motion: on" : "motion: off";
           button.setAttribute("aria-pressed", on ? "true" : "false");
         };
 
@@ -1563,7 +1632,8 @@
     function idle() {
       window.clearTimeout(idleWait);
       idleWait = window.setTimeout(function () {
-        if (!document.hidden) {
+        /* "motion: off" in the footer pauses these idle thoughts too. */
+        if (!document.hidden && stored(STORE_KEY) !== "1") {
           /* Now and then a thought travels all the way down to the work. */
           var down = Math.random() < B.downChance && fireNerve();
           if (!down && visible && targets.length) { fire(anyLetter(), 0); schedule(); }
