@@ -32,6 +32,7 @@
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="backdrop" aria-hidden="true"></div>
 
   <header class="site-header">
@@ -53,7 +54,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <section>
       <div class="wrap">
         <div class="section-head">
@@ -120,18 +121,27 @@
                field they find; the script silently drops any submission that
                touches this one. tabindex="-1" and aria-hidden keep it out of
                the way of keyboard and screen-reader users, who would
-               otherwise land on a field with no sensible answer. -->
+               otherwise land on a field with no sensible answer.
+               The id and label are deliberately meaningless: browser autofill
+               guesses from words like "company", and a real visitor whose
+               browser filled this in would have their message dropped. -->
           <div class="hp" aria-hidden="true">
-            <label for="company">Do not fill this in</label>
-            <input type="text" id="company" name="_gotcha" tabindex="-1" autocomplete="off">
+            <label for="hp-x7">Leave this empty</label>
+            <input type="text" id="hp-x7" name="_gotcha" tabindex="-1" autocomplete="off">
           </div>
 
           <button class="btn btn-primary" type="submit" id="form-submit">Send message</button>
+          <p class="note" style="margin: .9rem 0 0">
+            Sent through Formspree to my inbox, and only used to reply to you.
+            <a href="privacy.html">Privacy</a>
+          </p>
 
           <!-- The script writes the result in here. aria-live="polite" makes a
                screen reader announce it when it changes, so the outcome is not
-               something only sighted visitors get told about. -->
-          <p class="form-status" id="form-status" role="status" aria-live="polite" hidden></p>
+               something only sighted visitors get told about. It is never
+               hidden, only empty (the CSS collapses it): screen readers often
+               skip announcing a live region that was hidden a moment ago. -->
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>
 
         <!-- =========================================================
@@ -223,13 +233,17 @@
                would quietly go stale the day you reword the button. */
             var LABEL = button.textContent;
 
-            function setBusy(busy) {
-              button.disabled = busy;
-              button.textContent = busy ? "Sending…" : LABEL;
+            /* aria-disabled rather than disabled: a disabled button drops
+               keyboard focus to the top of the page, so a keyboard user would
+               lose their place mid-send. The busy flag does the blocking. */
+            var busy = false;
+            function setBusy(on) {
+              busy = on;
+              button.setAttribute("aria-disabled", on ? "true" : "false");
+              button.textContent = on ? "Sending…" : LABEL;
             }
 
             function saySent() {
-              statusEl.hidden = false;
               statusEl.className = "form-status is-ok";
               statusEl.textContent =
                 "Thanks — that reached me. I answer most things within a day or two.";
@@ -244,7 +258,6 @@
                dropping untrusted text into innerHTML is how you end up
                running someone else's markup on your own page. */
             function sayFailed(reason, text) {
-              statusEl.hidden = false;
               statusEl.className = "form-status is-bad";
               statusEl.textContent = reason + " ";
 
@@ -273,6 +286,7 @@
               /* Stop the browser doing its own navigating submit. Everything
                  from here on is ours. */
               event.preventDefault();
+              if (busy) { return; }
 
               /* Let the browser run the required / type="email" / maxlength
                  rules from the markup and show its own messages. No point
@@ -300,7 +314,8 @@
               delete data._gotcha;
 
               /* Clear any previous result before starting a new attempt. */
-              statusEl.hidden = true;
+              statusEl.className = "form-status";
+              statusEl.textContent = "";
               setBusy(true);
 
               /* AbortController is the handle that lets the timeout below
@@ -396,6 +411,7 @@
         <a href="blog.html">Dev Log</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy</a>
         <a href="https://www.youtube.com/@Jonjoe1001_dev" target="_blank" rel="noopener me">YouTube</a>
         <a href="https://www.tiktok.com/@jonjoe1001" target="_blank" rel="noopener me">TikTok</a>
         <a href="https://discord.gg/C4aWSWJsxP" target="_blank" rel="noopener me">Discord</a>

@@ -13,6 +13,8 @@ site/
 ├── projects.html         Every project, with working filter chips
 ├── blog.html             The list of dev posts
 ├── about.html            About me  ← rewrite this in your own voice
+├── privacy.html          What the site collects (form, stats, fonts). Update it
+│                         whenever you add a new third-party service
 ├── links.html            Link-in-bio page (jonjoe1001.dev/links). The Steam button is
 │                         built but `hidden` — see the comment at the top. Every page's
 │                         footer also links YouTube, TikTok, Discord, itch and GitHub,
@@ -199,7 +201,7 @@ What shows up on the dashboard:
 | Name | What it means |
 |---|---|
 | `/about.html` etc. | A page view |
-| `download-wheelhouse-1.0.zip` | Someone clicked a download (any `.zip`, `.exe`, `.pdf`... or a link with `download`) |
+| `download-wheelhouse-1.1.zip` | Someone clicked a download (any `.zip`, `.exe`, `.pdf`... or a link with `download`) |
 | `outbound-jonjoe1001.itch.io/emergent-evolver` | Someone clicked a link that leaves the site |
 | `email-click` | The "Email me" button |
 | `contact-sent` | A contact-form message actually arrived at Formspree |

@@ -14,11 +14,12 @@
   --surface-2:   #171927;
   --line:        #23263A;
   --line-bright: #343A55;
+  --line-field:  #5C6382;   /* form borders: 3:1 against --surface */
 
   /* --- Text --- */
   --text:        #ECEEF6;
   --text-dim:    #9AA1BC;
-  --text-faint:  #6B7392;
+  --text-faint:  #858CA8;   /* 5.2:1 or better on every surface (WCAG AA) */
 
   /* --- Accents, lifted from the Timeless title art --- */
   --hot:         #FF2D78;   /* hot pink   - primary, calls to action */
@@ -49,7 +50,8 @@
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+/* scroll-padding keeps #anchor targets clear of the sticky header. */
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
 body {
   margin: 0;
@@ -66,6 +68,12 @@ img { max-width: 100%; height: auto; display: block; }
 a   { color: var(--cyan); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
+/* Links inside running text are underlined, so colour isn't the only cue. */
+.prose a, .article a, .project-body a, .card-body p a {
+  text-decoration: underline;
+  text-underline-offset: .15em;
+}
+
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   line-height: 1.15;
@@ -80,6 +88,20 @@ h1, h2, h3, h4 {
   outline-offset: 3px;
   border-radius: 4px;
 }
+
+/* Skip link: first Tab stop on every page, hidden until focused. */
+.skip-link {
+  position: absolute;
+  left: 1rem; top: -4rem;
+  z-index: 1000;
+  padding: .6rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--cyan);
+  color: var(--bg);
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+.skip-link:focus { top: 1rem; text-decoration: none; }
 
 /* Screen-reader-only text. */
 .sr-only {
@@ -289,7 +311,7 @@ section { padding-block: var(--gap-xl); }
 .btn-primary {
   background: var(--hot);
   border-color: var(--hot);
-  color: #fff;
+  color: var(--bg);   /* dark on pink is 5.6:1; white was only 3.6:1 */
 }
 .btn-primary:hover { box-shadow: 0 8px 28px rgba(255, 45, 120, .4); }
 
@@ -546,7 +568,7 @@ section { padding-block: var(--gap-xl); }
 .chip[aria-pressed="true"] {
   background: var(--hot);
   border-color: var(--hot);
-  color: #fff;
+  color: var(--bg);
 }
 
 /* Set by the filter script. */
@@ -574,6 +596,13 @@ section { padding-block: var(--gap-xl); }
   color: var(--text-faint);
   letter-spacing: .04em;
   white-space: nowrap;
+}
+/* Same look as .post-date, but for whole sentences, so it wraps. */
+.note {
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  color: var(--text-faint);
+  letter-spacing: .04em;
 }
 .post-row h3 { font-size: 1.12rem; margin: 0 0 .25rem; }
 .post-row h3 a { color: var(--text); }
@@ -794,7 +823,7 @@ section { padding-block: var(--gap-xl); }
   font-size: 1rem;
   color: var(--text);
   background: var(--surface);
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-field);
   border-radius: var(--radius-sm);
   padding: .75rem .9rem;
   transition: border-color .16s, background .16s;
@@ -802,7 +831,7 @@ section { padding-block: var(--gap-xl); }
 .field textarea { min-height: 9rem; resize: vertical; }
 
 .field input:hover,
-.field textarea:hover { border-color: var(--line-bright); }
+.field textarea:hover { border-color: var(--text-faint); }
 
 .field input:focus,
 .field textarea:focus {
@@ -833,6 +862,7 @@ section { padding-block: var(--gap-xl); }
   border: 1px solid var(--line);
   background: var(--surface);
 }
+.form-status:empty { margin: 0; padding: 0; border: 0; }
 .form-status.is-ok   { color: var(--green); border-color: rgba( 61, 245, 160, .35); }
 .form-status.is-bad  { color: var(--hot);   border-color: rgba(255,  45, 120, .35); }
 
@@ -844,11 +874,13 @@ section { padding-block: var(--gap-xl); }
    otherwise it reads as an ordinary button that has stopped responding.
    The :hover override matters because .btn:hover lifts by 2px, and a button
    that still springs up under the cursor does not look disabled at all. */
-.btn[disabled] {
+.btn[disabled],
+.btn[aria-disabled="true"] {
   opacity: .55;
   cursor: not-allowed;
 }
-.btn[disabled]:hover {
+.btn[disabled]:hover,
+.btn[aria-disabled="true"]:hover {
   transform: none;
   box-shadow: none;
   border-color: var(--line-bright);
@@ -1050,6 +1082,23 @@ section { padding-block: var(--gap-xl); }
 }
 .project-cover img { width: 100%; }
 
+/* Pause button site.js adds to animated images (img[data-still]). */
+.has-anim-toggle { position: relative; }
+.anim-toggle {
+  position: absolute;
+  right: .8rem; bottom: .8rem;
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  letter-spacing: .06em;
+  padding: .4rem .75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-bright);
+  background: rgba(7, 7, 12, .82);
+  color: var(--text);
+  cursor: pointer;
+}
+.anim-toggle:hover { border-color: var(--text-faint); }
+
 /* Key facts strip. */
 .facts {
   display: grid;
@@ -1078,7 +1127,7 @@ section { padding-block: var(--gap-xl); }
 /* Screenshot gallery. */
 .shots {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr));
   gap: 1.4rem;
   margin: 2rem 0;
 }
@@ -1163,7 +1212,7 @@ section { padding-block: var(--gap-xl); }
   color: var(--text-dim);
   border-color: var(--line);
 }
-.sprite-toggle[aria-pressed="false"] { opacity: .6; }
+.sprite-toggle[aria-pressed="false"] { text-decoration: line-through; }
 
 /* ============================================================
    PAGE TRANSITIONS
@@ -1521,4 +1570,5 @@ section { padding-block: var(--gap-xl); }
   .backdrop, .site-header, .site-footer, .filters, .hero-net, .nerves { display: none; }
   body { background: #fff; color: #000; }
   .article p, .article li { color: #000; }
+  .reveal { opacity: 1 !important; translate: none !important; }
 }
