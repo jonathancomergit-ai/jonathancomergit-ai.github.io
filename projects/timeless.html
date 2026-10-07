@@ -28,7 +28,35 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
+  <link rel="canonical" href="https://jonjoe1001.dev/projects/timeless.html">
+  <link rel="alternate" type="application/rss+xml" title="Jonjoe1001 - Dev Log" href="https://jonjoe1001.dev/feed.xml">
   <link rel="stylesheet" href="../assets/css/site.css">
+  <!-- Invisible to visitors. Tells Google what this page is about, so it can show it properly in search. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Timeless",
+    "description": "A twin-stick roguelike where the clock IS your health bar - you don't lose hit points, you lose time. Custom Python engine, a zodiac upgrade tree, 94 upgrades, three bosses. In development.",
+    "url": "https://jonjoe1001.dev/projects/timeless.html",
+    "image": "https://jonjoe1001.dev/assets/img/covers/timeless.webp",
+    "genre": [
+      "Roguelike",
+      "Twin-stick shooter"
+    ],
+    "gamePlatform": "PC",
+    "playMode": "SinglePlayer",
+    "applicationCategory": "Game",
+    "author": {
+      "@type": "Person",
+      "name": "Jonjoe1001",
+      "url": "https://jonjoe1001.dev/"
+    },
+    "sameAs": [
+      "https://store.steampowered.com/app/4437000/Timeless/"
+    ]
+  }
+  </script>
 </head>
 
 <body>
@@ -72,6 +100,13 @@
         Built from nothing in Python: my own engine, my own room editor, and a
         meta-progression system shaped like the night sky.
       </p>
+
+      <!-- Wishlists are what Steam uses to decide how much to show a game
+           at launch, so this is the first button on the page. -->
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://store.steampowered.com/app/4437000/Timeless/" target="_blank" rel="noopener">Wishlist on Steam</a>
+        <a class="btn btn-ghost" href="../presskit.html">Press kit</a>
+      </div>
     </div>
 
     <div class="wrap">
@@ -90,6 +125,7 @@
         <div><dt>Bosses</dt><dd>3</dd></div>
         <div><dt>Modes</dt><dd>Normal, Endless, Tutorial</dd></div>
         <div><dt>Input</dt><dd>KB/M + controller</dd></div>
+        <div><dt>Platform</dt><dd><a href="https://store.steampowered.com/app/4437000/Timeless/" target="_blank" rel="noopener">Steam</a></dd></div>
       </dl>
 
       <div class="project-body">
@@ -276,15 +312,22 @@
         </p>
 
         <p>
+          The <a href="https://store.steampowered.com/app/4437000/Timeless/" target="_blank" rel="noopener">Steam page is live</a>
+          though! Wishlisting it is genuinely the biggest thing you can do to help
+          &mdash; it&rsquo;s how Steam decides who to show the game to on launch day.
+        </p>
+
+        <p>
           I put progress in the <a href="../blog.html">dev log</a> as it happens, so
           follow along there if you want to watch it come together!
         </p>
       </div>
 
-      <p style="margin-top: 2.4rem">
+      <div class="hero-actions" style="margin-top: 2.4rem">
+        <a class="btn btn-primary" href="https://store.steampowered.com/app/4437000/Timeless/" target="_blank" rel="noopener">Wishlist on Steam</a>
+        <a class="btn btn-ghost" href="../blog.html">Follow the dev log</a>
         <a class="btn btn-ghost" href="../projects.html">&larr; All projects</a>
-        <a class="btn btn-primary" href="../blog.html">Follow the dev log</a>
-      </p>
+      </div>
     </div>
   </main>
 
