@@ -69,7 +69,7 @@ a   { color: var(--cyan); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 /* Links inside running text are underlined, so colour isn't the only cue. */
-.prose a, .article a, .project-body a, .card-body p a {
+:is(.prose, .article, .project-body, .card-body p) a:not(.btn):not(.back-link) {
   text-decoration: underline;
   text-underline-offset: .15em;
 }
