@@ -30,6 +30,7 @@
   <meta property="og:title" content="Post title here">
   <meta property="og:description" content="A one-sentence summary of this post.">
   <meta property="og:type" content="article">
+  <!-- CHANGE: this post's real address, e.g. https://jonjoe1001.dev/posts/2026-10-04-boss-rework.html -->
   <meta property="og:url" content="https://jonjoe1001.dev/posts/_TEMPLATE.html">
   <meta property="og:site_name" content="Jonjoe1001">
   <meta property="og:image" content="https://jonjoe1001.dev/assets/img/og-v2.jpg">
@@ -49,7 +50,33 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
+  <!-- CHANGE: the same address as og:url above. It tells Google which address
+       is the real one; left as _TEMPLATE.html, Google may skip the post. -->
+  <link rel="canonical" href="https://jonjoe1001.dev/posts/_TEMPLATE.html">
+  <link rel="alternate" type="application/rss+xml" title="Jonjoe1001 - Dev Log" href="https://jonjoe1001.dev/feed.xml">
   <link rel="stylesheet" href="../assets/css/site.css">
+  <!-- CHANGE: headline, description, url and image to match the tags above, and datePublished to the post's date. Invisible to visitors. Tells Google what this page is about, so it can show it properly in search. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Post title here",
+    "description": "A one-sentence summary of this post.",
+    "url": "https://jonjoe1001.dev/posts/_TEMPLATE.html",
+    "image": "https://jonjoe1001.dev/assets/img/og-v2.jpg",
+    "datePublished": "YYYY-MM-DD",
+    "author": {
+      "@type": "Person",
+      "name": "Jonjoe1001",
+      "url": "https://jonjoe1001.dev/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Jonjoe1001",
+      "url": "https://jonjoe1001.dev/"
+    }
+  }
+  </script>
 </head>
 
 <body>

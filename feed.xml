@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jonjoe1001 - Dev Log</title>
+    <link>https://jonjoe1001.dev/blog.html</link>
+    <atom:link href="https://jonjoe1001.dev/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>Progress reports, problems I got stuck on, and things I figured out while building games and tools.</description>
+    <language>en</language>
+    <lastBuildDate>Tue, 15 Sep 2026 12:00:00 +0000</lastBuildDate>
+    <item>
+      <title>The Starlight Update is HERE!</title>
+      <link>https://jonjoe1001.dev/posts/2026-09-15-the-starlight-update.html</link>
+      <guid isPermaLink="true">https://jonjoe1001.dev/posts/2026-09-15-the-starlight-update.html</guid>
+      <pubDate>Tue, 15 Sep 2026 12:00:00 +0000</pubDate>
+      <description>Every screen in Timeless got rebuilt from the ground up (yes, EVERY one) plus new sounds, button glyphs, a real tutorial and a pile of fixes. Come see what we've been cooking!</description>
+    </item>
+    <item>
+      <title>How do you teach something to walk without telling it how?</title>
+      <link>https://jonjoe1001.dev/posts/2026-09-10-how-emergent-evolver-learns.html</link>
+      <guid isPermaLink="true">https://jonjoe1001.dev/posts/2026-09-10-how-emergent-evolver-learns.html</guid>
+      <pubDate>Thu, 10 Sep 2026 12:00:00 +0000</pubDate>
+      <description>The theory behind Emergent Evolver: brains that grow their own neurons, why evolution cheats every chance it gets, and the fixes that finally got my creatures walking.</description>
+    </item>
+    <item>
+      <title>Building this site from scratch</title>
+      <link>https://jonjoe1001.dev/posts/2026-09-09-hello-world.html</link>
+      <guid isPermaLink="true">https://jonjoe1001.dev/posts/2026-09-09-hello-world.html</guid>
+      <pubDate>Wed, 09 Sep 2026 12:00:00 +0000</pubDate>
+      <description>Why I hand-wrote this whole site instead of grabbing a template, and the plan for eventually hosting it on the NAS in my closet.</description>
+    </item>
+  </channel>
+</rss>
