@@ -4,7 +4,7 @@
    What gets counted, and what it's called on the dashboard:
 
    PAGE VIEWS   every page, automatically      /projects.html
-   download-*   any file download click         download-wheelhouse-1.0.zip
+   download-*   any file download click         download-wheelhouse-1.1.zip
    outbound-*   any link that leaves the site   outbound-jonjoe1001.itch.io/emergent-evolver
    email-click  the "Email me" button           email-click
    contact-sent the contact form went through   contact-sent
