@@ -78,7 +78,9 @@
            "download" on the <a> tells the browser to save the file rather than
            try to display it. The version is in the filename on purpose: when you
            ship the next version, add the new file and change these two lines, and anyone
-           holding the old link still gets exactly the build they downloaded. -->
+           holding the old link still gets exactly the build they downloaded.
+           Exception: if an old build has a security hole, delete it instead
+           (1.0 was removed on 2026-10-07 for the Steam-name XSS fixed in 1.1). -->
       <div class="hero-actions">
         <a class="btn btn-primary" href="../downloads/wheelhouse-1.1.zip" download>
           Download for Windows &darr;
