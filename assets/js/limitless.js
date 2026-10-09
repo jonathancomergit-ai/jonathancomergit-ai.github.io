@@ -11,7 +11,8 @@
 
    An items.json entry looks like:
      { "slug", "title", "blurb", "tags": [...], "added": "YYYY-MM-DD",
-       "soon": true (optional, planned but not built yet) }
+       "soon": true (optional, planned but not built yet),
+       "thumb": "thumb.webp" (optional, a picture in the item folder) }
 
    If a list can't load (offline, or opened from a local file),
    the wing cards at the top still work, and the message under
@@ -64,9 +65,16 @@
 
   function card(item, wing) {
     var href = wing.path + "items/" + item.slug + "/";
-    var art = el("div", { "class": "card-art is-blank", "aria-hidden": "true" },
-      el("span", { "class": "initials" }, initials(item.title)));
-    art.style.setProperty("--blank-glow", wing.glow);
+    var art;
+    /* A real screenshot when the wing has one; the same file-name check as the wings' own kit. */
+    if (!item.soon && typeof item.thumb === "string" && /^[a-z0-9][a-z0-9._-]*\.(webp|png|jpg|jpeg|svg)$/i.test(item.thumb)) {
+      art = el("div", { "class": "card-art has-thumb", "aria-hidden": "true" },
+        el("img", { src: href + item.thumb, alt: "", width: "640", height: "360", loading: "lazy" }));
+    } else {
+      art = el("div", { "class": "card-art is-blank", "aria-hidden": "true" },
+        el("span", { "class": "initials" }, initials(item.title)));
+      art.style.setProperty("--blank-glow", wing.glow);
+    }
 
     var tags = el("div", { "class": "tags" },
       el("span", { "class": "tag lab-tag is-" + wing.id }, wing.one));
