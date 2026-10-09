@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Limitless Lab - Jonjoe1001</title>
+  <meta name="description" content="Free games, simulations and tools that run right in your browser. No accounts, no cookies, and your saves and files never leave your device.">
+  <meta property="og:title" content="Limitless Lab - Jonjoe1001">
+  <meta property="og:description" content="Free games, simulations and tools that run right in your browser. No accounts, no cookies, and your saves and files never leave your device.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jonjoe1001.dev/limitless.html">
+  <meta property="og:site_name" content="Jonjoe1001">
+  <meta property="og:image" content="https://jonjoe1001.dev/assets/img/og-v2.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jonjoe1001.dev/assets/img/og-v2.jpg">
+
+
+  <link rel="icon" href="assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/img/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="assets/img/favicon-96.png" type="image/png" sizes="96x96">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#07070C">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="canonical" href="https://jonjoe1001.dev/limitless.html">
+  <link rel="alternate" type="application/rss+xml" title="Jonjoe1001 - Dev Log" href="https://jonjoe1001.dev/feed.xml">
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="index.html">
+        <img class="avatar" src="assets/img/pfp.png" alt="" width="34" height="34">
+        Jonjoe1001
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="limitless.html" aria-current="page">Limitless Lab</a>
+        <a href="blog.html">Dev Log</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===================== THE THREE WINGS =====================
+         Limitless Lab lives in three separate repos, each published by
+         GitHub Pages under this domain:
+           /limitless-arcade/   games
+           /limitless-lab/      simulations
+           /limitless-tools/    tools (the "Workshop")
+         This page only links to them. The cards and counts below are
+         filled in by assets/js/limitless.js from each wing's items.json,
+         so a new item shows up here by itself once it is merged. -->
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Play &middot; Explore &middot; Make</p>
+          <h1>Limitless Lab</h1>
+          <p>
+            Free games, simulations and tools that run right in your browser, on
+            your phone or your computer. No accounts, no cookies, no installs.
+            Your saves and your files never leave your device.
+          </p>
+        </div>
+
+        <div class="grid lab-wings">
+          <article class="card lab-wing is-arcade">
+            <a class="card-art is-blank" href="/limitless-arcade/" tabindex="-1" aria-hidden="true">
+              <span class="initials">&#127918;</span>
+            </a>
+            <div class="card-body">
+              <div class="tags"><span class="tag lab-tag is-arcade" data-count="arcade">Games</span></div>
+              <h3><a href="/limitless-arcade/">Arcade</a></h3>
+              <p>Small games you can pick up in seconds. One thumb on a phone, or keys on a keyboard.</p>
+              <div class="card-links"><a href="/limitless-arcade/">Open the Arcade &rarr;</a></div>
+            </div>
+          </article>
+
+          <article class="card lab-wing is-lab">
+            <a class="card-art is-blank" href="/limitless-lab/" tabindex="-1" aria-hidden="true">
+              <span class="initials">&#128300;</span>
+            </a>
+            <div class="card-body">
+              <div class="tags"><span class="tag lab-tag is-lab" data-count="lab">Simulations</span></div>
+              <h3><a href="/limitless-lab/">Lab</a></h3>
+              <p>Touch the math. Physics, maths and machine learning you can poke, drag and break, each with a plain-English explainer.</p>
+              <div class="card-links"><a href="/limitless-lab/">Open the Lab &rarr;</a></div>
+            </div>
+          </article>
+
+          <article class="card lab-wing is-workshop">
+            <a class="card-art is-blank" href="/limitless-tools/" tabindex="-1" aria-hidden="true">
+              <span class="initials">&#129520;</span>
+            </a>
+            <div class="card-body">
+              <div class="tags"><span class="tag lab-tag is-workshop" data-count="workshop">Tools</span></div>
+              <h3><a href="/limitless-tools/">Workshop</a></h3>
+              <p>Free tools for devs, creators and makers. Everything happens on your device, nothing is uploaded.</p>
+              <div class="card-links"><a href="/limitless-tools/">Open the Workshop &rarr;</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== EVERYTHING =====================
+         Filled in by assets/js/limitless.js. Without JavaScript (or if the
+         lists can't load) the message below stays and the wing cards above
+         still work. -->
+    <section class="lab-all">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Newest first</p>
+          <h2>Everything in the lab</h2>
+        </div>
+
+        <div class="filters" role="group" aria-label="Show">
+          <button class="lab-chip chip" type="button" data-wing="all" aria-pressed="true">All</button>
+          <button class="lab-chip chip" type="button" data-wing="arcade" aria-pressed="false">Games</button>
+          <button class="lab-chip chip" type="button" data-wing="lab" aria-pressed="false">Simulations</button>
+          <button class="lab-chip chip" type="button" data-wing="workshop" aria-pressed="false">Tools</button>
+        </div>
+
+        <div class="grid" id="lab-items" aria-live="polite"></div>
+        <p class="lab-status" id="lab-status">
+          Open a wing above to see everything in it.
+        </p>
+      </div>
+    </section>
+
+    <section class="lab-promise">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">The promise</p>
+          <h2>Free, and yours</h2>
+        </div>
+        <div class="stat-row">
+          <div><span class="stat-label">Accounts</span><span class="stat-value">None</span></div>
+          <div><span class="stat-label">Cookies</span><span class="stat-value">None</span></div>
+          <div><span class="stat-label">Uploads</span><span class="stat-value">None</span></div>
+          <div><span class="stat-label">Price</span><span class="stat-value">Free</span></div>
+        </div>
+        <p class="lab-note">
+          Saves live in your own browser, and every item has <strong>Export</strong>,
+          <strong>Import</strong> and <strong>Delete my data</strong> buttons. The only
+          thing counted is cookie-free page visits (see the <a href="privacy.html">privacy page</a>).
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - built by hand</span>
+      <nav class="footer-links">
+        <a href="projects.html">Projects</a>
+        <a href="limitless.html">Limitless Lab</a>
+        <a href="blog.html">Dev Log</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="https://www.youtube.com/@Jonjoe1001_dev" target="_blank" rel="noopener me">YouTube</a>
+        <a href="https://www.tiktok.com/@jonjoe1001" target="_blank" rel="noopener me">TikTok</a>
+        <a href="https://discord.gg/C4aWSWJsxP" target="_blank" rel="noopener me">Discord</a>
+        <a href="https://jonjoe1001.itch.io" target="_blank" rel="noopener me">itch.io</a>
+        <a href="https://github.com/jonathancomergit-ai" target="_blank" rel="noopener me">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js"></script>
+  <script src="assets/js/limitless.js"></script>
+  <script src="assets/js/stats.js"></script>
+</body>
+</html>

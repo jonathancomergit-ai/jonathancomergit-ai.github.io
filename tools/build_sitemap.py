@@ -20,6 +20,7 @@ SKIP = {"404.html", "posts/_TEMPLATE.html"}
 PRIORITY = {
     "index.html": "1.0",
     "projects.html": "0.9",
+    "limitless.html": "0.9",
     "blog.html": "0.8",
     "about.html": "0.8",
     "contact.html": "0.7",
