@@ -6,7 +6,14 @@
     <atom:link href="https://jonjoe1001.dev/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Progress reports, problems I got stuck on, and things I figured out while building games and tools.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 15 Sep 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 09 Oct 2026 12:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Limitless Lab is open: 20 free things to poke</title>
+      <link>https://jonjoe1001.dev/posts/2026-10-09-limitless-lab-is-open.html</link>
+      <guid isPermaLink="true">https://jonjoe1001.dev/posts/2026-10-09-limitless-lab-is-open.html</guid>
+      <pubDate>Fri, 09 Oct 2026 12:00:00 +0000</pubDate>
+      <description>Games, science sims and maker tools that run right in your browser. Free, private, phone-first, and built overnight with an AI crew for about $2 an item.</description>
+    </item>
     <item>
       <title>The Starlight Update is HERE!</title>
       <link>https://jonjoe1001.dev/posts/2026-09-15-the-starlight-update.html</link>
