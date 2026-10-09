@@ -575,6 +575,36 @@ section { padding-block: var(--gap-xl); }
 .card[hidden] { display: none; }
 
 /* ============================================================
+   LIMITLESS LAB PAGE (limitless.html)
+   The three wing cards, and the grid that assets/js/limitless.js
+   fills from each wing's items.json. Wing colours match the wings
+   themselves: Arcade hot pink, Lab cyan, Workshop amber.
+   ============================================================ */
+.lab-wing.is-arcade   .card-art { --blank-glow: rgba(255, 45, 120, .26); }
+.lab-wing.is-lab      .card-art { --blank-glow: rgba(53, 214, 245, .26); }
+.lab-wing.is-workshop .card-art { --blank-glow: rgba(255, 201, 60, .26); }
+.lab-wing .card-art:hover { text-decoration: none; }
+.lab-wing .card-art .initials { font-size: 3.2rem; opacity: 1; }
+
+.tag.lab-tag.is-arcade   { color: var(--hot);   border-color: rgba(255, 45, 120, .35); background: var(--hot-dim); }
+.tag.lab-tag.is-lab      { color: var(--cyan);  border-color: rgba(53, 214, 245, .35); background: rgba(53, 214, 245, .10); }
+.tag.lab-tag.is-workshop { color: var(--amber); border-color: rgba(255, 201, 60, .35); background: rgba(255, 201, 60, .10); }
+
+.lab-all { padding-top: 0; }
+.lab-status { color: var(--text-dim); margin-top: 1rem; }
+/* Item cards get a short banner instead of a 16:9 one, and none on
+   phones, so twenty-odd items stay a quick scroll. */
+.lab-item .card-art { aspect-ratio: 3 / 1; }
+.lab-item .card-art .initials { font-size: 1.9rem; }
+@media (max-width: 560px) {
+  .lab-item .card-art { display: none; }
+}
+.lab-item.is-soon { border-style: dashed; }
+.lab-item.is-soon:hover { transform: none; box-shadow: none; }
+.lab-promise { padding-top: 0; }
+.lab-note { color: var(--text-dim); max-width: 62ch; }
+
+/* ============================================================
    POST LIST
    ============================================================ */
 .posts { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
