@@ -592,12 +592,14 @@ section { padding-block: var(--gap-xl); }
 
 .lab-all { padding-top: 0; }
 .lab-status { color: var(--text-dim); margin-top: 1rem; }
-/* Item cards get a short banner instead of a 16:9 one, and none on
-   phones, so twenty-odd items stay a quick scroll. */
+/* Item cards get a short banner instead of a 16:9 one, so twenty-odd
+   items stay a quick scroll. Letters-only banners are hidden on phones;
+   a real screenshot (.has-thumb) stays, as a 2:1 crop of its middle. */
 .lab-item .card-art { aspect-ratio: 3 / 1; }
+.lab-item .card-art.has-thumb { aspect-ratio: 2 / 1; }
 .lab-item .card-art .initials { font-size: 1.9rem; }
 @media (max-width: 560px) {
-  .lab-item .card-art { display: none; }
+  .lab-item .card-art:not(.has-thumb) { display: none; }
 }
 .lab-item.is-soon { border-style: dashed; }
 .lab-item.is-soon:hover { transform: none; box-shadow: none; }
