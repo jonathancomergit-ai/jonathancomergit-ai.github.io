@@ -3,6 +3,10 @@
 Hand-written HTML and CSS. No build step, no dependencies, no framework.
 Double-click `index.html` to see it. That is also exactly what the server does.
 
+## Ownership
+
+© 2026 Jonathan Comer. All rights reserved. The code and content here are public to read, but not licensed for reuse.
+
 ---
 
 ## The files
