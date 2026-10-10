@@ -214,6 +214,66 @@
       </div>
     </section>
 
+    <!-- ===================== LIMITLESS LAB: THREE DOORS =====================
+         One door per wing. assets/js/limitless.js fills in the live count
+         (data-count) and swaps each emoji for the wing's 3 newest thumbnails
+         (data-stack). Without JavaScript the doors still work as plain links. -->
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Limitless Lab</p>
+          <h2>Pick a door!</h2>
+          <p>
+            Free little games, simulations and tools that run right in your browser,
+            on your phone or your computer. No accounts, no installs, AND no paywall!
+            So which door are you opening first?
+          </p>
+        </div>
+
+        <div class="grid lab-doors" data-lab-doors>
+          <article class="card lab-wing lab-door is-arcade">
+            <a class="card-art is-blank" href="/limitless-arcade/" tabindex="-1" aria-hidden="true">
+              <span class="door-stack" data-stack="arcade"><span class="initials">&#127918;</span></span>
+            </a>
+            <div class="card-body">
+              <div class="tags"><span class="tag lab-tag is-arcade" data-count="arcade">Games</span></div>
+              <h3><a href="/limitless-arcade/">Arcade</a></h3>
+              <p>Small games you can pick up in seconds. One thumb on a phone, or keys on a keyboard.</p>
+              <div class="card-links"><a href="/limitless-arcade/">Open the Arcade &rarr;</a></div>
+            </div>
+          </article>
+
+          <article class="card lab-wing lab-door is-lab">
+            <a class="card-art is-blank" href="/limitless-lab/" tabindex="-1" aria-hidden="true">
+              <span class="door-stack" data-stack="lab"><span class="initials">&#128300;</span></span>
+            </a>
+            <div class="card-body">
+              <div class="tags"><span class="tag lab-tag is-lab" data-count="lab">Simulations</span></div>
+              <h3><a href="/limitless-lab/">Lab</a></h3>
+              <p>Physics, maths and machine learning you can poke, drag and break, each with a plain-English explainer.</p>
+              <div class="card-links"><a href="/limitless-lab/">Open the Lab &rarr;</a></div>
+            </div>
+          </article>
+
+          <article class="card lab-wing lab-door is-workshop">
+            <a class="card-art is-blank" href="/limitless-tools/" tabindex="-1" aria-hidden="true">
+              <span class="door-stack" data-stack="workshop"><span class="initials">&#129520;</span></span>
+            </a>
+            <div class="card-body">
+              <div class="tags"><span class="tag lab-tag is-workshop" data-count="workshop">Tools</span></div>
+              <h3><a href="/limitless-tools/">Workshop</a></h3>
+              <p>Free tools for devs, creators and makers. Everything happens on your device, nothing is uploaded.</p>
+              <div class="card-links"><a href="/limitless-tools/">Open the Workshop &rarr;</a></div>
+            </div>
+          </article>
+        </div>
+
+        <p style="margin-top: 2rem">
+          <a class="btn btn-ghost" href="limitless.html">Everything in the lab &rarr;</a>
+        </p>
+      </div>
+    </section>
+
     <!-- ===================== LATEST POSTS ===================== -->
     <section>
       <div class="wrap">
@@ -294,6 +354,7 @@
   </footer>
 
   <script src="assets/js/site.js"></script>
+  <script src="assets/js/limitless.js"></script>
   <script src="assets/js/stats.js"></script>
 </body>
 </html>
