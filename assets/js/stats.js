@@ -63,6 +63,10 @@
   /* The page this happened on, for the event title. */
   function here() { return "on " + location.pathname; }
 
+  /* An address without its ?query or #hash. Those can carry search
+     terms, tokens or tracking ids that have no business in the stats. */
+  function noQuery(address) { return String(address).split(/[?#]/)[0]; }
+
   /* ---- clicks: downloads, outbound links, email ----------- */
 
   /* One listener on the whole page instead of one per link, so a link
@@ -97,7 +101,8 @@
       return;  // an ordinary link to another page: the page view covers it
     }
 
-    /* Leaving the site. Drop "www." so www.x.com and x.com count as one. */
+    /* Leaving the site. Drop "www." so www.x.com and x.com count as one.
+       url.pathname never includes the ?query or #hash, so neither is sent. */
     var dest = url.host.replace(/^www\./, "") + url.pathname.replace(/\/$/, "");
     event((isDownload ? "download-" : "outbound-") + dest, here());
   }
@@ -140,7 +145,7 @@
      visitor came from, which is usually the page with the broken link. */
   if (document.body && document.body.hasAttribute("data-404")) {
     setTimeout(function () {
-      event("404-" + location.pathname, "from " + (document.referrer || "a typed address"));
+      event("404-" + location.pathname, "from " + (noQuery(document.referrer) || "a typed address"));
     }, 1500);
   }
 })();
