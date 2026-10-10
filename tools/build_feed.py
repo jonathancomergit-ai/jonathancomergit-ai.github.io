@@ -5,6 +5,10 @@ so a new post can't be missed. Each post's title and summary come from
 its own <head> (og:title and meta description), and its date from the
 YYYY-MM-DD at the front of the filename.
 
+Posts are stamped noon UTC on that date. To order two posts from the same
+day, give the later one a time in its JSON-LD datePublished, e.g.
+"2026-10-09T21:34:00-05:00"; that exact moment is then used instead.
+
 Run it after adding a post, next to build_sitemap.py:
     python tools/build_feed.py
 """
@@ -23,10 +27,17 @@ def meta(page, attr, key):
     return html.unescape(m.group(1)) if m else ""
 
 
-def rfc822(date):
-    # Noon UTC, so the day is right in every time zone a reader is likely in.
-    d = datetime.datetime.combine(date, datetime.time(12), datetime.timezone.utc)
-    return d.strftime("%a, %d %b %Y %H:%M:%S +0000")
+def published(page, date):
+    # Noon UTC, so the day is right in every time zone a reader is likely in,
+    # unless the post's datePublished gives an exact time.
+    m = re.search(r'"datePublished":\s*"(\d{4}-\d{2}-\d{2}T[^"]+)"', page)
+    if m:
+        return datetime.datetime.fromisoformat(m.group(1)).astimezone(datetime.timezone.utc)
+    return datetime.datetime.combine(date, datetime.time(12), datetime.timezone.utc)
+
+
+def rfc822(when):
+    return when.strftime("%a, %d %b %Y %H:%M:%S +0000")
 
 
 posts = []
@@ -37,8 +48,10 @@ for p in sorted((ROOT / "posts").glob("*.html")):
     if not m:
         continue
     page = p.read_text(encoding="utf-8")
+    date = datetime.date.fromisoformat(m.group(1))
     post = {
-        "date": datetime.date.fromisoformat(m.group(1)),
+        "date": date,
+        "when": published(page, date),
         "url": f"{BASE}/posts/{html.escape(p.name)}",
         "title": meta(page, "property", "og:title"),
         "summary": meta(page, "name", "description"),
@@ -50,7 +63,7 @@ for p in sorted((ROOT / "posts").glob("*.html")):
                          'og:title and meta description lines match the template exactly')
     posts.append(post)
 
-posts.sort(key=lambda x: x["date"], reverse=True)
+posts.sort(key=lambda x: x["when"], reverse=True)
 e = lambda s: html.escape(s, quote=False)
 
 lines = [
@@ -66,14 +79,14 @@ lines = [
 ]
 # The newest post's date, not "now", so re-running with nothing new changes nothing.
 if posts:
-    lines.append(f"    <lastBuildDate>{rfc822(posts[0]['date'])}</lastBuildDate>")
+    lines.append(f"    <lastBuildDate>{rfc822(posts[0]['when'])}</lastBuildDate>")
 for x in posts:
     lines += [
         "    <item>",
         f"      <title>{e(x['title'])}</title>",
         f"      <link>{x['url']}</link>",
         f'      <guid isPermaLink="true">{x["url"]}</guid>',
-        f"      <pubDate>{rfc822(x['date'])}</pubDate>",
+        f"      <pubDate>{rfc822(x['when'])}</pubDate>",
         f"      <description>{e(x['summary'])}</description>",
     ]
     lines.append("    </item>")
