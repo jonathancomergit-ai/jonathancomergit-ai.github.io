@@ -157,10 +157,17 @@
 
     grid.replaceChildren.apply(grid, all.map(function (x) { return card(x.item, x.wing); }));
 
+    /* A chip tapped while the list was still loading has nothing to
+       hide yet, so apply whichever chip is pressed now. */
+    var pressed = document.querySelector('.lab-chip[aria-pressed="true"]');
+    if (pressed) { applyFilter(pressed.getAttribute("data-wing")); }
+
     if (!all.length) {
       status.textContent = "Couldn't load the list right now. Open a wing above to see everything in it.";
     } else if (failed) {
-      status.textContent = "One wing couldn't load right now. Its card above still works.";
+      status.textContent = failed === 1
+        ? "One wing couldn't load right now. Its card above still works."
+        : (failed === 2 ? "Two" : failed) + " wings couldn't load right now. Their cards above still work.";
     } else {
       status.hidden = true;
     }
@@ -172,9 +179,14 @@
     chip.addEventListener("click", function () {
       var want = chip.getAttribute("data-wing");
       chips.forEach(function (c) { c.setAttribute("aria-pressed", String(c === chip)); });
-      grid.querySelectorAll(".lab-item").forEach(function (c) {
-        c.hidden = want !== "all" && c.getAttribute("data-wing") !== want;
-      });
+      applyFilter(want);
     });
   });
+
+  function applyFilter(want) {
+    if (!grid) { return; }
+    grid.querySelectorAll(".lab-item").forEach(function (c) {
+      c.hidden = want !== "all" && c.getAttribute("data-wing") !== want;
+    });
+  }
 })();
