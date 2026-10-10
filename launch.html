@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- The share link: jonjoe1001.dev/launch
+       Paste it anywhere (Discord, iMessage, X, TikTok bio) and it unfurls into
+       the card in assets/img/og-limitless-launch.jpg, built from
+       tools/og-limitless-launch.html. The counts in the card and the tags
+       below are a launch-day snapshot; the page body shows live counts. -->
+  <title>Limitless Lab is live! - Jonjoe1001</title>
+  <meta name="description" content="39 free games, science sims and maker tools that run right in your browser. No accounts, no installs, no paywall. Come play, poke and make!">
+  <meta property="og:title" content="LIMITLESS LAB is live! 39 free things to play, poke and make">
+  <meta property="og:description" content="Games, science sims and maker tools that run right in your browser, on your phone or your computer. No accounts, no installs, no paywall.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jonjoe1001.dev/launch">
+  <meta property="og:site_name" content="Jonjoe1001">
+  <meta property="og:image" content="https://jonjoe1001.dev/assets/img/og-limitless-launch.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="LIMITLESS LAB is live: 39 free games, sims and tools in your browser">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LIMITLESS LAB is live! 39 free things to play, poke and make">
+  <meta name="twitter:description" content="Games, science sims and maker tools that run right in your browser. No accounts, no installs, no paywall.">
+  <meta name="twitter:image" content="https://jonjoe1001.dev/assets/img/og-limitless-launch.jpg">
+
+  <link rel="icon" href="assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/img/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="assets/img/favicon-96.png" type="image/png" sizes="96x96">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#07070C">
+
+  <link rel="canonical" href="https://jonjoe1001.dev/launch.html">
+  <link rel="alternate" type="application/rss+xml" title="Jonjoe1001 - Dev Log" href="https://jonjoe1001.dev/feed.xml">
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="index.html">
+        <img class="avatar" src="assets/img/pfp-160.webp" alt="" width="34" height="34">
+        Jonjoe1001
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="limitless.html">Limitless Lab</a>
+        <a href="blog.html">Dev Log</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="wrap">
+        <p class="status">
+          <span class="dot" aria-hidden="true"></span>
+          Now open &middot; free forever
+        </p>
+
+        <h1><span class="glow">Limitless Lab</span> is live!</h1>
+
+        <p class="hero-lead">
+          Games you can play with one thumb, science you can poke with your finger, and
+          tools for making your own games. All of it runs right in your browser, on your
+          phone or your computer. No accounts, no installs, no paywall. Just tap and go!
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="limitless.html">Start exploring</a>
+          <a class="btn btn-ghost" href="/limitless-arcade/">Play a game</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== THREE DOORS =====================
+         Same doors as the home page: assets/js/limitless.js fills in the live
+         count (data-count) and the 3 newest thumbnails (data-stack). -->
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Three doors</p>
+          <h2>Pick one and dive in</h2>
+        </div>
+
+        <div class="grid lab-doors" data-lab-doors>
+          <article class="card lab-wing lab-door is-arcade">
+            <a class="card-art is-blank" href="/limitless-arcade/" tabindex="-1" aria-hidden="true">
+              <span class="door-stack" data-stack="arcade"><span class="initials">&#127918;</span></span>
+            </a>
+            <div class="card-body">
+              <div class="tags"><span class="tag lab-tag is-arcade" data-count="arcade">Games</span></div>
+              <h3><a href="/limitless-arcade/">Arcade</a></h3>
+              <p>Small games you can pick up in seconds. One thumb on a phone, or keys on a keyboard.</p>
+              <div class="card-links"><a href="/limitless-arcade/">Open the Arcade &rarr;</a></div>
+            </div>
+          </article>
+
+          <article class="card lab-wing lab-door is-lab">
+            <a class="card-art is-blank" href="/limitless-lab/" tabindex="-1" aria-hidden="true">
+              <span class="door-stack" data-stack="lab"><span class="initials">&#128300;</span></span>
+            </a>
+            <div class="card-body">
+              <div class="tags"><span class="tag lab-tag is-lab" data-count="lab">Simulations</span></div>
+              <h3><a href="/limitless-lab/">Lab</a></h3>
+              <p>Physics, maths and machine learning you can poke, drag and break, each with a plain-English explainer.</p>
+              <div class="card-links"><a href="/limitless-lab/">Open the Lab &rarr;</a></div>
+            </div>
+          </article>
+
+          <article class="card lab-wing lab-door is-workshop">
+            <a class="card-art is-blank" href="/limitless-tools/" tabindex="-1" aria-hidden="true">
+              <span class="door-stack" data-stack="workshop"><span class="initials">&#129520;</span></span>
+            </a>
+            <div class="card-body">
+              <div class="tags"><span class="tag lab-tag is-workshop" data-count="workshop">Tools</span></div>
+              <h3><a href="/limitless-tools/">Workshop</a></h3>
+              <p>Free tools for devs, creators and makers. Everything happens on your device, nothing is uploaded.</p>
+              <div class="card-links"><a href="/limitless-tools/">Open the Workshop &rarr;</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== NEW AT LAUNCH =====================
+         A fixed launch-day list of the newest batch (written by hand, not
+         loaded), so this page reads the same for everyone who opens the link. -->
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Fresh for launch</p>
+          <h2>Eight brand-new things to try</h2>
+          <p>Just landed, alongside everything else in the lab.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card lab-item" data-wing="arcade">
+            <div class="card-art has-thumb" aria-hidden="true"><img src="/limitless-arcade/items/chipler-colony/thumb.webp" alt="" width="640" height="360" loading="lazy"></div>
+            <div class="card-body">
+              <div class="tags"><span class="tag lab-tag is-arcade">game</span><span class="tag is-live">New</span></div>
+              <h3><a href="/limitless-arcade/items/chipler-colony/">Chipler Colony</a></h3>
+              <p>One little Chipler lands on a tiny round planet and copies himself. Build farms and forges and grow a whole colony.</p>
+              <div class="card-links"><a href="/limitless-arcade/items/chipler-colony/">Play &rarr;</a></div>
+            </div>
+          </article>
+
+          <article class="card lab-item" data-wing="arcade">
+            <div class="card-art has-thumb" aria-hidden="true"><img src="/limitless-arcade/items/stack-tower/thumb.webp" alt="" width="640" height="360" loading="lazy"></div>
+            <div class="card-body">
+              <div class="tags"><span class="tag lab-tag is-arcade">game</span><span class="tag is-live">New</span></div>
+              <h3><a href="/limitless-arcade/items/stack-tower/">Stack Tower</a></h3>
+              <p>Drop blocks onto a wobbly tower with real physics. How high can you build before it all comes crashing down?</p>
+              <div class="card-links"><a href="/limitless-arcade/items/stack-tower/">Play &rarr;</a></div>
+            </div>
+          </article>
+
+          <article class="card lab-item" data-wing="lab">
+            <div class="card-art has-thumb" aria-hidden="true"><img src="/limitless-lab/items/teach-a-robot/thumb.webp" alt="" width="640" height="360" loading="lazy"></div>
+            <div class="card-body">
+              <div class="tags"><span class="tag lab-tag is-lab">simulation</span><span class="tag is-live">New</span></div>
+              <h3><a href="/limitless-lab/items/teach-a-robot/">Teach a Robot</a></h3>
+              <p>Watch a little robot learn by trial and error until it can balance a pole or escape a maze all by itself. That's reinforcement learning.</p>
+              <div class="card-links"><a href="/limitless-lab/items/teach-a-robot/">Open &rarr;</a></div>
+            </div>
+          </article>
+
+          <article class="card lab-item" data-wing="lab">
+            <div class="card-art has-thumb" aria-hidden="true"><img src="/limitless-lab/items/fluid-sim/thumb.webp" alt="" width="640" height="360" loading="lazy"></div>
+            <div class="card-body">
+              <div class="tags"><span class="tag lab-tag is-lab">simulation</span><span class="tag is-live">New</span></div>
+              <h3><a href="/limitless-lab/items/fluid-sim/">Fluid Sim</a></h3>
+              <p>Stir smoke and ink with your finger and watch it swirl, curl and mix. Real fluid equations, running live in your browser.</p>
+              <div class="card-links"><a href="/limitless-lab/items/fluid-sim/">Open &rarr;</a></div>
+            </div>
+          </article>
+
+          <article class="card lab-item" data-wing="lab">
+            <div class="card-art has-thumb" aria-hidden="true"><img src="/limitless-lab/items/predator-prey/thumb.webp" alt="" width="640" height="360" loading="lazy"></div>
+            <div class="card-body">
+              <div class="tags"><span class="tag lab-tag is-lab">simulation</span><span class="tag is-live">New</span></div>
+              <h3><a href="/limitless-lab/items/predator-prey/">Predator &amp; Prey</a></h3>
+              <p>Rabbits eat grass, foxes eat rabbits. Watch the two populations boom and crash in waves, then try to make them live together.</p>
+              <div class="card-links"><a href="/limitless-lab/items/predator-prey/">Open &rarr;</a></div>
+            </div>
+          </article>
+
+          <article class="card lab-item" data-wing="workshop">
+            <div class="card-art has-thumb" aria-hidden="true"><img src="/limitless-tools/items/particle-designer/thumb.webp" alt="" width="640" height="360" loading="lazy"></div>
+            <div class="card-body">
+              <div class="tags"><span class="tag lab-tag is-workshop">tool</span><span class="tag is-live">New</span></div>
+              <h3><a href="/limitless-tools/items/particle-designer/">Particle Designer</a></h3>
+              <p>Design sparks, smoke, fire and magic effects with sliders, watch them live, then export them for your game.</p>
+              <div class="card-links"><a href="/limitless-tools/items/particle-designer/">Open &rarr;</a></div>
+            </div>
+          </article>
+
+          <article class="card lab-item" data-wing="workshop">
+            <div class="card-art has-thumb" aria-hidden="true"><img src="/limitless-tools/items/tilemap-painter/thumb.webp" alt="" width="640" height="360" loading="lazy"></div>
+            <div class="card-body">
+              <div class="tags"><span class="tag lab-tag is-workshop">tool</span><span class="tag is-live">New</span></div>
+              <h3><a href="/limitless-tools/items/tilemap-painter/">Tilemap Painter</a></h3>
+              <p>Load a tileset, paint a level on a grid, and export it for Tiled or Godot. Nothing is uploaded.</p>
+              <div class="card-links"><a href="/limitless-tools/items/tilemap-painter/">Open &rarr;</a></div>
+            </div>
+          </article>
+
+          <article class="card lab-item" data-wing="workshop">
+            <div class="card-art has-thumb" aria-hidden="true"><img src="/limitless-tools/items/easing-editor/thumb.webp" alt="" width="640" height="360" loading="lazy"></div>
+            <div class="card-body">
+              <div class="tags"><span class="tag lab-tag is-workshop">tool</span><span class="tag is-live">New</span></div>
+              <h3><a href="/limitless-tools/items/easing-editor/">Easing Curve Editor</a></h3>
+              <p>Drag a curve to shape how things speed up and slow down, see it live, then copy it as CSS, GDScript or JavaScript.</p>
+              <div class="card-links"><a href="/limitless-tools/items/easing-editor/">Open &rarr;</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="lab-promise">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">The promise</p>
+          <h2>Free, and yours</h2>
+        </div>
+        <div class="stat-row">
+          <div><span class="stat-label">Accounts</span><span class="stat-value">None</span></div>
+          <div><span class="stat-label">Installs</span><span class="stat-value">None</span></div>
+          <div><span class="stat-label">Uploads</span><span class="stat-value">None</span></div>
+          <div><span class="stat-label">Price</span><span class="stat-value">Free</span></div>
+        </div>
+        <p class="lab-note">
+          Saves live in your own browser, and every item has <strong>Export</strong>,
+          <strong>Import</strong> and <strong>Delete my data</strong> buttons. Want the
+          details? Read the <a href="privacy.html#limitless">privacy page</a>.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Pass it on</p>
+          <h2>Know someone who'd love this?</h2>
+          <p>
+            Send them <strong>jonjoe1001.dev/launch</strong>. And if you want to see what
+            I'm building next, come hang out on <a href="https://discord.gg/C4aWSWJsxP" target="_blank" rel="noopener">Discord</a>
+            or check out <a href="projects/timeless.html">Timeless</a>, my roguelike where the clock is your health bar.
+          </p>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="limitless.html">See everything in the lab</a>
+          <a class="btn btn-ghost" href="projects/timeless.html">Check out Timeless</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - hand-written HTML &amp; CSS, with help from AI</span>
+      <nav class="footer-links">
+        <a href="projects.html">Projects</a>
+        <a href="limitless.html">Limitless Lab</a>
+        <a href="blog.html">Dev Log</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="https://www.youtube.com/@Jonjoe1001_dev" target="_blank" rel="noopener me">YouTube</a>
+        <a href="https://www.tiktok.com/@jonjoe1001" target="_blank" rel="noopener me">TikTok</a>
+        <a href="https://discord.gg/C4aWSWJsxP" target="_blank" rel="noopener me">Discord</a>
+        <a href="https://jonjoe1001.itch.io" target="_blank" rel="noopener me">itch.io</a>
+        <a href="https://github.com/jonathancomergit-ai" target="_blank" rel="noopener me">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js"></script>
+  <script src="assets/js/limitless.js"></script>
+  <script src="assets/js/stats.js"></script>
+</body>
+</html>
