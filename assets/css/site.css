@@ -1014,7 +1014,8 @@ section { padding-block: var(--gap-xl); }
 /* ============================================================
    AVATAR
    The small round photo in the nav, and the big one on the
-   home page. Both point at assets/img/pfp.png.
+   home page. Both point at assets/img/pfp-160.webp, a small square
+   crop of pfp.png (the full portrait is only used on About).
    ============================================================ */
 .avatar {
   width: 34px;
