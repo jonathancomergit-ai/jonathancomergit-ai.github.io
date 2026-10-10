@@ -8,10 +8,13 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
+  /* Fonts: the same self-hosted files as the site (assets/fonts/). */
+  @font-face { font-family: "Space Grotesk"; font-weight: 300 700; font-display: swap;
+    src: url("../assets/fonts/space-grotesk-latin-wght-normal.woff2") format("woff2-variations"); }
+  @font-face { font-family: "JetBrains Mono"; font-weight: 100 800; font-display: swap;
+    src: url("../assets/fonts/jetbrains-mono-latin-wght-normal.woff2") format("woff2-variations"); }
+
   /* Same tokens as the live site, so the card cannot drift from it. */
   :root {
     --bg:        #07070C;
