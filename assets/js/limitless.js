@@ -1,8 +1,11 @@
 /* ============================================================
-   Jonjoe1001 - Limitless Lab page (limitless.html)
+   Jonjoe1001 - Limitless Lab (limitless.html + the home page)
 
-   Builds the "Everything in the lab" grid from the items.json
-   of each wing, so a newly merged item shows up here by itself.
+   Builds the "Everything in the lab" grid on limitless.html from
+   the items.json of each wing, so a newly merged item shows up
+   there by itself. On the home page it fills the "Three doors"
+   section instead: a live count on each door and a fanned stack
+   of the 3 newest thumbnails behind it.
    Each wing is its own repo, published under this domain:
 
      /limitless-arcade/items.json   games
@@ -30,9 +33,12 @@
   ];
   var NEW_DAYS = 21;
 
-  var grid = document.getElementById("lab-items");
+  var STACK = 3;   /* thumbnails fanned behind each home-page door */
+
+  var grid = document.getElementById("lab-items");         /* limitless.html */
   var status = document.getElementById("lab-status");
-  if (!grid) { return; }
+  var doors = document.querySelector("[data-lab-doors]");  /* index.html */
+  if (!grid && !doors) { return; }
 
   /* Small element helper: el("a", { href: "#" }, "text", child...) */
   function el(tag, attrs) {
@@ -63,11 +69,23 @@
       typeof item.added === "string";
   }
 
+  /* A real screenshot the wing has published; the same file-name check as the wings' own kit. */
+  function hasThumb(item) {
+    return !item.soon && typeof item.thumb === "string" &&
+      /^[a-z0-9][a-z0-9._-]*\.(webp|png|jpg|jpeg|svg)$/i.test(item.thumb);
+  }
+
+  /* Newest first; built items before planned ones; then A-Z. */
+  function newestFirst(a, b) {
+    return (a.item.soon ? 1 : 0) - (b.item.soon ? 1 : 0) ||
+      b.item.added.localeCompare(a.item.added) ||
+      a.item.title.localeCompare(b.item.title);
+  }
+
   function card(item, wing) {
     var href = wing.path + "items/" + item.slug + "/";
     var art;
-    /* A real screenshot when the wing has one; the same file-name check as the wings' own kit. */
-    if (!item.soon && typeof item.thumb === "string" && /^[a-z0-9][a-z0-9._-]*\.(webp|png|jpg|jpeg|svg)$/i.test(item.thumb)) {
+    if (hasThumb(item)) {
       art = el("div", { "class": "card-art has-thumb", "aria-hidden": "true" },
         el("img", { src: href + item.thumb, alt: "", width: "640", height: "360", loading: "lazy" }));
     } else {
@@ -104,6 +122,21 @@
       .catch(function () { return null; });
   }
 
+  /* Home page: swap a door's emoji for its wing's 3 newest thumbnails.
+     The pictures are decoration (alt=""): the door's own text says where it goes.
+     If a wing can't load, its door keeps the emoji and still works. */
+  function fillDoor(wing, list) {
+    var stack = doors.querySelector('[data-stack="' + wing.id + '"]');
+    if (!stack || !list) { return; }
+    var picks = list.filter(function (x) { return hasThumb(x.item); }).sort(newestFirst).slice(0, STACK);
+    if (!picks.length) { return; }
+    stack.replaceChildren.apply(stack, picks.map(function (x) {
+      return el("img", { src: wing.path + "items/" + x.item.slug + "/" + x.item.thumb,
+        alt: "", width: "640", height: "360", loading: "lazy", decoding: "async" });
+    }));
+    stack.classList.add("has-thumbs");
+  }
+
   Promise.all(WINGS.map(load)).then(function (results) {
     var all = [];
     var failed = 0;
@@ -111,18 +144,16 @@
     results.forEach(function (list, i) {
       var wing = WINGS[i];
       var count = document.querySelector('[data-count="' + wing.id + '"]');
+      if (doors) { fillDoor(wing, list); }
       if (!list) { failed++; return; }
       var built = list.filter(function (x) { return !x.item.soon; }).length;
       if (count) { count.textContent = built + " " + (built === 1 ? wing.one : wing.many); }
       all = all.concat(list);
     });
 
-    /* Newest first; built items before planned ones; then A-Z. */
-    all.sort(function (a, b) {
-      return (a.item.soon ? 1 : 0) - (b.item.soon ? 1 : 0) ||
-        b.item.added.localeCompare(a.item.added) ||
-        a.item.title.localeCompare(b.item.title);
-    });
+    if (!grid) { return; }   /* the home page stops here */
+
+    all.sort(newestFirst);
 
     grid.replaceChildren.apply(grid, all.map(function (x) { return card(x.item, x.wing); }));
 

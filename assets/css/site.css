@@ -590,6 +590,39 @@ section { padding-block: var(--gap-xl); }
 .tag.lab-tag.is-lab      { color: var(--cyan);  border-color: rgba(53, 214, 245, .35); background: rgba(53, 214, 245, .10); }
 .tag.lab-tag.is-workshop { color: var(--amber); border-color: rgba(255, 201, 60, .35); background: rgba(255, 201, 60, .10); }
 
+/* ---- Home page "Three doors" (index.html) --------------------
+   The doors reuse the .lab-wing cards above. assets/js/limitless.js
+   puts the wing's 3 newest thumbnails in .door-stack and adds
+   .has-thumbs; until then (or if a wing can't load) the emoji shows.
+   The pictures are placed with left/top + the separate "rotate"
+   property, so the site's hover zoom (transform) and glitch
+   (translate) still work on them without knocking the fan flat. */
+.door-stack { position: absolute; inset: 0; display: grid; place-items: center; }
+.door-stack.has-thumbs { display: block; }
+.card-art .door-stack.has-thumbs img {
+  position: absolute;
+  top: 18%;
+  width: 58%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-bright);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, .55);
+  transition: left .35s ease, top .35s ease, rotate .35s ease, transform .45s ease;
+}
+.door-stack.has-thumbs img:nth-child(1) { left: 6%;  rotate: -7deg; z-index: 1; }
+.door-stack.has-thumbs img:nth-child(2) { left: 21%; top: 26%; z-index: 3; }
+.door-stack.has-thumbs img:nth-child(3) { left: 36%; rotate: 7deg;  z-index: 2; }
+/* Hover: the fan opens up a little */
+.lab-door:hover .door-stack.has-thumbs img:nth-child(1) { left: 2%;  rotate: -11deg; }
+.lab-door:hover .door-stack.has-thumbs img:nth-child(3) { left: 40%; rotate: 11deg; }
+@media (prefers-reduced-motion: reduce) {
+  .card-art .door-stack.has-thumbs img { transition: none; }
+  .lab-door:hover .door-stack.has-thumbs img:nth-child(1) { left: 6%;  rotate: -7deg; }
+  .lab-door:hover .door-stack.has-thumbs img:nth-child(3) { left: 36%; rotate: 7deg; }
+}
+
 .lab-all { padding-top: 0; }
 .lab-status { color: var(--text-dim); margin-top: 1rem; }
 /* Item cards get a short banner instead of a 16:9 one, so twenty-odd
