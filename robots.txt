@@ -8,3 +8,6 @@ Disallow: /posts/_TEMPLATE.html
 Disallow: /tools/
 
 Sitemap: https://jonjoe1001.dev/sitemap.xml
+Sitemap: https://jonjoe1001.dev/limitless-lab/sitemap.xml
+Sitemap: https://jonjoe1001.dev/limitless-arcade/sitemap.xml
+Sitemap: https://jonjoe1001.dev/limitless-tools/sitemap.xml
