@@ -78,11 +78,24 @@
              ADDING A POST
              1. Copy posts/_TEMPLATE.html to posts/YYYY-MM-DD-slug.html
              2. Write it.
-             3. Copy one .post-row block below, paste it at the TOP of
-                this list, and update the date, title, link and blurb.
-             Newest post goes first.
+             3. Copy one .post-row block below, paste it at the top of
+                the dated list (just UNDER the pinned post), and update
+                the date, title, link and blurb.
+             Newest post goes first. The pinned post always stays on top:
+             to pin a different one, move its row up here and give it
+             class="post-row is-pinned" and the "Pinned" label.
              ========================================================== -->
         <div class="posts">
+
+          <!-- PINNED -->
+          <article class="post-row is-pinned">
+            <span class="post-date"><span aria-hidden="true">&#128204;</span> Pinned</span>
+            <div>
+              <h3><a href="posts/2026-10-09-me-and-ai.html">Me and AI</a></h3>
+              <p>How I use AI, how I feel about it, and how I hope the future of AI goes.</p>
+            </div>
+            <span class="post-arrow" aria-hidden="true">&rarr;</span>
+          </article>
 
           <article class="post-row">
             <span class="post-date">2026-10-09</span>

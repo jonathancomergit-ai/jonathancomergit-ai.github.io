@@ -654,6 +654,10 @@ section { padding-block: var(--gap-xl); }
   transition: background .16s, padding-inline .16s;
 }
 .post-row:hover { background: var(--surface); padding-inline: .9rem .4rem; }
+/* The pinned post on blog.html: a soft pink edge and a pink label, so it
+   reads as "start here" and not as the newest post. */
+.post-row.is-pinned { background: linear-gradient(90deg, var(--hot-dim), transparent 60%); box-shadow: inset 3px 0 0 var(--hot); padding-inline: .9rem .4rem; }
+.post-row.is-pinned .post-date { color: var(--hot); }
 
 .post-date {
   font-family: var(--font-mono);
