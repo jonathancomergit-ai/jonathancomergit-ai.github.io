@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!--
+  Source for the Limitless Lab launch share card
+  (assets/img/og-limitless-launch.jpg) - the picture that shows when
+  jonjoe1001.dev/launch is pasted into Discord, iMessage, X or Slack.
+
+  This is not part of the site. Nothing links to it. Rebuild it the same way
+  as tools/og-card.html: screenshot at exactly 1200x630, then save as JPG.
+  The thumbnails load from the live site, so be online when you rebuild.
+
+  Changing the picture? Save it under a new name (og-limitless-launch-v2.jpg)
+  and update launch.html, or Discord and X keep showing the old one for days.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: "Space Grotesk"; font-weight: 300 700; font-display: block;
+    src: url("../assets/fonts/space-grotesk-latin-wght-normal.woff2") format("woff2-variations"); }
+  @font-face { font-family: "JetBrains Mono"; font-weight: 100 800; font-display: block;
+    src: url("../assets/fonts/jetbrains-mono-latin-wght-normal.woff2") format("woff2-variations"); }
+
+  /* Same tokens as the live site. */
+  :root {
+    --bg:        #07070C;
+    --text:      #ECEEF6;
+    --text-dim:  #9AA1BC;
+    --text-faint:#6B7392;
+    --hot:       #FF2D78;
+    --cyan:      #35D6F5;
+    --amber:     #FFC93C;
+    --green:     #3DF5A0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 630px; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .backdrop {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(620px 420px at 4% 0%,    rgba(255, 45,120,.24), transparent 70%),
+      radial-gradient(700px 480px at 100% 10%, rgba( 53,214,245,.16), transparent 70%),
+      radial-gradient(560px 360px at 70% 100%, rgba(255,201, 60,.10), transparent 70%);
+  }
+  .bar {
+    position: absolute; top: 0; left: 0; right: 0; height: 8px;
+    background: linear-gradient(90deg,
+      var(--hot) 0%, #FF6B4A 22%, var(--amber) 44%, var(--green) 68%, var(--cyan) 100%);
+  }
+
+  /* --- the wall of real thumbnails, tilted, fading into the text side --- */
+  .wall {
+    position: absolute;
+    top: -70px; right: -150px;
+    width: 720px;
+    display: grid;
+    grid-template-columns: repeat(2, 320px);
+    gap: 18px;
+    transform: rotate(-9deg);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 34%);
+            mask-image: linear-gradient(90deg, transparent 0%, #000 34%);
+  }
+  .wall img {
+    width: 320px; height: 180px; object-fit: cover;
+    border-radius: 14px;
+    border: 2px solid rgba(255,255,255,.10);
+    box-shadow: 0 18px 40px rgba(0,0,0,.55);
+  }
+  .wall img:nth-child(odd)  { transform: translateY(46px); }
+  .wall .is-arcade   { border-color: rgba(255, 45,120,.55); }
+  .wall .is-lab      { border-color: rgba( 53,214,245,.55); }
+  .wall .is-workshop { border-color: rgba(255,201, 60,.55); }
+
+  .inner {
+    position: relative;
+    height: 100%;
+    padding: 70px 80px 62px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .brand {
+    display: flex; align-items: center; gap: 18px;
+    font-size: 30px; font-weight: 600; letter-spacing: -.01em;
+  }
+  .mark {
+    width: 20px; height: 30px; border-radius: 3px;
+    background: var(--hot);
+    box-shadow: 0 0 22px rgba(255,45,120,.85);
+  }
+
+  .launch {
+    margin-top: 40px;
+    display: inline-flex; align-items: center; gap: 14px;
+    align-self: flex-start;
+    font-family: "JetBrains Mono", Consolas, monospace;
+    font-size: 22px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--green);
+    padding: 10px 18px;
+    border: 2px solid rgba(61,245,160,.45);
+    border-radius: 999px;
+    background: rgba(61,245,160,.08);
+  }
+  .dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 14px rgba(61,245,160,.9);
+  }
+
+  h1 {
+    margin-top: 26px;
+    font-size: 104px;
+    font-weight: 700;
+    line-height: .98;
+    letter-spacing: -.035em;
+  }
+  h1 .accent {
+    display: block;
+    background: linear-gradient(95deg,
+      var(--hot) 0%, #FF8A3D 30%, var(--amber) 52%, var(--green) 76%, var(--cyan) 100%);
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+  }
+  h1 .rest { display: block; font-size: 76px; margin-top: 8px; }
+
+  .lead {
+    margin-top: 22px;
+    font-size: 29px; line-height: 1.4; font-weight: 500;
+    color: var(--text-dim);
+    max-width: 30ch;
+  }
+
+  .strip {
+    margin-top: auto;
+    display: flex; align-items: center; gap: 14px;
+    font-family: "JetBrains Mono", Consolas, monospace;
+    font-size: 21px; font-weight: 500; letter-spacing: .1em;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .n { color: var(--text); font-weight: 700; }
+  .g { color: var(--hot); }
+  .s { color: var(--cyan); }
+  .t { color: var(--amber); }
+  .sep { color: #3A4060; }
+  .url { color: var(--text); }
+</style>
+</head>
+<body>
+  <div class="backdrop"></div>
+  <div class="glow"></div>
+
+  <div class="wall" aria-hidden="true">
+    <img class="is-lab"      src="https://jonjoe1001.dev/limitless-lab/items/fluid-sim/thumb.webp" alt="">
+    <img class="is-arcade"   src="https://jonjoe1001.dev/limitless-arcade/items/chipler-colony/thumb.webp" alt="">
+    <img class="is-workshop" src="https://jonjoe1001.dev/limitless-tools/items/particle-designer/thumb.webp" alt="">
+    <img class="is-lab"      src="https://jonjoe1001.dev/limitless-lab/items/fractal-zoom/thumb.webp" alt="">
+    <img class="is-lab"      src="https://jonjoe1001.dev/limitless-lab/items/neural-playground/thumb.webp" alt="">
+    <img class="is-lab"      src="https://jonjoe1001.dev/limitless-lab/items/predator-prey/thumb.webp" alt="">
+    <img class="is-workshop" src="https://jonjoe1001.dev/limitless-tools/items/tilemap-painter/thumb.webp" alt="">
+    <img class="is-lab"      src="https://jonjoe1001.dev/limitless-lab/items/boids/thumb.webp" alt="">
+  </div>
+
+  <div class="bar"></div>
+
+  <div class="inner">
+    <div class="brand"><span class="mark"></span>Jonjoe1001</div>
+
+    <div class="launch"><span class="dot"></span>Now open</div>
+
+    <h1><span class="accent">LIMITLESS LAB</span><span class="rest">is live!</span></h1>
+
+    <p class="lead">Free games, sims and tools that run right in your browser.</p>
+
+    <div class="strip">
+      <span><span class="n g">8</span> games</span><span class="sep">/</span>
+      <span><span class="n s">17</span> sims</span><span class="sep">/</span>
+      <span><span class="n t">14</span> tools</span><span class="sep">/</span>
+      <span class="url">jonjoe1001.dev/launch</span>
+    </div>
+  </div>
+</body>
+</html>
