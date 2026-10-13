@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Sorting - AlgoVision</title>
+  <meta name="description" content="Watch bubble, selection, insertion, merge and quick sort work one step at a time, with the code lighting up as it runs.">
+  <!-- Unlisted until launch: see algovision/index.html -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/img/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#07070C">
+
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="av.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="avatar" src="../assets/img/pfp-160.webp" alt="" width="34" height="34">
+        Jonjoe1001
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="av-subnav" aria-label="AlgoVision">
+    <div class="wrap">
+      <a class="av-logo" href="index.html">Algo<span>Vision</span></a>
+      <a href="index.html">Home</a>
+      <a href="arrays.html">Arrays</a>
+      <a href="big-o.html">Big O</a>
+      <a href="sorting.html" aria-current="page">Sorting</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="av-page">
+      <div class="wrap">
+        <p class="kicker">AlgoVision &middot; Module 3</p>
+        <h1>Sorting, step by step</h1>
+        <p class="av-lead">
+          Pick an algorithm and press play. Every bar is a number. Watch which ones get
+          compared and moved while the line of code doing it lights up. Step backwards any time.
+        </p>
+      </div>
+    </section>
+
+    <section class="av-section" style="padding-top:0">
+      <div class="wrap">
+        <div class="av-pills" id="algos" role="group" aria-label="Algorithm">
+          <button class="av-pill" type="button" data-pick="bubble">Bubble</button>
+          <button class="av-pill" type="button" data-pick="selection">Selection</button>
+          <button class="av-pill" type="button" data-pick="insertion">Insertion</button>
+          <button class="av-pill" type="button" data-pick="merge">Merge &#9733;</button>
+          <button class="av-pill" type="button" data-pick="quick">Quick</button>
+        </div>
+
+        <div class="av-toolbar">
+          <label>Numbers <input id="size" type="range" min="4" max="40" value="12"> <span id="size-out" class="mono">12</span></label>
+          <div class="av-pills" id="kinds" role="group" aria-label="Starting order">
+            <button class="av-pill is-small" type="button" data-pick="random" aria-pressed="true">Random</button>
+            <button class="av-pill is-small" type="button" data-pick="nearly" aria-pressed="false">Nearly sorted</button>
+            <button class="av-pill is-small" type="button" data-pick="reversed" aria-pressed="false">Reversed</button>
+            <button class="av-pill is-small" type="button" data-pick="few" aria-pressed="false">Few unique</button>
+          </div>
+          <button class="av-pill is-small" type="button" id="shuffle">&#8635; New numbers</button>
+        </div>
+
+        <div class="av-workbench">
+          <div class="av-panel">
+            <p class="av-panel-title" id="algo-name">Merge sort</p>
+            <div class="av-stage" id="stage"></div>
+            <div class="av-legend" aria-hidden="true">
+              <span><i style="background:var(--av-compare)"></i>Comparing</span>
+              <span><i style="background:var(--av-write)"></i>Moving / writing</span>
+              <span><i style="background:var(--av-focus)"></i>Pivot / key / smallest</span>
+              <span><i style="background:var(--av-done)"></i>In its final place</span>
+            </div>
+            <div class="av-aux" id="aux"></div>
+            <p class="av-say" id="say" aria-live="polite"></p>
+            <p class="av-now" id="now" aria-hidden="true"></p>
+            <div id="controls"></div>
+            <div class="av-stats">
+              <div class="av-stat"><b id="stat-cmp">0</b><small>Comparisons</small></div>
+              <div class="av-stat"><b id="stat-wr">0</b><small id="stat-wr-label">Writes</small></div>
+              <div class="av-stat"><b id="stat-step">0</b><small>Step</small></div>
+            </div>
+            <div class="av-tree" id="tree" hidden></div>
+          </div>
+
+          <div class="av-side">
+            <div class="av-panel">
+              <p class="av-panel-title">The code (Python)</p>
+              <pre class="av-code" id="code"></pre>
+            </div>
+            <div class="av-panel">
+              <p class="av-panel-title">How it works</p>
+              <ol class="av-how" id="how"></ol>
+              <p class="av-panel-title" style="margin-top:1rem">Big O</p>
+              <div class="av-table-wrap"><table class="av-facts" id="facts"></table></div>
+              <div class="av-next-row"><button class="av-learn" type="button" id="learn"></button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <h2 class="av-h2">Race them</h2>
+        <p class="av-sub">
+          Same numbers, two algorithms, one clock. Each tick is one comparison or one move,
+          so whoever finishes first really did less work.
+        </p>
+        <div class="av-toolbar">
+          <label>Left <select id="race-a" class="av-field">
+            <option value="bubble" selected>Bubble</option>
+            <option value="selection">Selection</option>
+            <option value="insertion">Insertion</option>
+            <option value="merge">Merge</option>
+            <option value="quick">Quick</option>
+          </select></label>
+          <label>Right <select id="race-b" class="av-field">
+            <option value="bubble">Bubble</option>
+            <option value="selection">Selection</option>
+            <option value="insertion">Insertion</option>
+            <option value="merge" selected>Merge</option>
+            <option value="quick">Quick</option>
+          </select></label>
+          <label>Numbers <select id="race-size" class="av-field">
+            <option value="20">20</option>
+            <option value="40" selected>40</option>
+            <option value="80">80</option>
+          </select></label>
+          <button class="av-pill is-small" type="button" id="race-new">&#8635; New numbers</button>
+        </div>
+        <div class="av-panel">
+          <div class="av-race">
+            <div>
+              <div class="av-race-head">
+                <strong id="race-name-a">Bubble sort</strong>
+                <span><span class="av-win" id="race-win-a" hidden>Finished first</span> <span class="av-race-ops" id="race-ops-a"></span></span>
+              </div>
+              <div class="av-stage" id="race-stage-a"></div>
+            </div>
+            <div>
+              <div class="av-race-head">
+                <strong id="race-name-b">Merge sort</strong>
+                <span><span class="av-win" id="race-win-b" hidden>Finished first</span> <span class="av-race-ops" id="race-ops-b"></span></span>
+              </div>
+              <div class="av-stage" id="race-stage-b"></div>
+            </div>
+          </div>
+          <div id="race-controls"></div>
+          <p class="av-race-result" id="race-result" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <h2 class="av-h2">Check yourself</h2>
+        <p class="av-score" id="quiz-score"></p>
+        <div class="av-quiz" id="quiz"></div>
+        <div class="av-next-row">
+          <a class="btn btn-primary" href="index.html">Back to all modules &rarr;</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - AlgoVision</span>
+      <nav class="footer-links">
+        <a href="index.html">AlgoVision</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../privacy.html">Privacy</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+  <script src="av.js"></script>
+  <script src="sorting.js"></script>
+  <script src="../assets/js/stats.js"></script>
+</body>
+</html>

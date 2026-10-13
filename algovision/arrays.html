@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Arrays - AlgoVision</title>
+  <meta name="description" content="See an array the way the computer does: cells in memory, addresses, shifting, resizing and searching, one step at a time.">
+  <!-- Unlisted until launch: see algovision/index.html -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/img/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#07070C">
+
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="av.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="avatar" src="../assets/img/pfp-160.webp" alt="" width="34" height="34">
+        Jonjoe1001
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="av-subnav" aria-label="AlgoVision">
+    <div class="wrap">
+      <a class="av-logo" href="index.html">Algo<span>Vision</span></a>
+      <a href="index.html">Home</a>
+      <a href="arrays.html" aria-current="page">Arrays</a>
+      <a href="big-o.html">Big O</a>
+      <a href="sorting.html">Sorting</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="av-page">
+      <div class="wrap">
+        <p class="kicker">AlgoVision &middot; Module 1</p>
+        <h1>Arrays: cells in a row</h1>
+        <p class="av-lead">
+          An array is one solid block of memory split into equal-size cells. That one fact
+          explains everything: why reading is instant, why inserting is slow, and why arrays
+          sometimes have to pack up and move.
+        </p>
+      </div>
+    </section>
+
+    <section class="av-section" style="padding-top:0">
+      <div class="wrap">
+        <div class="av-workbench">
+          <div class="av-panel">
+            <p class="av-panel-title">Memory <span style="float:right">length <b id="len">6</b> &middot; capacity <b id="cap">8</b></span></p>
+            <div class="av-stage" style="padding-top:.2rem">
+              <div class="av-mem" id="mem"></div>
+              <p class="av-mem-label" id="mem-new-label" hidden>New, bigger block</p>
+              <div class="av-mem is-new" id="mem-new" hidden></div>
+            </div>
+            <p class="av-formula" id="formula"></p>
+            <div class="av-legend" aria-hidden="true">
+              <span><i style="background:var(--av-compare)"></i>Reading / checking</span>
+              <span><i style="background:var(--av-write)"></i>Writing</span>
+              <span><i style="background:var(--av-focus)"></i>Target</span>
+              <span><i style="background:var(--av-done)"></i>Found / done</span>
+            </div>
+            <p class="av-say" id="say" aria-live="polite"></p>
+            <p class="av-now" id="now" aria-hidden="true"></p>
+            <div id="controls"></div>
+            <div class="av-stats">
+              <div class="av-stat"><b id="steps">0</b><small>Steps this op</small></div>
+              <div class="av-stat"><b id="op-name" style="font-size:.95rem; white-space:normal">Read a[i]</b><small>Operation</small></div>
+              <div class="av-stat"><b><span class="av-badge is-o1" id="op-badge">O(1)</span></b><small>Big O</small></div>
+            </div>
+          </div>
+
+          <div class="av-side">
+            <div class="av-panel">
+              <p class="av-panel-title">Try an operation</p>
+              <div class="av-inputs">
+                <label>index i <input class="av-field" id="in-i" type="number" value="2" min="0" max="31"></label>
+                <label>value v <input class="av-field" id="in-v" type="number" value="42" min="0" max="999"></label>
+              </div>
+              <div class="av-ops" id="ops"></div>
+              <div class="av-pills" style="margin:.9rem 0 0">
+                <button class="av-pill is-small" type="button" id="sort-it">Sort it</button>
+                <button class="av-pill is-small" type="button" id="fill">&#8635; New sorted array</button>
+                <button class="av-pill is-small" type="button" id="reset">Reset</button>
+              </div>
+            </div>
+            <div class="av-panel">
+              <p class="av-panel-title">The code (Python-ish)</p>
+              <pre class="av-code" id="code"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <h2 class="av-h2">The cheat sheet</h2>
+        <p class="av-sub">What each operation costs, and the reason in one line.</p>
+        <div class="av-panel av-table-wrap">
+          <table class="av-facts">
+            <thead><tr><th>Operation</th><th>Big O</th><th>Why</th></tr></thead>
+            <tbody>
+              <tr><td>Read / write a[i]</td><td class="good">O(1)</td><td style="font-family:var(--font-body)">Address = start + i &times; 4. One calculation, no searching.</td></tr>
+              <tr><td>Append</td><td class="good">O(1)*</td><td style="font-family:var(--font-body)">Drop it in the next empty cell. *Copies everything when full, but doubling makes that rare.</td></tr>
+              <tr><td>Insert / remove at i</td><td class="bad">O(n)</td><td style="font-family:var(--font-body)">Everything after i has to shift over one cell.</td></tr>
+              <tr><td>Linear search</td><td class="bad">O(n)</td><td style="font-family:var(--font-body)">No idea where it is, so check cells one by one.</td></tr>
+              <tr><td>Binary search</td><td class="good">O(log n)</td><td style="font-family:var(--font-body)">Sorted? Check the middle and throw away half, every time.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="av-next-row"><button class="av-learn" type="button" id="learn"></button></div>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <h2 class="av-h2">Check yourself</h2>
+        <p class="av-score" id="quiz-score"></p>
+        <div class="av-quiz" id="quiz"></div>
+        <div class="av-next-row">
+          <a class="btn btn-primary" href="big-o.html">Next: Big O &rarr;</a>
+          <a class="btn btn-ghost" href="index.html">All modules</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - AlgoVision</span>
+      <nav class="footer-links">
+        <a href="index.html">AlgoVision</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../privacy.html">Privacy</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+  <script src="av.js"></script>
+  <script src="arrays.js"></script>
+  <script src="../assets/js/stats.js"></script>
+</body>
+</html>
