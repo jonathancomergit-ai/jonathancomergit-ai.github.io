@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Variables & References - AlgoVision</title>
+  <meta name="description" content="See variables the way Python does: names with arrows pointing at objects. Aliasing, copies, immutability, functions, is vs == and a sandbox to build your own.">
+  <!-- Unlisted until launch: see algovision/index.html -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/img/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#07070C">
+
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="av.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="avatar" src="../assets/img/pfp-160.webp" alt="" width="34" height="34">
+        Jonjoe1001
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="av-subnav" aria-label="AlgoVision">
+    <div class="wrap">
+      <a class="av-logo" href="index.html">Algo<span>Vision</span></a>
+      <a href="index.html">Home</a>
+      <a href="arrays.html">Arrays</a>
+      <a href="big-o.html">Big O</a>
+      <a href="sorting.html">Sorting</a>
+      <a href="recursion.html">Recursion</a>
+      <a href="pathfinding.html">Pathfinding</a>
+      <a href="structures.html">Data Structures</a>
+      <a href="dp.html">Dynamic Programming</a>
+      <a href="oop.html">OOP</a>
+      <a href="refs.html" aria-current="page">References</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="av-page">
+      <div class="wrap">
+        <p class="kicker">AlgoVision &middot; Concepts 2</p>
+        <h1>Variables &amp; references: names point at things</h1>
+        <p class="av-lead">
+          A variable isn't a box that holds a value. It's a <strong>name with an arrow</strong> pointing at an
+          object. Two names can point at the same object, and that's behind the most common
+          "why did that change?!" bugs. Watch the arrows, then build your own in the sandbox.
+        </p>
+      </div>
+    </section>
+
+    <section class="av-section" style="padding-top:0">
+      <div class="wrap">
+        <div class="av-pills" id="scens" role="group" aria-label="Scenario">
+          <button class="av-pill" type="button" data-pick="alias">Two names, one list</button>
+          <button class="av-pill" type="button" data-pick="copy">Real copy</button>
+          <button class="av-pill" type="button" data-pick="immut">Numbers</button>
+          <button class="av-pill" type="button" data-pick="func">Functions</button>
+          <button class="av-pill" type="button" data-pick="is">is vs ==</button>
+          <button class="av-pill" type="button" data-pick="shallow">Shallow copy trap</button>
+          <button class="av-pill" type="button" data-pick="sandbox">Sandbox &#9733;</button>
+        </div>
+
+        <div class="av-workbench">
+          <div class="av-panel">
+            <p class="av-panel-title" id="scen-name">Two names, one list</p>
+            <div class="av-stage rf-stage">
+              <svg class="rf-pic" id="pic" viewBox="0 0 480 340" role="img" aria-label="Names on the left with arrows to the objects they point at on the right. The sentence below describes each step."></svg>
+              <div class="pf-ds" id="out"></div>
+            </div>
+            <p class="av-say" id="say" aria-live="polite"></p>
+            <p class="av-now" id="now" aria-hidden="true"></p>
+            <div id="controls"></div>
+          </div>
+
+          <div class="av-side">
+            <div class="av-panel" id="sand" hidden>
+              <p class="av-panel-title">Write a program (press in any order)</p>
+              <div class="av-ops" id="sand-ops"></div>
+              <div class="av-pills" style="margin:.9rem 0 0"><button class="av-pill is-small" type="button" id="sand-reset">Reset</button></div>
+            </div>
+            <div class="av-panel">
+              <p class="av-panel-title">The code (Python)</p>
+              <pre class="av-code" id="code"></pre>
+            </div>
+            <div class="av-panel">
+              <p class="av-panel-title">The rules</p>
+              <ol class="av-how">
+                <li><b>a = something</b> points the name a at an object. It never copies.</li>
+                <li><b>Changing</b> an object (append, item = ...) is seen through every name that points at it.</li>
+                <li><b>Rebinding</b> a name (a = new thing) only moves that one arrow.</li>
+                <li>Numbers and strings can't be changed, only rebound. Lists, dicts and objects can.</li>
+                <li>An object with no arrows pointing at it gets cleaned up (garbage collected).</li>
+              </ol>
+              <div class="av-next-row"><button class="av-learn" type="button" id="learn"></button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <h2 class="av-h2">Check yourself</h2>
+        <p class="av-score" id="quiz-score"></p>
+        <div class="av-quiz" id="quiz"></div>
+        <div class="av-next-row">
+          <a class="btn btn-primary" href="index.html">Back to all modules &rarr;</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - AlgoVision</span>
+      <nav class="footer-links">
+        <a href="index.html">AlgoVision</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../privacy.html">Privacy</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+  <script src="av.js"></script>
+  <script src="refs.js"></script>
+  <script src="../assets/js/stats.js"></script>
+</body>
+</html>

@@ -1147,6 +1147,33 @@ kbd {
   .oo-acct { grid-row: auto; }
 }
 
+/* ---------- variables & references ---------- */
+.rf-stage { padding: .6rem .7rem; }
+.rf-pic { width: 100%; height: auto; display: block; }
+.rf-col { font-family: var(--font-mono); font-size: 10px; letter-spacing: .16em; fill: var(--text-faint); }
+.rf-frame > rect { fill: var(--bg-2); stroke: var(--line-bright); stroke-width: 1.3; }
+.rf-frame.is-fn > rect { stroke: var(--amber); stroke-dasharray: 5 3; }
+.rf-fname { font-family: var(--font-mono); font-size: 11px; font-weight: 700; fill: var(--text-dim); }
+.rf-name rect { fill: var(--surface-2); stroke: var(--line); }
+.rf-name text { font-family: var(--font-mono); font-size: 13px; font-weight: 700; fill: var(--text); }
+.rf-name.is-hl rect { fill: rgba(255, 45, 120, .16); stroke: var(--hot); }
+.rf-dot { fill: var(--text-dim); }
+.rf-empty { font-family: var(--font-body); font-size: 11px; font-style: italic; fill: var(--text-faint); }
+.rf-type { font-family: var(--font-mono); font-size: 10px; fill: var(--text-faint); }
+.rf-box { fill: var(--surface-2); stroke: var(--line-bright); stroke-width: 1.4; }
+.rf-div { stroke: var(--line-bright); }
+.rf-val { font-family: var(--font-mono); font-size: 13px; font-weight: 700; fill: var(--text); }
+.rf-obj { transition: opacity .2s; }
+.rf-obj.is-hl .rf-box { stroke: var(--amber); stroke-width: 2.4; fill: rgba(255, 201, 60, .14); }
+.rf-obj.is-dead { opacity: .35; }
+.rf-obj.is-dead .rf-type { fill: var(--hot); }
+.rf-arrow { fill: none; stroke: var(--text-dim); stroke-width: 1.6; }
+.rf-arrow.is-hot { stroke: var(--hot); stroke-width: 2.2; }
+.rf-arrow.is-inner { stroke: var(--cyan); stroke-dasharray: 4 3; }
+.rf-ah { fill: var(--text-dim); }
+.rf-ah.is-hot { fill: var(--hot); }
+.rf-stage .pf-ds { min-height: 1.8rem; margin-top: .3rem; }
+
 @media (prefers-reduced-motion: reduce) {
   .av-bar, .av-cell .val, .av-grow-fill, .av-progress-bar div { transition: none; }
 }

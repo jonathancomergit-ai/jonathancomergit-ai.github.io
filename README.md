@@ -59,6 +59,7 @@ algovision/
 ├── structures.html  Module 6: stack, queue, linked list, hash map, binary search tree
 ├── dp.html          Module 7: DP tables - Fibonacci, grid paths, coin change, LCS
 ├── oop.html         Concepts 1: classes, inheritance, polymorphism, encapsulation, abstraction
+├── refs.html        Concepts 2: names, arrows and objects - aliasing, copies, sandbox
 ├── av.css         AlgoVision styles, on top of site.css. Classes start with .av-
 ├── av.js          Shared engine: Player, Code panel, Bars, quiz, progress
 └── *.js           One script per module
