@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Dynamic Programming - AlgoVision</title>
+  <meta name="description" content="Watch DP tables fill one cell at a time: Fibonacci, grid paths, coin change and longest common subsequence, with inputs you control.">
+  <!-- Unlisted until launch: see algovision/index.html -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/img/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#07070C">
+
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="av.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="avatar" src="../assets/img/pfp-160.webp" alt="" width="34" height="34">
+        Jonjoe1001
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="av-subnav" aria-label="AlgoVision">
+    <div class="wrap">
+      <a class="av-logo" href="index.html">Algo<span>Vision</span></a>
+      <a href="index.html">Home</a>
+      <a href="arrays.html">Arrays</a>
+      <a href="big-o.html">Big O</a>
+      <a href="sorting.html">Sorting</a>
+      <a href="recursion.html">Recursion</a>
+      <a href="pathfinding.html">Pathfinding</a>
+      <a href="structures.html">Data Structures</a>
+      <a href="dp.html" aria-current="page">Dynamic Programming</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="av-page">
+      <div class="wrap">
+        <p class="kicker">AlgoVision &middot; Module 7</p>
+        <h1>Dynamic programming: never solve the same thing twice</h1>
+        <p class="av-lead">
+          Big problems are often made of the same small problems, over and over. Dynamic programming
+          solves each small one <strong>once</strong>, writes the answer in a table, and builds the big
+          answer from the table. Watch the tables fill, then change the inputs and run it again.
+        </p>
+      </div>
+    </section>
+
+    <section class="av-section" style="padding-top:0">
+      <div class="wrap">
+        <div class="av-pills" id="probs" role="group" aria-label="Problem">
+          <button class="av-pill" type="button" data-pick="fib">Fibonacci</button>
+          <button class="av-pill" type="button" data-pick="grid">Grid paths</button>
+          <button class="av-pill" type="button" data-pick="coins">Coin change &#9733;</button>
+          <button class="av-pill" type="button" data-pick="lcs">Common subsequence</button>
+        </div>
+
+        <div class="av-toolbar dp-inputs">
+          <div data-for="fib"><label>n = <input id="fib-n" type="range" min="2" max="15" value="10"> <span id="fib-n-out" class="mono">10</span></label></div>
+          <div data-for="grid" hidden class="pf-tools">
+            <span>Tap squares to add or remove rocks.</span>
+            <button class="av-pill is-small" type="button" id="grid-random">&#8635; Random rocks</button>
+            <button class="av-pill is-small" type="button" id="grid-clear">Clear</button>
+          </div>
+          <div data-for="coins" hidden class="pf-tools">
+            <label>Coins <input class="av-field" id="coins-set" type="text" value="1, 3, 4" style="width:7rem" inputmode="numeric"></label>
+            <label>Amount <input id="coins-amt" type="range" min="1" max="24" value="6"> <span id="coins-amt-out" class="mono">6</span></label>
+            <button class="av-pill is-small" type="button" id="coins-go">Run</button>
+            <button class="av-pill is-small" type="button" data-coins="1, 3, 4|6">Greedy trap</button>
+            <button class="av-pill is-small" type="button" data-coins="1, 5, 10|18">Pocket change</button>
+            <button class="av-pill is-small" type="button" data-coins="5, 7|11">Impossible?</button>
+          </div>
+          <div data-for="lcs" hidden class="pf-tools">
+            <label>Word 1 <input class="av-field" id="lcs-a" type="text" value="PYTHON" maxlength="8" autocapitalize="characters" spellcheck="false" style="width:6.5rem"></label>
+            <label>Word 2 <input class="av-field" id="lcs-b" type="text" value="PHOTON" maxlength="8" autocapitalize="characters" spellcheck="false" style="width:6.5rem"></label>
+            <button class="av-pill is-small" type="button" id="lcs-go">Run</button>
+          </div>
+        </div>
+
+        <div class="av-workbench">
+          <div class="av-panel">
+            <p class="av-panel-title" id="prob-name">Fibonacci</p>
+            <div class="av-stage dp-stage" id="stage"></div>
+            <div class="av-legend" aria-hidden="true">
+              <span><i style="background:var(--av-compare)"></i>Read from the table</span>
+              <span><i style="background:var(--av-focus)"></i>Working on</span>
+              <span><i style="background:var(--av-write)"></i>Just written</span>
+              <span><i style="background:var(--av-done)"></i>The answer</span>
+            </div>
+            <p class="av-say" id="say" aria-live="polite"></p>
+            <p class="av-now" id="now" aria-hidden="true"></p>
+            <div id="controls"></div>
+            <div class="av-stats">
+              <div class="av-stat"><b id="s-filled">0</b><small>Cells filled</small></div>
+              <div class="av-stat"><b id="s-answer">-</b><small>Answer</small></div>
+              <div class="av-stat"><b>Once</b><small>Each solved</small></div>
+            </div>
+          </div>
+
+          <div class="av-side">
+            <div class="av-panel">
+              <p class="av-panel-title">The code (Python)</p>
+              <pre class="av-code" id="code"></pre>
+            </div>
+            <div class="av-panel">
+              <p class="av-panel-title">How it works</p>
+              <ol class="av-how" id="how"></ol>
+              <div class="av-next-row"><button class="av-learn" type="button" id="learn"></button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <h2 class="av-h2">Spotting a DP problem</h2>
+        <div class="av-rules">
+          <div class="av-panel">
+            <h3>1. Same small problems, again and again</h3>
+            <p>Naive fib(5) works out fib(2) three times. If you see repeats, a table can remember them.</p>
+          </div>
+          <div class="av-panel">
+            <h3>2. Big answer from small answers</h3>
+            <p>ways(square) comes from ways(above) and ways(left). Find that rule and you've found the DP.</p>
+          </div>
+          <div class="av-panel">
+            <h3>3. Define the cell</h3>
+            <p>Say in one sentence what a cell means: "dp[a] = fewest coins to make a". The rest follows.</p>
+          </div>
+          <div class="av-panel">
+            <h3>4. Fill in an order that works</h3>
+            <p>Every cell you read must already be filled. Usually small to big, top to bottom, left to right.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <h2 class="av-h2">Check yourself</h2>
+        <p class="av-score" id="quiz-score"></p>
+        <div class="av-quiz" id="quiz"></div>
+        <div class="av-next-row">
+          <a class="btn btn-primary" href="index.html">Back to all modules &rarr;</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - AlgoVision</span>
+      <nav class="footer-links">
+        <a href="index.html">AlgoVision</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../privacy.html">Privacy</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+  <script src="av.js"></script>
+  <script src="dp.js"></script>
+  <script src="../assets/js/stats.js"></script>
+</body>
+</html>
