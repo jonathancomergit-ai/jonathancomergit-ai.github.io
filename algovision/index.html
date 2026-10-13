@@ -12,7 +12,7 @@
        tools/build_sitemap.py), and every page has the noindex tag below.
 
        TO LAUNCH IT:
-         1. Delete the robots noindex line on all four AlgoVision pages
+         1. Delete the robots noindex line on every AlgoVision page
          2. Remove "algovision/" from SKIP_DIRS in tools/build_sitemap.py,
             then run it
          3. Add a button/card: projects.html, limitless.html, or the home page
@@ -57,6 +57,7 @@
       <a href="arrays.html">Arrays</a>
       <a href="big-o.html">Big O</a>
       <a href="sorting.html">Sorting</a>
+      <a href="recursion.html">Recursion</a>
     </div>
   </nav>
 
@@ -128,14 +129,16 @@
             </div>
           </article>
 
-          <article class="card is-soon">
-            <div class="card-art is-blank" aria-hidden="true" style="--blank-glow: rgba(61,245,160,.18)">
+          <article class="card">
+            <a class="card-art is-blank" href="recursion.html" tabindex="-1" aria-hidden="true" style="--blank-glow: rgba(61,245,160,.22)">
               <span class="initials">f(f(x))</span>
-            </div>
+            </a>
             <div class="card-body">
-              <div class="tags"><span class="tag is-soon">Coming soon</span></div>
-              <h3>Recursion</h3>
-              <p>Watch the call stack pile up and unwind. Base cases, and memoization making slow code fast.</p>
+              <div class="tags"><span class="tag is-ready">Module 4</span><span class="tag">Algorithms</span></div>
+              <h3><a href="recursion.html">Recursion</a></h3>
+              <p>Watch the call stack pile up and unwind, the call tree grow, and memoization make slow code fast.</p>
+              <ul class="av-topics"><li data-topic="recursion">Base cases, the call stack, memoization</li></ul>
+              <div class="card-links"><a href="recursion.html">Open &rarr;</a> <a href="recursion.html#memo">Memo fib &rarr;</a></div>
             </div>
           </article>
 
