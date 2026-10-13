@@ -264,25 +264,41 @@
   var sCalls = $("#s-calls"), sDepth = $("#s-depth"), sHits = $("#s-hits"), sHitsBox = $("#s-hits-box");
   var code = AV.Code($("#code"), [], $("#now"));
 
+  function stackHtml(f) {
+    return f.stack.length
+      ? f.stack.slice().reverse().map(function (s) {
+          return '<div class="r-frame' + (s.top ? " is-top" : "") + '"><b>' + s.label + "</b>" +
+            (s.note ? "<span>" + s.note + "</span>" : "") + "</div>";
+        }).join("")
+      : '<p class="r-empty">Empty. Nothing is running.</p>';
+  }
+  function memoHtml(f) {
+    return f.memo.length
+      ? f.memo.map(function (m) { return '<span class="av-box">' + m[0] + ": " + m[1] + "</span>"; }).join("")
+      : '<span class="r-empty">empty</span>';
+  }
+
   function render(f) {
     code.mark(f.line);
     say.innerHTML = f.msg;
     sCalls.textContent = f.calls;
     sDepth.textContent = f.depth + " (max " + f.maxDepth + ")";
     sHits.textContent = f.hits;
-    stackEl.innerHTML = f.stack.length
-      ? f.stack.slice().reverse().map(function (s) {
-          return '<div class="r-frame' + (s.top ? " is-top" : "") + '"><b>' + s.label + "</b>" +
-            (s.note ? "<span>" + s.note + "</span>" : "") + "</div>";
-        }).join("")
-      : '<p class="r-empty">Empty. Nothing is running.</p>';
-    memoEl.innerHTML = f.memo.length
-      ? f.memo.map(function (m) { return '<span class="av-box">' + m[0] + ": " + m[1] + "</span>"; }).join("")
-      : '<span class="r-empty">empty</span>';
+    stackEl.innerHTML = stackHtml(f);
+    memoEl.innerHTML = memoHtml(f);
     drawTree(f);
   }
 
-  var player = AV.Player($("#controls"), render, { keys: true, speed: 1 });
+  /* steady: the stack and memo boxes are sized for their biggest
+     moment in the run, so they fill up instead of growing. */
+  var player = AV.Player($("#controls"), render, {
+    keys: true, speed: 1,
+    steady: [
+      { el: say, html: function (f) { return f.msg; } },
+      { el: stackEl, html: stackHtml },
+      { el: memoEl, html: memoHtml }
+    ]
+  });
   var current = /^#(fact|fib|memo)$/.test(location.hash) ? location.hash.slice(1) : "fact";
   var nIn = $("#rn"), nOut = $("#rn-out");
 

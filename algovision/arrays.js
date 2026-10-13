@@ -311,27 +311,43 @@
     });
   }
 
+  /* If any step of this run moves house, the "new block" row keeps its
+     space for the whole run (invisible when unused), so the page below
+     it doesn't jump when the copy starts and ends. */
+  var growSize = 0;
   function render(f, i, all) {
     strip(memEl, f.cells, f.len, f.hl, f.ptr, f.start);
+    growSize = 0;
+    all.forEach(function (x) { if (x.newCells) { growSize = x.newCells.length; } });
+    newEl.hidden = newLabel.hidden = !growSize;
+    newEl.style.visibility = newLabel.style.visibility = f.newCells ? "visible" : "hidden";
     if (f.newCells) {
-      newEl.hidden = newLabel.hidden = false;
       strip(newEl, f.newCells, f.len, f.newHl, {}, f.newStart);
-    } else {
-      newEl.hidden = newLabel.hidden = true;
+    } else if (growSize) {
+      strip(newEl, new Array(growSize).fill(null), 0, {}, {}, f.start);
     }
     say.innerHTML = f.msg;
     code.mark(f.line);
     stepsEl.textContent = f.steps;
     lenEl.textContent = f.len;
     capEl.textContent = f.cells.length;
+    formula.innerHTML = formulaHtml(f);
+  }
+  function formulaHtml(f) {
     var k = f.formula;
-    formula.innerHTML = k != null
+    return k != null
       ? "address of a[" + k + "] = " + hex(0, f.start) + " + " + k + " &times; 4 = <b>" + hex(k, f.start) + "</b>"
       : "address of a[i] = <b>start + i &times; 4</b> &nbsp;(every number takes 4 bytes)";
   }
 
   var code = AV.Code($("#code"), [], $("#now"));
-  var player = AV.Player($("#controls"), render, { keys: true, speed: 1 });
+  var player = AV.Player($("#controls"), render, {
+    keys: true, speed: 1,
+    steady: [
+      { el: say, html: function (f) { return f.msg; } },
+      { el: formula, html: formulaHtml }
+    ]
+  });
 
   /* ---------- buttons ---------- */
 
