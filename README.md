@@ -54,6 +54,7 @@ algovision/
 ├── big-o.html     Module 2: growth chart, "how long would it take?", the 4 rules
 ├── sorting.html   Module 3: 5 sorts, merge sort split tree, the race
 ├── recursion.html Module 4: call stack, call tree, factorial / fib / memoized fib
+├── pathfinding.html Module 5: draw a grid, BFS / DFS / Dijkstra / A*
 ├── av.css         AlgoVision styles, on top of site.css. Classes start with .av-
 ├── av.js          Shared engine: Player, Code panel, Bars, quiz, progress
 └── *.js           One script per module
