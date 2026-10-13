@@ -26,6 +26,7 @@ site/
 │                         first — see the comment at the top. Every page's
 │                         footer also links YouTube, TikTok, Discord, itch and GitHub,
 │                         and index.html lists the same profiles for Google (sameAs)
+├── algovision/          AlgoVision, the visual algorithm guide. Unlisted - see below
 ├── posts/
 │   ├── _TEMPLATE.html    Copy this to write a new post. Never edit it directly.
 │   └── 2026-09-09-hello-world.html
@@ -36,6 +37,32 @@ site/
 ├── .nojekyll             Tells GitHub Pages to serve the files as-is
 └── README.md             This file
 ```
+
+---
+
+## AlgoVision (unlisted)
+
+A visual guide to algorithms at `jonjoe1001.dev/algovision/`. **Live, but hidden
+until launch**: nothing links to it, every page has `noindex`, and
+`tools/build_sitemap.py` skips the folder. The launch steps are in the comment
+at the top of `algovision/index.html`.
+
+```
+algovision/
+├── index.html     Home: modules, progress bar (saved in the browser only)
+├── arrays.html    Module 1: memory cells, addresses, insert/remove, resize, search
+├── big-o.html     Module 2: growth chart, "how long would it take?", the 4 rules
+├── sorting.html   Module 3: 5 sorts, merge sort split tree, the race
+├── av.css         AlgoVision styles, on top of site.css. Classes start with .av-
+├── av.js          Shared engine: Player, Code panel, Bars, quiz, progress
+└── *.js           One script per module
+```
+
+How a module works: the algorithm runs once for real and saves a **frame**
+(a snapshot plus the code line and a sentence) at every step. The Player only
+flips through frames, which is why stepping backwards is free. To add a module,
+copy a page, write a function that records frames, and give it a code listing.
+New topics for the progress bar go in `TOPICS` at the top of `av.js`.
 
 ---
 

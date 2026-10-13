@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Big O - AlgoVision</title>
+  <meta name="description" content="See why some code stays fast and some falls off a cliff. Race the six common Big O curves and find out how long each would really take.">
+  <!-- Unlisted until launch: see algovision/index.html -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/img/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#07070C">
+
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="av.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="avatar" src="../assets/img/pfp-160.webp" alt="" width="34" height="34">
+        Jonjoe1001
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="av-subnav" aria-label="AlgoVision">
+    <div class="wrap">
+      <a class="av-logo" href="index.html">Algo<span>Vision</span></a>
+      <a href="index.html">Home</a>
+      <a href="arrays.html">Arrays</a>
+      <a href="big-o.html" aria-current="page">Big O</a>
+      <a href="sorting.html">Sorting</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="av-page">
+      <div class="wrap">
+        <p class="kicker">AlgoVision &middot; Module 2</p>
+        <h1>Big O: how work grows</h1>
+        <p class="av-lead">
+          Big O isn't about seconds. It answers one question: <strong>when the input gets bigger,
+          how much more work does the code do?</strong> Double the list and the work might stay the
+          same, double, quadruple... or explode.
+        </p>
+      </div>
+    </section>
+
+    <section class="av-section" style="padding-top:0">
+      <div class="wrap">
+        <h2 class="av-h2">Race the curves</h2>
+        <p class="av-sub">
+          Each line is how many steps that kind of code needs for an input of size <b>n</b>.
+          Hit <b>Grow n</b> and watch them pull apart. Hover (or tap) the chart to read exact numbers.
+          Tap a name to hide or show its line. <b>O(2&#8319;)</b> starts hidden because it
+          squashes everything else flat. Turn it on and see.
+        </p>
+
+        <div class="av-panel">
+          <div class="av-toolbar">
+            <button class="btn btn-primary" type="button" id="grow">&#9654; Grow n</button>
+            <label>n = <input id="n" type="range" min="2" max="64" value="20"> <span id="n-out" class="mono">20</span></label>
+            <div class="av-pills" id="scale" role="group" aria-label="Scale">
+              <button class="av-pill is-small" type="button" data-pick="linear" aria-pressed="true">Normal scale</button>
+              <button class="av-pill is-small" type="button" data-pick="log" aria-pressed="false">Log scale</button>
+            </div>
+          </div>
+          <div class="av-key" id="key" role="group" aria-label="Show or hide curves"></div>
+          <div class="av-chart-wrap" id="chart-wrap">
+            <svg class="av-chart" id="chart" viewBox="0 0 760 380" role="img"
+                 aria-label="Line chart of steps against input size n for six Big O classes. Exact values are in the list below it."></svg>
+            <div class="av-tip" id="tip" hidden></div>
+          </div>
+          <p class="av-panel-title" style="margin-top:1rem">Steps when n = <span id="growth-n">20</span></p>
+          <div class="av-growth" id="growth"></div>
+          <p class="av-tree-note" style="margin-top:.8rem">
+            <b>Log scale</b> squeezes the tall numbers so every line fits: each gridline is 10&times; the one below.
+            On a log scale O(2&#8319;) becomes a straight line, which is the giveaway that it's exponential.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <h2 class="av-h2">How long would it really take?</h2>
+        <p class="av-sub">
+          Say your computer does a billion simple steps a second (about right for a modern one).
+          Pick a size of input:
+        </p>
+        <div class="av-pills" id="time-pills" role="group" aria-label="Input size">
+          <button class="av-pill is-small" type="button" data-pick="10" aria-pressed="false">10</button>
+          <button class="av-pill is-small" type="button" data-pick="100" aria-pressed="false">100</button>
+          <button class="av-pill is-small" type="button" data-pick="1000" aria-pressed="true">1,000</button>
+          <button class="av-pill is-small" type="button" data-pick="100000" aria-pressed="false">100,000</button>
+          <button class="av-pill is-small" type="button" data-pick="1000000" aria-pressed="false">1 million</button>
+          <button class="av-pill is-small" type="button" data-pick="1000000000" aria-pressed="false">1 billion</button>
+        </div>
+        <div class="av-panel av-table-wrap">
+          <table class="av-facts av-time">
+            <thead><tr><th>Big O</th><th>Steps for n = <span id="time-n"></span></th><th>Time</th></tr></thead>
+            <tbody id="time-body"></tbody>
+          </table>
+        </div>
+        <p class="av-tree-note" style="margin-top:.7rem">
+          That's why it matters: at a million items, a good sort (n log n) finishes in a blink and
+          a slow one (n&sup2;) takes minutes. Same computer, better idea.
+        </p>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <h2 class="av-h2">The six you'll meet most</h2>
+        <p class="av-sub">Fastest at the top. Each one has the code shape that gives it away.</p>
+        <div class="av-classes">
+          <div class="av-panel av-class">
+            <h3><i style="background:#3987e5"></i>O(1) &middot; constant</h3>
+            <p>Same work no matter how big the input. Ten items or ten million, one step.</p>
+            <pre class="av-code" data-code="def first(a):|    return a[0]"></pre>
+            <p class="eg">Like opening a book at a page number you already know.</p>
+          </div>
+          <div class="av-panel av-class">
+            <h3><i style="background:#d95926"></i>O(log n) &middot; logarithmic</h3>
+            <p>Cuts the problem in half every step. Doubling the input adds just <b>one</b> more step.</p>
+            <pre class="av-code" data-code="while lo <= hi:|    mid = (lo + hi) // 2|    if a[mid] == x: return mid|    if a[mid] < x: lo = mid + 1|    else: hi = mid - 1"></pre>
+            <p class="eg">Finding a name in a phone book by opening it in the middle, again and again.</p>
+          </div>
+          <div class="av-panel av-class">
+            <h3><i style="background:#199e70"></i>O(n) &middot; linear</h3>
+            <p>Looks at everything once. Twice the input, twice the work.</p>
+            <pre class="av-code" data-code="for x in a:|    if x == target:|        return True|return False"></pre>
+            <p class="eg">Checking every seat in a row for your lost phone.</p>
+          </div>
+          <div class="av-panel av-class">
+            <h3><i style="background:#c98500"></i>O(n log n) &middot; linearithmic</h3>
+            <p>log n rounds of n work each. The speed limit for sorting by comparing.</p>
+            <pre class="av-code" data-code="merge_sort(a, 0, len(a))|# log n levels of splitting|# n work to merge each level"></pre>
+            <p class="eg">Merge sort. <a href="sorting.html#merge">Watch it split &rarr;</a></p>
+          </div>
+          <div class="av-panel av-class">
+            <h3><i style="background:#d55181"></i>O(n&sup2;) &middot; quadratic</h3>
+            <p>Every item meets every other item. Twice the input, <b>four</b> times the work.</p>
+            <pre class="av-code" data-code="for i in range(n):|    for j in range(n):|        compare(a[i], a[j])"></pre>
+            <p class="eg">Everyone in a room shaking hands with everyone else. Bubble sort.</p>
+          </div>
+          <div class="av-panel av-class">
+            <h3><i style="background:#008300"></i>O(2&#8319;) &middot; exponential</h3>
+            <p>Each extra item <b>doubles</b> the work. Fine at 20, hopeless at 100.</p>
+            <pre class="av-code" data-code="def fib(n):|    if n <= 1: return n|    return fib(n - 1) + fib(n - 2)"></pre>
+            <p class="eg">Trying every possible combination, like every on/off setting of n switches.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <h2 class="av-h2">Four rules for working it out</h2>
+        <div class="av-rules">
+          <div class="av-panel">
+            <h3>1. Drop the constants</h3>
+            <p>3n and n grow the same way. Big O cares about the shape, not the exact count.</p>
+            <pre class="av-code" data-code="# 3n steps|for x in a: ...|for x in a: ...|for x in a: ...|# -> O(n)"></pre>
+          </div>
+          <div class="av-panel">
+            <h3>2. Keep the biggest term</h3>
+            <p>n&sup2; + n: when n is huge, the n barely matters next to n&sup2;.</p>
+            <pre class="av-code" data-code="# n² + n steps|for i in a:|    for j in a: ...|for x in a: ...|# -> O(n²)"></pre>
+          </div>
+          <div class="av-panel">
+            <h3>3. Nested loops multiply</h3>
+            <p>A loop inside a loop: outer count &times; inner count.</p>
+            <pre class="av-code" data-code="for i in range(n):  # n|  for j in range(m):  # x m|    ...|# -> O(n * m)"></pre>
+          </div>
+          <div class="av-panel">
+            <h3>4. Back-to-back loops add</h3>
+            <p>One loop, then another: add them, then apply rule 2.</p>
+            <pre class="av-code" data-code="for x in a: ...  # n|for y in b: ...  # + m|# -> O(n + m)"></pre>
+          </div>
+        </div>
+        <div class="av-next-row"><button class="av-learn" type="button" id="learn"></button></div>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <h2 class="av-h2">Spot the Big O</h2>
+        <p class="av-score" id="quiz-score"></p>
+        <div class="av-quiz" id="quiz"></div>
+        <div class="av-next-row">
+          <a class="btn btn-primary" href="sorting.html">Next: Sorting &rarr;</a>
+          <a class="btn btn-ghost" href="index.html">All modules</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - AlgoVision</span>
+      <nav class="footer-links">
+        <a href="index.html">AlgoVision</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../privacy.html">Privacy</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+  <script src="av.js"></script>
+  <script>
+    /* Static code samples: data-code holds the lines, split on "|". */
+    document.querySelectorAll("pre[data-code]").forEach(function (pre) {
+      AV.Code(pre, pre.getAttribute("data-code").split("|"));
+    });
+  </script>
+  <script src="big-o.js"></script>
+  <script src="../assets/js/stats.js"></script>
+</body>
+</html>
