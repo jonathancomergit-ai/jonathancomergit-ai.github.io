@@ -60,7 +60,8 @@ var AV = (function () {
     "oop-inherit":  "OOP: inheritance",
     "oop-poly":     "OOP: polymorphism",
     "oop-encap":    "OOP: encapsulation",
-    "oop-abstract": "OOP: abstraction"
+    "oop-abstract": "OOP: abstraction",
+    "refs":      "Variables & references"
   };
   var KEY = "algovision-progress";
 
