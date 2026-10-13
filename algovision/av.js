@@ -51,7 +51,16 @@ var AV = (function () {
     "queue":     "Queues",
     "linkedlist": "Linked lists",
     "hashmap":   "Hash maps",
-    "bst":       "Binary search trees"
+    "bst":       "Binary search trees",
+    "dp-fib":    "DP: Fibonacci",
+    "dp-grid":   "DP: grid paths",
+    "dp-coins":  "DP: coin change",
+    "dp-lcs":    "DP: common subsequence",
+    "oop-classes":  "OOP: classes & objects",
+    "oop-inherit":  "OOP: inheritance",
+    "oop-poly":     "OOP: polymorphism",
+    "oop-encap":    "OOP: encapsulation",
+    "oop-abstract": "OOP: abstraction"
   };
   var KEY = "algovision-progress";
 
