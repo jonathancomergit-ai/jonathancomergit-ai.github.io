@@ -184,6 +184,7 @@
 /* narration: the plain-English line under the stage */
 .av-say {
   min-height: 3.2em;
+  box-sizing: border-box;
   margin: .8rem 0 0;
   padding: .7rem .9rem;
   border-left: 3px solid var(--cyan);
@@ -205,7 +206,6 @@
   font-variant-ligatures: none;
   font-feature-settings: "liga" 0, "calt" 0;
 }
-.av-now:empty { display: none !important; }
 .av-now .lbl { color: var(--amber); margin-right: .6rem; }
 .av-now .c { color: #6E7697; font-style: italic; }
 .av-now .k { color: var(--hot); }
@@ -238,9 +238,11 @@
 .av-ctl:disabled { opacity: .35; cursor: default; }
 .av-scrub { flex: 1 1 160px; display: flex; align-items: center; gap: .6rem; }
 .av-scrub input { flex: 1; }
-.av-count { font-family: var(--font-mono); font-size: .74rem; color: var(--text-dim); white-space: nowrap; }
+.av-count { font-family: var(--font-mono); font-size: .74rem; color: var(--text-dim); white-space: nowrap;
+  min-width: 6.2em; text-align: right; font-variant-numeric: tabular-nums; }
 .av-speed { display: flex; align-items: center; gap: .45rem; font-family: var(--font-mono); font-size: .74rem; color: var(--text-dim); }
 .av-speed input { width: 90px; }
+.av-speed span { display: inline-block; min-width: 2.2em; }
 
 input[type="range"] { accent-color: var(--cyan); }
 
@@ -374,7 +376,8 @@ select.av-field { width: auto; }
   font-size: .75rem;
   color: var(--text-dim);
 }
-.av-aux:empty { display: none; }
+.av-aux[hidden] { display: none; }
+.av-aux-idle { color: var(--text-faint); font-family: var(--font-body); font-size: .8rem; font-style: italic; opacity: .7; }
 .av-aux .grp { display: flex; align-items: center; gap: .25rem; }
 .av-box {
   min-width: 1.9rem;
@@ -448,7 +451,8 @@ select.av-field { width: auto; }
   padding: .15rem .5rem;
   border-radius: 4px;
 }
-.av-race-result { margin-top: .8rem; color: var(--text-dim); min-height: 1.6em; }
+.av-race-result { margin-top: .8rem; color: var(--text-dim); min-height: 3.3em; }
+.av-win.is-off { visibility: hidden; }
 
 /* ---------- arrays: memory strip ---------- */
 .av-mem {
