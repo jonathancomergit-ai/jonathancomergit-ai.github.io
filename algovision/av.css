@@ -1220,6 +1220,53 @@ kbd {
 .av-sbar-text { font-family: var(--font-mono); font-size: .72rem; color: var(--text-faint); }
 .av-modules .card[hidden] { display: none; }
 
+/* ---------- async & the event loop ---------- */
+.ev-clock { float: right; color: var(--amber); letter-spacing: .06em; }
+.ev-stage { padding: .7rem; }
+.ev-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .55rem; }
+.ev-wide { grid-column: 1 / -1; }
+.ev-panel {
+  border: 1px solid var(--line-bright); border-radius: var(--radius-sm);
+  background: var(--surface); padding: .5rem .6rem; min-width: 0;
+  transition: border-color .15s, box-shadow .15s;
+}
+.ev-panel.is-hot { border-color: var(--amber); box-shadow: 0 0 0 1px var(--amber) inset; }
+.ev-title { font-family: var(--font-mono); font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: var(--text-dim); margin: 0 0 .4rem; }
+.ev-title small { text-transform: none; letter-spacing: 0; color: var(--text-faint); margin-left: .3rem; }
+.ev-body { font-family: var(--font-mono); font-size: .74rem; }
+#q-stack .ev-body, #q-apis .ev-body { height: 7.4rem; overflow: hidden; display: flex; flex-direction: column; gap: 3px; }
+#q-stack .ev-body { justify-content: flex-end; }
+.ev-row { display: flex; gap: .3rem; align-items: center; height: 1.9rem; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+.ev-item { padding: .3rem .5rem; border-radius: 5px; border: 1px solid var(--line-bright); background: var(--surface-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ev-item.is-top { border-color: var(--amber); color: var(--amber); }
+.ev-api { padding: .3rem .45rem; border-radius: 5px; border: 1px solid var(--line-bright); background: var(--surface-2); display: grid; grid-template-columns: 1fr auto; gap: 0 .4rem; }
+.ev-api span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ev-left { color: var(--text-faint); }
+.ev-track { grid-column: 1 / -1; height: 3px; background: var(--bg-2); border-radius: 2px; margin-top: .25rem; overflow: hidden; }
+.ev-track div { height: 100%; background: var(--cyan); }
+.ev-api.is-net .ev-track div { background: var(--hot); }
+.ev-api.is-click .ev-track div { background: var(--amber); }
+.ev-console { height: 6.4rem; overflow: hidden; color: var(--av-done); display: flex; flex-direction: column; justify-content: flex-end; }
+.ev-loop {
+  display: flex; align-items: center; gap: .6rem; padding: .5rem .6rem;
+  border: 1px dashed var(--line-bright); border-radius: var(--radius-sm); font-size: .8rem; min-width: 0;
+}
+.ev-loop b { display: block; font-family: var(--font-display); }
+.ev-loop span:not(.ev-ring) { color: var(--text-dim); font-size: .76rem; }
+.ev-ring { font-size: 1.6rem; color: var(--text-faint); display: inline-block; }
+.ev-loop.is-micro .ev-ring, .ev-loop.is-task .ev-ring, .ev-loop.is-wait .ev-ring, .ev-loop.is-loop .ev-ring { color: var(--cyan); animation: ev-spin 1.4s linear infinite; }
+.ev-loop.is-hot { border-color: var(--amber); }
+@keyframes ev-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .ev-ring { animation: none !important; } }
+@media (max-width: 600px) {
+  .ev-title small { display: none; }
+  .ev-body { font-size: .66rem; }
+  .ev-item { white-space: normal; word-break: break-word; padding: .25rem .4rem; }
+  .ev-api { grid-template-columns: minmax(0, 1fr); }
+  .ev-api span:first-child { white-space: normal; word-break: break-word; }
+  #q-stack .ev-body, #q-apis .ev-body { height: 8.6rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .av-bar, .av-cell .val, .av-grow-fill, .av-progress-bar div { transition: none; }
 }
