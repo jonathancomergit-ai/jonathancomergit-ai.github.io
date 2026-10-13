@@ -812,6 +812,55 @@ kbd {
 .r-node.is-memo rect   { stroke: var(--hot); fill: var(--hot-dim); }
 .r-node.is-memo .r-val { fill: var(--hot); }
 
+/* ---------- pathfinding ---------- */
+.pf-grid {
+  display: grid;
+  gap: 2px;
+  touch-action: none;          /* drawing on the grid shouldn't scroll the page */
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: crosshair;
+}
+.pf-cell {
+  aspect-ratio: 1;
+  border-radius: 3px;
+  background: #171A2A;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: clamp(.5rem, 1.6vw, .75rem);
+  font-weight: 700;
+  color: var(--bg);
+  transition: background-color .12s;
+}
+.pf-cell.is-visited  { background: #263460; }
+.pf-cell.is-frontier { background: rgba(53, 214, 245, .55); }
+.pf-cell.is-current  { background: var(--amber); }
+.pf-cell.is-path     { background: var(--av-done); }
+.pf-cell.is-mud {
+  background-color: #4A3624;
+  background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.07) 0 2px, transparent 2px 5px);
+}
+.pf-cell.is-mud.is-visited  { background-color: #4E4A5E; }
+.pf-cell.is-mud.is-frontier { background-color: #4F8C98; }
+.pf-cell.is-mud.is-path     { background-color: #6F9A54; }
+.pf-cell.is-wall  { background: #8A91B0; }
+.pf-cell.is-start { background: var(--hot); }
+.pf-cell.is-goal  { background: var(--av-done); box-shadow: 0 0 0 2px var(--text) inset; }
+
+.pf-ds {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .3rem;
+  margin-top: .8rem;
+  font-family: var(--font-mono);
+  font-size: .72rem;
+}
+.pf-ds-name { color: var(--text-faint); margin-right: .3rem; font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; }
+.pf-more { color: var(--text-faint); margin-left: .2rem; }
+.pf-tools { display: flex; flex-wrap: wrap; gap: .45rem; align-items: center; }
+
 @media (prefers-reduced-motion: reduce) {
   .av-bar, .av-cell .val, .av-grow-fill, .av-progress-bar div { transition: none; }
 }
