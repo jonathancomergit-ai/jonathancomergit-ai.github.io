@@ -62,7 +62,8 @@ var AV = (function () {
     "oop-encap":    "OOP: encapsulation",
     "oop-abstract": "OOP: abstraction",
     "refs":      "Variables & references",
-    "async":     "Async & the event loop"
+    "async":     "Async & the event loop",
+    "scope":     "Scope & closures"
   };
   var KEY = "algovision-progress";
 
