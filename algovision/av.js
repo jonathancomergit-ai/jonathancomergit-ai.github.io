@@ -42,7 +42,11 @@ var AV = (function () {
     "insertion": "Insertion sort",
     "merge":     "Merge sort",
     "quick":     "Quick sort",
-    "recursion": "Recursion"
+    "recursion": "Recursion",
+    "bfs":       "BFS",
+    "dfs":       "DFS",
+    "dijkstra":  "Dijkstra",
+    "astar":     "A*"
   };
   var KEY = "algovision-progress";
 

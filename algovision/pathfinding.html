@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Pathfinding - AlgoVision</title>
+  <meta name="description" content="Draw walls and mud, then watch BFS, DFS, Dijkstra and A* search for the way through, one cell at a time.">
+  <!-- Unlisted until launch: see algovision/index.html -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/img/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#07070C">
+
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="av.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="avatar" src="../assets/img/pfp-160.webp" alt="" width="34" height="34">
+        Jonjoe1001
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="av-subnav" aria-label="AlgoVision">
+    <div class="wrap">
+      <a class="av-logo" href="index.html">Algo<span>Vision</span></a>
+      <a href="index.html">Home</a>
+      <a href="arrays.html">Arrays</a>
+      <a href="big-o.html">Big O</a>
+      <a href="sorting.html">Sorting</a>
+      <a href="recursion.html">Recursion</a>
+      <a href="pathfinding.html" aria-current="page">Pathfinding</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="av-page">
+      <div class="wrap">
+        <p class="kicker">AlgoVision &middot; Module 5</p>
+        <h1>Pathfinding: finding the way through</h1>
+        <p class="av-lead">
+          How does a game character get around a wall, or a map app find your route? Draw
+          walls and mud on the grid, then watch four searches look for a way from
+          <b style="color:var(--hot)">S</b> to <b style="color:var(--av-done)">G</b>. They all run
+          the same loop. The only difference is <strong>which cell they look at next</strong>.
+        </p>
+      </div>
+    </section>
+
+    <section class="av-section" style="padding-top:0">
+      <div class="wrap">
+        <div class="av-pills" id="algos" role="group" aria-label="Algorithm">
+          <button class="av-pill" type="button" data-pick="bfs">BFS</button>
+          <button class="av-pill" type="button" data-pick="dfs">DFS</button>
+          <button class="av-pill" type="button" data-pick="dijkstra">Dijkstra</button>
+          <button class="av-pill" type="button" data-pick="astar">A* &#9733;</button>
+        </div>
+        <div class="av-toolbar">
+          <div class="pf-tools">
+            <span>Draw:</span>
+            <div class="av-pills" id="tools" role="group" aria-label="Drawing tool" style="margin:0">
+              <button class="av-pill is-small" type="button" data-pick="wall" aria-pressed="true">&#9632; Wall</button>
+              <button class="av-pill is-small" type="button" data-pick="mud" aria-pressed="false">&#9638; Mud (cost 5)</button>
+              <button class="av-pill is-small" type="button" data-pick="erase" aria-pressed="false">Erase</button>
+            </div>
+          </div>
+          <div class="pf-tools">
+            <span>Map:</span>
+            <button class="av-pill is-small" type="button" id="map-starter">Starter</button>
+            <button class="av-pill is-small" type="button" id="map-maze">&#8635; Maze</button>
+            <button class="av-pill is-small" type="button" id="map-random">&#8635; Random</button>
+            <button class="av-pill is-small" type="button" id="map-clear">Clear</button>
+          </div>
+        </div>
+
+        <div class="av-workbench">
+          <div class="av-panel">
+            <p class="av-panel-title" id="algo-name">Breadth-first search</p>
+            <div class="av-stage" style="padding:.6rem">
+              <div class="pf-grid" id="grid" role="img" aria-label="Search grid. The sentence below describes each step."></div>
+            </div>
+            <div class="av-legend" aria-hidden="true">
+              <span><i style="background:rgba(53,214,245,.55)"></i>Waiting in line</span>
+              <span><i style="background:var(--av-focus)"></i>Looking at now</span>
+              <span><i style="background:#263460"></i>Already checked</span>
+              <span><i style="background:var(--av-done)"></i>The path</span>
+              <span><i style="background:#8A91B0"></i>Wall</span>
+              <span><i style="background:#4A3624"></i>Mud</span>
+            </div>
+            <div class="pf-ds" id="ds"></div>
+            <p class="av-say" id="say" aria-live="polite"></p>
+            <p class="av-now" id="now" aria-hidden="true"></p>
+            <div id="controls"></div>
+            <div class="av-stats">
+              <div class="av-stat"><b id="s-visited">0</b><small>Cells checked</small></div>
+              <div class="av-stat"><b id="s-front">0</b><small>Waiting</small></div>
+              <div class="av-stat"><b id="s-path">-</b><small>Path</small></div>
+            </div>
+            <p class="av-tree-note" style="margin-top:.8rem">
+              Tap or drag on the grid to draw. Tap a wall again to remove it. Drag
+              <b style="color:var(--hot)">S</b> or <b style="color:var(--av-done)">G</b> to move them.
+            </p>
+          </div>
+
+          <div class="av-side">
+            <div class="av-panel">
+              <p class="av-panel-title">The code (Python)</p>
+              <pre class="av-code" id="code"></pre>
+            </div>
+            <div class="av-panel">
+              <p class="av-panel-title">How it works</p>
+              <ol class="av-how" id="how"></ol>
+              <div class="av-next-row"><button class="av-learn" type="button" id="learn"></button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <h2 class="av-h2">All four on your map</h2>
+        <p class="av-sub">Updates every time you draw. Try mud between S and G, then a maze.</p>
+        <div class="av-panel av-table-wrap">
+          <table class="av-facts">
+            <thead><tr><th>Search</th><th>Cells checked</th><th>Path steps</th><th>Path cost</th><th>Cheapest?</th></tr></thead>
+            <tbody id="compare"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <h2 class="av-h2">Check yourself</h2>
+        <p class="av-score" id="quiz-score"></p>
+        <div class="av-quiz" id="quiz"></div>
+        <div class="av-next-row">
+          <a class="btn btn-primary" href="index.html">Back to all modules &rarr;</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - AlgoVision</span>
+      <nav class="footer-links">
+        <a href="index.html">AlgoVision</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../privacy.html">Privacy</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+  <script src="av.js"></script>
+  <script src="pathfinding.js"></script>
+  <script src="../assets/js/stats.js"></script>
+</body>
+</html>
