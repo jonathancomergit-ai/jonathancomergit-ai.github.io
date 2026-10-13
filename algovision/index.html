@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>AlgoVision - Jonjoe1001</title>
+  <meta name="description" content="A visual guide to algorithms and data structures. Watch the code run one step at a time: arrays, Big O, sorting and more.">
+  <!-- ==================== UNLISTED UNTIL LAUNCH ====================
+       AlgoVision is live at jonjoe1001.dev/algovision/ but nothing on the
+       site links here yet, it's left out of sitemap.xml (see SKIP in
+       tools/build_sitemap.py), and every page has the noindex tag below.
+
+       TO LAUNCH IT:
+         1. Delete the robots noindex line on all four AlgoVision pages
+         2. Remove "algovision/" from SKIP_DIRS in tools/build_sitemap.py,
+            then run it
+         3. Add a button/card: projects.html, limitless.html, or the home page
+       ============================================================== -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/img/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#07070C">
+
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="av.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="avatar" src="../assets/img/pfp-160.webp" alt="" width="34" height="34">
+        Jonjoe1001
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="av-subnav" aria-label="AlgoVision">
+    <div class="wrap">
+      <a class="av-logo" href="index.html">Algo<span>Vision</span></a>
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="arrays.html">Arrays</a>
+      <a href="big-o.html">Big O</a>
+      <a href="sorting.html">Sorting</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="av-hero">
+      <div class="wrap">
+        <p class="kicker">A visual guide to code</p>
+        <h1>Algo<span>Vision</span></h1>
+        <p class="av-tagline">See the code think.</p>
+        <p class="av-lead">
+          Algorithms are easier to understand when you can watch them. Every concept here is
+          something you can <b>play, pause, step through and poke at</b>, with the real code
+          lighting up line by line as it runs.
+        </p>
+        <div class="av-progress">
+          <div class="av-progress-bar" aria-hidden="true"><div id="bar"></div></div>
+          <span class="av-progress-text" id="bar-text" aria-live="polite"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <h2 class="av-h2">Modules</h2>
+        <p class="av-sub">Best in this order. Each one builds on the last.</p>
+        <div class="grid av-modules">
+          <article class="card">
+            <a class="card-art is-blank" href="arrays.html" tabindex="-1" aria-hidden="true" style="--blank-glow: rgba(53,214,245,.26)">
+              <span class="initials">[ ]</span>
+            </a>
+            <div class="card-body">
+              <div class="tags"><span class="tag is-ready">Module 1</span><span class="tag">Data structures</span></div>
+              <h3><a href="arrays.html">Arrays</a></h3>
+              <p>Cells in memory, addresses, and why reading is instant but inserting is slow.</p>
+              <ul class="av-topics"><li data-topic="arrays">Read, write, insert, remove, search, resize</li></ul>
+              <div class="card-links"><a href="arrays.html">Open &rarr;</a></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <a class="card-art is-blank" href="big-o.html" tabindex="-1" aria-hidden="true" style="--blank-glow: rgba(255,201,60,.24)">
+              <span class="initials">O(n)</span>
+            </a>
+            <div class="card-body">
+              <div class="tags"><span class="tag is-ready">Module 2</span><span class="tag">Theory</span></div>
+              <h3><a href="big-o.html">Big O</a></h3>
+              <p>Race the six growth curves, see how long each would really take, and learn to spot them in code.</p>
+              <ul class="av-topics"><li data-topic="big-o">O(1) to O(2&#8319;), and the four rules</li></ul>
+              <div class="card-links"><a href="big-o.html">Open &rarr;</a></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <a class="card-art is-blank" href="sorting.html" tabindex="-1" aria-hidden="true" style="--blank-glow: rgba(255,45,120,.26)">
+              <span class="initials">&#9601;&#9603;&#9605;&#9607;</span>
+            </a>
+            <div class="card-body">
+              <div class="tags"><span class="tag is-ready">Module 3</span><span class="tag">Algorithms</span></div>
+              <h3><a href="sorting.html">Sorting</a></h3>
+              <p>Five sorts step by step, merge sort's split tree, and a head-to-head race.</p>
+              <ul class="av-topics">
+                <li data-topic="bubble">Bubble sort</li>
+                <li data-topic="selection">Selection sort</li>
+                <li data-topic="insertion">Insertion sort</li>
+                <li data-topic="merge">Merge sort</li>
+                <li data-topic="quick">Quick sort</li>
+              </ul>
+              <div class="card-links"><a href="sorting.html">Open &rarr;</a> <a href="sorting.html#merge">Merge sort &rarr;</a></div>
+            </div>
+          </article>
+
+          <article class="card is-soon">
+            <div class="card-art is-blank" aria-hidden="true" style="--blank-glow: rgba(61,245,160,.18)">
+              <span class="initials">f(f(x))</span>
+            </div>
+            <div class="card-body">
+              <div class="tags"><span class="tag is-soon">Coming soon</span></div>
+              <h3>Recursion</h3>
+              <p>Watch the call stack pile up and unwind. Base cases, and memoization making slow code fast.</p>
+            </div>
+          </article>
+
+          <article class="card is-soon">
+            <div class="card-art is-blank" aria-hidden="true" style="--blank-glow: rgba(53,214,245,.18)">
+              <span class="initials">&#9638;</span>
+            </div>
+            <div class="card-body">
+              <div class="tags"><span class="tag is-soon">Coming soon</span></div>
+              <h3>Searching &amp; pathfinding</h3>
+              <p>BFS, DFS, Dijkstra and A* exploring a maze you draw, square by square.</p>
+            </div>
+          </article>
+
+          <article class="card is-soon">
+            <div class="card-art is-blank" aria-hidden="true" style="--blank-glow: rgba(255,45,120,.16)">
+              <span class="initials">&#9675;&rarr;&#9675;</span>
+            </div>
+            <div class="card-body">
+              <div class="tags"><span class="tag is-soon">Coming soon</span></div>
+              <h3>More data structures</h3>
+              <p>Linked lists, stacks, queues, hash maps and trees, with boxes and arrows that move.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <div class="av-workbench av-two">
+          <div class="av-panel">
+            <p class="av-panel-title">Controls</p>
+            <div class="av-keys">
+              <div><kbd>Space</kbd> Play / pause</div>
+              <div><kbd>&rarr;</kbd> Step forward</div>
+              <div><kbd>&larr;</kbd> Step back</div>
+              <div><kbd>&#9198;</kbd> Back to the start</div>
+            </div>
+            <p class="av-tree-note" style="margin-top:.9rem">On a phone, use the buttons under each animation. Drag the step slider to scrub.</p>
+          </div>
+          <div class="av-panel">
+            <p class="av-panel-title">What the colours mean</p>
+            <div class="av-colors">
+              <div><i style="background:var(--av-compare)"></i>Comparing / reading</div>
+              <div><i style="background:var(--av-write)"></i>Moving / writing</div>
+              <div><i style="background:var(--av-focus)"></i>Pivot, key or target</div>
+              <div><i style="background:var(--av-done)"></i>Done, in final place</div>
+            </div>
+            <p class="av-tree-note" style="margin-top:.9rem">The same four colours on every page. The sentence under each animation always says what's happening too.</p>
+          </div>
+        </div>
+        <p class="av-tree-note" style="margin-top:1.2rem">
+          Your progress is saved in this browser only. Nothing is sent anywhere.
+          <button class="av-pill is-small" type="button" id="clear" style="margin-left:.4rem">Clear my progress</button>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - AlgoVision</span>
+      <nav class="footer-links">
+        <a href="index.html">AlgoVision</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../privacy.html">Privacy</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+  <script src="av.js"></script>
+  <script>
+    /* Tick off finished topics and fill the progress bar. */
+    (function () {
+      var p = AV.progress.all();
+      document.querySelectorAll("[data-topic]").forEach(function (li) {
+        li.classList.toggle("is-done", !!p[li.getAttribute("data-topic")]);
+      });
+      var n = AV.progress.count(), t = AV.progress.total;
+      document.getElementById("bar").style.width = (n / t * 100) + "%";
+      document.getElementById("bar-text").textContent = n
+        ? n + " of " + t + " topics learned" + (n === t ? " - all of them!" : "")
+        : "0 of " + t + " topics learned. Start with Arrays.";
+      document.getElementById("clear").addEventListener("click", function () {
+        if (!confirm("Clear all your AlgoVision progress in this browser?")) { return; }
+        try { localStorage.removeItem("algovision-progress"); } catch (e) { /* blocked */ }
+        location.reload();
+      });
+    })();
+  </script>
+  <script src="../assets/js/stats.js"></script>
+</body>
+</html>
