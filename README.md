@@ -49,27 +49,45 @@ at the top of `algovision/index.html`.
 
 ```
 algovision/
-├── index.html     Home: two tracks (algorithms / programming concepts), progress bar
-│                  (saved in the browser only), coming-soon cards
-├── arrays.html    Module 1: memory cells, addresses, insert/remove, resize, search
-├── big-o.html     Module 2: growth chart, "how long would it take?", the 4 rules
-├── sorting.html   Module 3: 5 sorts, merge sort split tree, the race
-├── recursion.html Module 4: call stack, call tree, factorial / fib / memoized fib
-├── pathfinding.html Module 5: draw a grid, BFS / DFS / Dijkstra / A*
-├── structures.html  Module 6: stack, queue, linked list, hash map, binary search tree
-├── dp.html          Module 7: DP tables - Fibonacci, grid paths, coin change, LCS
-├── oop.html         Concepts 1: classes, inheritance, polymorphism, encapsulation, abstraction
-├── refs.html        Concepts 2: names, arrows and objects - aliasing, copies, sandbox
-├── av.css         AlgoVision styles, on top of site.css. Classes start with .av-
-├── av.js          Shared engine: Player, Code panel, Bars, quiz, progress
-└── *.js           One script per module
+├── index.html       Home: why it exists, the 3 subject cards, every module (filterable)
+├── algorithms.html  Subject page  ┐
+├── data.html        Subject page  ├ all three are drawn from catalog.js
+├── concepts.html    Subject page  ┘
+├── catalog.js       THE LIST: every subject and module, in order (see below)
+├── av.css           AlgoVision styles, on top of site.css. Classes start with .av-
+├── av.js            Shared engine: Player, Code panel, Bars, quiz, progress, TOPICS
+│
+│   Algorithms
+├── big-o.html       Growth chart, "how long would it take?", the 4 rules
+├── sorting.html     5 sorts, merge sort split tree, the race
+├── recursion.html   Call stack, call tree, factorial / fib / memoized fib
+├── pathfinding.html Draw a grid, BFS / DFS / Dijkstra / A*
+├── dp.html          DP tables - Fibonacci, grid paths, coin change, LCS
+│   Data Structures
+├── arrays.html      Memory cells, addresses, insert/remove, resize, search
+├── structures.html  Stack, queue, linked list, hash map, binary search tree
+│   Programming Concepts
+├── oop.html         Classes, inheritance, polymorphism, encapsulation, abstraction
+├── refs.html        Names, arrows and objects - aliasing, copies, sandbox
+└── *.js             One script per module, same name as its page
 ```
+
+### Adding a module
+
+1. Copy the closest existing module page and its script, and build the new one.
+   The menu at the top only lists Home + the three subjects, so it doesn't change;
+   just put `aria-current="page"` on the new page's subject.
+2. Add its topics to `TOPICS` at the top of `av.js` (that's what the progress bars count).
+3. Add one entry to `MODULES` in `catalog.js`. The home page, the subject page and
+   the progress bars pick it up from there. A `status: "soon"` entry shows as a
+   coming-soon card; flip it to `"live"` and give it a `page` when it's ready.
+4. Point the previous module's "Next" button at it.
 
 How a module works: the algorithm runs once for real and saves a **frame**
 (a snapshot plus the code line and a sentence) at every step. The Player only
-flips through frames, which is why stepping backwards is free. To add a module,
-copy a page, write a function that records frames, and give it a code listing.
-New topics for the progress bar go in `TOPICS` at the top of `av.js`.
+flips through frames, which is why stepping backwards is free. Boxes that change
+size between frames are held at their tallest for the run (`steady` in av.js),
+so nothing on the page jumps while an animation plays.
 
 ---
 
