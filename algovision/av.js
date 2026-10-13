@@ -46,7 +46,12 @@ var AV = (function () {
     "bfs":       "BFS",
     "dfs":       "DFS",
     "dijkstra":  "Dijkstra",
-    "astar":     "A*"
+    "astar":     "A*",
+    "stack":     "Stacks",
+    "queue":     "Queues",
+    "linkedlist": "Linked lists",
+    "hashmap":   "Hash maps",
+    "bst":       "Binary search trees"
   };
   var KEY = "algovision-progress";
 
