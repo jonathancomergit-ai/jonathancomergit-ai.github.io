@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Algorithms - AlgoVision</title>
+  <meta name="description" content="Algorithms you can watch: Big O, sorting, recursion, pathfinding and dynamic programming, step by step.">
+  <!-- Unlisted until launch: see algovision/index.html -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/img/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#07070C">
+
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="av.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="avatar" src="../assets/img/pfp-160.webp" alt="" width="34" height="34">
+        Jonjoe1001
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="av-subnav" aria-label="AlgoVision">
+    <div class="wrap">
+      <a class="av-logo" href="index.html">Algo<span>Vision</span></a>
+      <a href="index.html">Home</a>
+      <a href="algorithms.html" aria-current="page">Algorithms</a>
+      <a href="data.html">Data Structures</a>
+      <a href="concepts.html">Concepts</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="av-page">
+      <div class="wrap">
+        <p class="kicker"><a href="index.html">AlgoVision</a> &middot; Subject</p>
+        <h1 id="s-name"></h1>
+        <p class="av-lead" id="s-blurb"></p>
+        <div class="av-subject-progress is-big" id="s-progress"></div>
+      </div>
+    </section>
+
+    <section class="av-section" style="padding-top:0">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Modules</p>
+          <h2>Best in this order</h2>
+        </div>
+        <div class="grid av-modules" id="s-modules"></div>
+        <noscript><p class="av-sub">This list needs JavaScript. <a href="index.html">Back to AlgoVision</a>.</p></noscript>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Keep going</p>
+          <h2>Other subjects</h2>
+        </div>
+        <div class="grid av-subjects" id="s-others"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - AlgoVision</span>
+      <nav class="footer-links">
+        <a href="index.html">AlgoVision</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../privacy.html">Privacy</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+  <script src="av.js"></script>
+  <script src="catalog.js"></script>
+  <script>
+    /* Everything on this page comes from catalog.js. To make a new subject
+       page, copy this file and change the one word below. */
+    (function () {
+      var SUBJECT = "algorithms";
+      var s = AVCatalog.subject(SUBJECT), mods = AVCatalog.modulesOf(SUBJECT);
+      document.getElementById("s-name").textContent = s.name;
+      document.getElementById("s-blurb").textContent = s.blurb;
+      document.getElementById("s-progress").innerHTML = AVCatalog.bar(AVCatalog.score(mods.filter(function (m) { return m.status === "live"; })));
+      AVCatalog.moduleCards(document.getElementById("s-modules"), mods, false);
+      var others = document.getElementById("s-others");
+      AVCatalog.subjectCards(others);
+      others.querySelectorAll(".av-subject").forEach(function (c) {
+        if (c.querySelector('a[href="' + s.page + '"]')) { c.remove(); }
+      });
+    })();
+  </script>
+  <script src="../assets/js/stats.js"></script>
+</body>
+</html>
