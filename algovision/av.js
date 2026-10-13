@@ -120,7 +120,7 @@ var AV = (function () {
       mark: function (i) {
         rows.forEach(function (r, k) { r.classList.toggle("is-on", k === i); });
         if (mirror) {
-          mirror.innerHTML = src[i] ? '<span class="lbl">Line ' + (i + 1) + "</span>" + paint(src[i].trim()) : "";
+          mirror.innerHTML = src[i] ? '<span class="lbl">Line ' + (i + 1) + "</span>" + paint(src[i].trim()) : "&nbsp;";
         }
         var on = rows[i];
         /* Keep the lit line in view inside the panel only - never
@@ -131,6 +131,39 @@ var AV = (function () {
         }
       }
     };
+  }
+
+  /* ---------- steady boxes ----------
+
+     Text and lists change size from one step to the next (a long
+     sentence, a bigger stack). If the box resized with them, the
+     buttons below would jump around under your finger. So before a
+     run plays, each box is measured at its tallest for that run and
+     held there. Only what's INSIDE the box changes.
+
+     boxes: [{ el: element, html: function (frame) -> html }]  */
+
+  function steady(boxes, frames) {
+    boxes.forEach(function (box) {
+      var el = box.el;
+      if (!el || !frames.length) { return; }
+      /* Height follows length, so only the longest few need measuring.
+         Tags are stripped for the length test, not the measurement. */
+      var seen = {}, list = [];
+      frames.forEach(function (f) {
+        var h = box.html(f) || "";
+        if (!seen[h]) { seen[h] = 1; list.push(h); }
+      });
+      list.sort(function (a, b) { return b.replace(/<[^>]+>/g, "").length - a.replace(/<[^>]+>/g, "").length; });
+      var keep = el.innerHTML, tallest = 0;
+      el.style.minHeight = "0px";
+      list.slice(0, 12).forEach(function (h) {
+        el.innerHTML = h;
+        tallest = Math.max(tallest, el.offsetHeight);
+      });
+      el.innerHTML = keep;
+      el.style.minHeight = tallest + "px";
+    });
   }
 
   /* ---------- player ---------- */
@@ -229,10 +262,21 @@ var AV = (function () {
       });
     }
 
+    if (opts.steady) {
+      var lastW = window.innerWidth, wait = null;
+      window.addEventListener("resize", function () {
+        if (window.innerWidth === lastW) { return; }   /* phone toolbar showing/hiding */
+        lastW = window.innerWidth;
+        window.clearTimeout(wait);
+        wait = window.setTimeout(function () { steady(opts.steady, frames); show(at); }, 150);
+      });
+    }
+
     return {
       load: function (f, startAt) {
         pause();
         frames = f || [];
+        if (opts.steady) { steady(opts.steady, frames); }
         scrub.max = Math.max(0, frames.length - 1);
         show(startAt === "end" ? frames.length - 1 : 0);
       },
@@ -384,6 +428,6 @@ var AV = (function () {
     calm: calm, el: el, esc: esc,
     TOPICS: TOPICS, progress: progress, learn: learn,
     Code: Code, Player: Player, Bars: Bars, quiz: quiz,
-    randomArray: randomArray, pills: pills, fmt: fmt
+    randomArray: randomArray, pills: pills, fmt: fmt, steady: steady
   };
 })();
