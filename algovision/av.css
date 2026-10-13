@@ -753,6 +753,61 @@ kbd {
 
 .av-next-row { display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; margin-top: 1.4rem; }
 
+/* ---------- recursion ---------- */
+.r-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 8rem;
+  max-height: 22rem;
+  overflow-y: auto;
+}
+.r-frame {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: .8rem;
+  padding: .45rem .7rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-bright);
+  background: var(--surface-2);
+  font-family: var(--font-mono);
+  font-size: .8rem;
+}
+.r-frame b { color: var(--text); font-weight: 600; }
+.r-frame span { color: var(--text-dim); font-size: .74rem; text-align: right; }
+.r-frame.is-top { border-color: var(--amber); box-shadow: 0 0 0 1px var(--amber) inset; }
+.r-frame.is-top b { color: var(--amber); }
+.r-empty { color: var(--text-faint); font-size: .85rem; margin: 0; }
+.r-stack-foot {
+  font-family: var(--font-mono);
+  font-size: .66rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  border-top: 2px solid var(--line-bright);
+  padding-top: .35rem;
+  margin-top: .3rem;
+}
+.r-memo { display: flex; flex-wrap: wrap; gap: .3rem; font-family: var(--font-mono); font-size: .75rem; }
+
+.r-tree-wrap { overflow-x: auto; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: .5rem; }
+.r-tree { display: block; width: 100%; height: auto; margin: 0 auto; }
+.r-edges line { stroke: var(--line); stroke-width: 1.5; }
+.r-edges line.is-on { stroke: var(--line-bright); }
+.r-node { opacity: 0; transition: opacity .15s; }
+.r-node rect { fill: var(--surface-2); stroke: var(--line-bright); stroke-width: 1.2; }
+.r-node text { font-family: var(--font-mono); }
+.r-node .r-lbl { font-size: 10.5px; fill: var(--text); font-weight: 600; }
+.r-node .r-val { font-size: 10px; fill: var(--text-dim); }
+.r-node.is-active, .r-node.is-wait, .r-node.is-done, .r-node.is-memo { opacity: 1; }
+.r-node.is-active rect { stroke: var(--amber); stroke-width: 2.2; fill: rgba(255, 201, 60, .14); }
+.r-node.is-wait rect   { stroke: var(--cyan); stroke-dasharray: 3 2; }
+.r-node.is-done rect   { stroke: var(--av-done); fill: rgba(47, 201, 138, .1); }
+.r-node.is-done .r-val { fill: var(--av-done); }
+.r-node.is-memo rect   { stroke: var(--hot); fill: var(--hot-dim); }
+.r-node.is-memo .r-val { fill: var(--hot); }
+
 @media (prefers-reduced-motion: reduce) {
   .av-bar, .av-cell .val, .av-grow-fill, .av-progress-bar div { transition: none; }
 }
