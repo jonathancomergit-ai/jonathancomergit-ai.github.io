@@ -70,6 +70,7 @@ algovision/
 ├── oop.html         Classes, inheritance, polymorphism, encapsulation, abstraction
 ├── refs.html        Names, arrows and objects - aliasing, copies, sandbox
 ├── async.html       The event loop: stack, Web APIs, task + microtask queues, sandbox
+├── scope.html       Scope boxes, LEGB lookup, the UnboundLocalError trap, closures
 └── *.js             One script per module, same name as its page
 ```
 
