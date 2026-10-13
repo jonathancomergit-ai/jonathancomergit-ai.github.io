@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Async & the Event Loop - AlgoVision</title>
+  <meta name="description" content="Watch JavaScript's event loop: the call stack, Web APIs, the task and microtask queues, and why setTimeout 0 runs last.">
+  <!-- Unlisted until launch: see algovision/index.html -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/img/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#07070C">
+
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="av.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="avatar" src="../assets/img/pfp-160.webp" alt="" width="34" height="34">
+        Jonjoe1001
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="av-subnav" aria-label="AlgoVision">
+    <div class="wrap">
+      <a class="av-logo" href="index.html">Algo<span>Vision</span></a>
+      <a href="index.html">Home</a>
+      <a href="algorithms.html">Algorithms</a>
+      <a href="data.html">Data Structures</a>
+      <a href="concepts.html" aria-current="page">Concepts</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="av-page">
+      <div class="wrap">
+        <p class="kicker"><a href="concepts.html">Programming Concepts</a> &middot; Module 3</p>
+        <h1>Async &amp; the event loop</h1>
+        <p class="av-lead">
+          JavaScript can only do <strong>one thing at a time</strong>. So how does a page keep responding
+          while it waits for timers, clicks and the network? Those wait outside, in queues, and the
+          <strong>event loop</strong> feeds them in whenever the stack is free. Watch the code run in an order
+          you might not expect.
+        </p>
+      </div>
+    </section>
+
+    <section class="av-section" style="padding-top:0">
+      <div class="wrap">
+        <div class="av-pills" id="scens" role="group" aria-label="Scenario">
+          <button class="av-pill" type="button" data-pick="zero">setTimeout 0</button>
+          <button class="av-pill" type="button" data-pick="promise">Promises first</button>
+          <button class="av-pill" type="button" data-pick="delays">Delays</button>
+          <button class="av-pill" type="button" data-pick="await">async / await</button>
+          <button class="av-pill" type="button" data-pick="block">Blocking</button>
+          <button class="av-pill" type="button" data-pick="sandbox">Sandbox &#9733;</button>
+        </div>
+
+        <div class="av-workbench">
+          <div class="av-panel">
+            <p class="av-panel-title"><span id="scen-name">setTimeout(..., 0)</span><span class="ev-clock" id="ev-clock">t = 0 ms</span></p>
+            <div class="av-stage ev-stage">
+              <div class="ev-grid">
+                <div class="ev-panel" id="q-stack"><p class="ev-title">Call stack <small>one thing at a time</small></p><div class="ev-body"></div></div>
+                <div class="ev-panel" id="q-apis"><p class="ev-title">Web APIs <small>waiting outside JS</small></p><div class="ev-body"></div></div>
+                <div class="ev-panel ev-wide" id="q-micro"><p class="ev-title">Microtask queue <small>promises, await: go first</small></p><div class="ev-body ev-row"></div></div>
+                <div class="ev-panel ev-wide" id="q-tasks"><p class="ev-title">Task queue <small>timers, clicks</small></p><div class="ev-body ev-row"></div></div>
+                <div class="ev-panel" id="q-out"><p class="ev-title">Console</p><div class="ev-body ev-console"></div></div>
+                <div class="ev-loop" id="ev-loop"><span class="ev-ring">&#8635;</span><div><b>Event loop</b><span id="ev-phase"></span></div></div>
+              </div>
+            </div>
+            <p class="av-say" id="say" aria-live="polite"></p>
+            <p class="av-now" id="now" aria-hidden="true"></p>
+            <div id="controls"></div>
+          </div>
+
+          <div class="av-side">
+            <div class="av-panel" id="sand" hidden>
+              <p class="av-panel-title">Write a program, guess the order, press play</p>
+              <div class="av-ops" id="sand-ops"></div>
+              <div class="av-pills" style="margin:.9rem 0 0">
+                <button class="av-pill is-small" type="button" id="sand-example">Tricky example</button>
+                <button class="av-pill is-small" type="button" id="sand-reset">Reset</button>
+              </div>
+            </div>
+            <div class="av-panel">
+              <p class="av-panel-title">The code (JavaScript)</p>
+              <pre class="av-code" id="code"></pre>
+            </div>
+            <div class="av-panel">
+              <p class="av-panel-title">The rules of the loop</p>
+              <ol class="av-how">
+                <li>Run the script top to bottom. Anything that has to <b>wait</b> (timers, network, clicks) is handed to the browser.</li>
+                <li>When the call stack is <b>empty</b>, run <b>every</b> microtask (promise callbacks, await resumes).</li>
+                <li>Then run <b>one</b> task (a finished timer or a click), then go back to step 2.</li>
+                <li>A long loop keeps the stack busy, so nothing else runs. That's a frozen page.</li>
+              </ol>
+              <div class="av-next-row"><button class="av-learn" type="button" id="learn"></button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <h2 class="av-h2">Check yourself</h2>
+        <p class="av-score" id="quiz-score"></p>
+        <div class="av-quiz" id="quiz"></div>
+        <div class="av-next-row">
+          <a class="btn btn-primary" href="scope.html">Next: Scope &amp; closures &rarr;</a>
+          <a class="btn btn-ghost" href="concepts.html">All Programming Concepts</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - AlgoVision</span>
+      <nav class="footer-links">
+        <a href="index.html">AlgoVision</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../privacy.html">Privacy</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+  <script src="av.js"></script>
+  <script src="async.js"></script>
+  <script src="../assets/js/stats.js"></script>
+</body>
+</html>

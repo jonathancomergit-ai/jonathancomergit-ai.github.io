@@ -61,7 +61,10 @@ var AV = (function () {
     "oop-poly":     "OOP: polymorphism",
     "oop-encap":    "OOP: encapsulation",
     "oop-abstract": "OOP: abstraction",
-    "refs":      "Variables & references"
+    "refs":      "Variables & references",
+    "async":     "Async & the event loop",
+    "scope":     "Scope & closures",
+    "bits":      "Bits, binary & hex"
   };
   var KEY = "algovision-progress";
 
@@ -106,13 +109,17 @@ var AV = (function () {
 
   var KW = "def|for|in|range|if|elif|else|while|return|and|or|not|break|True|False|None|len|print";
   var TOKENS = new RegExp("\\b(def)(\\s+)(\\w+)|\\b(" + KW + ")\\b|\\b(\\d+)\\b", "g");
+  /* JavaScript listings: same colours, JS keywords, // comments */
+  var JS_KW = "function|async|await|const|let|var|new|return|if|else|while|for|of|true|false|null|console|setTimeout|Promise|fetch";
+  var JS_TOKENS = new RegExp("\\b(function)(\\s+)(\\w+)|\\b(" + JS_KW + ")\\b|\\b(\\d+)\\b", "g");
 
-  function paint(line) {
-    var hash = line.indexOf("#");
+  function paint(line, lang) {
+    var js = lang === "js";
+    var hash = line.indexOf(js ? "//" : "#");
     var code = hash === -1 ? line : line.slice(0, hash);
     var note = hash === -1 ? "" : line.slice(hash);
-    var out = esc(code).replace(TOKENS, function (m, d, sp, name, kw, num) {
-      if (d)   { return '<span class="k">def</span>' + sp + '<span class="f">' + name + "</span>"; }
+    var out = esc(code).replace(js ? JS_TOKENS : TOKENS, function (m, d, sp, name, kw, num) {
+      if (d)   { return '<span class="k">' + d + "</span>" + sp + '<span class="f">' + name + "</span>"; }
       if (kw)  { return '<span class="k">' + kw + "</span>"; }
       return '<span class="n">' + num + "</span>";
     });
@@ -121,13 +128,13 @@ var AV = (function () {
 
   /* mirror (optional): an element that repeats the lit line. Pages
      show it on phones, where the code panel is below the stage. */
-  function Code(pre, lines, mirror) {
-    var rows = [], src = [];
+  function Code(pre, lines, mirror, opts) {
+    var rows = [], src = [], lang = opts && opts.lang;
     function load(ls) {
       src = ls;
       pre.innerHTML = "";
       rows = ls.map(function (l) {
-        var r = el("span", "ln", paint(l) || " ");
+        var r = el("span", "ln", paint(l, lang) || " ");
         pre.appendChild(r);
         return r;
       });
@@ -139,7 +146,7 @@ var AV = (function () {
       mark: function (i) {
         rows.forEach(function (r, k) { r.classList.toggle("is-on", k === i); });
         if (mirror) {
-          mirror.innerHTML = src[i] ? '<span class="lbl">Line ' + (i + 1) + "</span>" + paint(src[i].trim()) : "&nbsp;";
+          mirror.innerHTML = src[i] ? '<span class="lbl">Line ' + (i + 1) + "</span>" + paint(src[i].trim(), lang) : "&nbsp;";
         }
         var on = rows[i];
         /* Keep the lit line in view inside the panel only - never
