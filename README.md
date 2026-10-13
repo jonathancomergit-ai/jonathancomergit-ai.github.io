@@ -69,6 +69,9 @@ algovision/
 │   Programming Concepts
 ├── oop.html         Classes, inheritance, polymorphism, encapsulation, abstraction
 ├── refs.html        Names, arrows and objects - aliasing, copies, sandbox
+├── async.html       The event loop: stack, Web APIs, task + microtask queues, sandbox
+├── scope.html       Scope boxes, LEGB lookup, the UnboundLocalError trap, closures
+├── bits.html        Flip bits, binary counting, hex colours, overflow, bitwise, floats
 └── *.js             One script per module, same name as its page
 ```
 
