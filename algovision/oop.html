@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Object-Oriented Programming - AlgoVision</title>
+  <meta name="description" content="Classes and objects, inheritance, polymorphism, encapsulation and abstraction: build objects, call methods and watch what Python does behind each line.">
+  <!-- Unlisted until launch: see algovision/index.html -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/img/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#07070C">
+
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="av.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="avatar" src="../assets/img/pfp-160.webp" alt="" width="34" height="34">
+        Jonjoe1001
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="av-subnav" aria-label="AlgoVision">
+    <div class="wrap">
+      <a class="av-logo" href="index.html">Algo<span>Vision</span></a>
+      <a href="index.html">Home</a>
+      <a href="arrays.html">Arrays</a>
+      <a href="big-o.html">Big O</a>
+      <a href="sorting.html">Sorting</a>
+      <a href="recursion.html">Recursion</a>
+      <a href="pathfinding.html">Pathfinding</a>
+      <a href="structures.html">Data Structures</a>
+      <a href="dp.html">Dynamic Programming</a>
+      <a href="oop.html" aria-current="page">OOP</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="av-page">
+      <div class="wrap">
+        <p class="kicker">AlgoVision &middot; Concepts 1</p>
+        <h1>Object-oriented programming</h1>
+        <p class="av-lead">
+          OOP is a way to organise code around <strong>things</strong>: a Dog, a BankAccount, a Shape.
+          Each thing bundles its data with what it can do. Five ideas make it work. Build objects,
+          call their methods, and watch what Python actually does behind each line.
+        </p>
+      </div>
+    </section>
+
+    <section class="av-section" style="padding-top:0">
+      <div class="wrap">
+        <div class="av-pills" id="lessons" role="group" aria-label="Lesson">
+          <button class="av-pill" type="button" data-pick="classes">1 &middot; Classes &amp; objects</button>
+          <button class="av-pill" type="button" data-pick="inherit">2 &middot; Inheritance</button>
+          <button class="av-pill" type="button" data-pick="poly">3 &middot; Polymorphism</button>
+          <button class="av-pill" type="button" data-pick="encap">4 &middot; Encapsulation</button>
+          <button class="av-pill" type="button" data-pick="abstr">5 &middot; Abstraction</button>
+        </div>
+
+        <div class="av-workbench">
+          <div class="av-panel">
+            <p class="av-panel-title" id="lesson-name">Classes &amp; objects</p>
+            <div class="av-stage oo-stage" id="stage"></div>
+            <p class="av-say" id="say" aria-live="polite"></p>
+            <p class="av-now" id="now" aria-hidden="true"></p>
+            <div id="controls"></div>
+            <div class="av-stats" style="grid-template-columns: 1fr">
+              <div class="av-stat"><b id="steps">0</b><small>Steps</small></div>
+            </div>
+          </div>
+
+          <div class="av-side">
+            <div class="av-panel">
+              <p class="av-panel-title">Try it</p>
+              <div class="av-inputs oo-inputs">
+                <div data-in="obj" class="pf-tools">
+                  <label>name <input class="av-field" id="in-name" type="text" value="Max" maxlength="10" spellcheck="false" style="width:6rem"></label>
+                  <label>age <input class="av-field" id="in-age" type="number" value="2" min="0" max="30"></label>
+                  <label>call on <select class="av-field" id="in-pick"></select></label>
+                </div>
+                <div data-in="pet" class="pf-tools" hidden>
+                  <label>pet <select class="av-field" id="in-pet">
+                    <option value="0">blob (Animal)</option>
+                    <option value="1" selected>rex (Dog)</option>
+                    <option value="2">tom (Cat)</option>
+                    <option value="3">bit (Puppy)</option>
+                  </select></label>
+                </div>
+                <div data-in="shape" class="pf-tools" hidden>
+                  <label>shape <select class="av-field" id="in-kind">
+                    <option value="circle">Circle</option>
+                    <option value="square">Square</option>
+                    <option value="triangle">Triangle</option>
+                  </select></label>
+                  <label>size <input class="av-field" id="in-size" type="number" value="2" min="1" max="6"></label>
+                </div>
+                <div data-in="amount" class="pf-tools" hidden>
+                  <label>amount <input class="av-field" id="in-amount" type="number" value="30" min="-100" max="1000"></label>
+                </div>
+                <div data-in="peek" class="pf-tools" hidden>
+                  <label><input type="checkbox" id="in-peek"> Peek inside the machine</label>
+                </div>
+              </div>
+              <div class="av-ops" id="ops"></div>
+              <div class="av-pills" style="margin:.9rem 0 0"><button class="av-pill is-small" type="button" id="reset">Reset</button></div>
+            </div>
+            <div class="av-panel">
+              <p class="av-panel-title">The code (Python)</p>
+              <pre class="av-code" id="code"></pre>
+            </div>
+            <div class="av-panel">
+              <p class="av-panel-title">The idea</p>
+              <ol class="av-how" id="how"></ol>
+              <div class="av-next-row"><button class="av-learn" type="button" id="learn"></button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <h2 class="av-h2">The five ideas on one page</h2>
+        <div class="av-panel av-table-wrap">
+          <table class="av-facts">
+            <thead><tr><th>Idea</th><th>In one line</th><th>Everyday version</th></tr></thead>
+            <tbody>
+              <tr><td>Class / object</td><td style="font-family:var(--font-body)">A blueprint, and the real things built from it</td><td style="font-family:var(--font-body)">A cookie cutter and the cookies</td></tr>
+              <tr><td>Inheritance</td><td style="font-family:var(--font-body)">A child class gets everything its parent has</td><td style="font-family:var(--font-body)">Every puppy is a dog, every dog is an animal</td></tr>
+              <tr><td>Polymorphism</td><td style="font-family:var(--font-body)">One call, the right behaviour for each kind of object</td><td style="font-family:var(--font-body)">"Speak!" gets a woof from a dog, a meow from a cat</td></tr>
+              <tr><td>Encapsulation</td><td style="font-family:var(--font-body)">Data locked inside, changed only through guarded methods</td><td style="font-family:var(--font-body)">A cash machine: buttons outside, money locked inside</td></tr>
+              <tr><td>Abstraction</td><td style="font-family:var(--font-body)">Show simple controls, hide the complicated parts</td><td style="font-family:var(--font-body)">A car: pedals and a wheel, not fuel injection timing</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <h2 class="av-h2">Check yourself</h2>
+        <p class="av-score" id="quiz-score"></p>
+        <div class="av-quiz" id="quiz"></div>
+        <div class="av-next-row">
+          <a class="btn btn-primary" href="index.html">Back to all modules &rarr;</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - AlgoVision</span>
+      <nav class="footer-links">
+        <a href="index.html">AlgoVision</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../privacy.html">Privacy</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+  <script src="av.js"></script>
+  <script src="oop.js"></script>
+  <script src="../assets/js/stats.js"></script>
+</body>
+</html>
