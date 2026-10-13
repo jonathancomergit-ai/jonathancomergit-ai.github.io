@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Bits, Binary & Hex - AlgoVision</title>
+  <meta name="description" content="Flip bits and watch the number change. Count in binary, decode hex colours, overflow a byte, run bitwise operations and see why 0.1 + 0.2 isn't 0.3.">
+  <!-- Unlisted until launch: see algovision/index.html -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/img/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#07070C">
+
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="av.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="avatar" src="../assets/img/pfp-160.webp" alt="" width="34" height="34">
+        Jonjoe1001
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="av-subnav" aria-label="AlgoVision">
+    <div class="wrap">
+      <a class="av-logo" href="index.html">Algo<span>Vision</span></a>
+      <a href="index.html">Home</a>
+      <a href="algorithms.html">Algorithms</a>
+      <a href="data.html">Data Structures</a>
+      <a href="concepts.html" aria-current="page">Concepts</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="av-page">
+      <div class="wrap">
+        <p class="kicker"><a href="concepts.html">Programming Concepts</a> &middot; Module 5</p>
+        <h1>Bits, binary &amp; hex</h1>
+        <p class="av-lead">
+          Underneath every number, letter, colour and pixel are <strong>bits</strong>: 0s and 1s. Flip them,
+          count with them, read a colour in hex, add until a byte overflows, and find out why
+          <code>0.1 + 0.2</code> isn't quite <code>0.3</code>.
+        </p>
+      </div>
+    </section>
+
+    <section class="av-section" style="padding-top:0">
+      <div class="wrap">
+        <div class="av-pills" id="lessons" role="group" aria-label="Lesson">
+          <button class="av-pill" type="button" data-pick="flip">Flip the bits &#9733;</button>
+          <button class="av-pill" type="button" data-pick="count">Counting</button>
+          <button class="av-pill" type="button" data-pick="hex">Hex &amp; colours</button>
+          <button class="av-pill" type="button" data-pick="add">Overflow</button>
+          <button class="av-pill" type="button" data-pick="bitwise">Bitwise</button>
+          <button class="av-pill" type="button" data-pick="float">0.1 + 0.2</button>
+        </div>
+
+        <div class="av-toolbar bt-inputs">
+          <div data-in="flip" class="pf-tools">
+            <span>Tap any bit to flip it.</span>
+            <button class="av-pill is-small" type="button" id="flip-zero">All 0</button>
+            <button class="av-pill is-small" type="button" id="flip-max">All 1</button>
+            <label><input type="checkbox" id="flip-signed"> Read as signed</label>
+          </div>
+          <div data-in="count" class="pf-tools" hidden>
+            <label>from <input class="av-field" id="count-from" type="number" value="0" min="0" max="255"></label>
+            <label>steps <input class="av-field" id="count-steps" type="number" value="16" min="1" max="32"></label>
+            <button class="av-pill is-small" type="button" id="count-go">Count</button>
+          </div>
+          <div data-in="hex" class="pf-tools" hidden>
+            <label>colour # <input class="av-field" id="hex-in" type="text" value="FF2D78" maxlength="6" spellcheck="false" style="width:6rem"></label>
+            <input type="color" id="hex-pick" value="#ff2d78" aria-label="Pick a colour">
+            <button class="av-pill is-small" type="button" id="hex-go">Decode</button>
+          </div>
+          <div data-in="add" class="pf-tools" hidden>
+            <label>a <input class="av-field" id="add-a" type="number" value="250" min="0" max="255"></label>
+            <label>b <input class="av-field" id="add-b" type="number" value="10" min="0" max="255"></label>
+            <button class="av-pill is-small" type="button" id="add-go">Add</button>
+            <button class="av-pill is-small" type="button" data-add="250,10">250 + 10</button>
+            <button class="av-pill is-small" type="button" data-add="127,1">127 + 1</button>
+            <button class="av-pill is-small" type="button" data-add="45,30">45 + 30</button>
+          </div>
+          <div data-in="bitwise" class="pf-tools" hidden>
+            <label>a <input class="av-field" id="bw-a" type="number" value="202" min="0" max="255"></label>
+            <label><select class="av-field" id="bw-op">
+              <option value="and">a &amp; b (AND)</option><option value="or">a | b (OR)</option><option value="xor">a ^ b (XOR)</option>
+              <option value="shl">a &lt;&lt; 1</option><option value="shr">a &gt;&gt; 1</option>
+            </select></label>
+            <label>b <input class="av-field" id="bw-b" type="number" value="172" min="0" max="255"></label>
+            <button class="av-pill is-small" type="button" id="bw-go">Run</button>
+          </div>
+          <div data-in="float" class="pf-tools" hidden>
+            <label>fraction <input class="av-field" id="fl-in" type="text" value="0.1" inputmode="decimal" style="width:5rem"></label>
+            <button class="av-pill is-small" type="button" id="fl-go">Convert</button>
+            <button class="av-pill is-small" type="button" data-fl="0.1">0.1</button>
+            <button class="av-pill is-small" type="button" data-fl="0.75">0.75</button>
+            <button class="av-pill is-small" type="button" data-fl="0.2">0.2</button>
+            <button class="av-pill is-small" type="button" data-fl="0.625">0.625</button>
+          </div>
+        </div>
+
+        <div class="av-workbench">
+          <div class="av-panel">
+            <p class="av-panel-title" id="lesson-name">Flip the bits</p>
+            <div class="av-stage bt-stage" id="stage"></div>
+            <p class="av-say" id="say" aria-live="polite"></p>
+            <p class="av-now" id="now" aria-hidden="true"></p>
+            <div id="controls"></div>
+          </div>
+
+          <div class="av-side">
+            <div class="av-panel">
+              <p class="av-panel-title">The code (Python)</p>
+              <pre class="av-code" id="code"></pre>
+            </div>
+            <div class="av-panel">
+              <p class="av-panel-title">How it works</p>
+              <ol class="av-how" id="how"></ol>
+              <div class="av-next-row"><button class="av-learn" type="button" id="learn"></button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <h2 class="av-h2">Check yourself</h2>
+        <p class="av-score" id="quiz-score"></p>
+        <div class="av-quiz" id="quiz"></div>
+        <div class="av-next-row">
+          <a class="btn btn-primary" href="concepts.html">Back to Programming Concepts &rarr;</a>
+          <a class="btn btn-ghost" href="index.html">All subjects</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - AlgoVision</span>
+      <nav class="footer-links">
+        <a href="index.html">AlgoVision</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../privacy.html">Privacy</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+  <script src="av.js"></script>
+  <script src="bits.js"></script>
+  <script src="../assets/js/stats.js"></script>
+</body>
+</html>

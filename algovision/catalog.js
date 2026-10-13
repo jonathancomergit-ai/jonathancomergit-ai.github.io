@@ -74,8 +74,9 @@ var AVCatalog = (function () {
     { subject: "concepts", status: "live", page: "scope.html", title: "Scope & closures", art: "{ { } }", glow: "rgba(61,245,160,.22)",
       blurb: "Which variable does a name mean right here? Watch Python search nested boxes of names, and build closures that remember.",
       topics: ["scope"], extra: ["scope.html#closure", "Closures"] },
-    { subject: "concepts", status: "soon", title: "Bits, binary & hex", art: "0b101", glow: "rgba(53,214,245,.16)",
-      blurb: "Flip bits and watch the number change. Binary, hex, overflow, and why 0.1 + 0.2 isn't 0.3." },
+    { subject: "concepts", status: "live", page: "bits.html", title: "Bits, binary & hex", art: "0b101", glow: "rgba(53,214,245,.22)",
+      blurb: "Flip bits and watch the number change. Count in binary, decode a colour, overflow a byte, and see why 0.1 + 0.2 isn't 0.3.",
+      topics: ["bits"], extra: ["bits.html#float", "0.1 + 0.2"] },
     { subject: "concepts", status: "soon", title: "Code playground", art: "&gt;_", glow: "rgba(255,201,60,.16)",
       blurb: "Write your own code, run it in the browser, and step through it with the same player." }
   ];
