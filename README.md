@@ -56,6 +56,7 @@ algovision/
 ├── recursion.html Module 4: call stack, call tree, factorial / fib / memoized fib
 ├── pathfinding.html Module 5: draw a grid, BFS / DFS / Dijkstra / A*
 ├── structures.html  Module 6: stack, queue, linked list, hash map, binary search tree
+├── dp.html          Module 7: DP tables - Fibonacci, grid paths, coin change, LCS
 ├── av.css         AlgoVision styles, on top of site.css. Classes start with .av-
 ├── av.js          Shared engine: Player, Code panel, Bars, quiz, progress
 └── *.js           One script per module
