@@ -63,7 +63,8 @@ var AV = (function () {
     "oop-abstract": "OOP: abstraction",
     "refs":      "Variables & references",
     "async":     "Async & the event loop",
-    "scope":     "Scope & closures"
+    "scope":     "Scope & closures",
+    "bits":      "Bits, binary & hex"
   };
   var KEY = "algovision-progress";
 
