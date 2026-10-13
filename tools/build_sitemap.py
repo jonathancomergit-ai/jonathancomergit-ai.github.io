@@ -2,7 +2,7 @@
 
 Built by walking the folder rather than typed by hand, so adding a post and
 re-running this cannot leave the sitemap out of date. Skips the 404, the post
-template and /tools/, none of which are real pages.
+template and /tools/, none of which are real pages, and the unlisted /algovision/.
 
 lastmod comes from git's last commit date for each file, not the filesystem
 mtime, which changes every time the repo is cloned.
@@ -15,6 +15,11 @@ import pathlib, subprocess, datetime
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "https://jonjoe1001.dev"
 SKIP = {"404.html", "posts/_TEMPLATE.html"}
+
+# Whole folders left out. tools/ is not pages. algovision/ is live but unlisted
+# until launch - delete it from this set on launch day and re-run (the steps are
+# in the comment at the top of algovision/index.html).
+SKIP_DIRS = ("tools/", "algovision/")
 
 # Home first, then the top-level sections, then the deeper pages.
 PRIORITY = {
@@ -38,7 +43,7 @@ def git_date(rel):
 pages = []
 for p in sorted(ROOT.rglob("*.html")):
     rel = p.relative_to(ROOT).as_posix()
-    if rel in SKIP or rel.startswith("tools/"):
+    if rel in SKIP or rel.startswith(SKIP_DIRS):
         continue
     loc = f"{BASE}/" if rel == "index.html" else f"{BASE}/{rel}"
     pages.append((loc, git_date(rel), PRIORITY.get(rel, "0.6")))
