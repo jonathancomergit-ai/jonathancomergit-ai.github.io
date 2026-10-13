@@ -409,7 +409,10 @@
   var treeBox = $("#tree"), auxBox = $("#aux");
   var learnBtn = AV.learn($("#learn"), current);
 
-  var player = AV.Player($("#controls"), render, { keys: true });
+  var player = AV.Player($("#controls"), render, {
+    keys: true,
+    steady: [{ el: say, html: function (f) { return f.msg; } }, { el: auxBox, html: auxHtml }]
+  });
 
   /* ---- merge sort tree ---- */
   var treeRows = [], treeNodes = {};
@@ -459,15 +462,18 @@
     });
   }
 
-  function drawAux(f) {
-    if (!f.aux) { auxBox.innerHTML = ""; return; }
+  /* The left/right copies merge sort is zipping together. The row
+     stays on screen (empty between merges) so nothing below it jumps. */
+  function auxHtml(f) {
+    if (!f.aux) { return '<span class="av-aux-idle">Merge workspace: the two halves line up here while they\'re merged.</span>'; }
     function grp(name, list, p) {
       return '<div class="grp">' + name + " " + list.map(function (v, k) {
         return '<span class="av-box' + (k < p ? " is-used" : k === p ? " is-next" : "") + '">' + v + "</span>";
       }).join("") + "</div>";
     }
-    auxBox.innerHTML = grp("left", f.aux.left, f.aux.i) + grp("right", f.aux.right, f.aux.j);
+    return grp("left", f.aux.left, f.aux.i) + grp("right", f.aux.right, f.aux.j);
   }
+  function drawAux(f) { auxBox.innerHTML = auxHtml(f); }
 
   function render(f, i, all) {
     bars.draw(f);
@@ -493,6 +499,7 @@
       "</td><td class='" + grade(big.worst) + "'>" + big.worst + "</td><td>" + big.space + "</td><td>" + big.stable + "</td></tr>";
     learnBtn.topic(current);
     bars.rescale(data);
+    auxBox.hidden = current !== "merge";
     buildTree(data.length);
     player.load(A.run(data));
     if (keepPlaying) { player.play(); }
@@ -556,8 +563,9 @@
     opsA.textContent = (f.A.cmp + f.A.wr).toLocaleString() + " ops";
     opsB.textContent = (f.B.cmp + f.B.wr).toLocaleString() + " ops";
     var ri = raceInfo;
-    winA.hidden = !(i >= ri.lenA - 1 && ri.lenA <= ri.lenB);
-    winB.hidden = !(i >= ri.lenB - 1 && ri.lenB <= ri.lenA);
+    /* visibility, not display: the badge's space is always kept */
+    winA.classList.toggle("is-off", !(i >= ri.lenA - 1 && ri.lenA <= ri.lenB));
+    winB.classList.toggle("is-off", !(i >= ri.lenB - 1 && ri.lenB <= ri.lenA));
     if (i === all.length - 1) {
       var fast = ri.lenA <= ri.lenB ? ri.nameA : ri.nameB, slow = ri.lenA <= ri.lenB ? ri.nameB : ri.nameA;
       var fo = Math.min(ri.opsA, ri.opsB), so = Math.max(ri.opsA, ri.opsB);
