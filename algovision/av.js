@@ -41,7 +41,8 @@ var AV = (function () {
     "selection": "Selection sort",
     "insertion": "Insertion sort",
     "merge":     "Merge sort",
-    "quick":     "Quick sort"
+    "quick":     "Quick sort",
+    "recursion": "Recursion"
   };
   var KEY = "algovision-progress";
 
