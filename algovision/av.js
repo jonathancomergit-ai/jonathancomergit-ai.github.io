@@ -55,7 +55,12 @@ var AV = (function () {
     "dp-fib":    "DP: Fibonacci",
     "dp-grid":   "DP: grid paths",
     "dp-coins":  "DP: coin change",
-    "dp-lcs":    "DP: common subsequence"
+    "dp-lcs":    "DP: common subsequence",
+    "oop-classes":  "OOP: classes & objects",
+    "oop-inherit":  "OOP: inheritance",
+    "oop-poly":     "OOP: polymorphism",
+    "oop-encap":    "OOP: encapsulation",
+    "oop-abstract": "OOP: abstraction"
   };
   var KEY = "algovision-progress";
 
