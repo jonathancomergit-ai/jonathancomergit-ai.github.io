@@ -49,13 +49,16 @@ at the top of `algovision/index.html`.
 
 ```
 algovision/
-├── index.html     Home: modules, progress bar (saved in the browser only)
+├── index.html     Home: two tracks (algorithms / programming concepts), progress bar
+│                  (saved in the browser only), coming-soon cards
 ├── arrays.html    Module 1: memory cells, addresses, insert/remove, resize, search
 ├── big-o.html     Module 2: growth chart, "how long would it take?", the 4 rules
 ├── sorting.html   Module 3: 5 sorts, merge sort split tree, the race
 ├── recursion.html Module 4: call stack, call tree, factorial / fib / memoized fib
 ├── pathfinding.html Module 5: draw a grid, BFS / DFS / Dijkstra / A*
 ├── structures.html  Module 6: stack, queue, linked list, hash map, binary search tree
+├── dp.html          Module 7: DP tables - Fibonacci, grid paths, coin change, LCS
+├── oop.html         Concepts 1: classes, inheritance, polymorphism, encapsulation, abstraction
 ├── av.css         AlgoVision styles, on top of site.css. Classes start with .av-
 ├── av.js          Shared engine: Player, Code panel, Bars, quiz, progress
 └── *.js           One script per module
