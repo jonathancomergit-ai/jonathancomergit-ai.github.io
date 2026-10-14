@@ -66,6 +66,7 @@ algovision/
 │   Data Structures
 ├── arrays.html      Memory cells, addresses, insert/remove, resize, search
 ├── structures.html  Stack, queue, linked list, hash map, binary search tree
+├── heaps.html       Heaps, a priority queue (the ER) and heap sort
 │   Programming Concepts
 ├── oop.html         Classes, inheritance, polymorphism, encapsulation, abstraction
 ├── refs.html        Names, arrows and objects - aliasing, copies, sandbox

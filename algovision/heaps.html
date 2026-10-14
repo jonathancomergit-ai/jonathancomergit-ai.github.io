@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Heaps &amp; priority queues - AlgoVision</title>
+  <meta name="description" content="See a heap as a tree and an array at once. Push, pop, run an emergency room priority queue, and watch heap sort.">
+  <!-- Unlisted until launch: see algovision/index.html -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/img/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#07070C">
+
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="av.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="avatar" src="../assets/img/pfp-160.webp" alt="" width="34" height="34">
+        Jonjoe1001
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="av-subnav" aria-label="AlgoVision">
+    <div class="wrap">
+      <a class="av-logo" href="index.html">Algo<span>Vision</span></a>
+      <a href="index.html">Home</a>
+      <a href="algorithms.html">Algorithms</a>
+      <a href="data.html" aria-current="page">Data Structures</a>
+      <a href="concepts.html">Concepts</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="av-page">
+      <div class="wrap">
+        <p class="kicker"><a href="data.html">Data Structures</a> &middot; Module 3</p>
+        <h1>Heaps &amp; priority queues</h1>
+        <p class="av-lead">
+          A heap answers one question instantly: <b>what's the smallest thing in here?</b>
+          It looks like a tree but lives in a plain array, and it stays tidy with two tiny moves:
+          bubble up and sink down. It's what hospitals, schedulers and Dijkstra use to pick "who's next".
+        </p>
+      </div>
+    </section>
+
+    <section class="av-section" style="padding-top:0">
+      <div class="wrap">
+        <div class="av-pills" id="tabs" role="group" aria-label="Lesson">
+          <button class="av-pill" type="button" data-pick="heap">Min / max heap &#9733;</button>
+          <button class="av-pill" type="button" data-pick="pq">Priority queue: the ER</button>
+          <button class="av-pill" type="button" data-pick="sort">Heap sort</button>
+        </div>
+
+        <div class="av-workbench">
+          <div class="av-panel">
+            <p class="av-panel-title" id="tab-name">Min-heap</p>
+            <div class="av-stage hp-stage" id="stage">
+              <svg class="hp-tree" id="tree" viewBox="0 0 480 236" role="img" aria-label="The heap drawn as a tree"></svg>
+              <div class="hp-arr" id="arr" aria-label="The same heap as an array"></div>
+              <div class="hp-rows" id="rows"></div>
+            </div>
+            <div class="av-legend" aria-hidden="true">
+              <span><i style="background:var(--av-compare)"></i>Comparing</span>
+              <span><i style="background:var(--av-write)"></i>Moving</span>
+              <span><i style="background:var(--av-focus)"></i>Top / found</span>
+              <span><i style="background:var(--av-done)"></i>Sorted</span>
+            </div>
+            <p class="av-say" id="say" aria-live="polite"></p>
+            <p class="av-now" id="now" aria-hidden="true"></p>
+            <div id="controls"></div>
+            <div class="av-stats">
+              <div class="av-stat"><b id="steps">0</b><small>Compares</small></div>
+              <div class="av-stat"><b id="op-name" style="font-size:.95rem; white-space:normal">-</b><small>Operation</small></div>
+              <div class="av-stat"><b><span class="av-badge is-o1" id="op-badge">O(1)</span></b><small>Big O</small></div>
+            </div>
+          </div>
+
+          <div class="av-side hp-side">
+            <div class="av-panel">
+              <p class="av-panel-title">Try it</p>
+              <div class="av-pills" id="kind" role="group" aria-label="Heap kind" style="margin:0 0 .8rem">
+                <button class="av-pill is-small" type="button" data-pick="min">Min-heap (smallest on top)</button>
+                <button class="av-pill is-small" type="button" data-pick="max">Max-heap (biggest on top)</button>
+              </div>
+              <div class="av-inputs">
+                <label id="lbl-name" hidden>patient <input class="av-field" id="in-name" type="text" value="Fay" maxlength="5" autocomplete="off" spellcheck="false" style="width:5rem"></label>
+                <label id="lbl-v"><span id="v-word">value v</span> <input class="av-field" id="in-v" type="number" value="4" min="0" max="99"></label>
+              </div>
+              <div class="av-ops" id="ops"></div>
+              <p class="av-sub hp-tip" id="tip"></p>
+            </div>
+            <div class="av-panel">
+              <p class="av-panel-title">The code (Python)</p>
+              <pre class="av-code" id="code"></pre>
+            </div>
+            <div class="av-panel">
+              <p class="av-panel-title">Cheat sheet</p>
+              <div class="av-table-wrap"><table class="av-facts" id="cheat"></table></div>
+              <div class="av-next-row"><button class="av-learn" type="button" id="learn"></button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <h2 class="av-h2">The tree is secretly an array</h2>
+        <p class="av-sub">
+          No arrows, no node objects. Every node has a fixed index, and a little maths finds its family.
+          Tap any node in the tree above to see it.
+        </p>
+        <div class="av-panel av-table-wrap">
+          <table class="av-facts">
+            <thead><tr><th>To find...</th><th>of index i</th><th>Example: i = 4</th></tr></thead>
+            <tbody>
+              <tr><td style="font-family:var(--font-body)">The parent</td><td>(i - 1) // 2</td><td>(4 - 1) // 2 = 1</td></tr>
+              <tr><td style="font-family:var(--font-body)">The left child</td><td>2 * i + 1</td><td>9</td></tr>
+              <tr><td style="font-family:var(--font-body)">The right child</td><td>2 * i + 2</td><td>10</td></tr>
+              <tr><td style="font-family:var(--font-body)">The top (smallest / biggest)</td><td>0</td><td>always index 0</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <h2 class="av-h2">Why not just keep a sorted list?</h2>
+        <p class="av-sub">A heap is only <i>half</i> sorted: each parent beats its children, and that's all. Doing less work is the point.</p>
+        <div class="av-panel av-table-wrap">
+          <table class="av-facts">
+            <thead><tr><th>Structure</th><th>See the smallest</th><th>Add one</th><th>Remove the smallest</th></tr></thead>
+            <tbody>
+              <tr><td style="font-family:var(--font-body)">Unsorted list</td><td class="bad">O(n) search</td><td class="good">O(1)</td><td class="bad">O(n)</td></tr>
+              <tr><td style="font-family:var(--font-body)">Sorted list</td><td class="good">O(1)</td><td class="bad">O(n) shift</td><td class="good">O(1) from the end</td></tr>
+              <tr><td style="font-family:var(--font-body)">Binary search tree</td><td>O(log n)</td><td>O(log n)</td><td>O(log n), O(n) if lopsided</td></tr>
+              <tr><td style="font-family:var(--font-body)"><b>Heap</b></td><td class="good">O(1)</td><td class="good">O(log n)</td><td class="good">O(log n), never lopsided</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <h2 class="av-h2">Check yourself</h2>
+        <p class="av-score" id="quiz-score"></p>
+        <div class="av-quiz" id="quiz"></div>
+        <div class="av-next-row">
+          <a class="btn btn-primary" href="data.html">Back to Data Structures &rarr;</a>
+          <a class="btn btn-ghost" href="index.html">All subjects</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - AlgoVision</span>
+      <nav class="footer-links">
+        <a href="index.html">AlgoVision</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../privacy.html">Privacy</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+  <script src="av.js"></script>
+  <script src="heaps.js"></script>
+  <script src="../assets/js/stats.js"></script>
+</body>
+</html>
