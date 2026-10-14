@@ -1453,6 +1453,57 @@ input[type="color"] { width: 2.4rem; height: 2rem; border: 1px solid var(--line-
   .hp-cell small { font-size: .55rem; }
 }
 
+/* ---------- graphs ---------- */
+.gr-stage { padding: .8rem; display: flex; flex-direction: column; gap: .5rem; }
+.gr-svg { width: 100%; height: auto; display: block; max-width: 600px; margin: 0 auto; touch-action: manipulation; }
+.gr-edge { stroke: var(--line-bright); stroke-width: 2; }
+.gr-edge.is-tree { stroke: var(--av-done); stroke-width: 3; }
+.gr-edge.is-hot  { stroke: var(--hot); stroke-width: 3; }
+.gr-edge.is-path { stroke: var(--amber); stroke-width: 4.5; }
+.gr-edge.is-dim  { stroke: var(--line); stroke-dasharray: 4 4; }
+.gr-ah { fill: var(--line-bright); }
+.gr-ah.is-hot { fill: var(--hot); }
+.gr-ah.is-dim { fill: var(--line); }
+.gr-node { cursor: pointer; }
+.gr-node rect { fill: var(--surface-2); stroke: var(--line-bright); stroke-width: 1.5; }
+.gr-node text { font-family: var(--font-mono); font-size: 14px; font-weight: 700; fill: var(--text); }
+.gr-node.is-compare rect { fill: var(--av-compare); stroke: var(--av-compare); }
+.gr-node.is-write rect   { fill: var(--av-write);   stroke: var(--av-write); }
+.gr-node.is-focus rect   { fill: var(--av-focus);   stroke: var(--av-focus); }
+.gr-node.is-done rect    { fill: var(--av-done);    stroke: var(--av-done); }
+.gr-node.is-compare text, .gr-node.is-write text, .gr-node.is-focus text, .gr-node.is-done text { fill: var(--bg); }
+.gr-node text.gr-badge { font-size: 11.5px; font-weight: 600; fill: var(--amber); }
+.gr-w { cursor: pointer; }
+.gr-w rect { fill: var(--bg-2); stroke: var(--line-bright); }
+.gr-w text { font-family: var(--font-mono); font-size: 12px; font-weight: 700; fill: var(--text-dim); }
+.gr-w.is-tree rect { stroke: var(--av-done); }
+.gr-w.is-hot rect  { stroke: var(--hot); }
+.gr-w.is-path rect { stroke: var(--amber); }
+.gr-w.is-path text, .gr-w.is-hot text { fill: var(--text); }
+.gr-info { font-family: var(--font-mono); font-size: .76rem; }
+.gr-two { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .8rem; align-items: start; }
+.gr-cap { margin: 0 0 .3rem; font-size: .66rem; letter-spacing: .06em; text-transform: uppercase; color: var(--text-faint); }
+.gr-adj-row { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-dim); line-height: 1.55; }
+.gr-adj-row b { color: var(--text); }
+.gr-adj-row.is-pick b { color: var(--amber); }
+.gr-mat { border-collapse: collapse; }
+.gr-mat th, .gr-mat td { width: 1.25rem; height: 1.25rem; text-align: center; font-size: .66rem; padding: 0; }
+.gr-mat th { color: var(--text-faint); font-weight: 600; }
+.gr-mat td { border: 1px solid var(--line); color: var(--text-faint); }
+.gr-mat td.is-1 { background: rgba(53, 214, 245, .18); color: var(--cyan); font-weight: 700; }
+.gr-tip { margin: 0 0 .9rem; font-size: .85rem; }
+.gr-side [hidden] { display: none !important; }
+.gr-stage .ds-out .av-box { white-space: nowrap; flex-shrink: 0; }
+.gr-svg.is-big .gr-node text { font-size: 18px; }
+.gr-svg.is-big .gr-node text.gr-badge { font-size: 15px; }
+.gr-svg.is-big .gr-w text { font-size: 15.5px; }
+@media (max-width: 600px) {
+  .gr-stage { padding: .5rem; }
+  .gr-info { font-size: .68rem; }
+  .gr-two { gap: .5rem; }
+  .gr-mat th, .gr-mat td { width: 1.05rem; height: 1.05rem; font-size: .58rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .av-bar, .av-cell .val, .av-grow-fill, .av-progress-bar div { transition: none; }
 }
