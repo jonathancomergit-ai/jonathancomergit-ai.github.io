@@ -58,8 +58,9 @@ var AVCatalog = (function () {
     { subject: "data", status: "live", page: "structures.html", title: "Stacks, queues, lists, maps & trees", art: "&#9675;&rarr;&#9675;", glow: "rgba(255,45,120,.22)",
       blurb: "Five structures with boxes and arrows that move: stack, queue, linked list, hash map and binary search tree.",
       topics: ["stack", "queue", "linkedlist", "hashmap", "bst"], extra: ["structures.html#hash", "Hash map"] },
-    { subject: "data", status: "soon", title: "Heaps & priority queues", art: "&#9651;", glow: "rgba(61,245,160,.16)",
-      blurb: "The structure behind Dijkstra and task schedulers: always know the smallest item, instantly." },
+    { subject: "data", status: "live", page: "heaps.html", title: "Heaps & priority queues", art: "&#9651;", glow: "rgba(61,245,160,.22)",
+      blurb: "A tree that lives in an array. Push and pop, run an emergency room where the most urgent goes first, and watch heap sort.",
+      topics: ["heap", "pq", "heapsort"], extra: ["heaps.html#pq", "The ER"] },
 
     /* ---------- Programming Concepts ---------- */
     { subject: "concepts", status: "live", page: "oop.html", title: "Object-Oriented Programming", art: "class", glow: "rgba(53,214,245,.24)",

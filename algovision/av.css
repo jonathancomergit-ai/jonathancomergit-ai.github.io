@@ -558,6 +558,7 @@ select.av-field { width: auto; }
 .av-badge.is-on2   { color: var(--hot);     background: var(--hot-dim); }
 .av-inputs { display: flex; flex-wrap: wrap; gap: .5rem 1rem; margin: .2rem 0 .9rem; font-size: .85rem; color: var(--text-dim); }
 .av-inputs label { display: flex; align-items: center; gap: .45rem; }
+.av-inputs [hidden] { display: none !important; }   /* the label rule above would otherwise beat [hidden] */
 
 .av-formula {
   font-family: var(--font-mono);
@@ -1417,6 +1418,39 @@ input[type="color"] { width: 2.4rem; height: 2rem; border: 1px solid var(--line-
   .bt-grid { grid-template-columns: 2.6rem repeat(8, minmax(0, 1fr)) 1.8rem; gap: 3px; }
   .bt-lbl { font-size: .62rem; }
   .bt-bit { min-height: 1.7rem; }
+}
+
+/* ---------- heaps ---------- */
+.hp-stage { padding: .8rem; display: flex; flex-direction: column; gap: .5rem; }
+.hp-tree { width: 100%; height: auto; display: block; max-width: 560px; margin: 0 auto; }
+.hp-side [hidden] { display: none !important; }   /* .av-pills / label display:flex would otherwise win */
+.hp-tree .hp-node { cursor: pointer; }
+.hp-tree .hp-node text { font-size: 14px; }
+.hp-ghost { fill: none; stroke: var(--line); stroke-dasharray: 3 3; }
+.hp-node text.hp-idx { font-family: var(--font-mono); font-size: 10px; font-weight: 400; fill: var(--text-faint); }
+.hp-node text.hp-name { font-size: 11.5px; font-weight: 600; fill: var(--amber); }
+.ds-edge.is-hot { stroke: var(--hot); stroke-width: 2.6; }
+.hp-arr { display: grid; grid-template-columns: repeat(15, minmax(0, 1fr)); gap: 3px; }
+.hp-cell { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.hp-cell span {
+  width: 100%; height: 1.9rem; display: grid; place-items: center; border-radius: 5px;
+  border: 1px solid var(--line-bright); background: var(--surface-2);
+  font-family: var(--font-mono); font-size: .78rem; font-weight: 700; color: var(--text);
+}
+.hp-cell small { font-family: var(--font-mono); font-size: .6rem; color: var(--text-faint); }
+.hp-cell.is-empty span { border-style: dashed; background: transparent; border-color: var(--line); }
+.hp-cell.is-out span { opacity: .35; }
+.hp-cell.is-compare span { background: var(--av-compare); border-color: var(--av-compare); color: var(--bg); }
+.hp-cell.is-write span   { background: var(--av-write);   border-color: var(--av-write);   color: var(--bg); }
+.hp-cell.is-focus span   { background: var(--av-focus);   border-color: var(--av-focus);   color: var(--bg); }
+.hp-cell.is-done span    { background: var(--av-done);    border-color: var(--av-done);    color: var(--bg); }
+.hp-rows:empty { display: none; }
+.hp-tip { margin: .9rem 0 0; font-size: .85rem; }
+@media (max-width: 600px) {
+  .hp-stage { padding: .5rem; }
+  .hp-arr { gap: 2px; }
+  .hp-cell span { height: 1.6rem; font-size: .66rem; border-radius: 4px; }
+  .hp-cell small { font-size: .55rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
