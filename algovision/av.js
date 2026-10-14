@@ -71,7 +71,8 @@ var AV = (function () {
     "refs":      "Variables & references",
     "async":     "Async & the event loop",
     "scope":     "Scope & closures",
-    "bits":      "Bits, binary & hex"
+    "bits":      "Bits, binary & hex",
+    "playground": "Code playground"
   };
   var KEY = "algovision-progress";
 
@@ -114,7 +115,7 @@ var AV = (function () {
 
   /* ---------- code panel ---------- */
 
-  var KW = "def|for|in|range|if|elif|else|while|return|and|or|not|break|True|False|None|len|print";
+  var KW = "def|class|for|in|range|if|elif|else|while|return|and|or|not|is|break|continue|pass|True|False|None|len|print|import|from|as|with|try|except|finally|raise|lambda|nonlocal|global|yield|del";
   var TOKENS = new RegExp("\\b(def)(\\s+)(\\w+)|\\b(" + KW + ")\\b|\\b(\\d+)\\b", "g");
   /* JavaScript listings: same colours, JS keywords, // comments */
   var JS_KW = "function|async|await|const|let|var|new|return|if|else|while|for|of|true|false|null|console|setTimeout|Promise|fetch";
