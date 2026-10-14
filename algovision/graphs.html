@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Graphs - AlgoVision</title>
+  <meta name="description" content="Build a graph with your fingers, then watch BFS and DFS walk it, sort courses by prerequisites, and find the shortest drive with Dijkstra.">
+  <!-- Unlisted until launch: see algovision/index.html -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/img/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#07070C">
+
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="av.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="avatar" src="../assets/img/pfp-160.webp" alt="" width="34" height="34">
+        Jonjoe1001
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="av-subnav" aria-label="AlgoVision">
+    <div class="wrap">
+      <a class="av-logo" href="index.html">Algo<span>Vision</span></a>
+      <a href="index.html">Home</a>
+      <a href="algorithms.html" aria-current="page">Algorithms</a>
+      <a href="data.html">Data Structures</a>
+      <a href="concepts.html">Concepts</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="av-page">
+      <div class="wrap">
+        <p class="kicker"><a href="algorithms.html">Algorithms</a> &middot; Module 6</p>
+        <h1>Graphs: things and the links between them</h1>
+        <p class="av-lead">
+          Friends on a social app, roads between towns, courses and their prerequisites, pages and links:
+          they're all <b>graphs</b>. Dots (nodes) joined by lines (edges). Build one with your fingers,
+          then watch the classic algorithms walk it.
+        </p>
+      </div>
+    </section>
+
+    <section class="av-section" style="padding-top:0">
+      <div class="wrap">
+        <div class="av-pills" id="tabs" role="group" aria-label="Lesson">
+          <button class="av-pill" type="button" data-pick="build">Build a graph</button>
+          <button class="av-pill" type="button" data-pick="search">BFS &amp; DFS &#9733;</button>
+          <button class="av-pill" type="button" data-pick="topo">Course order</button>
+          <button class="av-pill" type="button" data-pick="roads">Shortest roads</button>
+        </div>
+
+        <div class="av-workbench">
+          <div class="av-panel">
+            <p class="av-panel-title" id="tab-name">Build a graph</p>
+            <div class="av-stage gr-stage" id="stage">
+              <svg class="gr-svg" id="graph" viewBox="0 0 480 290" role="img" aria-label="The graph"></svg>
+              <div class="gr-info" id="info"></div>
+            </div>
+            <div class="av-legend" aria-hidden="true">
+              <span><i style="background:var(--av-compare)"></i>Waiting / looking</span>
+              <span><i style="background:var(--av-write)"></i>Working on</span>
+              <span><i style="background:var(--av-focus)"></i>Selected / start</span>
+              <span><i style="background:var(--av-done)"></i>Done</span>
+            </div>
+            <p class="av-say" id="say" aria-live="polite"></p>
+            <p class="av-now" id="now" aria-hidden="true"></p>
+            <div id="controls"></div>
+            <div class="av-stats">
+              <div class="av-stat"><b id="s-nodes">0</b><small>Nodes (V)</small></div>
+              <div class="av-stat"><b id="s-edges">0</b><small>Edges (E)</small></div>
+              <div class="av-stat"><b><span class="av-badge is-on" id="op-badge">-</span></b><small>Big O</small></div>
+            </div>
+          </div>
+
+          <div class="av-side gr-side">
+            <div class="av-panel">
+              <p class="av-panel-title">Try it</p>
+              <p class="av-sub gr-tip" id="tip"></p>
+              <div class="av-ops" id="ops"></div>
+              <div class="av-pills" id="presets" style="margin:.9rem 0 0"></div>
+            </div>
+            <div class="av-panel">
+              <p class="av-panel-title" id="code-title">The code (Python)</p>
+              <pre class="av-code" id="code"></pre>
+            </div>
+            <div class="av-panel">
+              <p class="av-panel-title">Cheat sheet</p>
+              <div class="av-table-wrap"><table class="av-facts" id="cheat"></table></div>
+              <div class="av-next-row"><button class="av-learn" type="button" id="learn"></button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <h2 class="av-h2">Graphs are everywhere</h2>
+        <p class="av-sub">Spot the nodes and the edges, and a hard-looking problem becomes one of these.</p>
+        <div class="av-panel av-table-wrap">
+          <table class="av-facts">
+            <thead><tr><th>Real thing</th><th>Nodes</th><th>Edges</th><th>Question &rarr; algorithm</th></tr></thead>
+            <tbody>
+              <tr><td style="font-family:var(--font-body)">Social network</td><td>People</td><td>Friendships</td><td style="font-family:var(--font-body)">"How many handshakes away?" &rarr; BFS</td></tr>
+              <tr><td style="font-family:var(--font-body)">Maps app</td><td>Junctions</td><td>Roads, weighted by minutes</td><td style="font-family:var(--font-body)">"Fastest route?" &rarr; Dijkstra / A*</td></tr>
+              <tr><td style="font-family:var(--font-body)">Course catalogue</td><td>Courses</td><td>"A unlocks B" arrows</td><td style="font-family:var(--font-body)">"What order can I take them?" &rarr; topological sort</td></tr>
+              <tr><td style="font-family:var(--font-body)">A maze or game level</td><td>Squares</td><td>Open sides</td><td style="font-family:var(--font-body)">"Can I get out?" &rarr; DFS or BFS (see <a href="pathfinding.html">Pathfinding</a>)</td></tr>
+              <tr><td style="font-family:var(--font-body)">The web</td><td>Pages</td><td>Links (one way)</td><td style="font-family:var(--font-body)">"Crawl everything" &rarr; BFS with a seen set</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <h2 class="av-h2">Check yourself</h2>
+        <p class="av-score" id="quiz-score"></p>
+        <div class="av-quiz" id="quiz"></div>
+        <div class="av-next-row">
+          <a class="btn btn-primary" href="algorithms.html">Back to Algorithms &rarr;</a>
+          <a class="btn btn-ghost" href="index.html">All subjects</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - AlgoVision</span>
+      <nav class="footer-links">
+        <a href="index.html">AlgoVision</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../privacy.html">Privacy</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+  <script src="av.js"></script>
+  <script src="graphs.js"></script>
+  <script src="../assets/js/stats.js"></script>
+</body>
+</html>
