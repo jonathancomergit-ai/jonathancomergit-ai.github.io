@@ -74,6 +74,7 @@ algovision/
 ├── async.html       The event loop: stack, Web APIs, task + microtask queues, sandbox
 ├── scope.html       Scope boxes, LEGB lookup, the UnboundLocalError trap, closures
 ├── bits.html        Flip bits, binary counting, hex colours, overflow, bitwise, floats
+├── playground.html  Real Python (Pyodide) traced line by line: stack, variables, output, challenges
 └── *.js             One script per module, same name as its page
 ```
 
