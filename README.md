@@ -63,6 +63,7 @@ algovision/
 ├── recursion.html   Call stack, call tree, factorial / fib / memoized fib
 ├── pathfinding.html Draw a grid, BFS / DFS / Dijkstra / A*
 ├── dp.html          DP tables - Fibonacci, grid paths, coin change, LCS
+├── graphs.html      Build a graph, BFS / DFS, course order (topological sort), Dijkstra on roads
 │   Data Structures
 ├── arrays.html      Memory cells, addresses, insert/remove, resize, search
 ├── structures.html  Stack, queue, linked list, hash map, binary search tree

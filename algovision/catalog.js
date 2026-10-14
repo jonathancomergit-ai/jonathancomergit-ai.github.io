@@ -48,8 +48,9 @@ var AVCatalog = (function () {
     { subject: "algorithms", status: "live", page: "dp.html", title: "Dynamic Programming", art: "dp[i]", glow: "rgba(255,201,60,.22)",
       blurb: "Solve each small problem once and keep the answer in a table. Watch the tables fill, then change the inputs.",
       topics: ["dp-fib", "dp-grid", "dp-coins", "dp-lcs"], extra: ["dp.html#coins", "Coin change"] },
-    { subject: "algorithms", status: "soon", title: "Graphs", art: "&#9675;&mdash;&#9675;", glow: "rgba(255,45,120,.16)",
-      blurb: "Networks of things: friends, roads, the internet. Traversal, cycles and shortest paths on real graphs." },
+    { subject: "algorithms", status: "live", page: "graphs.html", title: "Graphs", art: "&#9675;&mdash;&#9675;", glow: "rgba(255,45,120,.22)",
+      blurb: "Build a friend network with your fingers, then watch BFS and DFS walk it, sort courses by prerequisites, and find the shortest drive.",
+      topics: ["graphs", "graph-search", "topo", "graph-paths"], extra: ["graphs.html#topo", "Course order"] },
 
     /* ---------- Data Structures ---------- */
     { subject: "data", status: "live", page: "arrays.html", title: "Arrays", art: "[ ]", glow: "rgba(53,214,245,.26)",
