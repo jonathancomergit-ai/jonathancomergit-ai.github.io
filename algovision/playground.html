@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Code playground - AlgoVision</title>
+  <meta name="description" content="Write real Python in your browser and step through it line by line: every variable, call and list, drawn as it changes.">
+  <!-- Unlisted until launch: see algovision/index.html -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/img/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#07070C">
+
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="av.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="avatar" src="../assets/img/pfp-160.webp" alt="" width="34" height="34">
+        Jonjoe1001
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="av-subnav" aria-label="AlgoVision">
+    <div class="wrap">
+      <a class="av-logo" href="index.html">Algo<span>Vision</span></a>
+      <a href="index.html">Home</a>
+      <a href="algorithms.html">Algorithms</a>
+      <a href="data.html">Data Structures</a>
+      <a href="concepts.html" aria-current="page">Concepts</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="av-page">
+      <div class="wrap">
+        <p class="kicker"><a href="concepts.html">Programming Concepts</a> &middot; Module 6</p>
+        <h1>Code playground</h1>
+        <p class="av-lead">
+          Write <b>real Python</b>, run it right here in your browser, then step through it one line at a time
+          with the same player as every other module. Watch each variable change, every function call get its own box,
+          and lists and objects show up as the things they really are.
+        </p>
+      </div>
+    </section>
+
+    <section class="av-section pg-wrap" style="padding-top:0">
+      <div class="wrap">
+        <div class="av-pills" id="examples" role="group" aria-label="Examples"></div>
+
+        <div class="av-workbench">
+          <div class="av-panel">
+            <p class="av-panel-title" id="mode-title">Your code (Python) - edit me</p>
+            <div class="pg-edit" id="edit-wrap">
+              <div class="pg-gutter" id="gutter" aria-hidden="true"></div>
+              <textarea class="pg-editor" id="editor" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="off" aria-label="Python code"></textarea>
+            </div>
+            <pre class="av-code pg-view" id="code" hidden></pre>
+            <div class="pg-bar">
+              <button class="btn btn-primary" type="button" id="run">&#9654; Run &amp; step through</button>
+              <button class="btn btn-ghost" type="button" id="edit" hidden>&#9998; Edit code</button>
+              <button class="av-pill is-small" type="button" id="share">Copy share link</button>
+            </div>
+            <p class="pg-status" id="status">Python loads the first time you press Run (about 10 MB, then it's cached).</p>
+            <p class="av-say" id="say" aria-live="polite"></p>
+            <div id="controls"></div>
+            <div class="av-stats">
+              <div class="av-stat"><b id="s-line">-</b><small>Next line</small></div>
+              <div class="av-stat"><b id="s-depth">0</b><small>Calls deep</small></div>
+              <div class="av-stat"><b id="s-out">0</b><small>Lines printed</small></div>
+            </div>
+          </div>
+
+          <div class="av-side">
+            <div class="av-panel">
+              <p class="av-panel-title">Variables: one box per running function</p>
+              <div class="pg-stack" id="stack"></div>
+            </div>
+            <div class="av-panel">
+              <p class="av-panel-title">Output</p>
+              <pre class="pg-out" id="out"></pre>
+            </div>
+            <div class="av-panel">
+              <p class="av-panel-title">How to read it</p>
+              <ul class="pg-how">
+                <li>The <b style="color:var(--amber)">lit line</b> is the one about to run next.</li>
+                <li><b style="color:var(--hot)">Pink</b> variables just changed.</li>
+                <li>Lists, dicts and objects get a <span class="pg-ref">#number</span>. Same number = <a href="refs.html">the same object</a>.</li>
+                <li>Calling a function puts a new box on top. Returning takes it off (see <a href="scope.html">Scope</a>).</li>
+              </ul>
+              <div class="av-next-row"><button class="av-learn" type="button" id="learn"></button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="av-section">
+      <div class="wrap">
+        <h2 class="av-h2">Challenges</h2>
+        <p class="av-sub">Load one, make it print the right thing, press Run. It checks your output for you.</p>
+        <div class="pg-challenges" id="challenges"></div>
+        <div class="av-next-row">
+          <a class="btn btn-primary" href="concepts.html">Back to Programming Concepts &rarr;</a>
+          <a class="btn btn-ghost" href="index.html">All subjects</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - AlgoVision</span>
+      <nav class="footer-links">
+        <a href="index.html">AlgoVision</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../limitless.html">Limitless Lab</a>
+        <a href="../privacy.html">Privacy</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+  <script src="av.js"></script>
+  <script src="playground.js"></script>
+  <script src="../assets/js/stats.js"></script>
+</body>
+</html>
