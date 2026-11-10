@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Jonjoe1001 - Game &amp; Systems Developer</title>
-  <meta name="description" content="I build games, tools and simulators! A roguelike where time is your health bar, creatures that teach themselves to walk, and a wheel that finally ends the game night argument.">
+  <title>Jonjoe1001 - Machine learning, physics &amp; programming researcher</title>
+  <meta name="description" content="I train models from scratch on one GPU at home: a world model that dreams streets, my own 350M language model, drones that teach themselves to fly. I go after big open challenges.">
 
   <!-- Social preview (what shows when the link is pasted in Discord/Twitter) -->
-  <meta property="og:title" content="Jonjoe1001 - Game &amp; Systems Developer">
-  <meta property="og:description" content="I build games, tools and simulators! A roguelike where time is your health bar, creatures that teach themselves to walk, and a wheel that finally ends the game night argument.">
+  <meta property="og:title" content="Jonjoe1001 - Machine learning, physics &amp; programming researcher">
+  <meta property="og:description" content="I train models from scratch on one GPU at home: a world model that dreams streets, my own 350M language model, drones that teach themselves to fly. I go after big open challenges.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jonjoe1001.dev/">
   <meta property="og:site_name" content="Jonjoe1001">
@@ -23,23 +23,20 @@
   <link rel="icon" href="assets/img/favicon-16.png" type="image/png" sizes="16x16">
   <link rel="icon" href="assets/img/favicon-96.png" type="image/png" sizes="96x96">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-  <meta name="theme-color" content="#07070C">
+  <meta name="theme-color" content="#0E0E0D">
 
-  <!-- Fonts. The preconnects make them load noticeably faster. -->
   <link rel="canonical" href="https://jonjoe1001.dev/">
   <link rel="alternate" type="application/rss+xml" title="Jonjoe1001 - Dev Log" href="https://jonjoe1001.dev/feed.xml">
   <link rel="stylesheet" href="assets/css/site.css">
 
   <!-- Invisible to visitors. Tells Google (and anything else that reads
-       schema.org data) that these profiles all belong to the same person,
-       which is what lets a search for "Jonjoe1001" group them together.
-       Add a profile here whenever a new one goes live (Steam, Bluesky...). -->
+       schema.org data) that these profiles all belong to the same person. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Jonjoe1001",
-    "alternateName": "Jonathan",
+    "alternateName": "Jonathan Comer",
     "url": "https://jonjoe1001.dev/",
     "sameAs": [
       "https://www.youtube.com/@Jonjoe1001_dev",
@@ -53,7 +50,7 @@
 
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <!-- The grid, glows and scanlines. Purely decorative. -->
+  <!-- Glyph Drift draws into this (see assets/js/glyphs.js). Purely decorative. -->
   <div class="backdrop" aria-hidden="true"></div>
 
   <!-- ===================== HEADER ===================== -->
@@ -61,15 +58,14 @@
     <div class="wrap nav">
       <a class="brand" href="index.html">
         <img class="avatar" src="assets/img/pfp-160.webp" alt="" width="40" height="40">
-        Jonjoe1001
+        Jonjoe1001 <small>Jonathan Comer</small>
       </a>
 
       <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
 
       <nav class="nav-links">
         <a href="index.html" aria-current="page">Home</a>
-        <a href="projects.html">Projects</a>
-        <a href="limitless.html">Limitless Lab</a>
+        <a href="research.html">Research</a>
         <a href="blog.html">Dev Log</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
@@ -78,138 +74,158 @@
   </header>
 
   <main id="main">
-    <!-- ===================== HERO ===================== -->
+    <!-- ===================== HERO =====================
+         The brain wiring (site.js, section 10) still grows out of the
+         photo into the headline, exactly as before. -->
     <section class="hero">
-      <div class="wrap">
-        <!-- Profile photo beside the name. Swap assets/img/pfp-160.webp (a 160x160
-             crop of pfp.png) to change it here AND in the nav on every page -
-             they use the same file. -->
-        <div class="hero-id">
-          <img class="avatar-lg" src="assets/img/pfp-160.webp" alt="Jonjoe1001" width="78" height="78">
-          <span class="who">
-            <strong>Jonjoe1001</strong>
-            <span>Game &amp; systems developer</span>
-          </span>
+      <div class="wrap hero-split">
+        <div>
+          <div class="hero-id">
+            <img class="avatar-lg" src="assets/img/pfp-160.webp" alt="Jonjoe1001" width="78" height="78">
+            <span class="who">
+              <strong>Jonjoe1001</strong>
+              <span>Jonathan Comer</span>
+            </span>
+          </div>
+
+          <p class="status">
+            <span class="dot" aria-hidden="true"></span>
+            Now: the Vesuvius Challenge
+          </p>
+
+          <h1>Machine learning, physics &amp; programming <span class="glow">researcher.</span></h1>
+
+          <p class="hero-lead">
+            I train models from scratch on one GPU at home and go after big open
+            challenges. Self-taught since 2023, now studying
+            physics and software engineering. WELCOME FRIENDS, LET&rsquo;S GET CURIOUS!
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="research.html">See the research</a>
+            <a class="btn btn-ghost" href="about.html">About me</a>
+          </div>
         </div>
 
-        <p class="status">
-          <span class="dot" aria-hidden="true"></span>
-          Currently building Timeless
-        </p>
+        <figure class="screen">
+          <video src="assets/media/dream_walk.mp4" poster="assets/media/dream_walk.jpg" autoplay muted loop playsinline
+                 aria-label="A street in Amsterdam. Every frame is dreamed by my Dream World model."></video>
+          <figcaption>
+            <span><span class="live">&#9679;</span> Not filmed. Dreamed by my model, frame by frame.</span>
+            <span>Dream World v9</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
 
-        <h1>Welcome to my <span class="glow">brain</span>. Mind the wires!</h1>
-
-        <p class="hero-lead">
-          Roguelikes, physics simulations, neural evolution, and whatever else I get curious about at 2am. Self-taught since
-          2023. All of it gets written about here. WELCOME FRIENDS, LET&rsquo;S GET CURIOUS!
-        </p>
-
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="projects.html">See the work</a>
-          <a class="btn btn-ghost" href="blog.html">Read the dev log</a>
+    <!-- ===================== REAL NUMBERS ===================== -->
+    <section style="padding-top:0">
+      <div class="wrap">
+        <div class="numbers">
+          <div><b>350M</b><span>parameter language model, trained from zero</span></div>
+          <div><b>16B</b><span>tokens it read, on one GPU</span></div>
+          <div><b>567M</b><span>drone-steps a second in my flight simulator</span></div>
+          <div><b>4 &rarr; 11 s</b><span>clean dream walk after one fix</span></div>
         </div>
       </div>
     </section>
 
-    <!-- ===================== THE BIG THREE ===================== -->
+    <!-- ===================== FEATURED RESEARCH ===================== -->
     <section>
       <div class="wrap">
         <div class="section-head">
-          <p class="kicker">Featured</p>
+          <p class="kicker">Research</p>
           <h2>The work I&rsquo;d show first</h2>
-          <p>My big three. If you only look at one thing here, make it one of these!</p>
+          <p>Real footage, real screenshots and real training logs. Nothing here is a mock-up.</p>
         </div>
 
         <div class="feature-list">
 
-          <!-- ============ TIMELESS ============ -->
-          <article class="feature art-narrow">
-            <div class="feature-body">
-              <div class="tags">
-                <span class="tag is-dev">In development</span>
-                <span class="tag is-game">Roguelike</span>
-                <span class="tag">Python</span>
-              </div>
-              <h3><a href="projects/timeless.html">Timeless</a></h3>
-              <p>
-                What if your health bar was a clock? That&rsquo;s Timeless. You don&rsquo;t
-                lose hit points, you lose TIME, and when it runs out so do you. So
-                playing it safe is actually how you die! Custom engine, custom room
-                editor, 43,000 lines, and three bosses who each break a rule the game
-                just spent an hour teaching you. I&rsquo;ll be honest, I should have made this game in a known engine (Unity, Godot, etc), but it was far too late and I&rsquo;ve learned more than I could ever dream. This game is still being worked on by me and my talented, amazing girlfriend. 
-                She hand drew all of the art in the game. Yes, that&rsquo;s why it looks so good. 
-              </p>
-              <div class="hero-actions">
-                <a class="btn btn-primary" href="https://store.steampowered.com/app/4437000/Timeless/" target="_blank" rel="noopener">Wishlist on Steam</a>
-                <a class="btn btn-ghost" href="projects/timeless.html">Explore Timeless</a>
-              </div>
-            </div>
-            <div class="feature-art is-pixel" style="--art-bg: #231F35">
-              <img src="assets/img/covers/timeless.webp" alt="Timeless key art - a star-lit figure holding a black hole in one hand and a galaxy in the other, above the Timeless logo" loading="lazy" width="600" height="900">
-            </div>
-          </article>
-
-          <!-- ============ MADE IN KIND ============ -->
+          <!-- ============ DREAM WORLD ============ -->
           <article class="feature">
             <div class="feature-body">
               <div class="tags">
-                <span class="tag is-dev">In development</span>
-                <span class="tag is-game">Immersive sim</span>
-                <span class="tag">Godot 4</span>
+                <span class="tag is-dev">World model</span>
+                <span class="tag">Diffusion</span>
+                <span class="tag">PyTorch</span>
               </div>
-              <h3><a href="projects/made-in-kind.html">Made in Kind</a></h3>
+              <h3><a href="research.html#dream-world">Dream World</a></h3>
               <p>
-                You wake up in a robot body on an Earth that AIs have kept turning long
-                after humans disappeared. A giant stag-shaped AI with antlers of light
-                hides you from the others and becomes your best friend. Together you
-                have to save the world from AIs falling into humanity&rsquo;s worst
-                habits. First person, solarpunk, ULTRAKILL-fast fights, and many ways
-                through every problem. Greedy players get stronger... but at what cost?
+                A diffusion world model I trained on public walking-tour videos. You walk
+                with WASD and it dreams every frame of the street. The picture shows the same
+                model before and after one fix: the left melts in a second, the right
+                holds the street.
               </p>
-              <a class="btn btn-primary" href="projects/made-in-kind.html">Explore Made in Kind</a>
+              <a class="btn btn-primary" href="research.html#dream-world">See Dream World</a>
             </div>
-            <div class="feature-art" style="--art-bg: #070403">
-              <img src="assets/img/projects/made-in-kind/logo-battle.webp" alt="The Made in Kind logo: MADE IN in gold above KIND, its letters half white ceramic and half pink flesh" loading="lazy" width="1600" height="900">
+            <div class="feature-art" style="--art-bg: #121211">
+              <img src="assets/media/dream_fix.jpg" alt="Two dreamed frames of the same Amsterdam street. The left has melted into grey texture. The right still shows the street, a bus and a station." loading="lazy" width="1344" height="384">
             </div>
           </article>
 
-          <!-- ============ MISSION C.H.I.P.L.E.R. ============ -->
+          <!-- ============ MINIGPT ============ -->
           <article class="feature">
             <div class="feature-body">
               <div class="tags">
-                <span class="tag is-dev">In development</span>
-                <span class="tag is-game">Colony sim</span>
-                <span class="tag">Godot 4</span>
+                <span class="tag is-dev">Language model</span>
+                <span class="tag">From scratch</span>
+                <span class="tag">PyTorch</span>
               </div>
-              <h3><a href="projects/mission-chipler.html">MISSION C.H.I.P.L.E.R.</a></h3>
+              <h3><a href="research.html#minigpt">MiniGPT</a></h3>
               <p>
-                Have you ever wanted to grow a whole colony from ONE little guy? A single
-                Chipler crash-lands on a tiny round planet, copies himself (the copies come
-                out a little different!) and slowly turns into a busy colony with farms,
-                forges and even a railway. Meanwhile Empress Chippa keeps calling on the
-                radio with orders. Ship them, or say no and see how she feels about it!
-                It&rsquo;s cozy and pastel, and every bit of it is built in code in Godot.
+                My own 350-million-parameter language model, trained from zero on 16 billion
+                tokens. No one else&rsquo;s weights. The chart is its real training log: science
+                questions it gets right, from a coin-flip 24.7% up to 63.1%.
               </p>
-              <a class="btn btn-primary" href="projects/mission-chipler.html">Explore MISSION C.H.I.P.L.E.R.</a>
+              <a class="btn btn-primary" href="research.html#minigpt">See MiniGPT</a>
             </div>
-            <div class="feature-art" style="--art-bg: #2D244B">
-              <img src="assets/img/projects/mission-chipler/planet.webp" alt="A tiny round planet made of pastel hex tiles, floating in a purple sky: blue seas, green forests, snowy peaks and a ring of puffy clouds, with a little colony on one side" loading="lazy" width="1600" height="900">
+            <div class="feature-art" style="--art-bg: #161615">
+              <div class="chart" id="chart-arc" style="width:100%"><h3>ARC-Easy accuracy</h3><p>by tokens read &middot; random guessing = 25%</p></div>
             </div>
           </article>
 
+          <!-- ============ MINDFLIGHT ============ -->
+          <article class="feature">
+            <div class="feature-body">
+              <div class="tags">
+                <span class="tag">Reinforcement learning</span>
+                <span class="tag">PyTorch</span>
+                <span class="tag">Physics</span>
+              </div>
+              <h3><a href="research.html#mindflight">MindFlight</a></h3>
+              <p>
+                Thousands of simulated drones learning to fly at once, on the GPU. I wrote
+                the quadcopter physics myself, and the learning code (PPO) is one readable
+                file. The chart is a real training run.
+              </p>
+              <a class="btn btn-primary" href="research.html#mindflight">See MindFlight</a>
+            </div>
+            <div class="feature-art" style="--art-bg: #161615">
+              <img class="is-plot" src="assets/media/mf_level5_curves.jpg" alt="MindFlight training curves: success rate climbing over 80 million samples" loading="lazy" width="1130" height="690">
+            </div>
+          </article>
 
         </div>
 
+        <div class="rowlinks" style="margin-top: 2rem">
+          <a class="rowlink" href="research.html#vesuvius">
+            <div>
+              <small>Big challenges</small>
+              <strong>The Vesuvius Challenge</strong>
+              <span>Reading scrolls that a volcano burned in 79 AD, from X-ray scans. Team Limitless is on it.</span>
+            </div>
+            <b>Read more &rarr;</b>
+          </a>
+        </div>
+
         <p style="margin-top: 2rem">
-          <a class="btn btn-ghost" href="projects.html">All projects &rarr;</a>
+          <a class="btn btn-ghost" href="research.html">All research &rarr;</a>
         </p>
       </div>
     </section>
 
     <!-- ===================== LIMITLESS LAB: THREE DOORS =====================
-         One door per wing. assets/js/limitless.js fills in the live count
-         (data-count) and swaps each emoji for the wing's 3 newest thumbnails
-         (data-stack). Without JavaScript the doors still work as plain links. -->
+         Unchanged. assets/js/limitless.js fills in the live counts and thumbnails. -->
     <section>
       <div class="wrap">
         <div class="section-head">
@@ -303,6 +319,7 @@
 
 
         </div>
+        </div>
 
         <p style="margin-top: 2rem">
           <a class="btn btn-ghost" href="blog.html">All posts &rarr;</a>
@@ -325,12 +342,16 @@
     </section>
   </main>
 
+  <!-- MiniGPT's real training log (runs/friend350), thinned to ~250 points. -->
+  <script type="application/json" id="minigpt-log">{"train":[[0.042,7.395],[0.107,4.199],[0.173,3.733],[0.239,3.576],[0.304,3.48],[0.37,3.421],[0.435,3.36],[0.501,3.313],[0.566,3.293],[0.632,3.256],[0.697,3.238],[0.763,3.208],[0.828,3.183],[0.894,3.174],[0.96,3.149],[1.025,3.142],[1.091,3.128],[1.156,3.109],[1.222,3.107],[1.287,3.097],[1.353,3.079],[1.418,3.071],[1.484,3.063],[1.549,3.058],[1.615,3.051],[1.68,3.039],[1.746,3.038],[1.812,3.035],[1.877,3.01],[1.943,3.014],[2.008,3.01],[2.074,3.002],[2.139,2.996],[2.205,2.999],[2.27,2.995],[2.336,2.99],[2.401,2.979],[2.467,2.976],[2.533,2.974],[2.598,2.969],[2.664,2.96],[2.729,2.963],[2.795,2.955],[2.86,2.955],[2.926,2.952],[2.991,2.953],[3.057,2.944],[3.122,2.948],[3.188,2.936],[3.253,2.94],[3.319,2.937],[3.385,2.924],[3.45,2.927],[3.516,2.923],[3.581,2.917],[3.647,2.912],[3.712,2.919],[3.778,2.914],[3.843,2.907],[3.909,2.906],[3.974,2.903],[4.04,2.892],[4.106,2.901],[4.171,2.891],[4.237,2.892],[4.302,2.896],[4.368,2.897],[4.433,2.891],[4.499,2.893],[4.564,2.885],[4.63,2.883],[4.695,2.886],[4.761,2.877],[4.826,2.878],[4.892,2.872],[4.958,2.87],[5.023,2.879],[5.089,2.873],[5.154,2.874],[5.22,2.873],[5.285,2.864],[5.351,2.877],[5.416,2.869],[5.482,2.861],[5.547,2.867],[5.545,2.858],[5.61,2.865],[5.676,2.863],[5.741,2.855],[5.807,2.858],[5.873,2.864],[5.938,2.847],[6.004,2.857],[6.069,2.857],[6.135,2.854],[6.2,2.847],[6.266,2.852],[6.331,2.847],[6.397,2.843],[6.462,2.848],[6.528,2.84],[6.593,2.852],[6.659,2.829],[6.725,2.842],[6.79,2.839],[6.856,2.829],[6.921,2.838],[6.987,2.828],[7.052,2.834],[7.118,2.832],[7.183,2.839],[7.249,2.826],[7.314,2.831],[7.38,2.835],[7.446,2.831],[7.511,2.82],[7.577,2.827],[7.642,2.818],[7.708,2.822],[7.773,2.818],[7.839,2.826],[7.904,2.825],[7.97,2.817],[8.035,2.818],[8.101,2.822],[8.166,2.817],[8.232,2.808],[8.298,2.815],[8.363,2.812],[8.429,2.81],[8.494,2.814],[8.56,2.813],[8.625,2.81],[8.691,2.815],[8.756,2.81],[8.822,2.812],[8.887,2.808],[8.953,2.804],[9.019,2.804],[9.084,2.797],[9.15,2.806],[9.215,2.803],[9.281,2.804],[9.346,2.809],[9.412,2.806],[9.477,2.804],[9.543,2.802],[9.608,2.789],[9.674,2.797],[9.739,2.799],[9.805,2.794],[9.871,2.795],[9.936,2.8],[10.002,2.806],[10.067,2.801],[10.133,2.79],[10.198,2.799],[10.264,2.795],[10.329,2.791],[10.395,2.788],[10.46,2.795],[10.526,2.787],[10.592,2.786],[10.657,2.791],[10.723,2.797],[10.788,2.791],[10.854,2.787],[10.919,2.784],[10.985,2.783],[11.05,2.787],[11.116,2.784],[11.181,2.785],[11.247,2.785],[11.312,2.782],[11.378,2.789],[11.444,2.784],[11.509,2.78],[11.575,2.774],[11.64,2.774],[11.706,2.773],[11.771,2.777],[11.837,2.765],[11.902,2.764],[11.968,2.774],[12.033,2.763],[12.099,2.765],[12.165,2.766],[12.23,2.761],[12.296,2.755],[12.361,2.757],[12.427,2.756],[12.492,2.755],[12.558,2.754],[12.623,2.739],[12.689,2.755],[12.754,2.74],[12.82,2.748],[12.885,2.743],[12.951,2.752],[13.017,2.746],[13.082,2.739],[13.148,2.741],[13.213,2.735],[13.279,2.735],[13.344,2.734],[13.41,2.724],[13.475,2.731],[13.541,2.731],[13.606,2.728],[13.672,2.732],[13.738,2.725],[13.803,2.721],[13.869,2.725],[13.934,2.721],[14.0,2.718],[14.065,2.725],[14.131,2.722],[14.196,2.716],[14.262,2.714],[14.327,2.714],[14.393,2.714],[14.458,2.707],[14.524,2.719],[14.59,2.71],[14.655,2.705],[14.721,2.706],[14.786,2.703],[14.852,2.703],[14.917,2.706],[14.983,2.691],[15.048,2.697],[15.114,2.682],[15.179,2.69],[15.245,2.705],[15.311,2.701],[15.376,2.687],[15.442,2.701],[15.507,2.691],[15.573,2.679],[15.638,2.684],[15.704,2.689],[15.769,2.687],[15.835,2.692],[15.9,2.683],[15.966,2.682],[16.0,2.69]],"evals":[[0.0,10.397,24.7],[0.4,3.333,49.0],[0.8,3.163,50.8],[1.2,3.08,52.7],[1.6,3.028,55.5],[2.0,2.991,52.3],[2.4,2.963,55.0],[2.8,2.941,56.3],[3.2,2.922,54.2],[3.6,2.906,58.2],[4.0,2.892,54.8],[4.4,2.88,59.0],[4.8,2.87,55.8],[5.2,2.86,59.2],[5.6,2.851,59.3],[6.0,2.844,59.2],[6.4,2.837,57.8],[6.8,2.83,60.3],[7.2,2.824,58.3],[7.6,2.818,60.3],[8.0,2.813,59.5],[8.4,2.809,59.8],[8.8,2.804,60.3],[9.2,2.799,60.8],[9.6,2.796,59.2],[10.0,2.792,59.5],[10.4,2.789,61.8],[10.8,2.784,59.3],[11.2,2.782,61.0],[11.6,2.773,60.7],[12.0,2.764,61.7],[12.4,2.755,61.7],[12.8,2.746,61.2],[13.2,2.738,63.5],[13.6,2.729,64.0],[14.0,2.721,62.2],[14.4,2.713,61.3],[14.8,2.706,64.0],[15.2,2.699,62.5],[15.6,2.692,63.8],[16.0,2.688,63.1]]}</script>
+
   <!-- ===================== FOOTER ===================== -->
   <footer class="site-footer">
     <div class="wrap footer-inner">
       <span class="mono">&copy; 2026 Jonjoe1001 - hand-written HTML &amp; CSS, with help from AI</span>
       <nav class="footer-links">
-        <a href="projects.html">Projects</a>
+        <a href="research.html">Research</a>
+        <a href="projects.html">All projects</a>
         <a href="limitless.html">Limitless Lab</a>
         <a href="blog.html">Dev Log</a>
         <a href="about.html">About</a>
@@ -347,6 +368,7 @@
 
   <script src="assets/js/site.js"></script>
   <script src="assets/js/limitless.js"></script>
+  <script src="assets/js/research.js"></script>
   <script src="assets/js/stats.js"></script>
 </body>
 </html>

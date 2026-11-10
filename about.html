@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>About - Jonjoe1001</title>
-  <meta name="description" content="Self-taught since 2023, now double majoring in software engineering and physics. I build games, tools and simulators - and I care about the part underneath.">
+  <meta name="description" content="Self-taught since 2023, now double majoring in software engineering and physics. I train my own models, build simulators and make games - and I care about the part underneath.">
   <meta property="og:title" content="About - Jonjoe1001">
-  <meta property="og:description" content="Self-taught since 2023, now double majoring in software engineering and physics. I build games, tools and simulators - and I care about the part underneath.">
+  <meta property="og:description" content="Self-taught since 2023, now double majoring in software engineering and physics. I train my own models, build simulators and make games - and I care about the part underneath.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jonjoe1001.dev/about.html">
   <meta property="og:site_name" content="Jonjoe1001">
@@ -22,7 +22,7 @@
   <link rel="icon" href="assets/img/favicon-16.png" type="image/png" sizes="16x16">
   <link rel="icon" href="assets/img/favicon-96.png" type="image/png" sizes="96x96">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-  <meta name="theme-color" content="#07070C">
+  <meta name="theme-color" content="#0E0E0D">
 
   <link rel="canonical" href="https://jonjoe1001.dev/about.html">
   <link rel="alternate" type="application/rss+xml" title="Jonjoe1001 - Dev Log" href="https://jonjoe1001.dev/feed.xml">
@@ -37,15 +37,14 @@
     <div class="wrap nav">
       <a class="brand" href="index.html">
         <img class="avatar" src="assets/img/pfp-160.webp" alt="" width="34" height="34">
-        Jonjoe1001
+        Jonjoe1001 <small>Jonathan Comer</small>
       </a>
 
       <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
 
       <nav class="nav-links">
         <a href="index.html">Home</a>
-        <a href="projects.html">Projects</a>
-        <a href="limitless.html">Limitless Lab</a>
+        <a href="research.html">Research</a>
         <a href="blog.html">Dev Log</a>
         <a href="about.html" aria-current="page">About</a>
         <a href="contact.html">Contact</a>
@@ -73,21 +72,45 @@
                Search the whole project for  todo  before publishing.
                ========================================================== -->
           <div class="prose">
+            <!-- Claude drafted this intro in my voice on 2026-11-09 for the
+                 research-first rebrand, so reword it however you like. The old
+                 intro is saved in brand_drafts/about_before_draft.html. -->
             <p>
-              I&rsquo;m a learning developer. Most of what I build starts as getting 
-              frustrated by pay walls or fun nerdy tools &mdash; Oh and games 
-              because who doesn&rsquo;t like games. I&rsquo;ve never been the type of person who
-              quits something they start, so after a few nights or years, BOOM, a new 
-              program enters the world.
+              My real name is Jonathan Comer. I do machine learning, physics and programming
+              research on my own, from a desk in the US with one very overworked GPU.
+              I&rsquo;m also a student, and I still make games because who doesn&rsquo;t like games!
+              I&rsquo;ve never been the type of person who quits something they start, so after
+              a few nights or years, BOOM, a new model, sim or game enters the world.
             </p>
 
             <p>
-              What I really care about is the part underneath. Not just does the game
-              run, but is the thing driving it any good? A physics step that doesn&rsquo;t
-              blow up. A room editor good enough that building levels stops being a
-              chore. A <a href="projects/emergent-evolver.html">brain graph</a> that shows function and properly works. That&rsquo;s
-              the stuff I&rsquo;m proud of, and it&rsquo;s most of what I end up writing about in the
+              What I really care about is the part underneath. Not just does the thing run,
+              but is what&rsquo;s driving it any good? Does my world model melt after four seconds?
+              Does my physics step blow up? Does the
+              <a href="projects/emergent-evolver.html">brain graph</a> actually show what the
+              brain is doing? And can I trust my score? (My first one got fooled by neon
+              glitches and I believed it for a WHOLE day!) That&rsquo;s the stuff I care about
+              getting right, and it&rsquo;s most of what I end up writing about in the
               <a href="blog.html">dev log</a>.
+            </p>
+
+            <h2>What I&rsquo;m chasing right now</h2>
+
+            <p>
+              I trained a <a href="research.html#dream-world">world model</a> that dreams a
+              street while you walk through it. I also trained my own
+              <a href="research.html#minigpt">language model</a> from zero, with 350 million
+              parameters and nobody else&rsquo;s weights, mostly to see if I could. Then there&rsquo;s
+              the big one! My team and I are trying to read scrolls that a volcano burned
+              almost 2,000 years ago, for the
+              <a href="research.html#vesuvius">Vesuvius Challenge</a>. I write all of it down,
+              the wins AND the faceplants, so anybody can check my work and tell me where I
+              messed up.
+            </p>
+
+            <p>
+              If I could pick any job in the world it would be machine learning research or
+              physics. I&rsquo;m not there yet, so for now I just do the research anyway!
             </p>
 
             <h2>How I got here</h2>
@@ -122,6 +145,7 @@
 
             <ul>
               <li><strong>Python</strong> &mdash; game engines, tooling, automation, local AI pipelines</li>
+              <li><strong>PyTorch</strong> &mdash; training my own models from scratch, on my own GPU</li>
               <li><strong>JavaScript</strong> &mdash; simulations that run right in a browser with zero dependencies</li>
               <li><strong>Java</strong> &mdash; object-oriented programming</li>
               <li><strong>Godot 4</strong> &mdash; 3D, procedural geometry, GDScript</li>
@@ -180,7 +204,8 @@
             </p>
 
             <p style="margin-top: 2.4rem">
-              <a class="btn btn-primary" href="projects.html">See what I&rsquo;ve built</a>
+              <a class="btn btn-primary" href="research.html">See the research</a>
+              <a class="btn btn-ghost" href="projects.html">See what I&rsquo;ve built</a>
               <a class="btn btn-ghost" href="blog.html">Read the dev log</a>
             </p>
           </div>
@@ -210,7 +235,8 @@
     <div class="wrap footer-inner">
       <span class="mono">&copy; 2026 Jonjoe1001 - hand-written HTML &amp; CSS, with help from AI</span>
       <nav class="footer-links">
-        <a href="projects.html">Projects</a>
+        <a href="research.html">Research</a>
+        <a href="projects.html">All projects</a>
         <a href="limitless.html">Limitless Lab</a>
         <a href="blog.html">Dev Log</a>
         <a href="about.html">About</a>
