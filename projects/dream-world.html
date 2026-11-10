@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Dream World - Jonjoe1001</title>
+  <meta name="description" content="A diffusion world model I trained from scratch. Hold W and it dreams the next frame of a street, about 23 times a second. What worked, what melted, and the bug that was in every version.">
+
+  <meta property="og:title" content="Dream World - a model that dreams a street as you walk it">
+  <meta property="og:description" content="A diffusion world model I trained from scratch. Hold W and it dreams the next frame of a street, about 23 times a second. What worked, what melted, and the bug that was in every version.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jonjoe1001.dev/projects/dream-world.html">
+  <meta property="og:site_name" content="Jonjoe1001">
+  <meta property="og:image" content="https://jonjoe1001.dev/assets/img/og-v2.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jonjoe1001.dev/assets/img/og-v2.jpg">
+
+  <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/img/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="../assets/img/favicon-96.png" type="image/png" sizes="96x96">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#0E0E0D">
+
+  <link rel="canonical" href="https://jonjoe1001.dev/projects/dream-world.html">
+  <link rel="alternate" type="application/rss+xml" title="Jonjoe1001 - Dev Log" href="https://jonjoe1001.dev/feed.xml">
+  <link rel="stylesheet" href="../assets/css/site.css?v=20261110b">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="avatar" src="../assets/img/pfp-160.webp" alt="" width="34" height="34">
+        Jonjoe1001 <small>Jonathan Comer</small>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../research.html" aria-current="page">Research</a>
+        <a href="../games.html">Games</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap project-hero">
+      <a class="back-link" href="../research.html">&larr; Research</a>
+      <div class="tags">
+        <span class="tag">Diffusion</span>
+        <span class="tag">World model</span>
+        <span class="tag">PyTorch</span>
+        <span class="tag">From scratch</span>
+      </div>
+      <h1>Dream World</h1>
+      <p class="project-lead">
+        What if a model could dream a street while you walk down it? You hold W and it
+        makes up the next frame, then the next, about 23 times a second. There&rsquo;s no map
+        and no 3D world in there. Every frame on this page was dreamed by my model!
+      </p>
+    </div>
+
+    <div class="wrap">
+      <div class="project-cover">
+        <video src="../assets/media/dream_walk.mp4" poster="../assets/media/dream_walk.jpg" autoplay muted loop playsinline style="width:100%;display:block" aria-label="A street in Amsterdam. Every frame is dreamed by my Dream World model."></video>
+      </div>
+
+      <dl class="facts">
+        <div><dt>Model</dt><dd>Diffusion U-Net</dd></div>
+        <div><dt>Size</dt><dd>51M parameters</dd></div>
+        <div><dt>Picture</dt><dd>96 x 168 pixels</dd></div>
+        <div><dt>Memory</dt><dd>24 frames (16.8 s)</dd></div>
+        <div><dt>Dream speed</dt><dd>about 23 frames a second</dd></div>
+        <div><dt>Training video</dt><dd>14.4 hours, 10 sources</dd></div>
+        <div><dt>Hardware</dt><dd>One RTX 5090</dd></div>
+      </dl>
+
+      <div class="project-body">
+        <h2>So what is it?</h2>
+        <p>
+          Dream World is a world model. It looks at the last few seconds it remembers and
+          the key you&rsquo;re pressing, and it paints the next frame from noise. Then it does
+          that again. The picture is tiny (96 by 168 pixels) so it can keep up with you
+          on one GPU.
+        </p>
+        <p>
+          It learned from 14.4 hours of first-person city walks. Nobody told it what a
+          street is. It just watched a LOT of walking.
+        </p>
+        <h2>Version zero melted</h2>
+        <p>
+          My first model held a street for a few seconds and then melted into beige soup.
+          Every wrong pixel gets fed back in as memory for the next frame, so small
+          mistakes pile up fast. Most of this project has been a fight against the melt!
+        </p>
+        
+      </div>
+
+      <div class="shots">
+        <figure class="shot shot-wide">
+          <img src="../assets/img/projects/dream-world/melt_v0.jpg" alt="Four dreamed frames from the first model. A street smears into beige and pink blobs." loading="lazy" width="896" height="512">
+          <figcaption><b>Version zero, a few seconds in. All four frames are dreamed.</b></figcaption>
+        </figure>
+      </div>
+
+      <div class="project-body">
+        <h2>The bug that was in every version</h2>
+        <p>
+          This one hid from me until after version 4. The model never sees pure static
+          while it trains. Even the noisiest training picture still has a faint trace of the
+          real frame in it, and the model had learned to read that trace. But I was
+          starting every dreamed frame from PURE static. So its very first guess
+          was bad, and everything after that was built on a bad guess.
+        </p>
+        <p>
+          The fix needed no training at all. Start each new frame from the last frame
+          plus static. On the same weights, first-frame error dropped from 0.221 to
+          0.037, and a clean walk went from 4 seconds to 11.
+        </p>
+        
+      </div>
+
+      <div class="shots">
+        <figure class="shot shot-wide">
+          <video src="../assets/media/dream_fix.mp4" poster="../assets/media/dream_fix.jpg" autoplay muted loop playsinline style="width:100%;display:block" aria-label="Two dreamed walks side by side. The left melts into texture within a second. The right keeps the street."></video>
+          <figcaption><b>Same weights, same street. Left: start from pure static. Right: last frame + static.</b></figcaption>
+        </figure>
+      </div>
+
+      <div class="project-body">
+        <h2>My scores were lying to me</h2>
+        <p>
+          For a while my score said some dreams &ldquo;never melted&rdquo; for 20 seconds. I looked
+          at them. They were ripples! A screen full of wavy texture counted as a clean
+          street. When I checked my old meters against real video, they called real
+          footage melted about a third of the time.
+        </p>
+        <p>
+          So I trained a tiny judge (half a million parameters) on early dream frames
+          against late ones, and I use that now. It&rsquo;s the reason I trust any number on
+          this page.
+        </p>
+        <h2>Remembering where it&rsquo;s been</h2>
+        <p>
+          Turn around in a dream, turn back, and the street you left should still be
+          there. At first it wasn&rsquo;t. The model happily invented a brand new place. So I
+          gave it a panorama memory: it keeps what it has seen at each heading and uses
+          that as a hint when you look that way again. My turn-back score went from 0.13
+          to 0.88, and a full spin went from 0.02 to 0.87.
+        </p>
+        
+      </div>
+
+      <div class="shots">
+        <figure class="shot shot-wide">
+          <img src="../assets/img/projects/dream-world/memory_turn.jpg" alt="Three rows of dreamed frames in four columns: before the turn, facing away, back again, and a control with no memory. The back-again frames look like the before frames. The control frames are smeared texture." loading="lazy" width="1344" height="604">
+          <figcaption><b>Before the turn, facing away, back again, and what happens with no memory. All dreamed.</b></figcaption>
+        </figure>
+      </div>
+
+      <div class="project-body">
+        <h2>Things that DIDN&rsquo;T work</h2>
+        <ul>
+          <li><strong>A bigger model.</strong> I trained one with 96.5 million parameters from scratch. For the same minutes of training it tied the small one.</li>
+          <li><strong>More training.</strong> This one surprised me. Long walks got WORSE the longer I trained, even while the one-step score kept getting better (0.428 after 3,000 steps, 0.512 after 6,000, 0.549 after 9,000, and lower is better).</li>
+          <li><strong>Twice the resolution.</strong> Version 11 dreams at 192 by 336. It scored worse than version 9, so version 9 is still the one I play.</li>
+        </ul>
+        <p>
+          It still isn&rsquo;t solved. After 25 to 30 seconds a dream turns into what I call
+          texture soup, and walking only covers about half the ground that real footage
+          does.
+        </p>
+        <h2>The dream dial</h2>
+        <p>
+          While you walk you can turn a dial for how much static each frame starts from.
+          Turn it down and the dream breaks into neon stripes. Turn it up and the street
+          holds together, but it drifts into a different place.
+        </p>
+        
+      </div>
+
+      <div class="shots">
+        <figure class="shot shot-wide">
+          <img src="../assets/img/projects/dream-world/dial.jpg" alt="A grid of dreamed frames. The top row breaks into bright stripes. The bottom row stays a soft street scene." loading="lazy" width="1120" height="512">
+          <figcaption><b>One dream at four dial settings (1, 5, 8 and 15, top to bottom). Time runs left to right.</b></figcaption>
+        </figure>
+      </div>
+
+      <div class="project-body">
+        <h2>Where the video came from</h2>
+        <p>
+          The model trained on the Walking Tours dataset (ICLR 2024, CC-BY 4.0), which is
+          long first-person walks through cities, plus one wildlife video. The footage
+          went through a face-blurring step first. The model and the data stay on my PC.
+          This is a personal research project and it&rsquo;ll never be sold.
+        </p>
+        
+      </div>
+
+      <div class="hero-actions" style="margin-top: 2.4rem">
+        <a class="btn btn-primary" href="../research.html">&larr; Research</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - hand-written HTML &amp; CSS, with help from AI</span>
+      <nav class="footer-links">
+        <a href="../research.html">Research</a>
+        <a href="../games.html">Games</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="https://www.youtube.com/@Jonjoe1001_dev" target="_blank" rel="noopener me">YouTube</a>
+        <a href="https://www.tiktok.com/@jonjoe1001" target="_blank" rel="noopener me">TikTok</a>
+        <a href="https://discord.gg/C4aWSWJsxP" target="_blank" rel="noopener me">Discord</a>
+        <a href="https://jonjoe1001.itch.io" target="_blank" rel="noopener me">itch.io</a>
+        <a href="https://github.com/jonathancomergit-ai" target="_blank" rel="noopener me">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js?v=20261110b"></script>
+  <script src="../assets/js/research.js?v=20261110b"></script>
+  <script src="../assets/js/stats.js?v=20261110b"></script>
+</body>
+</html>
