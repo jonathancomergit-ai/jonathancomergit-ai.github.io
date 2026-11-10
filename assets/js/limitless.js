@@ -27,9 +27,9 @@
 
   /* ---- the three wings -------------------------------------- */
   var WINGS = [
-    { id: "arcade",   name: "Arcade",   path: "/limitless-arcade/", one: "game",       many: "games",       glow: "rgba(255, 45, 120, .26)" },
-    { id: "lab",      name: "Lab",      path: "/limitless-lab/",    one: "simulation", many: "simulations", glow: "rgba(53, 214, 245, .26)" },
-    { id: "workshop", name: "Workshop", path: "/limitless-tools/",  one: "tool",       many: "tools",       glow: "rgba(255, 201, 60, .26)" }
+    { id: "arcade",   name: "Arcade",   path: "/limitless-arcade/", one: "game",       many: "games",       glow: "rgba(217, 120, 87, .26)" },
+    { id: "lab",      name: "Lab",      path: "/limitless-lab/",    one: "simulation", many: "simulations", glow: "rgba(142, 183, 194, .26)" },
+    { id: "workshop", name: "Workshop", path: "/limitless-tools/",  one: "tool",       many: "tools",       glow: "rgba(227, 182, 106, .26)" }
   ];
   var NEW_DAYS = 21;
 

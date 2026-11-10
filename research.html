@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Research - Jonjoe1001</title>
+  <meta name="description" content="Dream World, MiniGPT, MindFlight and the Vesuvius Challenge: models I trained from scratch, drones that teach themselves to fly, and reading burned scrolls. With real footage and real training logs.">
+
+  <!-- Social preview (what shows when the link is pasted in Discord/Twitter) -->
+  <meta property="og:title" content="Research - Jonjoe1001">
+  <meta property="og:description" content="Dream World, MiniGPT, MindFlight and the Vesuvius Challenge: models I trained from scratch, drones that teach themselves to fly, and reading burned scrolls. With real footage and real training logs.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jonjoe1001.dev/research.html">
+  <meta property="og:site_name" content="Jonjoe1001">
+  <meta property="og:image" content="https://jonjoe1001.dev/assets/img/og-v2.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jonjoe1001.dev/assets/img/og-v2.jpg">
+
+  <link rel="icon" href="assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/img/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="assets/img/favicon-96.png" type="image/png" sizes="96x96">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#0E0E0D">
+
+  <link rel="canonical" href="https://jonjoe1001.dev/research.html">
+  <link rel="alternate" type="application/rss+xml" title="Jonjoe1001 - Dev Log" href="https://jonjoe1001.dev/feed.xml">
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <!-- Glyph Drift draws into this (see assets/js/glyphs.js). Purely decorative. -->
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="index.html">
+        <img class="avatar" src="assets/img/pfp-160.webp" alt="" width="40" height="40">
+        Jonjoe1001 <small>Jonathan Comer</small>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="research.html" aria-current="page">Research</a>
+        <a href="blog.html">Dev Log</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Research</p>
+          <h1>Models, simulations and <span class="accent">big problems.</span></h1>
+          <p>
+            Four projects I&rsquo;d put in front of anyone. Then the shelf, everything
+            else I&rsquo;ve built, and the Lab.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 01 DREAM WORLD ===================== -->
+    <section class="research" id="dream-world" style="padding-top:0">
+      <div class="wrap stack">
+        <div class="section-head">
+          <p class="kicker">01 &middot; World models</p>
+          <h2>Dream World</h2>
+          <p>
+            A diffusion world model I trained that dreams a street as you walk it. Below are
+            the same model weights with one change: what each new frame starts from.
+          </p>
+        </div>
+        <div class="r-split">
+          <figure class="screen">
+            <div class="screen-top"><span class="live">&#9679; real model output</span><span>same early weights &middot; same street &middot; 12 s</span></div>
+            <div class="pair-labels"><span><b>Before:</b> start from pure static</span><span><b>After:</b> last frame + static</span></div>
+            <video src="assets/media/dream_fix.mp4" poster="assets/media/dream_fix.jpg" autoplay muted loop playsinline
+                   aria-label="Two dreamed walks side by side. The left melts into texture within a second. The right keeps the street."></video>
+            <figcaption>The left melts within a second. Training never showed the model pure static, so starting there made it lose the scene.</figcaption>
+          </figure>
+          <div class="r-facts">
+            <div class="tags"><span class="tag">Diffusion</span><span class="tag">World model</span><span class="tag">PyTorch</span><span class="tag">From scratch</span></div>
+            <div class="r-nums">
+              <div><b>0.221 &rarr; 0.037</b><span>first-frame error after the fix</span></div>
+              <div><b>4 s &rarr; 11 s</b><span>clean walk, same weights</span></div>
+            </div>
+            <ul>
+              <li><strong>Panorama memory</strong><span>Turn around and the same place is still there.</span></li>
+              <li><strong>A fair judge</strong><span>My first score got fooled by neon glitches, so I built a better one before trusting any result.</span></li>
+              <li><strong>Public data</strong><span>Trained on public walking-tour videos. The model stays a personal research toy.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 02 MINIGPT ===================== -->
+    <section class="research" id="minigpt">
+      <div class="wrap stack">
+        <div class="section-head">
+          <p class="kicker">02 &middot; Language models</p>
+          <h2>MiniGPT</h2>
+          <p>
+            My own 350-million-parameter language model, trained from zero. No one
+            else&rsquo;s weights. These charts are its real training log.
+          </p>
+        </div>
+        <div class="r-split">
+          <figure class="screen">
+            <div class="screen-top"><span class="live">&#9679; real training log</span><span>6,179 log lines &middot; hover for values</span></div>
+            <div class="charts">
+              <div class="chart" id="chart-loss"><h3>Training loss</h3><p>lower is better &middot; by tokens read</p></div>
+              <div class="chart" id="chart-arc"><h3>ARC-Easy accuracy</h3><p>science questions &middot; random guessing = 25%</p></div>
+            </div>
+          </figure>
+          <div class="r-facts">
+            <div class="tags"><span class="tag">Transformer</span><span class="tag">Pretraining</span><span class="tag">Evals</span></div>
+            <div class="r-nums">
+              <div><b>350M</b><span>parameters</span></div>
+              <div><b>16B</b><span>tokens, about 4 days on one GPU</span></div>
+              <div><b>63.1%</b><span>ARC-Easy, up from 24.7%</span></div>
+              <div><b>37.3%</b><span>LAMBADA (guess the last word)</span></div>
+            </div>
+            <ul>
+              <li><strong>Tests first</strong><span>I built the evaluation suite before the real run, so every checkpoint is judged the same way.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 03 MINDFLIGHT =====================
+         Every number is from the MindFlight README (1,000 fixed test flights per level). -->
+    <section class="research" id="mindflight">
+      <div class="wrap stack">
+        <div class="section-head">
+          <p class="kicker">03 &middot; Reinforcement learning</p>
+          <h2>MindFlight</h2>
+          <p>
+            Thousands of simulated Crazyflie drones learning to fly at once, on the GPU,
+            watched live in the browser. I wrote the batched quadcopter physics myself,
+            and PPO as one readable file.
+          </p>
+        </div>
+        <div class="r-split">
+          <figure class="screen">
+            <div class="screen-top"><span class="live">&#9679; real training run</span><span>level 5 &middot; wind gusts and &plusmn;20% weight</span></div>
+            <img class="is-plot" src="assets/media/mf_level5_curves.jpg" alt="MindFlight training curves: success rate climbing over 80 million samples" width="1130" height="690">
+            <figcaption>The learning curves from the level 5 run, straight from its training log.</figcaption>
+          </figure>
+          <div class="r-facts">
+            <div class="tags"><span class="tag">Reinforcement learning</span><span class="tag">PPO</span><span class="tag">PyTorch</span><span class="tag">Physics</span></div>
+            <div class="r-nums">
+              <div><b>567M</b><span>drone-steps a second</span></div>
+              <div><b>16,384</b><span>drones at once on one GPU</span></div>
+            </div>
+            <ul>
+              <li><strong>Seven levels</strong><span>Hover, fly to a point, gates, obstacles, wind, then a race. Each one is scored on 1,000 fixed test flights.</span></li>
+              <li><strong>Built to be sturdy</strong><span>The policy trained with random gusts and weight finishes 97.4% of its test flights. The one trained without them gets 84.6%.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 04 VESUVIUS =====================
+         Only KNOWN ink from public, already-read scrolls is shown, and the
+         note under the pictures always says so. Nothing from unread scrolls. -->
+    <section class="research" id="vesuvius">
+      <div class="wrap stack">
+        <div class="section-head">
+          <p class="kicker">04 &middot; Big challenges</p>
+          <h2>The Vesuvius Challenge</h2>
+          <p>
+            In 79 AD, Mount Vesuvius buried a library of papyrus scrolls. They&rsquo;re carbon
+            now and can&rsquo;t be opened. The challenge is to read them from X-ray scans.
+            My team, Team Limitless, is working on it.
+          </p>
+        </div>
+        <div class="steps3">
+          <div><strong>Scan</strong><span>CT X-rays slice the closed scroll, a few micrometres apart.</span></div>
+          <div><strong>Unroll</strong><span>Trace one sheet through thousands of slices and flatten it.</span></div>
+          <div><strong>Find the ink</strong><span>A model spots carbon ink that the eye can&rsquo;t see in the scan.</span></div>
+        </div>
+        <div class="r-split">
+          <figure class="screen">
+            <div class="screen-top"><span class="live">&#9679; our render</span><span>PHerc. 841 &middot; known ink</span></div>
+            <img src="assets/media/ves_pherc0841_w00.jpg" alt="Left: white Greek letters on black, the challenge team's answer key. Right: an ink map from our own render of the same sheet, where the same letters show as bright strokes." width="1600" height="707">
+            <figcaption>Left: the challenge team&rsquo;s answer key for this sheet. Right: the ink model run on our own render of the same sheet. The same letters come through.</figcaption>
+          </figure>
+          <figure class="screen">
+            <div class="screen-top"><span class="live">&#9679; our setup check</span><span>PHerc. 139 &middot; known ink</span></div>
+            <img src="assets/media/ves_pherc139_control.jpg" alt="An ink map of a papyrus sheet with Greek letters marked in white where experts already labelled them" width="1200" height="746">
+            <figcaption>Model output on a sheet that experts already labelled. The bright shapes are letters.</figcaption>
+          </figure>
+        </div>
+        <div class="disclose">
+          <b>KNOWN INK</b>
+          <span>
+            Both pictures are from public scrolls that have already been read. They are
+            not new finds. We use them to prove our pipeline can see real ink before we
+            trust it anywhere else. Our work on unread scrolls stays private while the
+            prizes are open.
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== THE SHELF ===================== -->
+    <section id="shelf">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">The shelf</p>
+          <h2>More research</h2>
+        </div>
+
+        <div class="grid">
+          <article class="card" id="emergent-evolver" data-tags="sim game">
+            <div class="card-art">
+              <img src="assets/img/covers/emergent-evolver.webp" alt="Emergent Evolver key art - a jointed creature below the title, over a tangle of plotted neural-network curves" loading="lazy" width="630" height="500">
+            </div>
+            <div class="card-body">
+              <div class="tags">
+                <span class="tag is-play">Playable now</span>
+                <span class="tag is-game">Simulation</span>
+                <span class="tag">JavaScript</span>
+              </div>
+              <h3><a href="projects/emergent-evolver.html">Emergent Evolver</a></h3>
+              <p>
+                Have you ever been interested in machine learning, anatomy, or evolution? 
+                Well, Emergent Evolver explores emergent complexity with machine learning.
+                You draw the body, and that&rsquo;s it &mdash; you never tell it how to move!
+                The brain starts as pure noise and grows its own neurons while it
+                learns. Give it a few hundred generations and the thing RUNS. Best
+                part? You get to watch the brain wire itself up live while it works
+                it out. Play with the physics, evolution, and body
+                  settings to see what you can dream up and create!
+              </p>
+            </div>
+          </article>
+
+          <article class="card" id="fly-terrarium">
+            <div class="card-art">
+              <img src="assets/media/fly_sugar_feeding.jpg" alt="Fly Terrarium: a cartoon fly feeding on sugar, with its neurons lit up in a 3D view of the brain" loading="lazy">
+            </div>
+            <div class="card-body">
+              <div class="tags">
+                <span class="tag">Connectome</span>
+                <span class="tag">Spiking neurons</span>
+              </div>
+              <h3>Fly Terrarium</h3>
+              <p>
+                A fruit fly driven by the real wiring of a male fly&rsquo;s whole nervous system:
+                165,122 neurons and 23.8 million connections, simulated in real time. Drop
+                sugar, aim a fan, and watch its brain light up.
+              </p>
+            </div>
+          </article>
+
+          <article class="card" id="gpu-primes" data-tags="tool">
+            <div class="card-art is-blank" style="--blank-glow: rgba(61,245,160,.16)">
+              <span class="initials" aria-hidden="true">CU</span>
+            </div>
+            <div class="card-body">
+              <div class="tags">
+                <span class="tag">CUDA</span>
+                <span class="tag">C</span>
+              </div>
+              <h3>GPU Primes</h3>
+              <p>
+                One of my CS teacher gave us a challenge to build a program to see who could find 
+                the largest prime number by the end of the weekend(with proof). Well well well little did my 
+                classmates know we are rocking a 5090 at home. So TRDL I won the challenge and now have 61 gigs of
+                prime numbers on my pc now.
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <div class="rowlinks" style="margin-top: 2rem">
+          <a class="rowlink" href="projects.html">
+            <div>
+              <small>The archive</small>
+              <strong>Everything I&rsquo;ve built</strong>
+              <span>Robots, hardware, sims, tools and experiments, with filters. All of it is still here.</span>
+            </div>
+            <b>Open &rarr;</b>
+          </a>
+          <a class="rowlink" href="limitless.html">
+            <div>
+              <small>Limitless Lab</small>
+              <strong>Learn it by poking it</strong>
+              <span>Free games, simulations and tools that run right in your browser. No accounts, no paywall.</span>
+            </div>
+            <b>Open &rarr;</b>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CALLOUT ===================== -->
+    <section>
+      <div class="wrap">
+        <div class="callout">
+          <h2>Want to talk shop?</h2>
+          <p>
+            Always happy to hear from people building games, or anyone who wants to
+            argue about physics engines, machine learning theory or honestly anything!
+          </p>
+          <a class="btn btn-primary" href="contact.html">Get in touch</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MiniGPT's real training log (runs/friend350), thinned to ~250 points. -->
+  <script type="application/json" id="minigpt-log">{"train":[[0.042,7.395],[0.107,4.199],[0.173,3.733],[0.239,3.576],[0.304,3.48],[0.37,3.421],[0.435,3.36],[0.501,3.313],[0.566,3.293],[0.632,3.256],[0.697,3.238],[0.763,3.208],[0.828,3.183],[0.894,3.174],[0.96,3.149],[1.025,3.142],[1.091,3.128],[1.156,3.109],[1.222,3.107],[1.287,3.097],[1.353,3.079],[1.418,3.071],[1.484,3.063],[1.549,3.058],[1.615,3.051],[1.68,3.039],[1.746,3.038],[1.812,3.035],[1.877,3.01],[1.943,3.014],[2.008,3.01],[2.074,3.002],[2.139,2.996],[2.205,2.999],[2.27,2.995],[2.336,2.99],[2.401,2.979],[2.467,2.976],[2.533,2.974],[2.598,2.969],[2.664,2.96],[2.729,2.963],[2.795,2.955],[2.86,2.955],[2.926,2.952],[2.991,2.953],[3.057,2.944],[3.122,2.948],[3.188,2.936],[3.253,2.94],[3.319,2.937],[3.385,2.924],[3.45,2.927],[3.516,2.923],[3.581,2.917],[3.647,2.912],[3.712,2.919],[3.778,2.914],[3.843,2.907],[3.909,2.906],[3.974,2.903],[4.04,2.892],[4.106,2.901],[4.171,2.891],[4.237,2.892],[4.302,2.896],[4.368,2.897],[4.433,2.891],[4.499,2.893],[4.564,2.885],[4.63,2.883],[4.695,2.886],[4.761,2.877],[4.826,2.878],[4.892,2.872],[4.958,2.87],[5.023,2.879],[5.089,2.873],[5.154,2.874],[5.22,2.873],[5.285,2.864],[5.351,2.877],[5.416,2.869],[5.482,2.861],[5.547,2.867],[5.545,2.858],[5.61,2.865],[5.676,2.863],[5.741,2.855],[5.807,2.858],[5.873,2.864],[5.938,2.847],[6.004,2.857],[6.069,2.857],[6.135,2.854],[6.2,2.847],[6.266,2.852],[6.331,2.847],[6.397,2.843],[6.462,2.848],[6.528,2.84],[6.593,2.852],[6.659,2.829],[6.725,2.842],[6.79,2.839],[6.856,2.829],[6.921,2.838],[6.987,2.828],[7.052,2.834],[7.118,2.832],[7.183,2.839],[7.249,2.826],[7.314,2.831],[7.38,2.835],[7.446,2.831],[7.511,2.82],[7.577,2.827],[7.642,2.818],[7.708,2.822],[7.773,2.818],[7.839,2.826],[7.904,2.825],[7.97,2.817],[8.035,2.818],[8.101,2.822],[8.166,2.817],[8.232,2.808],[8.298,2.815],[8.363,2.812],[8.429,2.81],[8.494,2.814],[8.56,2.813],[8.625,2.81],[8.691,2.815],[8.756,2.81],[8.822,2.812],[8.887,2.808],[8.953,2.804],[9.019,2.804],[9.084,2.797],[9.15,2.806],[9.215,2.803],[9.281,2.804],[9.346,2.809],[9.412,2.806],[9.477,2.804],[9.543,2.802],[9.608,2.789],[9.674,2.797],[9.739,2.799],[9.805,2.794],[9.871,2.795],[9.936,2.8],[10.002,2.806],[10.067,2.801],[10.133,2.79],[10.198,2.799],[10.264,2.795],[10.329,2.791],[10.395,2.788],[10.46,2.795],[10.526,2.787],[10.592,2.786],[10.657,2.791],[10.723,2.797],[10.788,2.791],[10.854,2.787],[10.919,2.784],[10.985,2.783],[11.05,2.787],[11.116,2.784],[11.181,2.785],[11.247,2.785],[11.312,2.782],[11.378,2.789],[11.444,2.784],[11.509,2.78],[11.575,2.774],[11.64,2.774],[11.706,2.773],[11.771,2.777],[11.837,2.765],[11.902,2.764],[11.968,2.774],[12.033,2.763],[12.099,2.765],[12.165,2.766],[12.23,2.761],[12.296,2.755],[12.361,2.757],[12.427,2.756],[12.492,2.755],[12.558,2.754],[12.623,2.739],[12.689,2.755],[12.754,2.74],[12.82,2.748],[12.885,2.743],[12.951,2.752],[13.017,2.746],[13.082,2.739],[13.148,2.741],[13.213,2.735],[13.279,2.735],[13.344,2.734],[13.41,2.724],[13.475,2.731],[13.541,2.731],[13.606,2.728],[13.672,2.732],[13.738,2.725],[13.803,2.721],[13.869,2.725],[13.934,2.721],[14.0,2.718],[14.065,2.725],[14.131,2.722],[14.196,2.716],[14.262,2.714],[14.327,2.714],[14.393,2.714],[14.458,2.707],[14.524,2.719],[14.59,2.71],[14.655,2.705],[14.721,2.706],[14.786,2.703],[14.852,2.703],[14.917,2.706],[14.983,2.691],[15.048,2.697],[15.114,2.682],[15.179,2.69],[15.245,2.705],[15.311,2.701],[15.376,2.687],[15.442,2.701],[15.507,2.691],[15.573,2.679],[15.638,2.684],[15.704,2.689],[15.769,2.687],[15.835,2.692],[15.9,2.683],[15.966,2.682],[16.0,2.69]],"evals":[[0.0,10.397,24.7],[0.4,3.333,49.0],[0.8,3.163,50.8],[1.2,3.08,52.7],[1.6,3.028,55.5],[2.0,2.991,52.3],[2.4,2.963,55.0],[2.8,2.941,56.3],[3.2,2.922,54.2],[3.6,2.906,58.2],[4.0,2.892,54.8],[4.4,2.88,59.0],[4.8,2.87,55.8],[5.2,2.86,59.2],[5.6,2.851,59.3],[6.0,2.844,59.2],[6.4,2.837,57.8],[6.8,2.83,60.3],[7.2,2.824,58.3],[7.6,2.818,60.3],[8.0,2.813,59.5],[8.4,2.809,59.8],[8.8,2.804,60.3],[9.2,2.799,60.8],[9.6,2.796,59.2],[10.0,2.792,59.5],[10.4,2.789,61.8],[10.8,2.784,59.3],[11.2,2.782,61.0],[11.6,2.773,60.7],[12.0,2.764,61.7],[12.4,2.755,61.7],[12.8,2.746,61.2],[13.2,2.738,63.5],[13.6,2.729,64.0],[14.0,2.721,62.2],[14.4,2.713,61.3],[14.8,2.706,64.0],[15.2,2.699,62.5],[15.6,2.692,63.8],[16.0,2.688,63.1]]}</script>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - hand-written HTML &amp; CSS, with help from AI</span>
+      <nav class="footer-links">
+        <a href="research.html">Research</a>
+        <a href="projects.html">All projects</a>
+        <a href="limitless.html">Limitless Lab</a>
+        <a href="blog.html">Dev Log</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="https://www.youtube.com/@Jonjoe1001_dev" target="_blank" rel="noopener me">YouTube</a>
+        <a href="https://www.tiktok.com/@jonjoe1001" target="_blank" rel="noopener me">TikTok</a>
+        <a href="https://discord.gg/C4aWSWJsxP" target="_blank" rel="noopener me">Discord</a>
+        <a href="https://jonjoe1001.itch.io" target="_blank" rel="noopener me">itch.io</a>
+        <a href="https://github.com/jonathancomergit-ai" target="_blank" rel="noopener me">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js"></script>
+  <script src="assets/js/research.js"></script>
+  <script src="assets/js/stats.js"></script>
+</body>
+</html>

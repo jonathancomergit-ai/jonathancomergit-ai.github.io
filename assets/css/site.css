@@ -1,6 +1,6 @@
 /* ============================================================
    Jonjoe1001 - personal site
-   Dark arcade. One stylesheet, no build step, no dependencies.
+   Glyph Drift: warm charcoal, ember and sea. One stylesheet, no build step, no dependencies.
 
    Everything is driven by the custom properties in :root below.
    Change a value there and it updates everywhere, on every page.
@@ -14,80 +14,86 @@
    "latin-ext" only downloads if a page uses those characters.
    ============================================================ */
 @font-face {
-  font-family: "Space Grotesk";
-  font-style: normal;
-  font-display: swap;
-  font-weight: 300 700;
-  src: url("../fonts/space-grotesk-latin-wght-normal.woff2") format("woff2-variations");
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
-}
-@font-face {
-  font-family: "Space Grotesk";
-  font-style: normal;
-  font-display: swap;
-  font-weight: 300 700;
-  src: url("../fonts/space-grotesk-latin-ext-wght-normal.woff2") format("woff2-variations");
-  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
-}
-@font-face {
-  font-family: "Inter";
+  font-family: "Geist";
   font-style: normal;
   font-display: swap;
   font-weight: 100 900;
-  src: url("../fonts/inter-latin-wght-normal.woff2") format("woff2-variations");
+  src: url("../fonts/geist-latin-wght-normal.woff2") format("woff2-variations");
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 @font-face {
-  font-family: "Inter";
+  font-family: "Geist";
   font-style: normal;
   font-display: swap;
   font-weight: 100 900;
-  src: url("../fonts/inter-latin-ext-wght-normal.woff2") format("woff2-variations");
+  src: url("../fonts/geist-latin-ext-wght-normal.woff2") format("woff2-variations");
   unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
 @font-face {
-  font-family: "JetBrains Mono";
+  font-family: "Geist Mono";
   font-style: normal;
   font-display: swap;
-  font-weight: 100 800;
-  src: url("../fonts/jetbrains-mono-latin-wght-normal.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  src: url("../fonts/geist-mono-latin-wght-normal.woff2") format("woff2-variations");
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 @font-face {
-  font-family: "JetBrains Mono";
+  font-family: "Geist Mono";
   font-style: normal;
   font-display: swap;
-  font-weight: 100 800;
-  src: url("../fonts/jetbrains-mono-latin-ext-wght-normal.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  src: url("../fonts/geist-mono-latin-ext-wght-normal.woff2") format("woff2-variations");
   unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../fonts/instrument-serif-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../fonts/instrument-serif-latin-400-italic.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 
 :root {
-  /* --- Surfaces: near-black, layered so cards lift off the page --- */
-  --bg:          #07070C;
-  --bg-2:        #0B0C13;
-  --surface:     #11121C;
-  --surface-2:   #171927;
-  --line:        #23263A;
-  --line-bright: #343A55;
-  --line-field:  #5C6382;   /* form borders: 3:1 against --surface */
+  /* --- Surfaces: warm charcoal, taken from the Glyph Drift wallpaper --- */
+  --bg:          #0E0E0D;
+  --bg-2:        #121211;
+  --surface:     #161615;
+  --surface-2:   #1E1E1C;
+  --line:        #2B2A26;
+  --line-bright: #3A3832;
+  --line-field:  #6E6B62;   /* form borders: 3:1 against --surface */
 
   /* --- Text --- */
-  --text:        #ECEEF6;
-  --text-dim:    #9AA1BC;
-  --text-faint:  #858CA8;   /* 5.2:1 or better on every surface (WCAG AA) */
+  --text:        #EEEDE6;
+  --text-dim:    #A6A49A;
+  --text-faint:  #8B897F;   /* 5:1 or better on every surface (WCAG AA) */
 
-  /* --- Accents, lifted from the Timeless title art --- */
-  --hot:         #FF2D78;   /* hot pink   - primary, calls to action */
-  --cyan:        #35D6F5;   /* electric   - secondary, links, data   */
-  --amber:       #FFC93C;   /* amber      - highlights, "live" flags */
-  --green:       #3DF5A0;   /* phosphor   - status dot only          */
-  --hot-dim:     rgba(255,  45, 120, .14);
+  /* --- Accents. Research pages: ember, sea, gold (the wallpaper's wave
+         crest and two quiet partners). Games pages swap these back to the
+         Timeless title-art colours - see "GAMES PAGES" near the end. --- */
+  --hot-rgb:     217, 120, 87;
+  --cyan-rgb:    142, 183, 194;
+  --amber-rgb:   227, 182, 106;
+  --hot:         rgb(var(--hot-rgb));     /* ember  - primary, calls to action */
+  --cyan:        rgb(var(--cyan-rgb));    /* sea    - secondary, links, data   */
+  --amber:       rgb(var(--amber-rgb));   /* gold   - highlights, "live" flags */
+  --green:       #9BCB8A;                 /* status dot only                   */
+  --hot-dim:     rgba(var(--hot-rgb), .14);
 
   /* --- Type --- */
-  --font-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
-  --font-body:    "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --font-mono:    "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+  --font-display: "Geist", "Segoe UI", system-ui, sans-serif;
+  --font-body:    "Geist", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:    "Geist Mono", "Cascadia Code", Consolas, monospace;
+  --font-serif:   "Instrument Serif", Georgia, "Times New Roman", serif;
 
   /* --- Spacing rhythm --- */
   --gap:       1rem;
@@ -180,53 +186,26 @@ h1, h2, h3, h4 {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background:
-    radial-gradient(58rem 40rem at 12% -8%, rgba(255, 45, 120, .13), transparent 65%),
-    radial-gradient(52rem 38rem at 92%  4%, rgba( 53, 214, 245, .10), transparent 62%),
-    linear-gradient(var(--bg-2), var(--bg));
+  background: var(--bg);
 }
 
-/* The faint graph-paper grid. */
-.backdrop::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, .028) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, .028) 1px, transparent 1px);
-  background-size: 56px 56px;
-  /* Fade the grid out down the page so it never fights the content. */
-  -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 78%);
-          mask-image: linear-gradient(180deg, #000 0%, transparent 78%);
-}
-
-/* The sprite canvas, injected into .backdrop by site.js.
-
-   It sits between the graph-paper grid (::before) and the scanlines
-   (::after), because pseudo-elements paint around an element's real
-   children in tree order - so the sprites land on top of the grid
-   and under the scanlines, which is exactly where they belong.
-
-   image-rendering keeps the pixel art sharp instead of letting the
-   browser smear it with bilinear filtering when it scales up. */
-.sprite-layer {
+/* Glyph Drift: my own WebGL wallpaper. assets/js/glyphs.js draws letters
+   lit by slow drifting smoke into this canvas (site.js adds the canvas).
+   Without WebGL2 the page simply keeps the plain dark background. */
+.glyph-layer {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
+  display: block;
 }
 
-/* CRT scanlines. Very subtle - raise the alpha if you want more. */
+/* A soft dark veil over the letters so body text always reads cleanly. */
 .backdrop::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    180deg, rgba(255, 255, 255, .017) 0 1px, transparent 1px 3px
-  );
+  background: linear-gradient(180deg, rgba(14, 14, 13, .50), rgba(14, 14, 13, .74) 60%);
 }
 
 /* ============================================================
@@ -275,7 +254,7 @@ section { padding-block: var(--gap-xl); }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(7, 7, 12, .82);
+  background: rgba(14, 14, 13, .78);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
@@ -369,7 +348,7 @@ section { padding-block: var(--gap-xl); }
   border-color: var(--hot);
   color: var(--bg);   /* dark on pink is 5.6:1; white was only 3.6:1 */
 }
-.btn-primary:hover { box-shadow: 0 8px 28px rgba(255, 45, 120, .4); }
+.btn-primary:hover { box-shadow: 0 8px 28px rgba(var(--hot-rgb), .4); }
 
 .btn-ghost { background: transparent; }
 .btn-ghost:hover { background: var(--surface-2); }
@@ -456,7 +435,7 @@ section { padding-block: var(--gap-xl); }
 
 .featured-art {
   background:
-    radial-gradient(30rem 22rem at 60% 40%, rgba(255, 45, 120, .22), transparent 70%),
+    radial-gradient(30rem 22rem at 60% 40%, rgba(var(--hot-rgb), .22), transparent 70%),
     var(--bg-2);
   display: grid;
   place-items: center;
@@ -467,7 +446,7 @@ section { padding-block: var(--gap-xl); }
   width: 100%;
   max-width: 400px;
   image-rendering: pixelated;   /* keeps the pixel logo crisp when scaled */
-  filter: drop-shadow(0 0 34px rgba(255, 45, 120, .45));
+  filter: drop-shadow(0 0 34px rgba(var(--hot-rgb), .45));
 }
 
 /* A row of small stats under the featured copy. */
@@ -541,7 +520,7 @@ section { padding-block: var(--gap-xl); }
    Set --blank-glow inline on the element to recolour it. */
 .card-art.is-blank {
   background-image:
-    radial-gradient(20rem 14rem at 50% 120%, var(--blank-glow, rgba(53, 214, 245, .20)), transparent 70%),
+    radial-gradient(20rem 14rem at 50% 120%, var(--blank-glow, rgba(var(--cyan-rgb), .20)), transparent 70%),
     linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px);
   background-size: 100% 100%, 30px 30px, 30px 30px;
@@ -598,8 +577,8 @@ section { padding-block: var(--gap-xl); }
   border: 1px solid var(--line);
   color: var(--text-dim);
 }
-.tag.is-live { color: var(--amber); border-color: rgba(255, 201, 60, .35); background: rgba(255, 201, 60, .10); }
-.tag.is-game { color: var(--hot);   border-color: rgba(255, 45, 120, .35); background: var(--hot-dim); }
+.tag.is-live { color: var(--amber); border-color: rgba(var(--amber-rgb), .35); background: rgba(var(--amber-rgb), .10); }
+.tag.is-game { color: var(--hot);   border-color: rgba(var(--hot-rgb), .35); background: var(--hot-dim); }
 
 .filters {
   display: flex;
@@ -636,15 +615,15 @@ section { padding-block: var(--gap-xl); }
    fills from each wing's items.json. Wing colours match the wings
    themselves: Arcade hot pink, Lab cyan, Workshop amber.
    ============================================================ */
-.lab-wing.is-arcade   .card-art { --blank-glow: rgba(255, 45, 120, .26); }
-.lab-wing.is-lab      .card-art { --blank-glow: rgba(53, 214, 245, .26); }
-.lab-wing.is-workshop .card-art { --blank-glow: rgba(255, 201, 60, .26); }
+.lab-wing.is-arcade   .card-art { --blank-glow: rgba(var(--hot-rgb), .26); }
+.lab-wing.is-lab      .card-art { --blank-glow: rgba(var(--cyan-rgb), .26); }
+.lab-wing.is-workshop .card-art { --blank-glow: rgba(var(--amber-rgb), .26); }
 .lab-wing .card-art:hover { text-decoration: none; }
 .lab-wing .card-art .initials { font-size: 3.2rem; opacity: 1; }
 
-.tag.lab-tag.is-arcade   { color: var(--hot);   border-color: rgba(255, 45, 120, .35); background: var(--hot-dim); }
-.tag.lab-tag.is-lab      { color: var(--cyan);  border-color: rgba(53, 214, 245, .35); background: rgba(53, 214, 245, .10); }
-.tag.lab-tag.is-workshop { color: var(--amber); border-color: rgba(255, 201, 60, .35); background: rgba(255, 201, 60, .10); }
+.tag.lab-tag.is-arcade   { color: var(--hot);   border-color: rgba(var(--hot-rgb), .35); background: var(--hot-dim); }
+.tag.lab-tag.is-lab      { color: var(--cyan);  border-color: rgba(var(--cyan-rgb), .35); background: rgba(var(--cyan-rgb), .10); }
+.tag.lab-tag.is-workshop { color: var(--amber); border-color: rgba(var(--amber-rgb), .35); background: rgba(var(--amber-rgb), .10); }
 
 /* ---- Home page "Three doors" (index.html) --------------------
    The doors reuse the .lab-wing cards above. assets/js/limitless.js
@@ -756,10 +735,10 @@ section { padding-block: var(--gap-xl); }
   border-bottom: 1px solid var(--line);
 }
 
-.article p  { margin: 0 0 1.3rem; color: #C9CEE2; }
+.article p  { margin: 0 0 1.3rem; color: #D6D4CB; }
 .article h2 { font-size: 1.6rem;  margin: 2.6rem 0 .8rem; }
 .article h3 { font-size: 1.22rem; margin: 2rem 0 .6rem; }
-.article ul, .article ol { color: #C9CEE2; padding-left: 1.3rem; margin: 0 0 1.3rem; }
+.article ul, .article ol { color: #D6D4CB; padding-left: 1.3rem; margin: 0 0 1.3rem; }
 .article li { margin-bottom: .5rem; }
 .article img { border-radius: var(--radius); border: 1px solid var(--line); margin: 1.8rem 0; }
 
@@ -811,9 +790,9 @@ section { padding-block: var(--gap-xl); }
    PROSE - about page and other plain text blocks
    ============================================================ */
 .prose { max-width: 62ch; }
-.prose p  { color: #C9CEE2; margin: 0 0 1.2rem; }
+.prose p  { color: #D6D4CB; margin: 0 0 1.2rem; }
 .prose h2 { margin-top: 2.4rem; }
-.prose ul { color: #C9CEE2; padding-left: 1.3rem; }
+.prose ul { color: #D6D4CB; padding-left: 1.3rem; }
 .prose li { margin-bottom: .45rem; }
 
 /* ============================================================
@@ -847,7 +826,7 @@ section { padding-block: var(--gap-xl); }
   border-radius: var(--radius);
   border: 1px solid var(--line-bright);
   background: #14151B;
-  box-shadow: 0 0 0 6px rgba(255, 45, 120, .10), 0 24px 60px rgba(0, 0, 0, .45);
+  box-shadow: 0 0 0 6px rgba(var(--hot-rgb), .10), 0 24px 60px rgba(0, 0, 0, .45);
 }
 
 .about-photo img {
@@ -913,8 +892,8 @@ section { padding-block: var(--gap-xl); }
    ============================================================ */
 .todo {
   color: var(--amber);
-  border: 1px dashed rgba(255, 201, 60, .5);
-  background: rgba(255, 201, 60, .08);
+  border: 1px dashed rgba(var(--amber-rgb), .5);
+  background: rgba(var(--amber-rgb), .08);
   border-radius: 4px;
   padding: .05em .4em;
   font-style: normal;
@@ -988,8 +967,8 @@ section { padding-block: var(--gap-xl); }
   background: var(--surface);
 }
 .form-status:empty { margin: 0; padding: 0; border: 0; }
-.form-status.is-ok   { color: var(--green); border-color: rgba( 61, 245, 160, .35); }
-.form-status.is-bad  { color: var(--hot);   border-color: rgba(255,  45, 120, .35); }
+.form-status.is-ok   { color: var(--green); border-color: rgba(155, 203, 138, .35); }
+.form-status.is-bad  { color: var(--hot);   border-color: rgba(var(--hot-rgb), .35); }
 
 /* The "email it instead" link the script drops into a failed status. Inherits
    the status colour so it does not fight the red. */
@@ -1041,7 +1020,7 @@ section { padding-block: var(--gap-xl); }
   object-fit: cover;
   border: 2px solid var(--line-bright);
   background: var(--surface-2);
-  box-shadow: 0 0 0 5px rgba(255, 45, 120, .10);
+  box-shadow: 0 0 0 5px rgba(var(--hot-rgb), .10);
 }
 .hero-id .who strong {
   display: block;
@@ -1067,9 +1046,9 @@ section { padding-block: var(--gap-xl); }
    One class per real state, so a project never lies about
    whether you can play it.
    ============================================================ */
-.tag.is-dev     { color: var(--cyan);  border-color: rgba( 53, 214, 245, .35); background: rgba( 53, 214, 245, .10); }
-.tag.is-out     { color: var(--green); border-color: rgba( 61, 245, 160, .35); background: rgba( 61, 245, 160, .10); }
-.tag.is-play    { color: var(--amber); border-color: rgba(255, 201,  60, .35); background: rgba(255, 201,  60, .10); }
+.tag.is-dev     { color: var(--cyan);  border-color: rgba(var(--cyan-rgb), .35); background: rgba(var(--cyan-rgb), .10); }
+.tag.is-out     { color: var(--green); border-color: rgba(155, 203, 138, .35); background: rgba(155, 203, 138, .10); }
+.tag.is-play    { color: var(--amber); border-color: rgba(var(--amber-rgb), .35); background: rgba(var(--amber-rgb), .10); }
 
 /* ============================================================
    FEATURED WORK (projects page, top three)
@@ -1141,14 +1120,14 @@ section { padding-block: var(--gap-xl); }
 .feature-art.is-logo {
   padding: clamp(1.4rem, 3vw, 2.6rem);
   background:
-    radial-gradient(26rem 18rem at 50% 50%, rgba(255, 45, 120, .20), transparent 70%),
+    radial-gradient(26rem 18rem at 50% 50%, rgba(var(--hot-rgb), .20), transparent 70%),
     var(--bg-2);
 }
 .feature-art.is-logo img {
   height: auto;
   object-fit: contain;
   image-rendering: pixelated;
-  filter: drop-shadow(0 0 28px rgba(255, 45, 120, .40));
+  filter: drop-shadow(0 0 28px rgba(var(--hot-rgb), .40));
 }
 
 /* Art that is narrower than its panel. Cropping a narrow picture to fill a wide
@@ -1219,7 +1198,7 @@ section { padding-block: var(--gap-xl); }
   padding: .4rem .75rem;
   border-radius: var(--radius-sm);
   border: 1px solid var(--line-bright);
-  background: rgba(7, 7, 12, .82);
+  background: rgba(14, 14, 13, .78);
   color: var(--text);
   cursor: pointer;
 }
@@ -1284,8 +1263,8 @@ section { padding-block: var(--gap-xl); }
 .project-body { max-width: 68ch; }
 .project-body h2 { font-size: 1.55rem; margin: 2.8rem 0 .8rem; }
 .project-body h3 { font-size: 1.18rem; margin: 2rem 0 .5rem; }
-.project-body p  { color: #C9CEE2; margin: 0 0 1.2rem; }
-.project-body ul { color: #C9CEE2; padding-left: 1.3rem; margin: 0 0 1.3rem; }
+.project-body p  { color: #D6D4CB; margin: 0 0 1.2rem; }
+.project-body ul { color: #D6D4CB; padding-left: 1.3rem; margin: 0 0 1.3rem; }
 .project-body li { margin-bottom: .5rem; }
 .project-body code {
   font-family: var(--font-mono);
@@ -1386,7 +1365,7 @@ section { padding-block: var(--gap-xl); }
   bottom: -1px;   /* sits on the header's bottom border */
   height: 2px;
   pointer-events: none;
-  filter: drop-shadow(0 0 5px rgba(255, 45, 120, .6));
+  filter: drop-shadow(0 0 5px rgba(var(--hot-rgb), .6));
 }
 .read-progress span {
   display: block;
@@ -1467,15 +1446,15 @@ section { padding-block: var(--gap-xl); }
 /* The photo's ring flashes pink each time a thought leaves it. */
 .hero-id .avatar-lg { transition: box-shadow .5s ease, border-color .5s ease; }
 .hero-id .avatar-lg.is-firing {
-  border-color: rgba(255, 45, 120, .75);
-  box-shadow: 0 0 0 5px rgba(255, 45, 120, .22), 0 0 26px rgba(255, 45, 120, .45);
+  border-color: rgba(var(--hot-rgb), .75);
+  box-shadow: 0 0 0 5px rgba(var(--hot-rgb), .22), 0 0 26px rgba(var(--hot-rgb), .45);
   transition-duration: .06s;
 }
 
 /* A letter a signal lands in: bright cyan, fading back to white in
    three steps. The script moves each letter down the steps. */
-::highlight(net-3) { color: #8DEBFF; text-shadow: 0 0 18px rgba(53, 214, 245, .9); }
-::highlight(net-2) { color: #B9F3FF; text-shadow: 0 0 10px rgba(53, 214, 245, .5); }
+::highlight(net-3) { color: #8DEBFF; text-shadow: 0 0 18px rgba(var(--cyan-rgb), .9); }
+::highlight(net-2) { color: #B9F3FF; text-shadow: 0 0 10px rgba(var(--cyan-rgb), .5); }
 ::highlight(net-1) { color: #DDF7FC; }
 
 /* The nerve that runs from the photo down to the big three
@@ -1509,25 +1488,25 @@ section { padding-block: var(--gap-xl); }
    already doing (hovered or not). */
 @keyframes zap {
   0% {
-    border-color: rgba(53, 214, 245, .85);
-    box-shadow: 0 0 0 1px rgba(53, 214, 245, .45), 0 0 44px rgba(53, 214, 245, .3);
+    border-color: rgba(var(--cyan-rgb), .85);
+    box-shadow: 0 0 0 1px rgba(var(--cyan-rgb), .45), 0 0 44px rgba(var(--cyan-rgb), .3);
   }
 }
 .feature.is-zapped,
 .callout.is-zapped { animation: zap 1.1s ease-out; }
 .callout.is-zapped .btn-primary { animation: zap-btn 1.1s ease-out; }
 @keyframes zap-btn {
-  0% { box-shadow: 0 0 0 4px rgba(255, 45, 120, .3), 0 0 34px rgba(255, 45, 120, .6); }
+  0% { box-shadow: 0 0 0 4px rgba(var(--hot-rgb), .3), 0 0 34px rgba(var(--hot-rgb), .6); }
 }
 .post-row.is-zapped { animation: zap-row 1.1s ease-out; }
 @keyframes zap-row {
-  0% { background: rgba(53, 214, 245, .07); border-bottom-color: rgba(53, 214, 245, .6); }
+  0% { background: rgba(var(--cyan-rgb), .07); border-bottom-color: rgba(var(--cyan-rgb), .6); }
 }
 
 /* A neuron along the nerve, flashing as a thought passes through. */
 .nerve-node.is-lit { animation: node-lit .6s ease-out; }
 @keyframes node-lit {
-  0% { fill: #35D6F5; stroke: #FFFFFF; }
+  0% { fill: var(--cyan); stroke: #FFFFFF; }
 }
 
 /* ============================================================
@@ -1555,7 +1534,7 @@ section { padding-block: var(--gap-xl); }
   object-fit: cover;
   object-position: 50% 12%;   /* the face, not the middle of a tall portrait */
   border: 2px solid var(--line-bright);
-  box-shadow: 0 0 0 5px rgba(255, 45, 120, .12), 0 12px 40px rgba(0, 0, 0, .5);
+  box-shadow: 0 0 0 5px rgba(var(--hot-rgb), .12), 0 12px 40px rgba(0, 0, 0, .5);
 }
 
 .lh-name {
@@ -1631,11 +1610,11 @@ section { padding-block: var(--gap-xl); }
 
 /* The Steam wishlist button, once it's switched on. */
 .lh-link.is-featured {
-  background: linear-gradient(135deg, rgba(255, 45, 120, .16), rgba(255, 201, 60, .08));
-  border-color: rgba(255, 45, 120, .45);
+  background: linear-gradient(135deg, rgba(var(--hot-rgb), .16), rgba(var(--amber-rgb), .08));
+  border-color: rgba(var(--hot-rgb), .45);
 }
-.lh-link.is-featured .lh-icon { color: var(--amber); border-color: rgba(255, 201, 60, .35); }
-.lh-link.is-featured:hover { box-shadow: 0 12px 34px rgba(255, 45, 120, .3); }
+.lh-link.is-featured .lh-icon { color: var(--amber); border-color: rgba(var(--amber-rgb), .35); }
+.lh-link.is-featured:hover { box-shadow: 0 12px 34px rgba(var(--hot-rgb), .3); }
 
 .lh-foot {
   text-align: center;
@@ -1698,3 +1677,277 @@ section { padding-block: var(--gap-xl); }
   .article p, .article li { color: #000; }
   .reveal { opacity: 1 !important; translate: none !important; }
 }
+
+/* ============================================================
+   REBRAND (2026-11): RESEARCH FIRST
+   New pieces for the Home, Research and Games pages. Everything
+   above this line is the original design system, re-coloured.
+   ============================================================ */
+
+/* Real name, small, beside the handle in the header. */
+.brand small {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: .7rem;
+  letter-spacing: .02em;
+  color: var(--text-faint);
+}
+@media (max-width: 520px) { .brand small { display: none; } }
+
+/* The one serif word in a headline. */
+.accent,
+.hero h1 .glow {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -.01em;
+  color: var(--hot);
+  background: none;
+  -webkit-background-clip: border-box;
+          background-clip: border-box;
+}
+
+/* Home hero: words on the left, a real dream on the right. */
+.hero-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: center;
+}
+.hero-split h1 { font-size: clamp(2.3rem, 5.4vw, 4.1rem); max-width: 14ch; }
+.hero-lead { color: var(--text); text-shadow: 0 1px 12px var(--bg); }
+
+/* A framed piece of real footage, a screenshot set or a chart. */
+.screen {
+  margin: 0;
+  border: 1px solid var(--line-bright);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+  min-width: 0;
+}
+.hero .screen { box-shadow: 0 30px 80px rgba(0, 0, 0, .55); }
+.screen video,
+.screen > img { display: block; width: 100%; height: auto; }
+.screen-top,
+.screen figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .4rem 1rem;
+  padding: .6rem .9rem;
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  color: var(--text-faint);
+}
+.screen-top { border-bottom: 1px solid var(--line); }
+.screen figcaption { border-top: 1px solid var(--line); font-family: var(--font-body); font-size: .82rem; }
+.screen .live { color: var(--hot); }
+.pair-labels { display: grid; grid-template-columns: 1fr 1fr; font-family: var(--font-mono); font-size: .72rem; color: var(--text-dim); }
+.pair-labels span { padding: .5rem .9rem; }
+.pair-labels span + span { border-left: 1px solid var(--line); }
+.pair-labels b { color: var(--text); font-weight: 500; }
+
+/* Four real numbers under the hero. */
+.numbers {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.numbers div { padding: 1rem 1.15rem; display: grid; gap: .2rem; min-width: 0; }
+.numbers div + div { border-left: 1px solid var(--line); }
+.numbers b {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+  letter-spacing: -.03em;
+  font-variant-numeric: tabular-nums;
+}
+.numbers span { color: var(--text-dim); font-size: .84rem; line-height: 1.4; }
+
+/* Research page: one featured project = media beside facts. */
+.research { scroll-margin-top: 80px; }
+.r-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 1.6rem;
+  align-items: start;
+}
+.r-facts { display: grid; gap: 1rem; align-content: start; min-width: 0; }
+.r-facts ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .65rem; }
+.r-facts li { display: grid; gap: .1rem; padding-bottom: .65rem; border-bottom: 1px solid var(--line); }
+.r-facts li:last-child { border-bottom: 0; }
+.r-facts li span { color: var(--text-dim); font-size: .93rem; }
+.r-nums { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; }
+.r-nums div {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: .7rem .85rem;
+  display: grid;
+  gap: .1rem;
+  background: var(--surface);
+}
+.r-nums b { font-family: var(--font-mono); font-weight: 600; font-size: 1.25rem; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.r-nums span { font-size: .78rem; color: var(--text-dim); line-height: 1.35; }
+
+/* Charts drawn from a real training log (assets/js/research.js). */
+.charts { display: grid; grid-template-columns: 1fr 1fr; }
+.chart { padding: .8rem .9rem .4rem; min-width: 0; position: relative; }
+.chart + .chart { border-left: 1px solid var(--line); }
+.chart h3 { font-family: var(--font-body); font-weight: 500; font-size: .82rem; margin: 0; letter-spacing: 0; }
+.chart p { font-family: var(--font-mono); font-size: .7rem; color: var(--text-faint); margin: 0; }
+.chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+.chart-tip {
+  position: absolute;
+  pointer-events: none;
+  background: var(--surface-2);
+  border: 1px solid var(--line-bright);
+  border-radius: 6px;
+  padding: .3rem .5rem;
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  white-space: nowrap;
+  transform: translate(-50%, -115%);
+}
+.chart-tip span { color: var(--text-dim); }
+
+/* Screenshot set: one big, two small. */
+.shots3 { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2px; background: var(--line); }
+.shots3 img { width: 100%; height: 100%; object-fit: cover; display: block; background: var(--surface); }
+.shots3 img:first-child { grid-row: span 2; }
+
+/* "This is known ink, not a find": always shown with the scroll renders. */
+.disclose {
+  display: flex;
+  gap: .8rem;
+  align-items: start;
+  border: 1px solid rgba(var(--amber-rgb), .5);
+  border-radius: var(--radius-sm);
+  padding: .8rem 1rem;
+  background: rgba(var(--amber-rgb), .08);
+  color: var(--text-dim);
+  font-size: .9rem;
+}
+.disclose b {
+  font-family: var(--font-mono);
+  font-size: .68rem;
+  letter-spacing: .12em;
+  color: var(--amber);
+  white-space: nowrap;
+  padding-top: .2rem;
+}
+.steps3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.steps3 div { border-top: 2px solid var(--hot); padding-top: .7rem; display: grid; gap: .2rem; }
+.steps3 span { color: var(--text-dim); font-size: .92rem; }
+.stack { display: grid; gap: 1.2rem; }
+
+/* A wide link row: "Everything I've built", "The Lab", the press kit. */
+.rowlink {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid var(--line-bright);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.25rem;
+  color: var(--text);
+  background: var(--surface);
+  transition: border-color .16s, transform .16s;
+}
+.rowlink:hover { border-color: var(--hot); text-decoration: none; transform: translateY(-2px); }
+.rowlink div { display: grid; gap: .2rem; min-width: 0; }
+.rowlink small { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--hot); }
+.rowlink strong { font-family: var(--font-display); font-size: 1.15rem; }
+.rowlink span { color: var(--text-dim); font-size: .9rem; }
+.rowlink b { font-family: var(--font-mono); font-weight: 500; font-size: .85rem; color: var(--hot); white-space: nowrap; }
+.rowlinks { display: grid; gap: .8rem; }
+
+/* ---------- GAMES PAGES ----------
+   class="is-games" on <body> (or on one section) swaps the accents back
+   to the Timeless title-art colours, so the games keep their pop. */
+.is-games {
+  --hot-rgb:   255, 45, 120;
+  --cyan-rgb:  53, 214, 245;
+  --amber-rgb: 255, 201, 60;
+  --hot:       rgb(var(--hot-rgb));
+  --cyan:      rgb(var(--cyan-rgb));
+  --amber:     rgb(var(--amber-rgb));
+  --green:     #3DF5A0;
+  --hot-dim:   rgba(var(--hot-rgb), .14);
+}
+body.is-games .backdrop::after {
+  background:
+    radial-gradient(58rem 40rem at 12% -8%, rgba(255, 45, 120, .17), transparent 65%),
+    radial-gradient(52rem 38rem at 92%  4%, rgba(53, 214, 245, .12), transparent 62%),
+    linear-gradient(180deg, rgba(11, 10, 16, .5), rgba(11, 10, 16, .78) 70%);
+}
+.is-games .accent,
+.is-games .hero h1 .glow {
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 700;
+  background: linear-gradient(96deg, var(--hot), var(--amber) 55%, var(--cyan));
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+
+/* The games band on the home page. */
+.games-band {
+  background:
+    radial-gradient(60rem 30rem at 15% 0%, rgba(255, 45, 120, .20), transparent 60%),
+    radial-gradient(50rem 30rem at 95% 30%, rgba(53, 214, 245, .13), transparent 60%),
+    #0B0A10;
+  border-block: 1px solid rgba(255, 45, 120, .4);
+}
+.games-band .section-head h2 { font-size: clamp(2rem, 5.4vw, 3.4rem); }
+.game-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 1rem; }
+.game-stack { display: grid; gap: 1rem; grid-template-rows: 1fr 1fr; }
+.game-tile {
+  position: relative;
+  display: block;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .08);
+  background: #000;
+  color: var(--text);
+  min-height: 190px;
+}
+.game-tile:hover { text-decoration: none; border-color: var(--hot); }
+.game-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.game-tile:hover img { transform: scale(1.04); }
+.game-tile.is-big { aspect-ratio: 16 / 10; }
+.game-tile.is-logo img { object-fit: contain; padding: 8% 14% 20%; }
+.game-tile .over {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 1.1rem 1.2rem;
+  background: linear-gradient(0deg, rgba(5, 5, 10, .95), rgba(5, 5, 10, .6) 60%, transparent);
+  display: grid;
+  gap: .25rem;
+}
+.game-tile small { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .12em; color: var(--cyan); }
+.game-tile strong { font-family: var(--font-display); font-size: clamp(1.25rem, 2.8vw, 1.8rem); line-height: 1.1; }
+.game-tile span { color: #d4d2e0; font-size: .9rem; max-width: 46ch; }
+
+@media (max-width: 900px) {
+  .hero-split, .r-split, .game-grid { grid-template-columns: 1fr; }
+  .numbers { grid-template-columns: 1fr 1fr; }
+  .numbers div:nth-child(3) { border-left: 0; }
+  .numbers div:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .steps3 { grid-template-columns: 1fr; }
+  .rowlink { flex-direction: column; align-items: start; }
+}
+@media (max-width: 560px) {
+  .charts, .shots3 { grid-template-columns: 1fr; }
+  .chart + .chart { border-left: 0; border-top: 1px solid var(--line); }
+  .shots3 img:first-child { grid-row: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .game-tile img, .rowlink { transition: none; }
+}
+
+/* A light-background plot (matplotlib) shown in dark mode. Same picture, colours flipped. */
+.card-art img.is-plot, .feature-art img.is-plot, .screen img.is-plot { filter: invert(1) hue-rotate(180deg) saturate(.8); object-fit: contain; background: #fff; }
