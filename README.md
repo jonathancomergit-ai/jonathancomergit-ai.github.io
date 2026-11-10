@@ -193,7 +193,7 @@ python tools/bump_version.py
 
 ### The link preview image
 
-`assets/img/og-v3.jpg` is the picture that shows when the site is pasted into
+`assets/img/og-v4.jpg` is the picture that shows when the site is pasted into
 Discord, Slack or iMessage. Its source is `tools/og-card.html`, and the steps to
 rebuild it are in the comment at the top of that file.
 
