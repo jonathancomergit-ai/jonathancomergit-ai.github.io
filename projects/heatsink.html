@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>HEATSINK - Jonjoe1001</title>
+  <meta name="description" content="A pixel-art game about building computers. Wire circuit boards from real parts, power them up and survive the heat, from one board to a whole datacenter floor. In development.">
+
+  <meta property="og:title" content="HEATSINK - build computers, survive the heat">
+  <meta property="og:description" content="A pixel-art game about building computers. Wire circuit boards from real parts, power them up and survive the heat, from one board to a whole datacenter floor. In development.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jonjoe1001.dev/projects/heatsink.html">
+  <meta property="og:site_name" content="Jonjoe1001">
+  <meta property="og:image" content="https://jonjoe1001.dev/assets/img/og-v2.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jonjoe1001.dev/assets/img/og-v2.jpg">
+
+  <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/img/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="../assets/img/favicon-96.png" type="image/png" sizes="96x96">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#0E0E0D">
+
+  <link rel="canonical" href="https://jonjoe1001.dev/projects/heatsink.html">
+  <link rel="alternate" type="application/rss+xml" title="Jonjoe1001 - Dev Log" href="https://jonjoe1001.dev/feed.xml">
+  <link rel="stylesheet" href="../assets/css/site.css?v=20261110b">
+</head>
+
+<body class="is-games">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="avatar" src="../assets/img/pfp-160.webp" alt="" width="34" height="34">
+        Jonjoe1001 <small>Jonathan Comer</small>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../research.html">Research</a>
+        <a href="../games.html" aria-current="page">Games</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap project-hero">
+      <a class="back-link" href="../games.html">&larr; Games</a>
+      <div class="tags">
+        <span class="tag is-dev">In development</span>
+        <span class="tag is-game">Incremental</span>
+        <span class="tag">Godot 4</span>
+        <span class="tag">Pixel art</span>
+      </div>
+      <h1>HEATSINK</h1>
+      <p class="project-lead">
+        A pixel-art game about building computers. You wire circuit boards from real
+        parts, power them up, and try to survive the heat! It starts with one CPU on one
+        board and ends with a whole datacenter floor that you designed.
+      </p>
+    </div>
+
+    <div class="wrap">
+      <div class="project-cover">
+        <img src="../assets/img/projects/heatsink/custom-loop.jpg" alt="HEATSINK: a green circuit board with two CPUs cooled by a pink custom water loop and a stack of four radiator fans" width="1600" height="900">
+      </div>
+
+      <dl class="facts">
+        <div><dt>Status</dt><dd>In development</dd></div>
+        <div><dt>Engine</dt><dd>Godot 4.7</dd></div>
+        <div><dt>Part types</dt><dd>29</dd></div>
+        <div><dt>Research</dt><dd>98 upgrades, 5 lanes</dd></div>
+        <div><dt>Job markets</dt><dd>4</dd></div>
+        <div><dt>A full run</dt><dd>10 to 15 hours</dd></div>
+        <div><dt>Input</dt><dd>Mouse + keyboard</dd></div>
+        <div><dt>Platform</dt><dd>Windows PC</dd></div>
+        <div><dt>Release</dt><dd>No date yet</dd></div>
+      </dl>
+
+      <div class="project-body">
+        <h2>Heat is the whole game</h2>
+        <p>
+          Every part makes heat, and heat spreads across the board one tile at a time. A
+          CPU sips 25 watts at normal speed. But crank its clock up and the power climbs
+          with the CUBE of the speed, so double the speed is eight times the heat!
+        </p>
+        <p>
+          So what happens when it gets too hot? At 85 degrees it slows itself down. At
+          100 it shuts off. And at 112 it melts for good (and dumps all that heat onto
+          whatever is sitting next to it).
+        </p>
+        
+      </div>
+
+      <div class="shots">
+        <figure class="shot">
+          <img src="../assets/img/projects/heatsink/board-aio.jpg" alt="A small board: a power supply, one CPU with a water block, and a two-fan radiator blowing warm air off the edge" loading="lazy" width="1600" height="900">
+          <figcaption><b>One CPU, a water block and a radiator</b></figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/img/projects/heatsink/thermal-camera.jpg" alt="The board drawn as a grid of blue dots that show temperature, with a colour scale from cold to melt on the right" loading="lazy" width="1600" height="900">
+          <figcaption><b>A board through the thermal camera</b></figcaption>
+        </figure>
+      </div>
+
+      <div class="project-body">
+        <h2>So many ways to stay cool</h2>
+        <p>
+          You start with a plain heatsink and a fan. Then come heat pipes, water blocks,
+          and full custom loops with a pump, a reservoir and radiators. Later on you can
+          sink the whole board in a tank of liquid (the fans inside stop working, so you
+          have to plan for that).
+        </p>
+        <p>
+          The numbers are tuned to feel real. The best air cooling is built for roughly
+          175 to 250 watts, a big custom loop for about 1,500, and a boiling immersion
+          tank for 2,000 and up.
+        </p>
+        
+      </div>
+
+      <div class="shots">
+        <figure class="shot shot-wide">
+          <img src="../assets/img/projects/heatsink/immersion-tank.jpg" alt="A circuit board with a teal tank of liquid around the CPU, tubes running out to three radiator fans" loading="lazy" width="1600" height="900">
+          <figcaption><b>An immersion tank: the CPU sits in the liquid and the heat leaves through the radiators</b></figcaption>
+        </figure>
+        <figure class="shot">
+          <video src="../assets/media/heatsink_coolers.mp4" poster="../assets/media/heatsink_coolers.jpg" autoplay muted loop playsinline style="width:100%;display:block" aria-label="One CPU on a green circuit board, tried with five coolers. Its speed climbs from 0.49x with no cooler to 2.00x with a custom water loop."></video>
+          <figcaption><b>One CPU, five coolers. How far can you push it?</b></figcaption>
+        </figure>
+        <figure class="shot">
+          <video src="../assets/media/heatsink_drowned.mp4" poster="../assets/media/heatsink_drowned.jpg" autoplay muted loop playsinline style="width:100%;display:block" aria-label="Four CPUs on a circuit board are sunk in a tank of liquid, then overclocked until the liquid boils."></video>
+          <figcaption><b>What if you drowned your PC?</b></figcaption>
+        </figure>
+      </div>
+
+      <div class="project-body">
+        <h2>From one board to a whole floor</h2>
+        <p>
+          Once a board works, you save it as a blueprint and it becomes a server. Then
+          you fill racks with them on a top-down floor. You run power from a breaker
+          panel and network from a router, and you cool the ROOM now, not just the chip.
+        </p>
+        <p>
+          There are five spaces to grow into, from a corner of a garage up to your own
+          datacenter. And the floor fights back. Push a power line past 100% for four
+          seconds and it trips, and everything on it goes dark!
+        </p>
+        
+      </div>
+
+      <div class="shots">
+        <figure class="shot shot-wide">
+          <img src="../assets/img/projects/heatsink/floor.jpg" alt="A top-down rented room with rows of server racks, red power lines and yellow network lines, and a panel showing power and data use" loading="lazy" width="1600" height="900">
+          <figcaption><b>The floor: racks in a rented room, with their power and network lines</b></figcaption>
+        </figure>
+      </div>
+
+      <div class="project-body">
+        <h2>The goal is a law of physics</h2>
+        <p>
+          There&rsquo;s no final boss here, there&rsquo;s a wall. Physics sets a hard limit on how little
+          energy a computer can use to do its work, and your meter starts ten billion
+          times above it. The whole run is about chasing that number down. It&rsquo;s one
+          long run with no resets, and it takes about 10 to 15 hours.
+        </p>
+        <h2>Where it is now</h2>
+        <p>
+          The board, the floor and the wall are all built, and I&rsquo;m playtesting. There&rsquo;s
+          no Steam page or release date yet, and HEATSINK is still a working title. I&rsquo;ll
+          post in the dev log when that changes!
+        </p>
+        
+      </div>
+
+      <div class="hero-actions" style="margin-top: 2.4rem">
+        <a class="btn btn-primary" href="../blog.html">Follow the dev log</a>
+        <a class="btn btn-ghost" href="../games.html">&larr; Games</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - hand-written HTML &amp; CSS, with help from AI</span>
+      <nav class="footer-links">
+        <a href="../research.html">Research</a>
+        <a href="../games.html">Games</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="https://www.youtube.com/@Jonjoe1001_dev" target="_blank" rel="noopener me">YouTube</a>
+        <a href="https://www.tiktok.com/@jonjoe1001" target="_blank" rel="noopener me">TikTok</a>
+        <a href="https://discord.gg/C4aWSWJsxP" target="_blank" rel="noopener me">Discord</a>
+        <a href="https://jonjoe1001.itch.io" target="_blank" rel="noopener me">itch.io</a>
+        <a href="https://github.com/jonathancomergit-ai" target="_blank" rel="noopener me">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js?v=20261110b"></script>
+  <script src="../assets/js/research.js?v=20261110b"></script>
+  <script src="../assets/js/stats.js?v=20261110b"></script>
+</body>
+</html>
