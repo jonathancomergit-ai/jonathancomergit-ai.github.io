@@ -1818,6 +1818,11 @@ section { padding-block: var(--gap-xl); }
 .shots3 img { width: 100%; height: 100%; object-fit: cover; display: block; background: var(--surface); }
 .shots3 img:first-child { grid-row: span 2; }
 
+/* Two upright gameplay clips side by side (the Games page). */
+.clips2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--line); }
+.clips2 video { width: 100%; height: auto; display: block; background: var(--surface); }
+.r-facts .hero-actions { margin-top: 1.2rem; }
+
 /* "This is known ink, not a find": always shown with the scroll renders. */
 .disclose {
   display: flex;

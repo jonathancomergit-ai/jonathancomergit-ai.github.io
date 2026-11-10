@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Games - Jonjoe1001</title>
-  <meta name="description" content="Timeless, Made in Kind, MISSION C.H.I.P.L.E.R. and more: a roguelike where time is your health bar, an immersive sim, a cozy colony sim, plus apps and small browser games.">
+  <meta name="description" content="Timeless, HEATSINK and MISSION C.H.I.P.L.E.R.: a roguelike where time is your health bar, a computer-building game about heat, and a cozy colony sim on a tiny planet.">
 
   <!-- Social preview (what shows when the link is pasted in Discord/Twitter) -->
   <meta property="og:title" content="Games - Jonjoe1001">
-  <meta property="og:description" content="Timeless, Made in Kind, MISSION C.H.I.P.L.E.R. and more: a roguelike where time is your health bar, an immersive sim, a cozy colony sim, plus apps and small browser games.">
+  <meta property="og:description" content="Timeless, HEATSINK and MISSION C.H.I.P.L.E.R.: a roguelike where time is your health bar, a computer-building game about heat, and a cozy colony sim on a tiny planet.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jonjoe1001.dev/games.html">
   <meta property="og:site_name" content="Jonjoe1001">
@@ -27,10 +27,10 @@
 
   <link rel="canonical" href="https://jonjoe1001.dev/games.html">
   <link rel="alternate" type="application/rss+xml" title="Jonjoe1001 - Dev Log" href="https://jonjoe1001.dev/feed.xml">
-  <link rel="stylesheet" href="assets/css/site.css?v=20261110">
+  <link rel="stylesheet" href="assets/css/site.css?v=20261110b">
 </head>
 
-<body class="is-games">
+<body>
   <a class="skip-link" href="#main">Skip to content</a>
   <!-- Glyph Drift draws into this (see assets/js/glyphs.js). Purely decorative. -->
   <div class="backdrop" aria-hidden="true"></div>
@@ -48,6 +48,7 @@
       <nav class="nav-links">
         <a href="index.html">Home</a>
         <a href="research.html">Research</a>
+        <a href="games.html" aria-current="page">Games</a>
         <a href="blog.html">Dev Log</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
@@ -60,199 +61,141 @@
       <div class="wrap">
         <div class="section-head">
           <p class="kicker">Games</p>
-          <h1>Come <span class="accent">play!</span></h1>
+          <h1>Games I&rsquo;m <span class="accent">building.</span></h1>
           <p>
-            Games are where I learned to build, and they&rsquo;re still a big part of me.
-            Three in development, plus apps and small things you can play right now.
+            Three games I&rsquo;m working on right now. Every picture and clip on this
+            page is the real game!
           </p>
         </div>
+      </div>
+    </section>
 
-        <!-- The big three, word for word from the old home page.
-             .feature:nth-child(even) flips the art to the other side. -->
-        <div class="feature-list">
+    <!-- ===================== 01 TIMELESS =====================
+         The words are from projects/timeless.html. -->
+    <section class="research" id="timeless" style="padding-top:0">
+      <div class="wrap stack">
+        <div class="section-head">
+          <p class="kicker">01 &middot; Twin-stick roguelike</p>
+          <h2>Timeless</h2>
+          <p>
+            A twin-stick roguelike where the clock is the health bar. You don&rsquo;t lose
+            hit points, you lose seconds &mdash; and when they run out, so do you. Built
+            from nothing in Python: my own engine, my own room editor, and a
+            meta-progression system shaped like the night sky.
+          </p>
+        </div>
+        <div class="r-split">
+          <figure class="screen">
+            <div class="screen-top"><span class="live">&#9679; real screenshots</span><span>coming to Steam</span></div>
+            <div class="shots3">
+              <img src="assets/img/projects/timeless/floor1.webp" alt="Timeless gameplay on the first floor, in a Time Rift room">
+              <img src="assets/img/projects/timeless/map.webp" alt="The run map, drawn as a constellation with the boss at the top">
+              <img src="assets/img/projects/timeless/timetree.webp" alt="The Time Tree, a zodiac of relic slots">
+            </div>
+            <figcaption>Floor 1, the run map, and the Time Tree.</figcaption>
+          </figure>
+          <div class="r-facts">
+            <div class="tags"><span class="tag is-dev">In development</span><span class="tag">Roguelike</span><span class="tag">Python</span><span class="tag">Custom engine</span></div>
+            <div class="r-nums">
+              <div><b>43,000</b><span>lines of code</span></div>
+              <div><b>94</b><span>upgrades</span></div>
+            </div>
+            <ul>
+              <li><strong>Time is the health bar</strong><span>Take a hit, lose seconds. Kill something, buy them back.</span></li>
+              <li><strong>The run map is a constellation</strong><span>Between rooms you pick your path across a star chart.</span></li>
+              <li><strong>Hand-drawn art</strong><span>My girlfriend hand drew all of the art in the game.</span></li>
+            </ul>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="https://store.steampowered.com/app/4437000/Timeless/" target="_blank" rel="noopener">Wishlist on Steam</a>
+              <a class="btn btn-ghost" href="projects/timeless.html">Explore Timeless</a>
+              <a class="btn btn-ghost" href="presskit.html">Press kit</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          <article class="feature art-narrow">
-            <div class="feature-body">
-              <div class="tags">
-                <span class="tag is-dev">In development</span>
-                <span class="tag is-game">Roguelike</span>
-                <span class="tag">Python</span>
-              </div>
-              <h3><a href="projects/timeless.html">Timeless</a></h3>
-              <p>
-                What if your health bar was a clock? That&rsquo;s Timeless. You don&rsquo;t
-                lose hit points, you lose TIME, and when it runs out so do you. So
-                playing it safe is actually how you die! Custom engine, custom room
-                editor, 43,000 lines, and three bosses who each break a rule the game
-                just spent an hour teaching you. I&rsquo;ll be honest, I should have made this game in a known engine (Unity, Godot, etc), but it was far too late and I&rsquo;ve learned more than I could ever dream. This game is still being worked on by me and my talented, amazing girlfriend. 
-                She hand drew all of the art in the game. Yes, that&rsquo;s why it looks so good. 
-              </p>
-              <div class="hero-actions">
-                <a class="btn btn-primary" href="https://store.steampowered.com/app/4437000/Timeless/" target="_blank" rel="noopener">Wishlist on Steam</a>
-                <a class="btn btn-ghost" href="projects/timeless.html">Explore Timeless</a>
-              </div>
+    <!-- ===================== 02 HEATSINK =====================
+         DRAFT WORDS: there was no HEATSINK text on the site before this.
+         The clips are real gameplay, cut from the shorts made on 2026-11-02. -->
+    <section class="research" id="heatsink">
+      <div class="wrap stack">
+        <div class="section-head">
+          <p class="kicker">02 &middot; Computer-building incremental</p>
+          <h2>HEATSINK</h2>
+          <p>
+            A pixel-art game about building computers. You wire circuit boards from real
+            parts, power them up, and try to survive the heat!
+          </p>
+        </div>
+        <div class="r-split">
+          <figure class="screen">
+            <div class="screen-top"><span class="live">&#9679; real gameplay</span><span>two clips from the game</span></div>
+            <div class="clips2">
+              <video src="assets/media/heatsink_coolers.mp4" poster="assets/media/heatsink_coolers.jpg" autoplay muted loop playsinline
+                     aria-label="One CPU on a green circuit board, tried with five coolers. Its speed climbs from 0.49x with no cooler to 2.00x with a custom water loop."></video>
+              <video src="assets/media/heatsink_drowned.mp4" poster="assets/media/heatsink_drowned.jpg" autoplay muted loop playsinline
+                     aria-label="Four CPUs on a circuit board are sunk in a tank of liquid, then overclocked until the liquid boils."></video>
             </div>
-            <div class="feature-art is-pixel" style="--art-bg: #231F35">
-              <img src="assets/img/covers/timeless.webp" alt="Timeless key art - a star-lit figure holding a black hole in one hand and a galaxy in the other, above the Timeless logo" loading="lazy" width="600" height="900">
+            <figcaption>Left: how far one CPU goes with five coolers. Right: what happens when you drown your PC.</figcaption>
+          </figure>
+          <div class="r-facts">
+            <div class="tags"><span class="tag is-dev">In development</span><span class="tag">Incremental</span><span class="tag">Godot 4</span><span class="tag">Pixel art</span></div>
+            <div class="r-nums">
+              <div><b>0.49x &rarr; 2.00x</b><span>one CPU, from no cooler to a custom loop</span></div>
+              <div><b>11 W &rarr; 704 W</b><span>the power that same CPU can take</span></div>
             </div>
-          </article>
+            <ul>
+              <li><strong>Heat is the enemy</strong><span>Every part makes heat. Cool it better and you can push it harder.</span></li>
+              <li><strong>Board, rack, floor</strong><span>Start with one board, then design whole racks and a datacenter floor.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          <article class="feature">
-            <div class="feature-body">
-              <div class="tags">
-                <span class="tag is-dev">In development</span>
-                <span class="tag is-game">Immersive sim</span>
-                <span class="tag">Godot 4</span>
-              </div>
-              <h3><a href="projects/made-in-kind.html">Made in Kind</a></h3>
-              <p>
-                You wake up in a robot body on an Earth that AIs have kept turning long
-                after humans disappeared. A giant stag-shaped AI with antlers of light
-                hides you from the others and becomes your best friend. Together you
-                have to save the world from AIs falling into humanity&rsquo;s worst
-                habits. First person, solarpunk, ULTRAKILL-fast fights, and many ways
-                through every problem. Greedy players get stronger... but at what cost?
-              </p>
-              <a class="btn btn-primary" href="projects/made-in-kind.html">Explore Made in Kind</a>
+    <!-- ===================== 03 MISSION C.H.I.P.L.E.R. =====================
+         The words are from projects/mission-chipler.html. -->
+    <section class="research" id="mission-chipler">
+      <div class="wrap stack">
+        <div class="section-head">
+          <p class="kicker">03 &middot; Cozy colony sim</p>
+          <h2>MISSION C.H.I.P.L.E.R.</h2>
+          <p>
+            Have you ever wanted to grow a whole colony from ONE little guy? A single
+            Chipler crash-lands his rocket on a tiny round planet, copies himself, and bit
+            by bit turns into a busy colony with farms and forges (and even a railway!).
+          </p>
+        </div>
+        <div class="r-split">
+          <figure class="screen">
+            <div class="screen-top"><span class="live">&#9679; real screenshots</span><span>built in Godot 4</span></div>
+            <div class="shots3">
+              <img src="assets/img/projects/mission-chipler/colony-wide.webp" alt="A pastel colony of farms and huts on a tiny round planet">
+              <img src="assets/img/projects/mission-chipler/planet.webp" alt="A tiny round planet made of pastel hex tiles, floating in a purple sky">
+              <img src="assets/img/projects/mission-chipler/orders-and-goals.webp" alt="The orders and era goals screen, with a message from Empress Chippa">
             </div>
-            <div class="feature-art" style="--art-bg: #070403">
-              <img src="assets/img/projects/made-in-kind/logo-battle.webp" alt="The Made in Kind logo: MADE IN in gold above KIND, its letters half white ceramic and half pink flesh" loading="lazy" width="1600" height="900">
+            <figcaption>The colony, the planet, and orders from the Empress.</figcaption>
+          </figure>
+          <div class="r-facts">
+            <div class="tags"><span class="tag is-dev">In development</span><span class="tag">Colony sim</span><span class="tag">Godot 4</span></div>
+            <div class="r-nums">
+              <div><b>1</b><span>little guy to start</span></div>
+              <div><b>4</b><span>eras, from Crash Site to Colony</span></div>
             </div>
-          </article>
-
-          <article class="feature">
-            <div class="feature-body">
-              <div class="tags">
-                <span class="tag is-dev">In development</span>
-                <span class="tag is-game">Colony sim</span>
-                <span class="tag">Godot 4</span>
-              </div>
-              <h3><a href="projects/mission-chipler.html">MISSION C.H.I.P.L.E.R.</a></h3>
-              <p>
-                Have you ever wanted to grow a whole colony from ONE little guy? A single
-                Chipler crash-lands on a tiny round planet, copies himself (the copies come
-                out a little different!) and slowly turns into a busy colony with farms,
-                forges and even a railway. Meanwhile Empress Chippa keeps calling on the
-                radio with orders. Ship them, or say no and see how she feels about it!
-                It&rsquo;s cozy and pastel, and every bit of it is built in code in Godot.
-              </p>
+            <ul>
+              <li><strong>The copies aren&rsquo;t perfect</strong><span>One walks faster, one loves a nap, one can carry two things at once.</span></li>
+              <li><strong>Empress Chippa is on the radio</strong><span>Ship the goods and she pays you in Blueprints, or just say no (she&rsquo;ll remember that, though!).</span></li>
+              <li><strong>Cozy, Normal or Hard</strong><span>On Cozy nobody dies (a sad Chipler just packs a tiny bag and leaves).</span></li>
+            </ul>
+            <div class="hero-actions">
               <a class="btn btn-primary" href="projects/mission-chipler.html">Explore MISSION C.H.I.P.L.E.R.</a>
             </div>
-            <div class="feature-art" style="--art-bg: #2D244B">
-              <img src="assets/img/projects/mission-chipler/planet.webp" alt="A tiny round planet made of pastel hex tiles, floating in a purple sky: blue seas, green forests, snowy peaks and a ring of puffy clouds, with a little colony on one side" loading="lazy" width="1600" height="900">
-            </div>
-          </article>
-
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ===================== APPS AND SMALLER GAMES ===================== -->
-    <section>
-      <div class="wrap">
-        <div class="section-head">
-          <p class="kicker">Also fun</p>
-          <h2>Apps and smaller games</h2>
-        </div>
-
-        <div class="grid">
-          <article class="card" id="wheelhouse" data-tags="tool">
-            <div class="card-art">
-              <img src="assets/img/projects/wheelhouse/categories.webp" alt="The Wheelhouse category picker, five categories selected out of twenty-one" loading="lazy" width="1600" height="770">
-            </div>
-            <div class="card-body">
-              <div class="tags">
-                <span class="tag is-out">Out now</span>
-                <span class="tag">Tool</span>
-                <span class="tag">Python + Web</span>
-              </div>
-              <h3><a href="projects/wheelhouse.html">Wheelhouse</a></h3>
-              <p>
-                Game night, solved! Wheelhouse looks at what your Steam Family actually
-                owns and only puts games on the wheel that everybody can launch. Set it
-                to five players and it finds the games all five of you CAN play together.
-              </p>
-            </div>
-          </article>
-
-          <article class="card" id="emergent-evolver" data-tags="sim game">
-            <div class="card-art">
-              <img src="assets/img/covers/emergent-evolver.webp" alt="Emergent Evolver key art - a jointed creature below the title, over a tangle of plotted neural-network curves" loading="lazy" width="630" height="500">
-            </div>
-            <div class="card-body">
-              <div class="tags">
-                <span class="tag is-play">Playable now</span>
-                <span class="tag is-game">Simulation</span>
-                <span class="tag">JavaScript</span>
-              </div>
-              <h3><a href="projects/emergent-evolver.html">Emergent Evolver</a></h3>
-              <p>
-                Have you ever been interested in machine learning, anatomy, or evolution? 
-                Well, Emergent Evolver explores emergent complexity with machine learning.
-                You draw the body, and that&rsquo;s it &mdash; you never tell it how to move!
-                The brain starts as pure noise and grows its own neurons while it
-                learns. Give it a few hundred generations and the thing RUNS. Best
-                part? You get to watch the brain wire itself up live while it works
-                it out. Play with the physics, evolution, and body
-                  settings to see what you can dream up and create!
-              </p>
-            </div>
-          </article>
-
-          <article class="card" id="mathvoid" data-tags="game">
-            <div class="card-art is-blank" style="--blank-glow: rgba(53,214,245,.24)">
-              <span class="initials" aria-hidden="true">f(x)</span>
-            </div>
-            <div class="card-body">
-              <div class="tags">
-                <span class="tag is-dev">In development</span>
-                <span class="tag is-game">3D Puzzle</span>
-                <span class="tag">Godot 4</span>
-              </div>
-              <h3>MathVoid</h3>
-              <p>
-                A first-person puzzle game in an infinite black void where the only
-                tool you get is math. Open the console, type a function, and it
-                appears as solid geometry you can walk on. Type a sloped line, get a
-                ramp. Type a sine wave, get stairs. I love this idea way too much.
-                The only limit is you!
-              </p>
-            </div>
-          </article>
-
-          <article class="card" id="gamble-gunner" data-tags="game">
-            <div class="card-art is-blank" style="--blank-glow: rgba(255,45,120,.22)">
-              <span class="initials" aria-hidden="true">777</span>
-            </div>
-            <div class="card-body">
-              <div class="tags">
-                <span class="tag is-game">Roguelike</span>
-                <span class="tag">Pygame</span>
-                <span class="tag">Prototype</span>
-              </div>
-              <h3>Gamble Gunner</h3>
-              <p>
-                This was the precursor to <a href="projects/timeless.html">Timeless</a>, technically the first game I ever made.
-                Roguelike loop where gambling was the premise. Roll for upgrades if you&rsquo;re lucky, and if not, enemies are going to be the lucky ones. Fun game, but more of a playground for me than working software.
-              </p>
-            </div>
-          </article>
-        </div>
-
-        <div class="rowlinks" style="margin-top: 2rem">
-          <a class="rowlink" href="presskit.html">
-            <div>
-              <small>For press</small>
-              <strong>Timeless press kit</strong>
-              <span>Fact sheet, description, screenshots, logo and key art, free to use in coverage.</span>
-            </div>
-            <b>Open &rarr;</b>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== CALLOUT ===================== -->
     <section>
       <div class="wrap">
         <div class="callout">
@@ -273,6 +216,7 @@
       <span class="mono">&copy; 2026 Jonjoe1001 - hand-written HTML &amp; CSS, with help from AI</span>
       <nav class="footer-links">
         <a href="research.html">Research</a>
+        <a href="games.html">Games</a>
         <a href="projects.html">All projects</a>
         <a href="limitless.html">Limitless Lab</a>
         <a href="blog.html">Dev Log</a>
@@ -288,7 +232,8 @@
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=20261110"></script>
-  <script src="assets/js/stats.js?v=20261110"></script>
+  <script src="assets/js/site.js?v=20261110b"></script>
+  <script src="assets/js/research.js?v=20261110b"></script>
+  <script src="assets/js/stats.js?v=20261110b"></script>
 </body>
 </html>

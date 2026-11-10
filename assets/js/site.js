@@ -282,7 +282,7 @@
     layer.setAttribute("aria-hidden", "true");
     backdrop.appendChild(layer);
     var tag = document.createElement("script");
-    tag.src = atlasUrl().replace(/img\/sprites\/atlas\.webp$/, "js/glyphs.js?v=20261110");
+    tag.src = atlasUrl().replace(/img\/sprites\/atlas\.webp$/, "js/glyphs.js?v=20261110b");
     document.body.appendChild(tag);
   }
 
@@ -1199,11 +1199,15 @@
     catchUp:    1700  // top speed when it is racing to catch up with your scrolling
   };
 
+  /* Switched off in the 2026-11 rebrand: no wiring grows out of the photo
+     when the page opens. Flip BRAIN_ON to true to bring it back. */
+  var BRAIN_ON = false;
+
   var brainHero  = document.querySelector(".hero");
   var brainHead  = brainHero && brainHero.querySelector(".avatar-lg");
   var brainWords = brainHero && brainHero.querySelector("h1");
 
-  if (brainHead && brainWords && raf && document.createRange && document.createTreeWalker) {
+  if (BRAIN_ON && brainHead && brainWords && raf && document.createRange && document.createTreeWalker) {
     startBrain();
   }
 

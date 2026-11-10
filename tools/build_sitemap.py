@@ -14,11 +14,9 @@ import pathlib, subprocess, datetime
 # moved into Desktop\Projects on 2026-09-17; derived like this, a move can't break it.
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "https://jonjoe1001.dev"
-# The game pages still exist but are unlisted since the 2026-11 rebrand (research first),
-# so they stay out of the sitemap. Take a page out of this set to list it again.
-SKIP = {"404.html", "posts/_TEMPLATE.html",
-        "games.html", "presskit.html",
-        "projects/timeless.html", "projects/made-in-kind.html", "projects/mission-chipler.html"}
+# Made in Kind has a page but is not one of the three games on the Games tab,
+# so it stays out of the sitemap for now.
+SKIP = {"404.html", "posts/_TEMPLATE.html", "projects/made-in-kind.html"}
 
 # Whole folders left out. tools/ is not pages.
 SKIP_DIRS = ("tools/",)
@@ -27,6 +25,7 @@ SKIP_DIRS = ("tools/",)
 PRIORITY = {
     "index.html": "1.0",
     "research.html": "0.9",
+    "games.html": "0.9",
     "projects.html": "0.8",
     "limitless.html": "0.9",
     "blog.html": "0.8",
