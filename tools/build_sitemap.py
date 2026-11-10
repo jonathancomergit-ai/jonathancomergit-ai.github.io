@@ -14,7 +14,11 @@ import pathlib, subprocess, datetime
 # moved into Desktop\Projects on 2026-09-17; derived like this, a move can't break it.
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "https://jonjoe1001.dev"
-SKIP = {"404.html", "posts/_TEMPLATE.html"}
+# The game pages still exist but are unlisted since the 2026-11 rebrand (research first),
+# so they stay out of the sitemap. Take a page out of this set to list it again.
+SKIP = {"404.html", "posts/_TEMPLATE.html",
+        "games.html", "presskit.html",
+        "projects/timeless.html", "projects/made-in-kind.html", "projects/mission-chipler.html"}
 
 # Whole folders left out. tools/ is not pages. algovision/ is live but unlisted
 # until launch - delete it from this set on launch day and re-run (the steps are
@@ -24,7 +28,8 @@ SKIP_DIRS = ("tools/", "algovision/")
 # Home first, then the top-level sections, then the deeper pages.
 PRIORITY = {
     "index.html": "1.0",
-    "projects.html": "0.9",
+    "research.html": "0.9",
+    "projects.html": "0.8",
     "limitless.html": "0.9",
     "blog.html": "0.8",
     "about.html": "0.8",

@@ -265,8 +265,25 @@
     } catch (e) { /* nothing we can do, and nothing that matters */ }
   }
 
+  /* Rebrand (2026-11): the walking sprites are switched off and the
+     backdrop runs Glyph Drift instead - letters lit by slow smoke,
+     drawn by assets/js/glyphs.js. Flip SPRITES_ON to bring the
+     characters back; the code below is untouched. */
+  var SPRITES_ON = false;
+
   if (backdrop && window.requestAnimationFrame) {
-    startSprites();
+    if (SPRITES_ON) { startSprites(); }
+    else { startGlyphs(); }
+  }
+
+  function startGlyphs() {
+    var layer = document.createElement("canvas");
+    layer.className = "glyph-layer";
+    layer.setAttribute("aria-hidden", "true");
+    backdrop.appendChild(layer);
+    var tag = document.createElement("script");
+    tag.src = atlasUrl().replace(/img\/sprites\/atlas\.webp$/, "js/glyphs.js");
+    document.body.appendChild(tag);
   }
 
   function startSprites() {
@@ -911,8 +928,8 @@
 
   function startPortrait() {
     var P = PORTRAIT;
-    var BG = "#14151B";
-    var CYAN = "53, 214, 245";
+    var BG = "#1A1A18";
+    var CYAN = "142, 183, 194";
     var RAMP = ".:-=+*#%@";           // glyphs for the glints and the print line
     var CELL_W = 4, CELL_H = 7;       // grid used to find the bright spots
 
@@ -1192,7 +1209,7 @@
 
   function startBrain() {
     var B = BRAIN;
-    var HOT = [255, 45, 120], AMBER = [255, 201, 60], CYAN = [53, 214, 245];
+    var HOT = [217, 120, 87], AMBER = [227, 182, 106], CYAN = [142, 183, 194];
     var clock = window.performance || Date;
 
     var canvas = document.createElement("canvas");
@@ -1481,7 +1498,7 @@
         if ((g - n.delay) / 0.7 < 1) { return; }
         c.beginPath();
         c.arc(n.x, n.y, 3, 0, Math.PI * 2);
-        c.fillStyle = "#0B0C13";
+        c.fillStyle = "#121211";
         c.fill();
         c.strokeStyle = rgba(CYAN, 0.55);
         c.stroke();
@@ -1833,12 +1850,12 @@
          same journey the thoughts in the headline take. */
       var grad = svg("linearGradient", { id: "nerve-grad", gradientUnits: "userSpaceOnUse",
                                          x1: 0, y1: top, x2: 0, y2: end + 80 }, defs);
-      svg("stop", { offset: "0", "stop-color": "rgb(255,45,120)" }, grad);
-      svg("stop", { offset: ".5", "stop-color": "rgb(255,201,60)" }, grad);
-      svg("stop", { offset: "1", "stop-color": "rgb(53,214,245)" }, grad);
+      svg("stop", { offset: "0", "stop-color": "rgb(217,120,87)" }, grad);
+      svg("stop", { offset: ".5", "stop-color": "rgb(227,182,106)" }, grad);
+      svg("stop", { offset: "1", "stop-color": "rgb(142,183,194)" }, grad);
       var halo = svg("radialGradient", { id: "nerve-glow" }, defs);
-      svg("stop", { offset: "0", "stop-color": "rgb(53,214,245)", "stop-opacity": ".75" }, halo);
-      svg("stop", { offset: "1", "stop-color": "rgb(53,214,245)", "stop-opacity": "0" }, halo);
+      svg("stop", { offset: "0", "stop-color": "rgb(142,183,194)", "stop-opacity": ".75" }, halo);
+      svg("stop", { offset: "1", "stop-color": "rgb(142,183,194)", "stop-opacity": "0" }, halo);
       var clip = svg("clipPath", { id: "nerve-clip" }, defs);
       var reveal = svg("rect", { x: 0, y: 0, width: W, height: 0 }, clip);
 
@@ -1855,7 +1872,7 @@
           var ty = n.y + 22 + Math.random() * 40;
           var t = drawn(curve(n.x, n.y, n.x, n.y + (ty - n.y) * 0.6, tx, ty - (ty - n.y) * 0.4, tx, ty),
                         { stroke: "url(#nerve-grad)", "stroke-width": 1, "stroke-opacity": 0.32 }, root, 500, n.y);
-          t.end = svg("circle", { cx: tx, cy: ty, r: 1.8, fill: "rgb(53,214,245)", "fill-opacity": 0.45, "class": "nerve-node" }, root);
+          t.end = svg("circle", { cx: tx, cy: ty, r: 1.8, fill: "rgb(142,183,194)", "fill-opacity": 0.45, "class": "nerve-node" }, root);
           wires.push(t);
         });
         for (var i = 0; i + 2 < nodes.length; i++) {
@@ -1872,22 +1889,22 @@
       svg("path", { d: pathOf(spine), fill: "none", stroke: "url(#nerve-grad)", "stroke-width": 1.2,
                     "stroke-opacity": 0.5, "clip-path": "url(#nerve-clip)" }, root);
       nodes.forEach(function (n) {
-        n.el = svg("circle", { cx: n.x, cy: n.y, r: n.plug ? 3.4 : 2.8, fill: "#0B0C13",
-                               stroke: "rgb(53,214,245)", "stroke-opacity": 0.6, "class": "nerve-node" }, root);
+        n.el = svg("circle", { cx: n.x, cy: n.y, r: n.plug ? 3.4 : 2.8, fill: "#121211",
+                               stroke: "rgb(142,183,194)", "stroke-opacity": 0.6, "class": "nerve-node" }, root);
         n.on = false;
       });
 
       /* The branches into the cards, drawn when the nerve gets there. */
       plugs.forEach(function (p) {
-        p.wire = drawn(p.branch, { stroke: "rgb(53,214,245)", "stroke-opacity": 0.5, "stroke-width": 1.2 }, root, 700, p.by);
-        p.wire.end = svg("circle", { cx: p.x, cy: p.y, r: 3.5, fill: "rgb(53,214,245)", "class": "nerve-node" }, root);
+        p.wire = drawn(p.branch, { stroke: "rgb(142,183,194)", "stroke-opacity": 0.5, "stroke-width": 1.2 }, root, 700, p.by);
+        p.wire.end = svg("circle", { cx: p.x, cy: p.y, r: 3.5, fill: "rgb(142,183,194)", "class": "nerve-node" }, root);
         if (p.done) { finish(p.wire); }
       });
 
       var layer = svg("g", {}, root);
       var tips = svg("g", { "class": "nerve-tips" }, root);
       var glow = svg("circle", { r: 12, fill: "url(#nerve-glow)", "class": "nerve-tip" }, tips);
-      var dot = svg("circle", { r: 2.6, fill: "rgb(53,214,245)" }, tips);
+      var dot = svg("circle", { r: 2.6, fill: "rgb(142,183,194)" }, tips);
 
       nerve = { root: root, reveal: reveal, layer: layer, spine: spine, nodes: nodes, wires: wires,
                 plugs: plugs, tips: tips, glow: glow, dot: dot, hostW: W, hostH: host.offsetHeight,
