@@ -26,7 +26,6 @@ site/
 │                         first — see the comment at the top. Every page's
 │                         footer also links YouTube, TikTok, Discord, itch and GitHub,
 │                         and index.html lists the same profiles for Google (sameAs)
-├── algovision/          AlgoVision, the visual algorithm guide. Unlisted - see below
 ├── posts/
 │   ├── _TEMPLATE.html    Copy this to write a new post. Never edit it directly.
 │   └── 2026-09-09-hello-world.html
@@ -40,60 +39,10 @@ site/
 
 ---
 
-## AlgoVision (unlisted)
+## AlgoVision (parked)
 
-A visual guide to algorithms at `jonjoe1001.dev/algovision/`. **Live, but hidden
-until launch**: nothing links to it, every page has `noindex`, and
-`tools/build_sitemap.py` skips the folder. The launch steps are in the comment
-at the top of `algovision/index.html`.
-
-```
-algovision/
-├── index.html       Home: why it exists, the 3 subject cards, every module (filterable)
-├── algorithms.html  Subject page  ┐
-├── data.html        Subject page  ├ all three are drawn from catalog.js
-├── concepts.html    Subject page  ┘
-├── catalog.js       THE LIST: every subject and module, in order (see below)
-├── av.css           AlgoVision styles, on top of site.css. Classes start with .av-
-├── av.js            Shared engine: Player, Code panel, Bars, quiz, progress, TOPICS
-│
-│   Algorithms
-├── big-o.html       Growth chart, "how long would it take?", the 4 rules
-├── sorting.html     5 sorts, merge sort split tree, the race
-├── recursion.html   Call stack, call tree, factorial / fib / memoized fib
-├── pathfinding.html Draw a grid, BFS / DFS / Dijkstra / A*
-├── dp.html          DP tables - Fibonacci, grid paths, coin change, LCS
-├── graphs.html      Build a graph, BFS / DFS, course order (topological sort), Dijkstra on roads
-│   Data Structures
-├── arrays.html      Memory cells, addresses, insert/remove, resize, search
-├── structures.html  Stack, queue, linked list, hash map, binary search tree
-├── heaps.html       Heaps, a priority queue (the ER) and heap sort
-│   Programming Concepts
-├── oop.html         Classes, inheritance, polymorphism, encapsulation, abstraction
-├── refs.html        Names, arrows and objects - aliasing, copies, sandbox
-├── async.html       The event loop: stack, Web APIs, task + microtask queues, sandbox
-├── scope.html       Scope boxes, LEGB lookup, the UnboundLocalError trap, closures
-├── bits.html        Flip bits, binary counting, hex colours, overflow, bitwise, floats
-├── playground.html  Real Python (Pyodide) traced line by line: stack, variables, output, challenges
-└── *.js             One script per module, same name as its page
-```
-
-### Adding a module
-
-1. Copy the closest existing module page and its script, and build the new one.
-   The menu at the top only lists Home + the three subjects, so it doesn't change;
-   just put `aria-current="page"` on the new page's subject.
-2. Add its topics to `TOPICS` at the top of `av.js` (that's what the progress bars count).
-3. Add one entry to `MODULES` in `catalog.js`. The home page, the subject page and
-   the progress bars pick it up from there. A `status: "soon"` entry shows as a
-   coming-soon card; flip it to `"live"` and give it a `page` when it's ready.
-4. Point the previous module's "Next" button at it.
-
-How a module works: the algorithm runs once for real and saves a **frame**
-(a snapshot plus the code line and a sentence) at every step. The Player only
-flips through frames, which is why stepping backwards is free. Boxes that change
-size between frames are held at their tallest for the run (`steady` in av.js),
-so nothing on the page jumps while an animation plays.
+The visual algorithm guide is off the site for now. Its files live in the private
+`algovision` repo and will come back with the new learning section.
 
 ---
 

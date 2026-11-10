@@ -2,7 +2,7 @@
 
 Built by walking the folder rather than typed by hand, so adding a post and
 re-running this cannot leave the sitemap out of date. Skips the 404, the post
-template and /tools/, none of which are real pages, and the unlisted /algovision/.
+template and /tools/, none of which are real pages.
 
 lastmod comes from git's last commit date for each file, not the filesystem
 mtime, which changes every time the repo is cloned.
@@ -14,21 +14,18 @@ import pathlib, subprocess, datetime
 # moved into Desktop\Projects on 2026-09-17; derived like this, a move can't break it.
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "https://jonjoe1001.dev"
-# The game pages still exist but are unlisted since the 2026-11 rebrand (research first),
-# so they stay out of the sitemap. Take a page out of this set to list it again.
-SKIP = {"404.html", "posts/_TEMPLATE.html",
-        "games.html", "presskit.html",
-        "projects/timeless.html", "projects/made-in-kind.html", "projects/mission-chipler.html"}
+# Made in Kind has a page but is not one of the three games on the Games tab,
+# so it stays out of the sitemap for now.
+SKIP = {"404.html", "posts/_TEMPLATE.html", "projects/made-in-kind.html"}
 
-# Whole folders left out. tools/ is not pages. algovision/ is live but unlisted
-# until launch - delete it from this set on launch day and re-run (the steps are
-# in the comment at the top of algovision/index.html).
-SKIP_DIRS = ("tools/", "algovision/")
+# Whole folders left out. tools/ is not pages.
+SKIP_DIRS = ("tools/",)
 
 # Home first, then the top-level sections, then the deeper pages.
 PRIORITY = {
     "index.html": "1.0",
     "research.html": "0.9",
+    "games.html": "0.9",
     "projects.html": "0.8",
     "limitless.html": "0.9",
     "blog.html": "0.8",
