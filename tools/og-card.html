@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Source for the social preview card (assets/img/og-v3.jpg) - the picture that
+  Source for the social preview card (assets/img/og-v4.jpg) - the picture that
   shows when the site is pasted into Discord, Twitter, Slack or iMessage.
 
   This is not part of the site. Nothing links to it. It exists so the card can
@@ -20,11 +20,11 @@
        If it silently writes no file, delete the --user-data-dir folder first;
        a stale profile lock makes headless Edge exit without a word.
 
-    2. Convert to JPG and overwrite ALL THREE names in assets/img/:
+    2. Convert to JPG and overwrite ALL FOUR names in assets/img/:
 
-       python -c "from PIL import Image; im=Image.open(r'%TEMP%\og.png').convert('RGB'); [im.save(r'assets\img\%s' % n,'JPEG',quality=88,subsampling=0,optimize=True,progressive=True) for n in ('og-v3.jpg','og-v2.jpg','og.jpg')]"
+       python -c "from PIL import Image; im=Image.open(r'%TEMP%\og.png').convert('RGB'); [im.save(r'assets\img\%s' % n,'JPEG',quality=88,subsampling=0,optimize=True,progressive=True) for n in ('og-v4.jpg','og-v3.jpg','og-v2.jpg','og.jpg')]"
 
-       og-v3.jpg is the one the pages point at. og-v2.jpg and og.jpg are the
+       og-v4.jpg is the one the pages point at. og-v3.jpg, og-v2.jpg and og.jpg are the
        old filenames, kept holding the same picture so links cached against
        them stay current.
 
@@ -33,7 +33,7 @@
 
   WHY the version number in the filename: Discord and Twitter cache a card
   against its URL, sometimes for days. Changing the picture at the same URL
-  often changes nothing. Bumping to og-v4.jpg forces every scraper to refetch.
+  often changes nothing. Bumping to og-v5.jpg forces every scraper to refetch.
 -->
 <html lang="en">
 <head>
@@ -177,7 +177,7 @@
   <div class="bar"></div>
 
   <div class="inner">
-    <div class="brand"><img src="../assets/img/pfp-160.webp" alt="">Jonjoe1001 <small>Jonathan Comer</small></div>
+    <div class="brand"><img src="../assets/img/pfp-v2-160.webp" alt="">Jonjoe1001 <small>Jonathan Comer</small></div>
 
     <!-- Same headline and first line as the Home page hero. -->
     <h1>Machine learning, physics &amp; programming <span class="accent">researcher.</span></h1>

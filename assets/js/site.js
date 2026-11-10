@@ -282,7 +282,7 @@
     layer.setAttribute("aria-hidden", "true");
     backdrop.appendChild(layer);
     var tag = document.createElement("script");
-    tag.src = atlasUrl().replace(/img\/sprites\/atlas\.webp$/, "js/glyphs.js?v=20261110b");
+    tag.src = atlasUrl().replace(/img\/sprites\/atlas\.webp$/, "js/glyphs.js?v=20261110c");
     document.body.appendChild(tag);
   }
 
@@ -892,7 +892,7 @@
        - Every few seconds a refresh line sweeps down it, like a CRT.
        - Now and then a character glints cyan.
        - Point at it (or drag a finger) and a magnifying lens follows.
-         The source file is nearly 3x sharper than it is displayed,
+         The source file is over 2x sharper than it is displayed,
          so the lens shows the real characters the ASCII video player
          drew, readable.
 
@@ -928,7 +928,7 @@
 
   function startPortrait() {
     var P = PORTRAIT;
-    var BG = "#1A1A18";
+    var BG = "#0C0C10";            // the portrait's own background colour
     var CYAN = "142, 183, 194";
     var RAMP = ".:-=+*#%@";           // glyphs for the glints and the print line
     var CELL_W = 4, CELL_H = 7;       // grid used to find the bright spots
