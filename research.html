@@ -63,7 +63,7 @@
           <p class="kicker">Research</p>
           <h1>Models, simulations and <span class="accent">big problems.</span></h1>
           <p>
-            Four projects I&rsquo;d put in front of anyone, then a couple more
+            Four projects I&rsquo;d put in front of anyone, then a few more
             on the shelf.
           </p>
         </div>
@@ -271,6 +271,95 @@
                 the largest prime number by the end of the weekend(with proof). Well well well little did my 
                 classmates know we are rocking a 5090 at home. So TRDL I won the challenge and now have 61 gigs of
                 prime numbers on my pc now.
+              </p>
+            </div>
+          </article>
+
+          <!-- Microduck: the robot and the training gym are Pollen Robotics' open-source work
+               (Apache-2.0 code, CC BY-NC-SA 4.0 models). The picture shows their duck model. -->
+          <article class="card" id="microduck">
+            <div class="card-art">
+              <img src="assets/img/projects/shelf/microduck.jpg" alt="A small white robot duck with orange feet walking across a blue checkered floor in simulation" loading="lazy" width="640" height="360">
+            </div>
+            <div class="card-body">
+              <div class="tags">
+                <span class="tag">Reinforcement learning</span>
+                <span class="tag">MuJoCo</span>
+                <span class="tag is-dev">Paused</span>
+              </div>
+              <h3>Microduck</h3>
+              <p>
+                Microduck is a tiny open-source robot duck from Pollen Robotics. I got their
+                training gym running on plain Windows, built a little dashboard to watch it
+                learn, and started teaching 4,096 simulated ducks to walk at once. My first
+                run is paused at round 500 of 6,000. The robot and the training recipe are
+                theirs, the Windows setup and the dashboard are mine!
+              </p>
+            </div>
+          </article>
+
+          <!-- Weight surgery lab: numbers from MiniGPT/surgery/out/t30_adder_results.json (version 1). -->
+          <article class="card" id="weight-surgery">
+            <div class="card-art is-blank" style="--blank-glow: rgba(217,120,87,.18)">
+              <span class="initials" aria-hidden="true">15% &rarr; 97.5%</span>
+            </div>
+            <div class="card-body">
+              <div class="tags">
+                <span class="tag">Model editing</span>
+                <span class="tag">Transformers</span>
+                <span class="tag is-dev">In progress</span>
+              </div>
+              <h3>Weight surgery lab</h3>
+              <p>
+                Can you teach a model to add WITHOUT training it? I went into a small 30M
+                model and rewired 22 of its units by hand (that&rsquo;s 16,896 weights). On sums it
+                hadn&rsquo;t seen, it went from 15% right to 97.5%. But change the wording of the
+                question and it barely helps (20% to 25%), so it isn&rsquo;t real addition yet.
+                Still in progress!
+              </p>
+            </div>
+          </article>
+
+          <!-- Founders' Isle: the run numbers are from FoundersIsle/notes/real_run_1.md.
+               The picture is the island running with practice minds, not that run. -->
+          <article class="card" id="founders-isle">
+            <div class="card-art">
+              <img src="assets/img/projects/shelf/founders-isle.jpg" alt="Founders' Isle running: a pixel-art village of small houses and trees beside the sea" loading="lazy" width="1104" height="720">
+            </div>
+            <div class="card-body">
+              <div class="tags">
+                <span class="tag">LLM agents</span>
+                <span class="tag">Simulation</span>
+                <span class="tag is-dev">Prototype</span>
+              </div>
+              <h3>Founders&rsquo; Isle</h3>
+              <p>
+                Four founders land on an empty pixel island, and each one&rsquo;s choices come from
+                a language model (Claude Haiku). In the first real run they made 515
+                decisions in about 45 minutes. Two couples formed, and one founder designed a
+                house that actually got built! Nobody made a law or picked a fight, mostly
+                because food never ran short. It&rsquo;s an early prototype.
+              </p>
+            </div>
+          </article>
+
+          <!-- Hatchling: facts from Hatchling/README.md and PLAN.md. -->
+          <article class="card" id="hatchling">
+            <div class="card-art">
+              <img src="assets/img/projects/shelf/hatchling.jpg" alt="A pink axolotl smiling on the grass in a small fenced garden, with a ball and a rock behind it" loading="lazy" width="800" height="600">
+            </div>
+            <div class="card-body">
+              <div class="tags">
+                <span class="tag">Simulation</span>
+                <span class="tag">PyTorch</span>
+                <span class="tag is-dev">Paused</span>
+              </div>
+              <h3>Hatchling</h3>
+              <p>
+                A small 3D garden and an axolotl body, built for one AI creature to grow up
+                in, driven by curiosity. The world and the body work, and a fast copy runs
+                16,384 gardens at once for training. There&rsquo;s no mind in it yet (right now it
+                only moves when I press the keys).
               </p>
             </div>
           </article>
