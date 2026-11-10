@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>The Vesuvius Challenge - Jonjoe1001</title>
+  <meta name="description" content="In 79 AD a volcano buried a library of papyrus scrolls. The Vesuvius Challenge is the race to read them from X-ray scans without opening them. How it works, and how my team checks its tools on ink that has already been read.">
+
+  <meta property="og:title" content="The Vesuvius Challenge - reading scrolls a volcano burned">
+  <meta property="og:description" content="In 79 AD a volcano buried a library of papyrus scrolls. The Vesuvius Challenge is the race to read them from X-ray scans without opening them. How it works, and how my team checks its tools on ink that has already been read.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jonjoe1001.dev/projects/vesuvius.html">
+  <meta property="og:site_name" content="Jonjoe1001">
+  <meta property="og:image" content="https://jonjoe1001.dev/assets/img/og-v2.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jonjoe1001.dev/assets/img/og-v2.jpg">
+
+  <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/img/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="../assets/img/favicon-96.png" type="image/png" sizes="96x96">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#0E0E0D">
+
+  <link rel="canonical" href="https://jonjoe1001.dev/projects/vesuvius.html">
+  <link rel="alternate" type="application/rss+xml" title="Jonjoe1001 - Dev Log" href="https://jonjoe1001.dev/feed.xml">
+  <link rel="stylesheet" href="../assets/css/site.css?v=20261110b">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="avatar" src="../assets/img/pfp-160.webp" alt="" width="34" height="34">
+        Jonjoe1001 <small>Jonathan Comer</small>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../research.html" aria-current="page">Research</a>
+        <a href="../games.html">Games</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap project-hero">
+      <a class="back-link" href="../research.html">&larr; Research</a>
+      <div class="tags">
+        <span class="tag">Big challenges</span>
+        <span class="tag">Computer vision</span>
+        <span class="tag">CT scans</span>
+        <span class="tag">Team Limitless</span>
+      </div>
+      <h1>The Vesuvius Challenge</h1>
+      <p class="project-lead">
+        In 79 AD, Mount Vesuvius buried a whole library of papyrus scrolls. They&rsquo;re lumps
+        of carbon now (try to open one and it falls apart). So how do you read a book
+        you can&rsquo;t open? My team, Team Limitless, is working on it!
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://scrollprize.org" target="_blank" rel="noopener">The official challenge</a>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="project-cover">
+        <img src="../assets/media/ves_pherc0841_w00.jpg" alt="Left: white Greek letters on black, the challenge team's answer key. Right: an ink map from our own render of the same sheet, where the same letters show as bright strokes." width="1600" height="706">
+      </div>
+
+      <dl class="facts">
+        <div><dt>Buried</dt><dd>79 AD</dd></div>
+        <div><dt>Where</dt><dd>Herculaneum, Italy</dd></div>
+        <div><dt>The hard part</dt><dd>Carbon ink on carbon paper</dd></div>
+        <div><dt>How it&rsquo;s read</dt><dd>X-ray scans + machine learning</dd></div>
+        <div><dt>Team</dt><dd>Team Limitless</dd></div>
+        <div><dt>Shown here</dt><dd>Known ink only</dd></div>
+      </dl>
+
+      <div class="project-body">
+        <h2>A library you can&rsquo;t open</h2>
+        <p>
+          When the volcano went off, a villa full of scrolls got buried in hot ash. The
+          heat turned every scroll into something like a charcoal log. They survived for
+          almost 2,000 years that way, but the layers are fused together, so unrolling
+          one by hand just crumbles it.
+        </p>
+        <p>
+          The Vesuvius Challenge is an open competition to read them anyway, without
+          ever touching the inside. People have already pulled real Greek words out of
+          closed scrolls this way, which still blows my mind!
+        </p>
+        <h2>How you read a closed scroll</h2>
+        <ul>
+          <li><strong>Scan.</strong> CT X-rays slice the closed scroll, a few micrometres apart. That gives you a 3D picture of every layer inside.</li>
+          <li><strong>Unroll.</strong> You trace one sheet through thousands of those slices and flatten it out on the computer.</li>
+          <li><strong>Find the ink.</strong> This is the hard part. The ink is carbon and so is the papyrus, so your eye sees nothing. A model learns the tiny difference in texture where ink sits on the surface.</li>
+        </ul>
+        <h2>Checking our tools on ink we already know</h2>
+        <p>
+          Before I trust any tool on a scroll nobody has read, I want to see it find ink
+          that experts have ALREADY found. So we run our whole pipeline on public scrolls
+          that have been read, and compare what comes out against the answer.
+        </p>
+        
+      </div>
+
+      <div class="shots">
+        <figure class="shot shot-wide">
+          <img src="../assets/media/ves_pherc0841_w00.jpg" alt="Left: white Greek letters on black, the challenge team's answer key. Right: an ink map from our own render of the same sheet, where the same letters show as bright strokes." loading="lazy" width="1600" height="706">
+          <figcaption><b>PHerc. 841, known ink. Left: the challenge team&rsquo;s answer key. Right: the ink model on our own render of the same sheet.</b></figcaption>
+        </figure>
+        <figure class="shot shot-wide">
+          <img src="../assets/media/ves_pherc139_control.jpg" alt="An ink map of a papyrus sheet with Greek letters marked in white where experts already labelled them" loading="lazy" width="1200" height="746">
+          <figcaption><b>PHerc. 139, known ink. Model output on a sheet that experts already labelled.</b></figcaption>
+        </figure>
+      </div>
+
+      <div class="disclose">
+        <b>KNOWN INK</b>
+        <span>
+          Both pictures are from public scrolls that have already been read. They are
+          not new finds. We use them to prove our pipeline can see real ink before we
+          trust it anywhere else. Our work on unread scrolls stays private while the
+          prizes are open.
+        </span>
+      </div>
+        
+
+      <div class="project-body">
+        <h2>Where it is now</h2>
+        <p>
+          We&rsquo;re working on scrolls that haven&rsquo;t been read yet. I can&rsquo;t show any of
+          that while the prizes are open, so this page stops here for now. When there&rsquo;s
+          something I&rsquo;m allowed to share, this is where it&rsquo;ll go!
+        </p>
+        
+      </div>
+
+      <div class="hero-actions" style="margin-top: 2.4rem">
+        <a class="btn btn-primary" href="https://scrollprize.org" target="_blank" rel="noopener">The official challenge</a>
+        <a class="btn btn-ghost" href="../research.html">&larr; Research</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - hand-written HTML &amp; CSS, with help from AI</span>
+      <nav class="footer-links">
+        <a href="../research.html">Research</a>
+        <a href="../games.html">Games</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="https://www.youtube.com/@Jonjoe1001_dev" target="_blank" rel="noopener me">YouTube</a>
+        <a href="https://www.tiktok.com/@jonjoe1001" target="_blank" rel="noopener me">TikTok</a>
+        <a href="https://discord.gg/C4aWSWJsxP" target="_blank" rel="noopener me">Discord</a>
+        <a href="https://jonjoe1001.itch.io" target="_blank" rel="noopener me">itch.io</a>
+        <a href="https://github.com/jonathancomergit-ai" target="_blank" rel="noopener me">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js?v=20261110b"></script>
+  <script src="../assets/js/stats.js?v=20261110b"></script>
+</body>
+</html>
