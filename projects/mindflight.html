@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>MindFlight - Jonjoe1001</title>
+  <meta name="description" content="Thousands of simulated drones learning to fly at once on the GPU. My own quadcopter physics in PyTorch, PPO in one readable file, and a live 3D viewer in the browser.">
+
+  <meta property="og:title" content="MindFlight - thousands of drones learning to fly at once">
+  <meta property="og:description" content="Thousands of simulated drones learning to fly at once on the GPU. My own quadcopter physics in PyTorch, PPO in one readable file, and a live 3D viewer in the browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jonjoe1001.dev/projects/mindflight.html">
+  <meta property="og:site_name" content="Jonjoe1001">
+  <meta property="og:image" content="https://jonjoe1001.dev/assets/img/og-v2.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jonjoe1001.dev/assets/img/og-v2.jpg">
+
+  <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/img/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="../assets/img/favicon-96.png" type="image/png" sizes="96x96">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#0E0E0D">
+
+  <link rel="canonical" href="https://jonjoe1001.dev/projects/mindflight.html">
+  <link rel="alternate" type="application/rss+xml" title="Jonjoe1001 - Dev Log" href="https://jonjoe1001.dev/feed.xml">
+  <link rel="stylesheet" href="../assets/css/site.css?v=20261110b">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="avatar" src="../assets/img/pfp-160.webp" alt="" width="34" height="34">
+        Jonjoe1001 <small>Jonathan Comer</small>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../research.html" aria-current="page">Research</a>
+        <a href="../games.html">Games</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap project-hero">
+      <a class="back-link" href="../research.html">&larr; Research</a>
+      <div class="tags">
+        <span class="tag">Reinforcement learning</span>
+        <span class="tag">PPO</span>
+        <span class="tag">PyTorch</span>
+        <span class="tag">Physics</span>
+      </div>
+      <h1>MindFlight</h1>
+      <p class="project-lead">
+        Thousands of simulated drones learning to fly at once, on the GPU, while you watch
+        them live in your browser. I wrote the quadcopter physics myself, and the learning code
+        is one file you can read top to bottom!
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://github.com/jonathancomergit-ai/MindFlight" target="_blank" rel="noopener">Code on GitHub</a>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="project-cover">
+        <img src="../assets/img/projects/mindflight/wind.jpg" alt="The MindFlight viewer: 36 small drones hovering over a grid, each with its own weight and wind" width="1600" height="900">
+      </div>
+
+      <dl class="facts">
+        <div><dt>Status</dt><dd>All 7 levels done</dd></div>
+        <div><dt>Physics</dt><dd>My own, in PyTorch</dd></div>
+        <div><dt>Learning</dt><dd>PPO, one file</dd></div>
+        <div><dt>Speed</dt><dd>567M drone-steps a second</dd></div>
+        <div><dt>Drones at once</dt><dd>16,384</dd></div>
+        <div><dt>Every score</dt><dd>1,000 fixed test flights</dd></div>
+        <div><dt>Code</dt><dd><a href="https://github.com/jonathancomergit-ai/MindFlight" target="_blank" rel="noopener">Open source (MIT)</a></dd></div>
+      </dl>
+
+      <div class="project-body">
+        <h2>Why I wrote my own physics</h2>
+        <p>
+          Most people grab a simulator somebody else made. I wanted to know what every
+          number in there was doing, so I wrote the quadcopter model myself in PyTorch,
+          using the published numbers for a real drone (the Crazyflie 2.x). It weighs 27
+          grams and its props spin at 14,476 RPM just to hover.
+        </p>
+        <p>
+          Because the whole thing is tensors, the same code flies one drone or 16,384 of
+          them at once. On my GPU that comes out to 567 million drone-steps every second!
+        </p>
+        <h2>The seven levels</h2>
+        <p>
+          I set it up like levels in a game. A level only counts as done when the trained
+          brain passes a test: 1,000 fixed flights on the hardest setting. No lucky runs
+          allowed.
+        </p>
+        <ul>
+          <li><strong>Hover.</strong> Hold 1 metre for 10 seconds from a random start. 100%, with 0 crashes.</li>
+          <li><strong>Fly to a point.</strong> 99.3% of targets reached within 10 cm.</li>
+          <li><strong>Gates.</strong> 95.8% finish all 6 gates in order, with 3.7 second laps.</li>
+          <li><strong>Obstacles.</strong> 100% cross the densest pillar field, steering by lidar.</li>
+          <li><strong>Sturdy.</strong> 97.4% in gusty wind on drones that are never the same weight twice.</li>
+          <li><strong>Race.</strong> Three brains on one course. The racer won 96 of 100 rounds.</li>
+        </ul>
+        
+      </div>
+
+      <div class="shots">
+        <figure class="shot">
+          <img src="../assets/img/projects/mindflight/gates.jpg" alt="Eight drones flying through a line of square gates in the MindFlight viewer" loading="lazy" width="1600" height="900">
+          <figcaption><b>Level 3: gates</b></figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/img/projects/mindflight/obstacles.jpg" alt="Four drones crossing four dense fields of grey pillars" loading="lazy" width="1600" height="900">
+          <figcaption><b>Level 4: pillar fields, by lidar</b></figcaption>
+        </figure>
+      </div>
+
+      <div class="project-body">
+        <h2>Then I added air</h2>
+        <p>
+          Here&rsquo;s a fun one. Up to level 4 the drones were flying in a vacuum (oops).
+          Level 5 adds air: drag on the rotors, gusts of wind, and the extra lift you get
+          near the floor. Then every drone gets a slightly different weight, up to 20%
+          either way.
+        </p>
+        <p>
+          So does that actually matter? The brain I trained in still air on one perfect
+          drone only reached 84.6% of its targets out here. The one trained in the mess
+          reached 97.4%, with zero crashes. In double the wind it&rsquo;s 77.8% against 56.0%.
+        </p>
+        
+      </div>
+
+      <div class="shots">
+        <figure class="shot shot-wide">
+          <img src="../assets/img/projects/mindflight/level5_curves.jpg" alt="Four training plots for level 5: episode return, success rate in training, success rate on 1,000 fixed starts, and episode length, over 80 million samples" loading="lazy" width="1100" height="715">
+          <figcaption><b>Level 5 training curves, straight from the log</b></figcaption>
+        </figure>
+      </div>
+
+      <div class="project-body">
+        <h2>The race</h2>
+        <p>
+          Three brains fly the same course at the same time. One is careful, and one is a
+          daredevil that only ever saw easy courses, so it&rsquo;s fast and crashes a LOT. The
+          racer started out as the careful one, and then I trained it to hurry. It won 96
+          of 100 rounds, with 3.36 second laps against 3.68.
+        </p>
+        
+      </div>
+
+      <div class="shots">
+        <figure class="shot shot-wide">
+          <img src="../assets/img/projects/mindflight/race.jpg" alt="Six drones in three colours lined up at the start of a gate course, with a race leaderboard in the corner" loading="lazy" width="1600" height="900">
+          <figcaption><b>Level 6: three brains, one course, a live leaderboard</b></figcaption>
+        </figure>
+      </div>
+
+      <div class="project-body">
+        <h2>Toward a real drone</h2>
+        <p>
+          The goal is a brain trained here flying a real drone. So the newer brains
+          don&rsquo;t get perfect information any more. They get noisy, late sensor readings, a
+          slightly different drone every time, and they send the same commands a real
+          radio link would carry.
+        </p>
+        <p>
+          One brain flies a whole pack of 6 drones that share the air (they can crash
+          into each other, and a drone above pushes the one below down). Another one
+          guards a person: someone throws foam balls and the drone has to touch each one
+          before it gets there. It catches 93.7% of throws at 8 to 15 metres a second.
+        </p>
+        <p>
+          My first try at that one failed badly, and the plot below shows it. The green
+          line is the brain with no idea where the ball was going. Giving it a prediction
+          of the ball&rsquo;s path is what fixed it.
+        </p>
+        
+      </div>
+
+      <div class="shots">
+        <figure class="shot">
+          <img src="../assets/img/projects/mindflight/packs.jpg" alt="24 drones flying in four tight groups over the grid" loading="lazy" width="1600" height="900">
+          <figcaption><b>Packs: one brain flies every drone</b></figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/img/projects/mindflight/p7_intercept_curves.jpg" alt="Training plots for the intercept task. Two runs climb to about 93 percent success. The first try, without path prediction, stays near zero on the test." loading="lazy" width="1650" height="715">
+          <figcaption><b>Intercept: the first try (green) against the fix</b></figcaption>
+        </figure>
+      </div>
+
+      <div class="project-body">
+        <h2>Where it is now</h2>
+        <p>
+          All seven levels are done, and so are the pieces for real hardware. There&rsquo;s
+          even a fake drone that looks exactly like the real one to my code, so the whole
+          mission (takeoff, waypoints, landing) gets tested before any hardware shows up.
+          I haven&rsquo;t flown a real one yet. That&rsquo;s next!
+        </p>
+        
+      </div>
+
+      <div class="hero-actions" style="margin-top: 2.4rem">
+        <a class="btn btn-primary" href="https://github.com/jonathancomergit-ai/MindFlight" target="_blank" rel="noopener">Code on GitHub</a>
+        <a class="btn btn-ghost" href="../research.html">&larr; Research</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - hand-written HTML &amp; CSS, with help from AI</span>
+      <nav class="footer-links">
+        <a href="../research.html">Research</a>
+        <a href="../games.html">Games</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="https://www.youtube.com/@Jonjoe1001_dev" target="_blank" rel="noopener me">YouTube</a>
+        <a href="https://www.tiktok.com/@jonjoe1001" target="_blank" rel="noopener me">TikTok</a>
+        <a href="https://discord.gg/C4aWSWJsxP" target="_blank" rel="noopener me">Discord</a>
+        <a href="https://jonjoe1001.itch.io" target="_blank" rel="noopener me">itch.io</a>
+        <a href="https://github.com/jonathancomergit-ai" target="_blank" rel="noopener me">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js?v=20261110b"></script>
+  <script src="../assets/js/stats.js?v=20261110b"></script>
+</body>
+</html>
