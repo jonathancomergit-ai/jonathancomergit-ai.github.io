@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>MiniGPT - Jonjoe1001</title>
+  <meta name="description" content="My own 369-million-parameter language model, trained from random weights on one GPU: 16 billion tokens in about 4 days. Real training charts, the tests I built first, and what went wrong.">
+
+  <meta property="og:title" content="MiniGPT - my own language model, trained from zero">
+  <meta property="og:description" content="My own 369-million-parameter language model, trained from random weights on one GPU: 16 billion tokens in about 4 days. Real training charts, the tests I built first, and what went wrong.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jonjoe1001.dev/projects/minigpt.html">
+  <meta property="og:site_name" content="Jonjoe1001">
+  <meta property="og:image" content="https://jonjoe1001.dev/assets/img/og-v2.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jonjoe1001.dev/assets/img/og-v2.jpg">
+
+  <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/img/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="../assets/img/favicon-96.png" type="image/png" sizes="96x96">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <meta name="theme-color" content="#0E0E0D">
+
+  <link rel="canonical" href="https://jonjoe1001.dev/projects/minigpt.html">
+  <link rel="alternate" type="application/rss+xml" title="Jonjoe1001 - Dev Log" href="https://jonjoe1001.dev/feed.xml">
+  <link rel="stylesheet" href="../assets/css/site.css?v=20261110b">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="avatar" src="../assets/img/pfp-160.webp" alt="" width="34" height="34">
+        Jonjoe1001 <small>Jonathan Comer</small>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../research.html" aria-current="page">Research</a>
+        <a href="../games.html">Games</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap project-hero">
+      <a class="back-link" href="../research.html">&larr; Research</a>
+      <div class="tags">
+        <span class="tag">Transformer</span>
+        <span class="tag">Pretraining</span>
+        <span class="tag">Evals</span>
+        <span class="tag">From scratch</span>
+      </div>
+      <h1>MiniGPT</h1>
+      <p class="project-lead">
+        I trained my own language model from zero. No one else&rsquo;s weights! It started as
+        random numbers, read 16 billion tokens on one GPU, and came out able to answer
+        science questions. Everything on this page is from its real training log.
+      </p>
+    </div>
+
+    <div class="wrap">
+      <figure class="screen" style="margin: 0 0 2.4rem">
+        <div class="screen-top"><span class="live">&#9679; real training log</span><span>6,179 log lines &middot; hover for values</span></div>
+        <div class="charts">
+          <div class="chart" id="chart-loss"><h3>Training loss</h3><p>lower is better &middot; by tokens read</p></div>
+          <div class="chart" id="chart-arc"><h3>ARC-Easy accuracy</h3><p>science questions &middot; random guessing = 25%</p></div>
+        </div>
+      </figure>
+    
+
+      <dl class="facts">
+        <div><dt>Size</dt><dd>369M parameters</dd></div>
+        <div><dt>Shape</dt><dd>24 layers, 16 heads</dd></div>
+        <div><dt>Context</dt><dd>1,024 tokens</dd></div>
+        <div><dt>Read</dt><dd>16 billion tokens</dd></div>
+        <div><dt>Time</dt><dd>about 4 days</dd></div>
+        <div><dt>Hardware</dt><dd>One RTX 5090</dd></div>
+        <div><dt>Starting weights</dt><dd>None. Random.</dd></div>
+      </dl>
+
+      <div class="project-body">
+        <h2>Starting from nothing</h2>
+        <p>
+          I call it the 350M, but the exact count is 369,148,928 parameters. Every one of
+          them started as a random number. I even trained my own tokenizer (the thing that
+          chops text into pieces) before the model saw a single word.
+        </p>
+        <p>
+          Then it started reading. The reading list is FineWeb-Edu, a public set of educational web
+          pages. 16 billion tokens went through it in about 4 days on the one GPU in my
+          PC, and that includes five pauses and one crash (more on that below).
+        </p>
+        <h2>I built the tests first</h2>
+        <p>
+          How do you know a score is real? I didn&rsquo;t want to find out AFTER four days of
+          training that my test was broken. So I built the whole test suite first and
+          tested the tests.
+        </p>
+        <ul>
+          <li><strong>A model that knows nothing</strong> scored 25.2% on ARC-Easy. There are four answers to pick from, so that&rsquo;s exactly what guessing should get.</li>
+          <li><strong>GPT-2</strong> scored 43.1% and 30.7% on my two tests. The published numbers are 43.8% and 32.6%, so my meters read about right.</li>
+        </ul>
+        <p>
+          Here&rsquo;s how my model did as it read. ARC-Easy is science questions. LAMBADA is
+          guessing the last word of a passage.
+        </p>
+        
+      </div>
+
+      <dl class="facts">
+        <div><dt>0 tokens</dt><dd>24.7% &middot; 0%</dd></div>
+        <div><dt>0.4 billion</dt><dd>49.0% &middot; 18.4%</dd></div>
+        <div><dt>4 billion</dt><dd>54.8% &middot; 29.5%</dd></div>
+        <div><dt>8 billion</dt><dd>59.5% &middot; 31.3%</dd></div>
+        <div><dt>12 billion</dt><dd>61.7% &middot; 34.3%</dd></div>
+        <div><dt>16 billion</dt><dd>63.1% &middot; 37.3%</dd></div>
+      </dl>
+        
+
+      <div class="project-body">
+        <p>
+          Each box shows ARC-Easy and then LAMBADA. The check-ups along the way use 600 questions to
+          save time. The last row uses the full sets (2,376 questions and 5,153
+          passages).
+        </p>
+        <h2>Small tests before the big one</h2>
+        <p>
+          Four days is a long time to bet on a guess. So before the big run I trained a
+          bunch of tiny 30M models, each one answering ONE question.
+        </p>
+        <ul>
+          <li><strong>Which optimizer?</strong> I ran Muon and AdamW twice each. Muon won by 0.38 loss, and two runs of the same thing only differ by about 0.01. It also doubled the LAMBADA score (15% against 7.4%).</li>
+          <li><strong>Can the tests be fooled?</strong> I trained one on text with the words scrambled. It scored 26.9% and 0%, which is guessing. Good!</li>
+          <li><strong>Grow a small model, or start fresh?</strong> I grew a small model into a bigger one and its answers stayed the same (the biggest difference was 0.000002). Then a fresh one beat it anyway. So the big model started fresh.</li>
+        </ul>
+        <h2>The crash</h2>
+        <p>
+          About a third of the way in, the run died. My backup job had grabbed the save
+          file at the exact moment the trainer tried to write it. The run picked itself
+          back up from its last save at step 20,907, and I added a retry so that can&rsquo;t
+          kill it again.
+        </p>
+        <h2>Is it cheating?</h2>
+        <p>
+          If a test question is sitting in the training data, the score means nothing.
+          So I searched the first 9.7 million training pages for any 13 words in a row
+          that match a test question. That hit 31 of the 2,376 science questions and 1 of
+          the 5,153 passages. I haven&rsquo;t run that check on the second batch of data yet.
+        </p>
+        <h2>Where it is now</h2>
+        <p>
+          The reading stage is done. After that I started teaching it to hold a
+          conversation, using a public chat dataset. The model stays on my PC, since this
+          one is a personal research project (so there are no weights to download).
+        </p>
+        
+      </div>
+
+      <div class="hero-actions" style="margin-top: 2.4rem">
+        <a class="btn btn-primary" href="../research.html">&larr; Research</a>
+      </div>
+    </div>
+  </main>
+  <!-- MiniGPT's real training log (runs/friend350), thinned to ~250 points. -->
+  <script type="application/json" id="minigpt-log">{"train":[[0.042,7.395],[0.107,4.199],[0.173,3.733],[0.239,3.576],[0.304,3.48],[0.37,3.421],[0.435,3.36],[0.501,3.313],[0.566,3.293],[0.632,3.256],[0.697,3.238],[0.763,3.208],[0.828,3.183],[0.894,3.174],[0.96,3.149],[1.025,3.142],[1.091,3.128],[1.156,3.109],[1.222,3.107],[1.287,3.097],[1.353,3.079],[1.418,3.071],[1.484,3.063],[1.549,3.058],[1.615,3.051],[1.68,3.039],[1.746,3.038],[1.812,3.035],[1.877,3.01],[1.943,3.014],[2.008,3.01],[2.074,3.002],[2.139,2.996],[2.205,2.999],[2.27,2.995],[2.336,2.99],[2.401,2.979],[2.467,2.976],[2.533,2.974],[2.598,2.969],[2.664,2.96],[2.729,2.963],[2.795,2.955],[2.86,2.955],[2.926,2.952],[2.991,2.953],[3.057,2.944],[3.122,2.948],[3.188,2.936],[3.253,2.94],[3.319,2.937],[3.385,2.924],[3.45,2.927],[3.516,2.923],[3.581,2.917],[3.647,2.912],[3.712,2.919],[3.778,2.914],[3.843,2.907],[3.909,2.906],[3.974,2.903],[4.04,2.892],[4.106,2.901],[4.171,2.891],[4.237,2.892],[4.302,2.896],[4.368,2.897],[4.433,2.891],[4.499,2.893],[4.564,2.885],[4.63,2.883],[4.695,2.886],[4.761,2.877],[4.826,2.878],[4.892,2.872],[4.958,2.87],[5.023,2.879],[5.089,2.873],[5.154,2.874],[5.22,2.873],[5.285,2.864],[5.351,2.877],[5.416,2.869],[5.482,2.861],[5.547,2.867],[5.545,2.858],[5.61,2.865],[5.676,2.863],[5.741,2.855],[5.807,2.858],[5.873,2.864],[5.938,2.847],[6.004,2.857],[6.069,2.857],[6.135,2.854],[6.2,2.847],[6.266,2.852],[6.331,2.847],[6.397,2.843],[6.462,2.848],[6.528,2.84],[6.593,2.852],[6.659,2.829],[6.725,2.842],[6.79,2.839],[6.856,2.829],[6.921,2.838],[6.987,2.828],[7.052,2.834],[7.118,2.832],[7.183,2.839],[7.249,2.826],[7.314,2.831],[7.38,2.835],[7.446,2.831],[7.511,2.82],[7.577,2.827],[7.642,2.818],[7.708,2.822],[7.773,2.818],[7.839,2.826],[7.904,2.825],[7.97,2.817],[8.035,2.818],[8.101,2.822],[8.166,2.817],[8.232,2.808],[8.298,2.815],[8.363,2.812],[8.429,2.81],[8.494,2.814],[8.56,2.813],[8.625,2.81],[8.691,2.815],[8.756,2.81],[8.822,2.812],[8.887,2.808],[8.953,2.804],[9.019,2.804],[9.084,2.797],[9.15,2.806],[9.215,2.803],[9.281,2.804],[9.346,2.809],[9.412,2.806],[9.477,2.804],[9.543,2.802],[9.608,2.789],[9.674,2.797],[9.739,2.799],[9.805,2.794],[9.871,2.795],[9.936,2.8],[10.002,2.806],[10.067,2.801],[10.133,2.79],[10.198,2.799],[10.264,2.795],[10.329,2.791],[10.395,2.788],[10.46,2.795],[10.526,2.787],[10.592,2.786],[10.657,2.791],[10.723,2.797],[10.788,2.791],[10.854,2.787],[10.919,2.784],[10.985,2.783],[11.05,2.787],[11.116,2.784],[11.181,2.785],[11.247,2.785],[11.312,2.782],[11.378,2.789],[11.444,2.784],[11.509,2.78],[11.575,2.774],[11.64,2.774],[11.706,2.773],[11.771,2.777],[11.837,2.765],[11.902,2.764],[11.968,2.774],[12.033,2.763],[12.099,2.765],[12.165,2.766],[12.23,2.761],[12.296,2.755],[12.361,2.757],[12.427,2.756],[12.492,2.755],[12.558,2.754],[12.623,2.739],[12.689,2.755],[12.754,2.74],[12.82,2.748],[12.885,2.743],[12.951,2.752],[13.017,2.746],[13.082,2.739],[13.148,2.741],[13.213,2.735],[13.279,2.735],[13.344,2.734],[13.41,2.724],[13.475,2.731],[13.541,2.731],[13.606,2.728],[13.672,2.732],[13.738,2.725],[13.803,2.721],[13.869,2.725],[13.934,2.721],[14.0,2.718],[14.065,2.725],[14.131,2.722],[14.196,2.716],[14.262,2.714],[14.327,2.714],[14.393,2.714],[14.458,2.707],[14.524,2.719],[14.59,2.71],[14.655,2.705],[14.721,2.706],[14.786,2.703],[14.852,2.703],[14.917,2.706],[14.983,2.691],[15.048,2.697],[15.114,2.682],[15.179,2.69],[15.245,2.705],[15.311,2.701],[15.376,2.687],[15.442,2.701],[15.507,2.691],[15.573,2.679],[15.638,2.684],[15.704,2.689],[15.769,2.687],[15.835,2.692],[15.9,2.683],[15.966,2.682],[16.0,2.69]],"evals":[[0.0,10.397,24.7],[0.4,3.333,49.0],[0.8,3.163,50.8],[1.2,3.08,52.7],[1.6,3.028,55.5],[2.0,2.991,52.3],[2.4,2.963,55.0],[2.8,2.941,56.3],[3.2,2.922,54.2],[3.6,2.906,58.2],[4.0,2.892,54.8],[4.4,2.88,59.0],[4.8,2.87,55.8],[5.2,2.86,59.2],[5.6,2.851,59.3],[6.0,2.844,59.2],[6.4,2.837,57.8],[6.8,2.83,60.3],[7.2,2.824,58.3],[7.6,2.818,60.3],[8.0,2.813,59.5],[8.4,2.809,59.8],[8.8,2.804,60.3],[9.2,2.799,60.8],[9.6,2.796,59.2],[10.0,2.792,59.5],[10.4,2.789,61.8],[10.8,2.784,59.3],[11.2,2.782,61.0],[11.6,2.773,60.7],[12.0,2.764,61.7],[12.4,2.755,61.7],[12.8,2.746,61.2],[13.2,2.738,63.5],[13.6,2.729,64.0],[14.0,2.721,62.2],[14.4,2.713,61.3],[14.8,2.706,64.0],[15.2,2.699,62.5],[15.6,2.692,63.8],[16.0,2.688,63.1]]}</script>
+
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001 - hand-written HTML &amp; CSS, with help from AI</span>
+      <nav class="footer-links">
+        <a href="../research.html">Research</a>
+        <a href="../games.html">Games</a>
+        <a href="../blog.html">Dev Log</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="https://www.youtube.com/@Jonjoe1001_dev" target="_blank" rel="noopener me">YouTube</a>
+        <a href="https://www.tiktok.com/@jonjoe1001" target="_blank" rel="noopener me">TikTok</a>
+        <a href="https://discord.gg/C4aWSWJsxP" target="_blank" rel="noopener me">Discord</a>
+        <a href="https://jonjoe1001.itch.io" target="_blank" rel="noopener me">itch.io</a>
+        <a href="https://github.com/jonathancomergit-ai" target="_blank" rel="noopener me">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js?v=20261110b"></script>
+  <script src="../assets/js/research.js?v=20261110b"></script>
+  <script src="../assets/js/stats.js?v=20261110b"></script>
+</body>
+</html>
