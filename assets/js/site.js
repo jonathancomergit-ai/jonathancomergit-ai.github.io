@@ -282,7 +282,7 @@
     layer.setAttribute("aria-hidden", "true");
     backdrop.appendChild(layer);
     var tag = document.createElement("script");
-    tag.src = atlasUrl().replace(/img\/sprites\/atlas\.webp$/, "js/glyphs.js");
+    tag.src = atlasUrl().replace(/img\/sprites\/atlas\.webp$/, "js/glyphs.js?v=20261110");
     document.body.appendChild(tag);
   }
 
