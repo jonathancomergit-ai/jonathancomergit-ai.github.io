@@ -2,7 +2,7 @@
 
 Built by walking the folder rather than typed by hand, so adding a post and
 re-running this cannot leave the sitemap out of date. Skips the 404, the post
-template and /tools/, none of which are real pages, and the unlisted /algovision/.
+template and /tools/, none of which are real pages.
 
 lastmod comes from git's last commit date for each file, not the filesystem
 mtime, which changes every time the repo is cloned.
@@ -20,10 +20,8 @@ SKIP = {"404.html", "posts/_TEMPLATE.html",
         "games.html", "presskit.html",
         "projects/timeless.html", "projects/made-in-kind.html", "projects/mission-chipler.html"}
 
-# Whole folders left out. tools/ is not pages. algovision/ is live but unlisted
-# until launch - delete it from this set on launch day and re-run (the steps are
-# in the comment at the top of algovision/index.html).
-SKIP_DIRS = ("tools/", "algovision/")
+# Whole folders left out. tools/ is not pages.
+SKIP_DIRS = ("tools/",)
 
 # Home first, then the top-level sections, then the deeper pages.
 PRIORITY = {
