@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Workbench - Jonjoe1001</title>
+  <meta name="description" content="Real experiments you can poke: throw balls at a trained drone brain running live in your browser, walk through a street an AI dreamed, and watch a language model learn to write.">
+
+  <!-- Social preview (what shows when the link is pasted in Discord/Twitter) -->
+  <meta property="og:title" content="Workbench - Jonjoe1001">
+  <meta property="og:description" content="Real experiments you can poke: throw balls at a trained drone brain running live in your browser, walk through a street an AI dreamed, and watch a language model learn to write.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jonjoe1001.dev/workbench.html">
+  <meta property="og:site_name" content="Jonjoe1001">
+  <meta property="og:image" content="https://jonjoe1001.dev/assets/img/og-v4.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jonjoe1001.dev/assets/img/og-v4.jpg">
+
+  <link rel="icon" href="assets/img/favicon-v2-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/img/favicon-v2-16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="assets/img/favicon-v2-96.png" type="image/png" sizes="96x96">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon-v2.png">
+  <meta name="theme-color" content="#0E0E0D">
+
+  <link rel="canonical" href="https://jonjoe1001.dev/workbench.html">
+  <link rel="alternate" type="application/rss+xml" title="Jonjoe1001 - Dev Log" href="https://jonjoe1001.dev/feed.xml">
+  <link rel="stylesheet" href="assets/css/site.css?v=20261111c">
+  <link rel="stylesheet" href="assets/css/workbench.css?v=20261111c">
+  <!-- three.js 0.170.0 is served from this site (assets/vendor/three/, MIT), so the page asks no other server. -->
+  <script type="importmap">
+  { "imports": { "three": "./assets/vendor/three/three.module.min.js",
+                 "three/addons/controls/OrbitControls.js": "./assets/vendor/three/OrbitControls.js" } }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <!-- Glyph Drift draws into this (see assets/js/glyphs.js). Purely decorative. -->
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="index.html">
+        <img class="avatar" src="assets/img/pfp-v2-160.webp" alt="" width="40" height="40">
+        Jonjoe1001 <small>Jonathan Comer</small>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu">&#9776;</button>
+
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="research.html">Research</a>
+        <a href="games.html">Games</a>
+        <a href="workbench.html" aria-current="page">Workbench</a>
+        <a href="blog.html">Dev Log</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===================== INTRO =====================
+         Every toy runs on REAL code and data from the projects:
+         assets/play/ is built by tools/build_workbench_data.py and tools/port_check/export_brain.py.
+         No AI-drawn art. -->
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Workbench</p>
+          <h1>Real experiments you can <span class="accent">poke.</span></h1>
+          <p>
+            These aren&rsquo;t videos, they&rsquo;re the real thing and you get to drive! Nothing here
+            is AI drawn. It&rsquo;s my real models and my real data, and it all runs right in your browser.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 01 INTERCEPTOR ===================== -->
+    <section class="research toy" id="interceptor" style="padding-top:0">
+      <div class="wrap stack">
+        <div class="section-head">
+          <p class="kicker">01 &middot; MindFlight</p>
+          <h2>Throw it at the drone</h2>
+        </div>
+        <div class="r-split">
+          <figure class="screen toy-screen">
+            <div class="screen-top"><span class="live">&#9679; the trained brain, live</span><span id="ic-score">loading the brain&hellip;</span></div>
+            <div class="toy-stage" id="ic-stage" aria-label="A live 3D sim: a small drone guards a person from thrown foam balls. Tap the orange zone on the floor to throw a ball from there. Drag sideways to spin the camera.">
+              <div class="toy-hud" id="ic-hud"></div>
+              <div class="toy-hint" id="ic-hint">tap the orange zone to throw &middot; drag to look around</div>
+            </div>
+            <div class="toy-controls">
+              <span class="tgroup">
+                <button class="tchip tchip-go" id="ic-throw">throw a ball</button>
+                <button class="tchip" id="ic-play" aria-pressed="true">&#10074;&#10074; pause</button>
+              </span>
+              <span class="tgroup" role="group" aria-label="Playback speed">
+                <button class="tchip" data-speed="0.25" aria-pressed="false">0.25&times;</button>
+                <button class="tchip" data-speed="0.5" aria-pressed="true">0.5&times;</button>
+                <button class="tchip" data-speed="1" aria-pressed="false">1&times;</button>
+              </span>
+              <span class="tgroup" role="group" aria-label="Kind of throw">
+                <button class="tchip" data-style="fast" aria-pressed="false">fast</button>
+                <button class="tchip" data-style="lob" aria-pressed="false">lob</button>
+                <button class="tchip" data-style="mix" aria-pressed="true">mix</button>
+              </span>
+              <span class="tgroup">
+                <button class="tchip" id="ic-tracker" aria-pressed="false">show the tracker</button>
+                <button class="tchip" id="ic-auto" aria-pressed="true">auto throw</button>
+              </span>
+            </div>
+          </figure>
+          <div class="r-facts">
+            <div class="tags"><span class="tag">Reinforcement learning</span><span class="tag">Live in your browser</span><span class="tag">3D</span></div>
+            <p>
+              This is the real brain from MindFlight, my drone sim, and it&rsquo;s flying live in your
+              browser right now! Tap the orange zone to throw a foam ball at that guy and watch the
+              drone try to block it. You can slow it down, spin the camera around, and turn on the
+              tracker to see what the brain gets told.
+            </p>
+            <div class="r-nums">
+              <div><b id="ic-caught">0 / 0</b><span>caught since you got here</span></div>
+              <div><b>93.7%</b><span>caught in my real test, 1,000 flights</span></div>
+              <div><b>108,932</b><span>numbers in the brain</span></div>
+            </div>
+            <p class="note">
+              The physics is a JavaScript copy of my Python sim. I tested it against the real one step
+              by step and they match! Balls only come from the front because that&rsquo;s what it trained on.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-ghost" href="projects/mindflight.html">Explore MindFlight</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 02 DREAM WORLD ===================== -->
+    <section class="research toy" id="dream">
+      <div class="wrap stack">
+        <div class="section-head">
+          <p class="kicker">02 &middot; Dream World</p>
+          <h2>Walk the dream</h2>
+        </div>
+        <div class="r-split">
+          <figure class="screen toy-screen">
+            <div class="screen-top"><span class="live">&#9679; dreamed by my model</span><span id="dw-count">loading the dream&hellip;</span></div>
+            <div class="dream-stage" id="dw-stage">
+              <canvas id="dw-canvas" width="504" height="288" role="img" aria-label="A frame dreamed by the Dream World model. Hold W or the walk button to move forward through the dream."></canvas>
+              <label class="toy-slider">
+                <span>start</span>
+                <input type="range" id="dw-slider" min="0" max="374" value="0" step="1" aria-label="How far into the dream">
+                <span>end</span>
+              </label>
+            </div>
+            <div class="toy-controls">
+              <span class="tgroup">
+                <button class="tchip tchip-go walk-btn" id="dw-walk">hold to walk (W)</button>
+              </span>
+              <span class="tgroup" role="group" aria-label="Which dream">
+                <button class="tchip" data-clip="river" aria-pressed="true">river</button>
+                <button class="tchip" data-clip="shops" aria-pressed="false">shops</button>
+                <button class="tchip" data-clip="trees" aria-pressed="false">trees</button>
+                <button class="tchip" data-clip="fix" aria-pressed="false">the fix</button>
+              </span>
+            </div>
+          </figure>
+          <div class="r-facts">
+            <div class="tags"><span class="tag">Diffusion</span><span class="tag">World model</span><span class="tag">Dreamed frames</span></div>
+            <p>
+              Hold W (or the button) and walk through a place my model dreamed. Keep walking and watch
+              it melt, because the dream falls apart the longer you go. Then hit &ldquo;the fix&rdquo;
+              to see the same street before and after I fixed a bug that was in every version.
+            </p>
+            <div class="r-nums">
+              <div><b>4 s &rarr; 11 s</b><span>clean walk, before and after the fix</span></div>
+              <div><b>51M</b><span>numbers in the dream model</span></div>
+            </div>
+            <p class="note">
+              Every frame here is dreamed. I cut the first 2.5 seconds of each walk because they still
+              look like the real photo the dream started from. These are saved dreams, since the model
+              needs a real GPU and can&rsquo;t run in your browser yet!
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-ghost" href="projects/dream-world.html">Explore Dream World</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 03 MINIGPT ===================== -->
+    <section class="research toy" id="write">
+      <div class="wrap stack">
+        <div class="section-head">
+          <p class="kicker">03 &middot; MiniGPT</p>
+          <h2>Watch it learn to write</h2>
+        </div>
+        <div class="r-split">
+          <figure class="screen toy-screen">
+            <div class="screen-top"><span class="live">&#9679; real samples from training</span><span id="mg-meta">step 0</span></div>
+            <div class="write-stage">
+              <div class="write-prompts" id="mg-prompts" role="group" aria-label="Prompt"></div>
+              <p class="write-text" id="mg-text"></p>
+              <p class="write-truth" id="mg-truth"></p>
+              <label class="toy-slider">
+                <span>training</span>
+                <input type="range" id="mg-slider" min="0" max="40" value="0" step="1" aria-label="Point in training">
+                <span id="mg-tokens">0 tokens</span>
+              </label>
+              <div class="write-meters">
+                <div><b id="mg-loss">10.40</b><span>loss (lower is better)</span></div>
+                <div><b id="mg-quiz">25%</b><span>science quiz (guessing gets 25%)</span></div>
+                <div><b id="mg-last">0%</b><span>guess the last word</span></div>
+              </div>
+              <canvas class="write-chart" id="mg-chart" role="img" aria-label="The model's training loss falling from about 10.4 to 2.7, with a dot at the point in training the slider is on."></canvas>
+            </div>
+            <div class="toy-controls">
+              <button class="tchip tchip-go" id="mg-play" aria-pressed="false">&#9654; play through training</button>
+            </div>
+          </figure>
+          <div class="r-facts">
+            <div class="tags"><span class="tag">Transformer</span><span class="tag">From scratch</span><span class="tag">Real samples</span></div>
+            <p>
+              Pick a prompt and drag through training. At step 0 it&rsquo;s random word soup, and by the
+              first save it&rsquo;s already writing sentences. After that the change is in what it says,
+              so watch the scores climb while it keeps getting facts wrong.
+            </p>
+            <div class="r-nums">
+              <div><b>369M</b><span>numbers, all random at the start</span></div>
+              <div><b>16B</b><span>tokens it read on one GPU</span></div>
+            </div>
+            <p class="note">
+              It still makes stuff up, so don&rsquo;t trust it on facts! Every sample is the first 60 or
+              so tokens my model wrote. I left out five where it wrote dark or iffy stuff.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-ghost" href="projects/minigpt.html">Explore MiniGPT</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">&copy; 2026 Jonjoe1001</span>
+      <nav class="footer-links">
+        <a href="research.html">Research</a>
+        <a href="games.html">Games</a>
+        <a href="workbench.html" aria-current="page">Workbench</a>
+        <a href="blog.html">Dev Log</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="https://www.youtube.com/@Jonjoe1001_dev" target="_blank" rel="noopener me">YouTube</a>
+        <a href="https://www.tiktok.com/@jonjoe1001" target="_blank" rel="noopener me">TikTok</a>
+        <a href="https://discord.gg/C4aWSWJsxP" target="_blank" rel="noopener me">Discord</a>
+        <a href="https://jonjoe1001.itch.io" target="_blank" rel="noopener me">itch.io</a>
+        <a href="https://github.com/jonathancomergit-ai" target="_blank" rel="noopener me">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js?v=20261111c"></script>
+  <script type="module" src="assets/js/workbench.js?v=20261111c"></script>
+  <script src="assets/js/stats.js?v=20261111c"></script>
+</body>
+</html>

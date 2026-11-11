@@ -1,0 +1,60 @@
+{
+ "fw": 168,
+ "fh": 96,
+ "cols": 10,
+ "per": 100,
+ "fps": 10,
+ "clips": {
+  "river": {
+   "n": 375,
+   "start_s": 2.5,
+   "sheets": [
+    "river_0.jpg",
+    "river_1.jpg",
+    "river_2.jpg",
+    "river_3.jpg"
+   ],
+   "note": "v9 test run, dream-only walk 1, frames 25-399"
+  },
+  "shops": {
+   "n": 375,
+   "start_s": 2.5,
+   "sheets": [
+    "shops_0.jpg",
+    "shops_1.jpg",
+    "shops_2.jpg",
+    "shops_3.jpg"
+   ],
+   "note": "v9 test run, dream-only walk 2, frames 25-399"
+  },
+  "trees": {
+   "n": 375,
+   "start_s": 2.5,
+   "sheets": [
+    "trees_0.jpg",
+    "trees_1.jpg",
+    "trees_2.jpg",
+    "trees_3.jpg"
+   ],
+   "note": "v9 test run, dream-only walk 7, frames 25-399"
+  },
+  "fix_old": {
+   "n": 120,
+   "start_s": 0,
+   "sheets": [
+    "fix_old_0.jpg",
+    "fix_old_1.jpg"
+   ],
+   "note": "site dream_fix.mp4, left: started from pure static"
+  },
+  "fix_new": {
+   "n": 120,
+   "start_s": 0,
+   "sheets": [
+    "fix_new_0.jpg",
+    "fix_new_1.jpg"
+   ],
+   "note": "site dream_fix.mp4, right: started from the last frame + static"
+  }
+ }
+}
