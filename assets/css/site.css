@@ -1821,6 +1821,10 @@ section { padding-block: var(--gap-xl); }
 .shots3 { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2px; background: var(--line); }
 .shots3 img { width: 100%; height: 100%; object-fit: cover; display: block; background: var(--surface); }
 .shots3 img:first-child { grid-row: span 2; }
+/* A wide gameplay clip on top, two stills side by side under it (Games: Emergent Evolver, HEATSINK). */
+.shots-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--line); }
+.shots-hero > video { grid-column: 1 / -1; width: 100%; height: auto; display: block; background: var(--surface); }   /* keeps the clip's own shape */
+.shots-hero > img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; background: var(--surface); }
 
 /* Two upright gameplay clips side by side (the Games page). */
 .clips2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--line); }
