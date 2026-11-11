@@ -19,7 +19,7 @@
 
   /* ----------------------------------------------------------
      1. MOBILE NAV
-     The hamburger button is hidden by CSS above 860px wide,
+     The hamburger button is hidden by CSS above 940px wide,
      so this only ever matters on a phone.
      ---------------------------------------------------------- */
   var toggle = document.querySelector(".nav-toggle");
@@ -282,7 +282,7 @@
     layer.setAttribute("aria-hidden", "true");
     backdrop.appendChild(layer);
     var tag = document.createElement("script");
-    tag.src = atlasUrl().replace(/img\/sprites\/atlas\.webp$/, "js/glyphs.js?v=20261110c");
+    tag.src = atlasUrl().replace(/img\/sprites\/atlas\.webp$/, "js/glyphs.js?v=20261111c");
     document.body.appendChild(tag);
   }
 

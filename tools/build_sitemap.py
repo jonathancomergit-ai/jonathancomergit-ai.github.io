@@ -26,6 +26,7 @@ PRIORITY = {
     "index.html": "1.0",
     "research.html": "0.9",
     "games.html": "0.9",
+    "workbench.html": "0.9",
     "projects.html": "0.8",
     "limitless.html": "0.9",
     "blog.html": "0.8",

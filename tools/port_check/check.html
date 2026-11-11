@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>MindFlight port check</title>
+<!-- Opened by check_port.py in a headless browser. Compares assets/js/mindflight-sim.js with a real Python flight
+     (trace.json, made by export_brain.py). Not part of the site. -->
+<pre id="out">running...</pre>
+<script type="module">
+import { loadSim, aimThrow, InterceptSim } from "../../assets/js/mindflight-sim.js";
+
+const maxAbs = (a, b) => { let m = 0; for (let i = 0; i < a.length; i++) m = Math.max(m, Math.abs(a[i] - b[i])); return m; };
+const clampA = (a) => a.map((x) => Math.max(-1, Math.min(1, x)));
+
+function loadState(sim, row) {                      // put the sim exactly where the Python env was
+  const s = row.state;
+  sim.p = s.slice(0, 3); sim.q = s.slice(3, 7); sim.v = s.slice(7, 10); sim.w = s.slice(10, 13); sim.rpm = s.slice(13, 17);
+  sim.integral = row.integral.slice();
+  sim.bp = row.ball_pos.slice(); sim.bv = row.ball_vel.slice(); sim.flying = row.flying; sim.ballAge = row.ball_age;
+  sim.posErr = row.pos_err.slice(); sim.velErr = row.vel_err.slice(); sim.attErr = row.att_err.slice();
+}
+
+function replaySim(meta, brain, T) {                // a sim whose random numbers are the Python flight's own
+  const sim = new InterceptSim(meta, brain, { standardDrone: false });
+  loadState(sim, T.start);
+  sim.vary = { mass: T.variation.mass, thrust: T.variation.fresh_thrust, tau: T.variation.tau, com: T.variation.com.slice(), sag: T.variation.sag };
+  sim.gyroBias = T.gyro_bias.slice(); sim.obsDelay = T.obs_delay; sim.actionDelay = T.action_delay; sim.trackerDelay = T.tracker_delay;
+  sim.action = [0, 0, 0, 0]; sim.stepCount = 0;
+  sim.actionHist = sim.actionHist.map(() => [0, 0, 0, 0]);
+  sim.ballHist = sim.ballHist.map(() => [0, 0, 0, 0, 0, 0, 0]);
+  sim.obsHist = sim.obsHist.map(() => Float64Array.from(T.start.fresh));
+  sim.obs.set(T.first_obs);
+  sim.counts = { throws: 0, caught: 0, hits: 0, crashes: 0 };
+  let row = null;
+  sim.use = (r) => { row = r; if (r.throw) sim.pending = { pos: r.throw.pos, vel: r.throw.vel, path: r.throw.path.flat() }; };
+  sim.advanceErrors = () => { sim.posErr = row.pos_err.slice(); sim.velErr = row.vel_err.slice(); sim.attErr = row.att_err.slice(); };
+  sim.gyroNoise = () => row.gyro_noise;
+  sim.trackerJitter = () => [0, 1, 2].map((c) => (row.mb_pos_err[c] - sim.posBias[c]) / meta.tracker.pos_jitter)
+    .concat([0, 1, 2].map((c) => (row.mb_vel_err[c] - sim.velBias[c]) / meta.tracker.vel_jitter));
+  sim.throwBias = () => [row.throw.pos_bias.slice(), row.throw.vel_bias.slice()];
+  return sim;
+}
+
+function compare(sim, row, worst) {
+  const s = row.state, e = worst;
+  e.pos = Math.max(e.pos, maxAbs(sim.p, s.slice(0, 3)));
+  e.quat = Math.max(e.quat, maxAbs(sim.q, s.slice(3, 7)));
+  e.vel = Math.max(e.vel, maxAbs(sim.v, s.slice(7, 10)));
+  e.omega = Math.max(e.omega, maxAbs(sim.w, s.slice(10, 13)));
+  e.rpm = Math.max(e.rpm, maxAbs(sim.rpm, s.slice(13, 17)));
+  e.integral = Math.max(e.integral, maxAbs(sim.integral, row.integral));
+  e.fresh_obs = Math.max(e.fresh_obs, maxAbs(sim.obsHist[0], row.fresh));
+  e.obs = Math.max(e.obs, maxAbs(sim.obs, row.obs));
+  if (row.flying) e.ball = Math.max(e.ball, maxAbs(sim.bp, row.ball_pos), maxAbs(sim.bv, row.ball_vel));
+  if (sim.flying !== row.flying || sim.ballAge !== row.ball_age) e.ball_state_mismatches += 1;
+}
+const blank = () => ({ pos: 0, quat: 0, vel: 0, omega: 0, rpm: 0, integral: 0, fresh_obs: 0, obs: 0, ball: 0, ball_state_mismatches: 0 });
+
+// The env as trained, for a catch-rate count: 15 s flights, a new throw every 2.5-3 s from the trained range.
+function catchRate(meta, brain, episodes, standardDrone) {
+  const sim = new InterceptSim(meta, brain, { standardDrone });
+  const th = meta.throws, steps = Math.round(15 / meta.policy_dt);
+  let crashes = 0;
+  for (let ep = 0; ep < episodes; ep++) {
+    sim.reset();
+    let next = Math.round(sim.uniform(1.0, 1.5) / meta.policy_dt);
+    for (let k = 0; k < steps; k++) {
+      if (sim.stepCount + 1 >= next && !sim.flying && !sim.pending) {
+        const ang = sim.uniform(-th.arc_deg, th.arc_deg) * Math.PI / 180, dist = sim.uniform(...th.distance);
+        const rel = [dist * Math.cos(ang), dist * Math.sin(ang), sim.uniform(...th.release_height)];
+        const side = sim.uniform(-th.torso_sideways, th.torso_sideways);
+        const tgt = [-side * Math.sin(ang), side * Math.cos(ang), sim.uniform(...th.torso_height)];
+        sim.throwBall(aimThrow(meta, rel, tgt, sim.uniform(...th.flight_s)));
+        next = sim.stepCount + 1 + Math.round(sim.uniform(...th.gap_s) / meta.policy_dt);
+      }
+      if (sim.step() === "crash") { crashes += 1; break; }
+    }
+    sim.pending = null;
+  }
+  return { episodes, throws: sim.counts.throws, caught: sim.counts.caught, rate: sim.counts.caught / sim.counts.throws, crashed_episodes: crashes };
+}
+
+async function main() {
+  const { meta, brain } = await loadSim("../../assets/play/");
+  const names = new URLSearchParams(location.search).get("traces").split(",");
+  const R = { traces: [], weights: meta.weights };
+  for (const name of names) {
+    const T = await fetch(name).then((r) => r.json());
+    const out = { name, seed: T.seed, steps: T.steps.length };
+    // 1. the brain alone: same observation in -> same action out
+    let e = 0;
+    T.steps.forEach((row, i) => { e = Math.max(e, maxAbs(brain.act(i ? T.steps[i - 1].obs : T.first_obs), row.action)); });
+    out.brain_action = e;
+    // 2. aiming
+    e = 0; let ep = 0;
+    for (const a of T.aim) {
+      const t = aimThrow(meta, a.release, a.target, a.flight_s);
+      e = Math.max(e, maxAbs(t.vel, a.velocity)); ep = Math.max(ep, maxAbs(t.path, a.path.flat()));
+    }
+    out.aim_velocity = e; out.aim_path = ep;
+    // 3. one step at a time: start every step from the Python state, take the Python action
+    let sim = replaySim(meta, brain, T), worst = blank();
+    T.steps.forEach((row, i) => {
+      const before = i ? T.steps[i - 1] : T.start;
+      loadState(sim, before);
+      sim.actionHist = [i > 0 ? clampA(T.steps[i - 1].action) : [0, 0, 0, 0], i > 1 ? clampA(T.steps[i - 2].action) : [0, 0, 0, 0]];
+      sim.use(row);
+      sim.step(row.action);
+      compare(sim, row, worst);
+    });
+    delete worst.obs;
+    out.step_by_step = worst;
+    // 4. the whole flight on its own: the JS brain flies the JS sim, with only the random numbers shared
+    sim = replaySim(meta, brain, T); worst = blank();
+    let action = 0;
+    T.steps.forEach((row) => {
+      sim.use(row);
+      sim.step();
+      action = Math.max(action, maxAbs(sim.action, clampA(row.action)));
+      compare(sim, row, worst);
+    });
+    worst.action = action;
+    const last = T.steps[T.steps.length - 1];
+    out.whole_flight = worst;
+    out.counts = { js: [sim.counts.caught, sim.counts.throws], python: [last.intercepts, last.throws] };
+    R.traces.push(out);
+  }
+  const n = +(new URLSearchParams(location.search).get("episodes") || 0);
+  if (n) {
+    R.as_trained = catchRate(meta, brain, n, false);
+    R.standard_drone = catchRate(meta, brain, n, true);
+  }
+  window.RESULT = R;
+  document.getElementById("out").textContent = JSON.stringify(R, null, 1);
+}
+main().catch((err) => { window.RESULT = { error: String(err && err.stack || err) }; document.getElementById("out").textContent = window.RESULT.error; });
+</script>

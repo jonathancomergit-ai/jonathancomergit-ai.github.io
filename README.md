@@ -23,6 +23,10 @@ site/
 ├── index.html            Home — hero, real numbers, featured research, games, latest posts
 ├── research.html         The four main research projects, then the "More research" shelf
 ├── games.html            The four games, same layout as the research page
+├── workbench.html        Three toys that run on real project data: the trained MindFlight
+│                         brain flying live, dreamed Dream World walks, MiniGPT's samples
+│                         and scores. Data: assets/play/, rebuilt by
+│                         tools/build_workbench_data.py and tools/port_check/
 ├── blog.html             The list of dev posts
 ├── about.html            About me
 ├── contact.html          Contact form (Formspree) with an email fallback

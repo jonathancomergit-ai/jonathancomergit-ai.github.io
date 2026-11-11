@@ -18,7 +18,7 @@ import datetime, pathlib, re, sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 VER = sys.argv[1] if len(sys.argv) > 1 else datetime.date.today().strftime("%Y%m%d")
 
-LINK = re.compile(r'(assets/(?:css/site\.css|js/[a-z]+\.js))(?:\?v=[0-9A-Za-z]+)?(")')
+LINK = re.compile(r'(assets/(?:css/[a-z]+\.css|js/[a-z]+\.js))(?:\?v=[0-9A-Za-z]+)?(")')
 GLYPHS = re.compile(r'("js/glyphs\.js)(?:\?v=[0-9A-Za-z]+)?(")')
 
 changed = 0
